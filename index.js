@@ -2,7 +2,11 @@ const outputFolder = require('path').join(process.cwd(), 'docs');
 const argv = require('yargs').argv
 
 if (argv.s || argv.server) {
-	compileEntireSite();
+	if (argv.a || argv.api) {
+
+	} else {
+		compileEntireSite();
+	}
 	runLocalServer();
 } else {
 	if (argv.b || argv.build) {
@@ -75,6 +79,26 @@ function runLocalServer() {
 	const express = require('express');
 	const app = express();
 	const port = process.env.PORT || 3000;
-	app.use('/', express.static(outputFolder));
-	app.listen(port, () => console.log(`Local server listening on port ${port}!`));
+
+	if (argv.a || argv.api) {
+		app.get('/', function(req, res) {
+			return res.send('API OK');
+		});
+		createApiRoutes(app);
+	} else {
+		app.use('/', express.static(outputFolder));
+		createApiRoutes(app);
+	}
+
+	app.listen(port, () => {
+		if (argv.a || argv.api) {
+			console.log(`Local server listening on port ${port}! (API MODE)`);
+		} else {
+			console.log(`Local server listening on port ${port}!`);
+		}
+	});
+}
+
+function createApiRoutes(app){
+
 }
