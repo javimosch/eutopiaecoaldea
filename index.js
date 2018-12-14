@@ -16,7 +16,7 @@ if (argv.s || argv.server) {
 		if (argv.d || argv.deploy) {
 			if (argv.a || argv.api) {
 				console.log('Commiting and deploying api')
-				exec('git add api/*; git add index.js;git commit -m "auto:api"; git push origin master:heroku');
+				exec('git add api/*; git add index.js;git commit -m "auto:api"; git push heroku master');
 			}else{
 				compileEntireSite();
 				exec('git add docs/*; git commit -m "auto"; git push origin master');
