@@ -14,8 +14,13 @@ if (argv.s || argv.server) {
 		console.log('Site compiled');
 	} else {
 		if (argv.d || argv.deploy) {
-			compileEntireSite();
-			exec('git add docs/*; git commit -m "auto"; git push origin master');
+			if (argv.a || argv.api) {
+				console.log('Commiting and deploying api')
+				exec('git add api/*; git add index.js;git commit -m "auto:api"; git push origin master:heroku');
+			}else{
+				compileEntireSite();
+				exec('git add docs/*; git commit -m "auto"; git push origin master');
+			}
 		}
 	}
 }
@@ -100,5 +105,5 @@ function runLocalServer() {
 }
 
 function createApiRoutes(app){
-
+	require('./api')(app);
 }
