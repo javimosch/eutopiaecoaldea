@@ -1,0 +1,143 @@
+body {
+  background-color: white;
+  padding: 0px;
+  margin: 0px; }
+
+header {
+  background: #f1ede5;
+  padding-top: 10px; }
+
+ul.menu {
+  list-style: none;
+  padding: 0px;
+  padding-bottom: 15px;
+  margin: 0px;
+  margin-top: 20px; }
+
+ul.menu li {
+  display: block;
+  margin-bottom: 15px; }
+
+.brand {
+  font-size: 25px;
+  color: #ffffff;
+  font-family: monospace;
+  text-decoration: none;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  background-color: coral;
+  text-transform: uppercase; }
+
+ul.menu a {
+  font-size: 14px;
+  color: #4CAF50;
+  text-decoration: none;
+  font-family: sans-serif;
+  margin: 0 auto;
+  display: block;
+  text-align: center; }
+
+hr {
+  height: 5px;
+  border: 0px;
+  background: #dbe9e2;
+  padding: 0px;
+  margin: 0px; }
+
+article {
+  padding: 10px; }
+
+section .image-title {
+  background-color: dimgrey;
+  margin: 0px;
+  min-height: 150px;
+  line-height: 150px;
+  color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 35px; }
+
+article h4 {
+  color: teal; }
+
+article .text {
+  font-size: 14px;
+  color: grey; }
+
+footer ul.menu a {
+  font-size: 14px;
+  color: #569b56;
+  text-decoration: none; }
+
+section .title {
+  background-color: darkkhaki;
+  padding: 10px;
+  margin: 0px;
+  color: floralwhite; }
+
+.centered {
+  text-align: center; }
+
+.icon-link {
+  margin: 0 10px; }
+
+.icon-link img {
+  max-width: -webkit-fill-available;
+  max-height: 45px;
+  display: inline; }
+
+.icon-link-text {
+  display: inline-block;
+  margin: 0px 10px;
+  vertical-align: top;
+  line-height: 45px;
+  font-size: 20px; }
+
+.group_types a {
+  color: lightseagreen; }
+
+.group_types a:hover {
+  color: coral; }
+
+section.admin {
+  padding: 10px; }
+
+.admin_menu a {
+  text-decoration: none;
+  display: block;
+  font-size: 12px; }
+
+.admin_menu a.logout {
+  margin-top: 10px;
+  color: indianred; }
+
+.admin_login {
+  padding-bottom: 10px; }
+
+.admin_login input {
+  border: 0px;
+  border-bottom: 2px solid grey; }
+
+.admin_login input:focus, .admin_login input:active {
+  outline: 0px;
+  box-shadow: none; }
+
+.admin_login button {
+  display: -webkit-box;
+  margin-top: 5px;
+  color: white;
+  background-color: indigo;
+  border: 0px;
+  padding: 5px;
+  cursor: pointer; }
+
+section.admin section {
+  padding-bottom: 50px; }
+
+.admin-image-thumb {
+  min-height: 155px;
+  background: yellowgreen;
+  width: -webkit-fill-available;
+  background-size: contain;
+  background-repeat: no-repeat; }
