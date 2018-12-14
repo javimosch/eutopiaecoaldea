@@ -1,0 +1,5 @@
+NODE_ENV=development
+API_URL=localhost:3000
+API_URL_PRODUCTION=https://utopiaecoaldea.herokuapp.com/
+SITE_URL_PRODUCTION=http://ecoaldea.incubadoraitinerante.com/
+REPO_URL=https://github.com/javimosch/utopia-ecoaldea
