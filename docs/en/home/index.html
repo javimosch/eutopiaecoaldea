@@ -1,27 +1,21 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Utopia - Ecofarm</title>
 </head>
 <body>
 
-	
-
-		<header>
-		    <a class="brand" href="/inicio">Utopia: Ecoaldea</a>
-		    <ul class="menu">
-		        <li><a href="/ecoaldea">Ecoaldea</a></li>
-		        <li><a href="/grupos">Grupos</a></li>
-		        <li><a href="/productos-y-ferias">Productos y feria</a></li>
-		        <li><a href="/en/lodgings">Lodgings</a></li>
-		    </ul>
-		    <hr>
-		</header>
-
+	<header>
+	    <a class="brand" href="#">Utopia: Ecoaldea</a>
+	    <ul class="menu">
+	        <li><a href="/ecoaldea">Ecoaldea</a></li>
+	        <li><a href="/grupos">Grupos</a></li>
+	        <li><a href="/productos-y-ferias">Productos y feria</a></li>
+	        <li><a href="/hospedajes">Hospedajes</a></li>
+	    </ul>
+	    <hr>
+	</header>
 	<h2>Home page</h2>
-	<!--
-
 	<section class="common_sections">
 		<section class="team">
 			<h2 class="title">Sobre nosotros</h2>
@@ -56,7 +50,8 @@
 		</section>
 	</section>
 
--->
+	
+
 
 	<footer>
 		<ul class="menu">
@@ -67,7 +62,34 @@
 		</ul>
 	</footer>
 
-	
-	<script type="text/javascript" src="/bundle.js"></script>
-	
+
+	<section class="admin">
+		<section class="admin_header">
+			<h3 class="brand">Utopia: Admin</h3>
+			<hr>
+		</section>
+		<section class="admin_login">
+			<input class="password" type="password" placeholder="password"/>
+			<button class="login" onclick="login()">Ingresar</button>
+			<hr>
+		</section>
+		<section class="admin_menu">
+			<a href="#">General: Subir imagenes</a>
+			<a href="#">General: Ver imagenes</a>
+			<a href="#">Hospedajes: Titulo: Color</a>
+			<a href="#">Hospedajes: Titulo: Texto</a>
+			<a href="#">Hospedajes: Titulo: Imagen</a>
+			<a href="#" onclick="logout()" class="logout">Salir</a>
+			<hr>
+		</section>
+
+		<section class="admin_section">
+			<h4 class="title">General: Ver imagenes</h4>
+			<div class="admin-image-thumb" style="background-image:url(/img/ecoaldea_title.jpg);"></div>
+			<hr>
+		</section>
+
+		<script type="text/javascript" src="admin.js"></script>
+	</section>
+
 </body>

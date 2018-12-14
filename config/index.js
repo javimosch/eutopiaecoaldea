@@ -3,12 +3,17 @@ require('dotenv').config({
 });
 var locales = require('./locales.js');
 var self = module.exports = {
+	defaultOutputFolder: 'docs',
 	NODE_ENV: process.env.NODE_ENV,
+	API_URL: process.env.API_URL,
 	defaultLanguage: 'es',
 	context:{
-		NODE_ENV: process.env.NODE_ENV
+		defaultCurrentPage:'page_home',
+		currentPage: 'page_home',
+		NODE_ENV: process.env.NODE_ENV,
+		API_URL: process.env.API_URL
 	},
-	getConfig: function(language){
+	getContext: function(language){
 		//console.log('getConfig',{language})
 		language = language || self.defaultLanguage;
 		function collectLanguage(language){
