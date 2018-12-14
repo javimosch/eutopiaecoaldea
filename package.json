@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npx nodemon --exec 'node index.js -s' --watch src --watch index.js --watch config -e html,css,scss,sass,js,json",
     "build": "npx cross-env NODE_ENV=production node index.js -b",
-    "deploy": "npx cross-env NODE_ENV=production node index.js -d"
+    "deploy": "npx cross-env NODE_ENV=production node index.js -d",
+    "api": "npx cross-env NODE_ENV=production cross-env PORT=3001 node index.js -s -a"
   },
   "license": "MIT",
   "dependencies": {
