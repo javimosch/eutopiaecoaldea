@@ -28,7 +28,7 @@ module.exports = function() {
 				function browseImages(){
 					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
 						console.log('IMAGES', response)
-					});
+					}));
 				}
 
 				function uploadImage() {

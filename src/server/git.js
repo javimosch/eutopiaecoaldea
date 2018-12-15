@@ -40,7 +40,16 @@ function unlinkUnusedGitDirs(){
 
 function prepare() {
 	if (!cache.basePath) {
-		unlinkUnusedGitDirs();
+		if(process.env.NODE_ENV==='production'){
+			unlinkUnusedGitDirs();
+		}else{
+			var folders = sander.readdirSync(tempDir);
+			folders = folders.filter(folder=>folder.indexOf('git_')!==-1);
+			if(folders.length>0){
+				cache.basePath = path.join(tempDir,folders[0]);
+				return;// to speed up things
+			}
+		}
 		var basePath = path.join(tempDir, 'git_'+shortid.generate());
 		var gitClone = `git clone git@github.com:javimosch/utopia-ecoaldea.git .`;
 		exec(`mkdir ~/.ssh; cd ~/.ssh; cp ${path.join(process.cwd(),'deploy.pub')} .; echo 1`)

@@ -39,7 +39,9 @@ module.exports = {
 					pageConfig = dJSON.parse(pageConfig);
 				}
 			} catch (err) {
-				return console.error('pages: config file missing at',pageConfigPath);
+				return console.error('pages: config file missing at',pageConfigPath,{
+					details: err.stack
+				});
 			}
 
 			//Register partial
