@@ -1,6 +1,6 @@
 module.exports = function(options, config, context) {
 	return {
-		name: context.lang.PRODUCTOS_FERIAS,
+		name: context.lang.VOLUNTARIADO,
 		context: {
 			init: function init() {
 
