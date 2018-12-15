@@ -40,7 +40,7 @@ function unlinkUnusedGitDirs(){
 
 function prepare() {
 	if (!cache.basePath) {
-		if(process.env.NODE_ENV==='production'){
+		if(false && process.env.NODE_ENV==='production'){
 			unlinkUnusedGitDirs();
 		}else{
 			var folders = sander.readdirSync(tempDir);
@@ -52,9 +52,11 @@ function prepare() {
 		}
 		var basePath = path.join(tempDir, 'git_'+shortid.generate());
 		var gitClone = `git clone git@github.com:javimosch/utopia-ecoaldea.git .`;
-		exec(`mkdir ~/.ssh; cd ~/.ssh; cp ${path.join(process.cwd(),'deploy.pub')} .; cp ${path.join(process.cwd(),'deploy.key')} deploy; echo 1`)
+		//exec(`mkdir ~/.ssh; cd ~/.ssh; cp ${path.join(process.cwd(),'deploy.pub')} .; cp ${path.join(process.cwd(),'deploy.key')} deploy; echo 1`)
+		var keyPath = path.join(process.cwd(),'deploy.key');
+		var sshAgent = `ssh-agent bash -c 'ssh-add ${keyPath}`;
 		exec(`rm -rf ${basePath}; echo 1`)
-		exec(`mkdir ${basePath}; cd ${basePath}; ${gitClone}`)
+		exec(`mkdir ${basePath}; cd ${basePath}; ${sshAgent};${gitClone}`);
 		cache.basePath = basePath;
 	}
 }
