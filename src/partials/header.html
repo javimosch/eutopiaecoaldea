@@ -1,10 +1,23 @@
 <header>
-    <a class="brand" href="/inicio">Utopia: Ecoaldea</a>
-    <ul class="menu">
-        <li><a href="/ecoaldea">Ecoaldea</a></li>
-        <li><a href="/grupos">Grupos</a></li>
-        <li><a href="/productos-y-ferias">Productos y feria</a></li>
-        <li><a href="/{{langPath}}{{lang.HOSPEDAJES}}">{{#capitalize}}{{lang.HOSPEDAJES}}{{/capitalize}}</a></li>
-    </ul>
+    <a class="brand" href="/inicio">
+    {{lang.META_TITLE}}
+    <img src="/img/logo.webp"/>
+	</a>
+    <nav>
+	    <ul class="menu">
+	        <li><a href="/ecoaldea">Ecoaldea</a></li>
+	        <li>
+	        	<a href="/grupos">Grupos</a>
+	        	<ul class="subMenu">
+	        		<li><a href="/grupos-escuelas">Escuelas</a></li>
+	        		<li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
+	        		<li><a href="/grupos-familia">Familia</a></li>
+	        		<li><a href="/grupos-profesionales">Profesionales</a></li>
+	        	</ul>
+	        </li>
+	        <li><a href="/productos-y-ferias">Productos y feria</a></li>
+	        <li><a href="/{{langPath}}{{lang.HOSPEDAJES}}">{{#capitalize}}{{lang.HOSPEDAJES}}{{/capitalize}}</a></li>
+	    </ul>
+	</nav>
     <hr>
 </header>

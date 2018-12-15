@@ -1,11 +1,8 @@
 <section class="admin">
-    <section class="admin_header">
-        <h3 class="brand">Utopia: Admin</h3>
-        <hr>
-    </section>
+    
     <section class="admin_login">
-        <input class="password" type="password" placeholder="password" />
-        <button class="login" onclick="login()">Ingresar</button>
+        <input class="password" type="password" placeholder="password" v-model="password" ref="pwd"/>
+        <button class="login" @click="login()">Ingresar</button>
         <hr>
     </section>
     <section class="admin_menu">
@@ -23,4 +20,3 @@
         <hr>
     </section>
 </section>
-<script type="text/javascript" src="admin.js"></script>

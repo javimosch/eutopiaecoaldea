@@ -1,7 +1,7 @@
 module.exports = {
     META_TITLE: {
-        en: 'Utopia - Ecofarm',
-        es: 'Utopia - Ecoaldea'
+        en: 'Eutopía - Ecovillage',
+        es: 'Eutopía - Ecoaldea'
     },
     HOSPEDAJES: {
         es: 'hospedajes',
