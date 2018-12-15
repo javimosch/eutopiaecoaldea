@@ -27,16 +27,12 @@ module.exports = function() {
 					var encoded = window.btoa(password);
 					fetch(`${SERVER.API_URL}/api/login/validate?code=${encoded}`).then(r => r.json().then(response => {
 						if (response.result) {
-							window.location.href="/admin/dashboard"
+							window.localStorage.setItem('adminToken', encoded);
+							window.location.href="/admin/dashboard";
 						} else {
 							this.$refs.pwd.focus();
 						}
 					}));
-				}
-
-				function logout() {
-					//TODO: redirect to home screen
-					//window.location.href="/";
 				}
 			}
 		}

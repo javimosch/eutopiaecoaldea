@@ -43,7 +43,7 @@ module.exports = {
 			}
 
 			//Register partial
-			var pageName= 'page_' + name.toLowerCase()
+			var pageName= 'page_' + name.split('-').join('_').toLowerCase()
 			Handlebars.registerPartial(pageName, source);
 
 			//Write file
