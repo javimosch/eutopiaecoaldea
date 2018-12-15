@@ -34,17 +34,7 @@ function unlinkUnusedGitDirs(){
 
 function prepare() {
 	if (!cache.basePath) {
-		if(process.env.NODE_ENV==='production'){
-			unlinkUnusedGitDirs();	
-		}else{
-			var folders = sander.readdirSync(tempDir);
-			folders = folders.filter(folder=>folder.indexOf('git_')!==-1);
-			if(folders.length>0){
-				cache.basePath = path.join(tempDir, folders[0]);
-				return; //to speed up things during development
-			}
-		}
-		
+		unlinkUnusedGitDirs();
 		var basePath = path.join(tempDir, 'git_'+shortid.generate());
 		var gitClone = `git clone git@github.com:javimosch/utopia-ecoaldea.git .`;
 		exec(`mkdir ~/.ssh; cd ~/.ssh; cp ${path.join(process.cwd(),'deploy.pub')} .; echo 1`)
@@ -60,9 +50,7 @@ function pushPath(gitPath) {
 	}
 	prepare();
 	var basePath = cache.basePath;
-	console.log('git pushPath: reset, pull, checkout and add...')
 	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
 	exec(`cd ${basePath}; git checkout master; git add ${gitPath}`);
-	console.log('git pushPath: commiting and pushing..');
 	exec(`cd ${basePath}; git commit -m 'pushPath commit'; git push origin master`);
 }
