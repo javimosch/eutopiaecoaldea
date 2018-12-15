@@ -1,18 +1,19 @@
 <section class="admin protected">
     <section class="admin_menu">
         <a href="#">General: Subir imagenes</a>
+        <section class="upload-images">
+            <input type="file" name="image" id="image" />
+            <button @click="uploadImage()">Upload</button>
+        </section>
         <a href="#">General: Ver imagenes</a>
+        <section class="view-images">
+            <div class="admin-image-thumb" style="background-image:url(/img/ecoaldea_title.jpg);"></div>
+            <hr>
+        </section>
         <a href="#">Hospedajes: Titulo: Color</a>
         <a href="#">Hospedajes: Titulo: Texto</a>
         <a href="#">Hospedajes: Titulo: Imagen</a>
         <a href="#" onclick="logout()" class="logout">Salir</a>
         <hr>
     </section>
-    <!--
-    <section class="admin_section">
-        <h4 class="title">General: Ver imagenes</h4>
-        <div class="admin-image-thumb" style="background-image:url(/img/ecoaldea_title.jpg);"></div>
-        <hr>
-    </section>
--->
 </section>
