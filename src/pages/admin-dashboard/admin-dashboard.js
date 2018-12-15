@@ -16,10 +16,20 @@ module.exports = function() {
 					created() {
 						console.log('admin_dashboard')
 					},
+					mounted(){
+						this.browseImages();
+					},
 					methods: {
-						uploadImage
+						uploadImage,
+						browseImages
 					}
 				})
+
+				function browseImages(){
+					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
+						console.log('IMAGES', response)
+					});
+				}
 
 				function uploadImage() {
 					var data = new FormData();
