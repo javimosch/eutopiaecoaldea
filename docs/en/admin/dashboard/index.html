@@ -28,13 +28,14 @@
 		    <section class="admin_menu">
 		        <a href="#">General: Subir imagenes</a>
 		        <section class="upload-images">
-		            <input type="file" name="image" id="image" />
-		            <button @click="uploadImage()">Upload</button>
+		            <input type="file" name="image" id="image"/>
+		            <button @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
 		        </section>
 		        <a href="#">General: Ver imagenes</a>
-		        <section class="view-images">
-		            <div class="admin-image-thumb" style="background-image:url(/img/ecoaldea_title.jpg);"></div>
-		            <hr>
+		        <section class="view-images imagesViewBox">
+		            <div class="admin-image-thumb" 
+		            v-for="item in images"
+		            :style="`background-image:url(/uploads/images/${item});`"></div>
 		        </section>
 		        <a href="#">Hospedajes: Titulo: Color</a>
 		        <a href="#">Hospedajes: Titulo: Texto</a>
@@ -84,6 +85,7 @@
 
 	
 
+	<script type="text/javascript" src="/libs/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/libs/vue.js"></script>
 	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
@@ -95,7 +97,9 @@
 					name: 'admin_dashboard',
 					data() {
 						return {
-
+							uploading:false,
+							single_image:null,
+							images:[]
 						}
 					},
 					created() {
@@ -112,7 +116,7 @@
 
 				function browseImages(){
 					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
-						console.log('IMAGES', response)
+						this.images = response.images;
 					}));
 				}
 
@@ -120,6 +124,7 @@
 					var data = new FormData();
 					var file = $('#image')[0].files[0];
 					data.append('image', file);
+					this.uploading=true;
 					$.ajax({
 						url: `${SERVER.API_URL}/api/upload/images/single`,
 						data: data,
@@ -127,7 +132,13 @@
 						contentType: false,
 						processData: false,
 						type: 'POST',
-						success: function(data) {
+						error:()=>{
+							this.uploading=false;
+							$('#image').val('');
+						},
+						success: (data)=>{
+							this.uploading=false;
+							$('#image').val('');
 							alert('Image uploaded!')
 						}
 					});

@@ -10,7 +10,9 @@ module.exports = function() {
 					name: 'admin_dashboard',
 					data() {
 						return {
-
+							uploading:false,
+							single_image:null,
+							images:[]
 						}
 					},
 					created() {
@@ -27,7 +29,7 @@ module.exports = function() {
 
 				function browseImages(){
 					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
-						console.log('IMAGES', response)
+						this.images = response.images;
 					}));
 				}
 
@@ -35,6 +37,7 @@ module.exports = function() {
 					var data = new FormData();
 					var file = $('#image')[0].files[0];
 					data.append('image', file);
+					this.uploading=true;
 					$.ajax({
 						url: `${SERVER.API_URL}/api/upload/images/single`,
 						data: data,
@@ -42,7 +45,13 @@ module.exports = function() {
 						contentType: false,
 						processData: false,
 						type: 'POST',
-						success: function(data) {
+						error:()=>{
+							this.uploading=false;
+							$('#image').val('');
+						},
+						success: (data)=>{
+							this.uploading=false;
+							$('#image').val('');
 							alert('Image uploaded!')
 						}
 					});
