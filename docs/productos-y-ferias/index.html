@@ -2,49 +2,73 @@
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Utopia - Ecoaldea</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+	<title>Eutopía - Ecoaldea</title>
+
+
+	<script type="text/javascript">
+		window.SERVER={
+			API_URL: 'http://localhost:3000'
+		}
+	</script>
 </head>
 <body>
 
 	
 
 		<header>
-		    <a class="brand" href="/inicio">Utopia: Ecoaldea</a>
-		    <ul class="menu">
-		        <li><a href="/ecoaldea">Ecoaldea</a></li>
-		        <li><a href="/grupos">Grupos</a></li>
-		        <li><a href="/productos-y-ferias">Productos y feria</a></li>
-		        <li><a href="/hospedajes">Hospedajes</a></li>
-		    </ul>
+		    <a class="brand" href="/inicio">
+		    Eutopía - Ecoaldea
+		    <img src="/img/logo.webp"/>
+			</a>
+		    <nav>
+			    <ul class="menu">
+			        <li><a href="/ecoaldea">Ecoaldea</a></li>
+			        <li>
+			        	<a href="/grupos">Grupos</a>
+			        	<ul class="subMenu">
+			        		<li><a href="/grupos-escuelas">Escuelas</a></li>
+			        		<li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
+			        		<li><a href="/grupos-familia">Familia</a></li>
+			        		<li><a href="/grupos-profesionales">Profesionales</a></li>
+			        	</ul>
+			        </li>
+			        <li><a href="/productos-y-ferias">Productos y feria</a></li>
+			        <li><a href="/hospedajes">Hospedajes</a></li>
+			    </ul>
+			</nav>
 		    <hr>
 		</header>
 
-	<section class="view_productos">
-	    <section>
-	        <h2 class="image-title centered"
-				style="background-image:url(/img/ecoaldea_title.jpg);"
-				>Productos ecologicos</h2>
-	        <article>
-	            <h4>Comparti la experiencia en grupo</h4>
-	            <p class="text">Lorem ipsum opsum Lorem ipsum opsumLorem;.</p>
-	        </article>
-	    </section>
-	    <section class="group_types">
-	        <a href="#">
-					<div class="icon-link">
-						<img src="/img/ecoaldea_title.jpg"/>
-						<h5 class="icon-link-text">Ferias de productos</h5>
-					</div>
-				</a>
-	        <a href="#">
-					<div class="icon-link">
-						<img src="/img/ecoaldea_title.jpg"/>
-						<h5 class="icon-link-text">Productos de la aldea</h5>
-					</div>
-				</a>
-	    </section>
-	    <hr />
-	</section>
+	<div class="mainContent">
+		<section class="view_productos">
+		    <section>
+		        <h2 class="image-title centered"
+					style="background-image:url(/img/ecoaldea_title.jpg);"
+					>Productos ecologicos</h2>
+		        <article>
+		            <h4>Comparti la experiencia en grupo</h4>
+		            <p class="text">Lorem ipsum opsum Lorem ipsum opsumLorem;.</p>
+		        </article>
+		    </section>
+		    <section class="group_types">
+		        <a href="#">
+						<div class="icon-link">
+							<img src="/img/ecoaldea_title.jpg"/>
+							<h5 class="icon-link-text">Ferias de productos</h5>
+						</div>
+					</a>
+		        <a href="#">
+						<div class="icon-link">
+							<img src="/img/ecoaldea_title.jpg"/>
+							<h5 class="icon-link-text">Productos de la aldea</h5>
+						</div>
+					</a>
+		    </section>
+		    <hr />
+		</section>	</div>
+
 	<!--
 
 	<section class="common_sections">
@@ -92,7 +116,10 @@
 		</ul>
 	</footer>
 
-	
+	<script type="text/javascript" src="/libs/vue.js"></script>
+	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
-	
+-->
+	<script type="text/javascript">
+	</script>
 </body>

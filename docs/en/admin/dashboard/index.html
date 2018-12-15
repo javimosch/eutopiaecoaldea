@@ -4,8 +4,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
-	<title>Eutopía - Ecoaldea</title>
+	<title>Eutopía - Ecovillage</title>
 
+		<script type="text/javascript" src="/js/common-admin.js"></script>
 
 	<script type="text/javascript">
 		window.SERVER={
@@ -17,32 +18,30 @@
 
 	
 
-		<header>
-		    <a class="brand" href="/inicio">
-		    Eutopía - Ecoaldea
-		    <img src="/img/logo.webp"/>
-			</a>
-		    <nav>
-			    <ul class="menu">
-			        <li><a href="/ecoaldea">Ecoaldea</a></li>
-			        <li>
-			        	<a href="/grupos">Grupos</a>
-			        	<ul class="subMenu">
-			        		<li><a href="/grupos-escuelas">Escuelas</a></li>
-			        		<li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
-			        		<li><a href="/grupos-familia">Familia</a></li>
-			        		<li><a href="/grupos-profesionales">Profesionales</a></li>
-			        	</ul>
-			        </li>
-			        <li><a href="/productos-y-ferias">Productos y feria</a></li>
-			        <li><a href="/hospedajes">Hospedajes</a></li>
-			    </ul>
-			</nav>
-		    <hr>
-		</header>
+		<section class="admin_header">
+	        <h3 class="brand">Eutopía - Ecovillage - Admin</h3>
+	        <hr>
+	    </section>
 
 	<div class="mainContent">
-		<div class="sliderWrap"></div>
+		<section class="admin protected">
+		    <section class="admin_menu">
+		        <a href="#">General: Subir imagenes</a>
+		        <a href="#">General: Ver imagenes</a>
+		        <a href="#">Hospedajes: Titulo: Color</a>
+		        <a href="#">Hospedajes: Titulo: Texto</a>
+		        <a href="#">Hospedajes: Titulo: Imagen</a>
+		        <a href="#" onclick="logout()" class="logout">Salir</a>
+		        <hr>
+		    </section>
+		    <!--
+		    <section class="admin_section">
+		        <h4 class="title">General: Ver imagenes</h4>
+		        <div class="admin-image-thumb" style="background-image:url(/img/ecoaldea_title.jpg);"></div>
+		        <hr>
+		    </section>
+		-->
+		</section>
 	</div>
 
 	<!--
@@ -83,22 +82,29 @@
 
 -->
 
-	<footer>
-		<ul class="menu">
-			<li><a href="#">Sobre nosotros</a></li>
-			<li><a href="#">Contacto</a></li>
-			<li><a href="#">Voluntariado</a></li>
-			<li><a href="#">Menciones legales</a></li>
-		</ul>
-	</footer>
+	
 
 	<script type="text/javascript" src="/libs/vue.js"></script>
 	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
 -->
 	<script type="text/javascript">
-			function init() {
+			function init(){
+				new Vue({
+					el: '.admin',
+					name: 'admin_dashboard',
+					data(){
+						return {
+							
+						}
+					},
+					created() {
+						console.log('admin_dashboard')
+					},
+					methods: {
 
+					}
+				})
 			}
 			if(!!init){
 				init();
