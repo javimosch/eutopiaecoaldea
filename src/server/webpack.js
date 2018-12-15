@@ -5,13 +5,20 @@ module.exports = {
 	compile: () => {
 		webpack(getConfig(), (err, stats) => {
 			if (err || stats.hasErrors()) {
+				if(err){
 				console.error('webpack:', err.stack || err);
 				if (err.details) {
 					console.error('webpack:', err.details);
 				}
+				}
+				const info = stats.toJson();
+				console.error('webpack:',{
+					warnings: info.warnings||'',
+					errors: info.errors||''
+				})
 			}
 			// Done processing
-			console.log('webpack: done')
+			console.log('webpack: done', (stats.endTime - stats.startTime)+'ms')
 		});
 	}
 }
@@ -23,7 +30,7 @@ function getConfig() {
 		output: {
 			path: path.join(process.cwd(), "docs"), // string
 			filename: "bundle.js", // string    // the filename template for entry chunks
-			publicPath: "/assets/", // string    // the url to the output directory resolved relative to the HTML page
+			//publicPath: "/assets/", // string    // the url to the output directory resolved relative to the HTML page
 		},
 		module: {
 			rules: [{
@@ -42,7 +49,7 @@ function getConfig() {
 			// (does not apply to resolving to loaders)
 			modules: [
 				"node_modules",
-				path.resolve(__dirname, "app")
+				//path.resolve(__dirname, "app")
 			],
 			// directories where to look for modules
 			extensions: [".js", ".json", ".jsx", ".css"],
@@ -53,6 +60,7 @@ function getConfig() {
 				// alias "module" -> "new-module" and "module/path/file" -> "new-module/path/file"
 			}
 		},
+		watch:false,
 		devtool: "source-map",
 		target: "web",
 		//externals: ["vue"],

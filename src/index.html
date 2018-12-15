@@ -3,6 +3,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{lang.META_TITLE}}</title>
+	<script type="text/javascript">
+		window.SERVER={
+			API_URL: '{{API_URL}}'
+		}
+	</script>
 </head>
 <body>
 
@@ -10,9 +15,16 @@
 
 	{{#if (neq type 'admin')}}
 		{{> partial_header}}
+	{{else}}
+		<section class="admin_header">
+	        <h3 class="brand">{{lang.META_TITLE}} - Admin</h3>
+	        <hr>
+	    </section>
 	{{/if}}
 
-	{{> (lookup . 'currentPage') }}
+	<div class="mainContent">
+		{{> (lookup . 'currentPage') }}
+	</div>
 
 	<!--
 
@@ -65,7 +77,16 @@
 	
 	{{/if}}
 
-	
+	<script type="text/javascript" src="/libs/vue.js"></script>
+	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
-	
+-->
+	<script type="text/javascript">
+		{{#if (typeIs init 'function')}}
+			{{#toString init}}{{/toString}}
+			if(!!init){
+				init();
+			}
+		{{/if}}
+	</script>
 </body>

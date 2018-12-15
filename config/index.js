@@ -1,6 +1,8 @@
 require('dotenv').config({
 	silent:true
 });
+const dJSON = require('dirty-json');
+
 var locales = require('./locales.js');
 var self = module.exports = {
 	defaultOutputFolder: 'docs',
@@ -39,3 +41,14 @@ var self = module.exports = {
 		});
 	}
 };
+
+
+var data = require('sander').readFileSync(__dirname+'/data.js').toString('utf-8');
+var savedData  = {}
+try{
+	savedData = dJSON.parse(data);
+}catch(err){
+	console.error('config: invalid data')
+}
+Object.assign(self, savedData || {});
+
