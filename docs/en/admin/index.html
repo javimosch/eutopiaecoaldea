@@ -2,39 +2,37 @@
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Utopia - Ecofarm</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+	<title>Eutopía - Ecovillage</title>
+
+		<script type="text/javascript" src="/js/common-admin.js"></script>
+
+	<script type="text/javascript">
+		window.SERVER={
+			API_URL: 'http://localhost:3000'
+		}
+	</script>
 </head>
 <body>
 
 	
 
+		<section class="admin_header">
+	        <h3 class="brand">Eutopía - Ecovillage - Admin</h3>
+	        <hr>
+	    </section>
 
-	<section class="admin">
-	    <section class="admin_header">
-	        <h3 class="brand">Utopia: Admin</h3>
-	        <hr>
-	    </section>
-	    <section class="admin_login">
-	        <input class="password" type="password" placeholder="password" />
-	        <button class="login" onclick="login()">Ingresar</button>
-	        <hr>
-	    </section>
-	    <section class="admin_menu">
-	        <a href="#">General: Subir imagenes</a>
-	        <a href="#">General: Ver imagenes</a>
-	        <a href="#">Hospedajes: Titulo: Color</a>
-	        <a href="#">Hospedajes: Titulo: Texto</a>
-	        <a href="#">Hospedajes: Titulo: Imagen</a>
-	        <a href="#" onclick="logout()" class="logout">Salir</a>
-	        <hr>
-	    </section>
-	    <section class="admin_section">
-	        <h4 class="title">General: Ver imagenes</h4>
-	        <div class="admin-image-thumb" style="background-image:url(/img/ecoaldea_title.jpg);"></div>
-	        <hr>
-	    </section>
-	</section>
-	<script type="text/javascript" src="admin.js"></script>
+	<div class="mainContent">
+		<section class="admin">
+		    <section class="admin_login">
+		        <input class="password" type="password" placeholder="password" v-model="password" ref="pwd"/>
+		        <button class="login" @click="login()">Ingresar</button>
+		        <hr>
+		    </section>
+		</section>
+	</div>
+
 	<!--
 
 	<section class="common_sections">
@@ -75,7 +73,44 @@
 
 	
 
-	
+	<script type="text/javascript" src="/libs/vue.js"></script>
+	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
-	
+-->
+	<script type="text/javascript">
+			function init() {
+
+				new Vue({
+					el: '.admin_login',
+					name: 'admin_login',
+					data(){
+						return {
+							password:''
+						}
+					},
+					created() {
+						console.log('admin_login')
+					},
+					methods: {
+						login
+					}
+				})
+
+				function login() {
+					var password = this.password;
+					var encoded = window.btoa(password);
+					fetch(`${SERVER.API_URL}/api/login/validate?code=${encoded}`).then(r => r.json().then(response => {
+						if (response.result) {
+							window.localStorage.setItem('adminToken', encoded);
+							window.location.href="/admin/dashboard";
+						} else {
+							this.$refs.pwd.focus();
+						}
+					}));
+				}
+			}
+			if(!!init){
+				init();
+			}
+	</script>
 </body>
