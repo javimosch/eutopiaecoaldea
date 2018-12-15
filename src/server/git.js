@@ -53,10 +53,14 @@ function prepare() {
 		var basePath = path.join(tempDir, 'git_'+shortid.generate());
 		var gitClone = `git clone git@github.com:javimosch/utopia-ecoaldea.git .`;
 		//exec(`mkdir ~/.ssh; cd ~/.ssh; cp ${path.join(process.cwd(),'deploy.pub')} .; cp ${path.join(process.cwd(),'deploy.key')} deploy; echo 1`)
-		var keyPath = path.join(process.cwd(),'deploy.pub');
+		var keyPath = path.join(process.cwd(),'deploy.key');
 		var sshAgent = `ssh-agent bash -c 'ssh-add ${keyPath}'`;
+		gitClone = `${sshAgent};${gitClone}`;
+		if(process.env.AUTH_REPO_URL){
+			gitClone = `git clone ${process.env.AUTH_REPO_URL} .`;
+		}
 		exec(`rm -rf ${basePath}; echo 1`)
-		exec(`mkdir ${basePath}; cd ${basePath}; ${sshAgent};${gitClone}`);
+		exec(`mkdir ${basePath}; cd ${basePath}; ${gitClone}`);
 		cache.basePath = basePath;
 	}
 }
