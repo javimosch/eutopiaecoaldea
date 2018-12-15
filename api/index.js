@@ -5,6 +5,9 @@ var filePath = name => path.join(process.cwd(), name);
 const reload = require('require-reload')(require);
 
 module.exports = function configure(app){
+	
+	require("./upload")(app);
+
 	app.get('/api/config',(req,res)=>{
 		res.json({
 			config: reload('../config')
