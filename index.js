@@ -68,6 +68,18 @@ function compileEntireSite() {
 		language: 'en',
 		outputFolder: 'docs/en'
 	});
+	compileSiteOnce({
+		language: 'fr',
+		outputFolder: 'docs/fr'
+	});
+	compileSiteOnce({
+		language: 'de',
+		outputFolder: 'docs/de'
+	});
+	compileSiteOnce({
+		language: 'pr',
+		outputFolder: 'docs/pr'
+	});
 }
 
 function compileStyles() {
@@ -101,6 +113,13 @@ function loadHandlebarHelpers() {
 		var result = options.fn(this);
 		result = result.charAt(0).toUpperCase() + result.substring(1);
 		return new Handlebars.SafeString(result);
+	});
+
+	Handlebars.registerHelper('pagePath', function(langPath, name, options) {
+		name = name.split(' ').join('-')
+		name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+		name = name.toLowerCase();
+		return `/${langPath}${name}`;
 	});
 
 	Handlebars.registerHelper('typeIs', function(obj, value, options) {
@@ -148,6 +167,7 @@ function compileSiteOnce(options = {}) {
 	var source = sander.readFileSync(srcFile('index.html')).toString('utf-8');
 	var template = Handlebars.compile(source);
 	var context = config.getContext(options.language);
+	context.currentLanguage = context.lang[options.language];
 	context.currentPage = context.defaultCurrentPage;
 	context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;
 	var html = template(context);
