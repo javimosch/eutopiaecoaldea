@@ -8,13 +8,13 @@ const sander = require('sander');
 const path = require('path');
 
 if (argv.s || argv.server) {
-	
-	var testFile = path.join(process.cwd(),'deploy.pub')
-	var gitPath = server.git.getPath();
-	exec(`cd ${gitPath}; cd src/static; cp ${testFile} .`)
-	server.git.pushPath('src/*');
 
-	//server.webpack.compile();
+	//var testFile = path.join(process.cwd(), 'deploy.pub')
+	//var gitPath = server.git.getPath();
+	//exec(`cd ${gitPath}; cd src/static; cp ${testFile} .`)
+	//server.git.pushPath('src/*');
+
+	
 	runLocalServer();
 	if (argv.a || argv.api) {
 
@@ -22,33 +22,43 @@ if (argv.s || argv.server) {
 		compileEntireSite();
 	}
 } else {
-	if (argv.b || argv.build) { 
+	if (argv.b || argv.build) {
 		compileEntireSite();
 		console.log('Site compiled');
 	} else {
 		if (argv.d || argv.deploy) {
 			if (argv.a || argv.api) {
 				console.log('Commiting and deploying api')
-				exec('git add api/*; git add index.js;git commit -m "auto:api"; git push heroku master');
+				exec('git add api/*; git add index.js;git commit -m "auto:api";git stash; git pull --rebase origin master; git stash pop;git push heroku master');
 			} else {
 				compileEntireSite();
-				exec('git add docs/*; git commit -m "auto"; git push origin master');
+				exec('git add docs/*; git commit -m "auto"; git stash; git pull --rebase origin master; git stash pop; git push origin master');
 			}
 		}
 	}
 }
 
-
-
 function compileEntireSite() {
 	if (process.env.NODE_ENV === 'production') {
-		rimraf(path.join(outputFolder, '/**'),'/docs/');
+		exec(`cd ${process.cwd()}; cp ${path.join(outputFolder,'CNAME')} .`)
+		rimraf(path.join(outputFolder, '/**'), '/docs/');
+		exec(`mkdir ${outputFolder}; echo 1;`);
+		exec(`cd ${outputFolder}; cp ${path.join(process.cwd(),'CNAME')} .; rm ${path.join(process.cwd(),'CNAME')}`)
 	}
-	exec(`mkdir ${outputFolder}; echo 1;`);
+	
 	exec(`cd ${outputFolder}; cp -R ../src/static/* .`);
 
 	//Helpers
 	loadHandlebarHelpers()
+
+	//Styles
+	if(process.env.NODE_ENV==='production'){
+		compileStyles();
+	}
+
+	//Javascript
+	//server.webpack.compile();
+
 
 	//Generate site
 	compileSiteOnce({
@@ -58,6 +68,21 @@ function compileEntireSite() {
 		language: 'en',
 		outputFolder: 'docs/en'
 	});
+}
+
+function compileStyles() {
+	const config = require('./config');
+	var outputFolder = config.defaultOutputFolder;
+	var basePath = path.join(process.cwd(), outputFolder);
+	var srcPath = path.join(process.cwd(), 'src');
+	var srcFile = name => path.join(srcPath, name);
+	var fileName = name => path.join(basePath, name);
+	var sass = require('node-sass');
+	var css = sass.renderSync({
+		file: srcFile('styles/main.scss')
+	}).css.toString('utf-8')
+	sander.writeFileSync(fileName('styles.css'), css);
+	return css.length + ' characters written.'
 }
 
 function loadHandlebarHelpers() {
@@ -78,15 +103,15 @@ function loadHandlebarHelpers() {
 		return new Handlebars.SafeString(result);
 	});
 
-	Handlebars.registerHelper('typeIs', function(obj,value, options) {
-	  if(typeof obj == value) {
-	    return true;
-	  } else {
-	    return false;
-	  }
+	Handlebars.registerHelper('typeIs', function(obj, value, options) {
+		if (typeof obj == value) {
+			return true;
+		} else {
+			return false;
+		}
 	});
 
-	Handlebars.registerHelper('toString', function(result,options) {
+	Handlebars.registerHelper('toString', function(result, options) {
 		result = result.toString('utf-8');
 		return new Handlebars.SafeString(result);
 	});
@@ -100,6 +125,7 @@ function loadHandlebarHelpers() {
 	});
 	*/
 }
+
 
 function compileSiteOnce(options = {}) {
 
@@ -127,19 +153,7 @@ function compileSiteOnce(options = {}) {
 	var html = template(context);
 	sander.writeFileSync(fileName('index.html'), html);
 
-	//Styles
-	//compileStyles();
 
-	//Javascript
-
-	function compileStyles() {
-		var sass = require('node-sass');
-		var css = sass.renderSync({
-			file: srcFile('styles/main.scss')
-		}).css.toString('utf-8')
-		sander.writeFileSync(fileName('styles.css'), css);
-		return css.length + ' characters written.'
-	}
 }
 
 function runLocalServer() {
