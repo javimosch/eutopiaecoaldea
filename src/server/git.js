@@ -18,6 +18,12 @@ module.exports = {
 	}
 }
 
+function pullCurrent(){
+	console.log('git pullCurrent: pull and rebase working directory with latest changes...');
+	var basePath = process.cwd();
+	exec(`cd ${basePath}; git stash; git pull --rebase origin master; git stash pop`);
+}
+
 function unlinkUnusedGitDirs(){
 	var folders = sander.readdirSync(tempDir);
 	folders = folders.filter(folder=>folder.indexOf('git_')!==-1);
@@ -53,4 +59,7 @@ function pushPath(gitPath) {
 	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
 	exec(`cd ${basePath}; git checkout master; git add ${gitPath}`);
 	exec(`cd ${basePath}; git commit -m 'pushPath commit'; git push origin master`);
+	if(process.env.NODE_ENV==='production'){
+		pullCurrent();
+	}
 }
