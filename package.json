@@ -4,11 +4,11 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon --exec 'node index.js -s' --watch src/static --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json",
-    "build": "npx cross-env NODE_ENV=production node index.js -b",
-    "deploy": "npx cross-env NODE_ENV=production node index.js -d",
+    "build": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -b",
+    "deploy": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d",
     "api": "npx cross-env NODE_ENV=production cross-env PORT=3001 node index.js -s -a",
     "apiheroku": "npx cross-env NODE_ENV=production node index.js -s -a",
-    "apid": "npx cross-env NODE_ENV=production node index.js -d -a"
+    "apid": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d -a"
   },
   "license": "MIT",
   "dependencies": {
