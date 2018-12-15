@@ -56,7 +56,7 @@ module.exports = {
 			sander.writeFileSync(writePath, html);
 
 
-			console.log(`pages: ${pageName} registered (${options.language} ${pageConfig.name.toLowerCase()})`)
+			//console.log(`pages: ${pageName} registered (${options.language} ${pageConfig.name.toLowerCase()})`)
 		});
 	}
 };

@@ -12,7 +12,7 @@ module.exports = {
 			var source = sander.readFileSync(srcFile(`partials/${name}`)).toString('utf-8');
 			var partialName= 'partial_' + name.split('.html').join('').toLowerCase()
 			Handlebars.registerPartial(partialName, source);
-			console.log(`partials: ${partialName} registered (${options.language})`)
+			//console.log(`partials: ${partialName} registered (${options.language})`)
 		});
 	}
 };
