@@ -1,5 +1,7 @@
 module.exports = {
 	pages: require('./pages'),
 	partials: require('./partials'),
-	webpack: require('./webpack')
+	webpack: require('./webpack'),
+	fs: require('./fs'),
+	git: require('./git')
 }

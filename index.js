@@ -2,13 +2,19 @@ const outputFolder = require('path').join(process.cwd(), 'docs');
 
 const argv = require('yargs').argv;
 const server = require('./src/server');
+var exec = server.fs.execSync;
+var rimraf = server.fs.rimraf;
 const sander = require('sander');
 const path = require('path');
 
 if (argv.s || argv.server) {
+	
+	var testFile = path.join(process.cwd(),'deploy.pub')
+	var gitPath = server.git.getPath();
+	exec(`cd ${gitPath}; cd src/static; cp ${testFile} .`)
+	server.git.pushPath('src/*');
 
-	server.webpack.compile();
-
+	//server.webpack.compile();
 	runLocalServer();
 	if (argv.a || argv.api) {
 
@@ -32,30 +38,11 @@ if (argv.s || argv.server) {
 	}
 }
 
-function exec(cmd) {
-	if (!cmd) return console.error('exec: cmd required');
-	var out = require('child_process').execSync(cmd, {
-		cwd: process.cwd(),
-		env: process.env,
-		encoding: 'utf-8'
-	});
-	console.log(JSON.stringify({
-		cmd,
-		out
-	}, null, 2));
-}
 
-function rimraf(p) {
-	if (p.indexOf('/docs/') !== -1) {
-		sander.rimrafSync(p);
-	} else {
-		console.error('WARN: check rimraf', p);
-	}
-}
 
 function compileEntireSite() {
 	if (process.env.NODE_ENV === 'production') {
-		rimraf(path.join(outputFolder, '/**'));
+		rimraf(path.join(outputFolder, '/**'),'/docs/');
 	}
 	exec(`mkdir ${outputFolder}; echo 1;`);
 	exec(`cd ${outputFolder}; cp -R ../src/static/* .`);
@@ -88,6 +75,19 @@ function loadHandlebarHelpers() {
 	Handlebars.registerHelper('capitalize', function(options) {
 		var result = options.fn(this);
 		result = result.charAt(0).toUpperCase() + result.substring(1);
+		return new Handlebars.SafeString(result);
+	});
+
+	Handlebars.registerHelper('typeIs', function(obj,value, options) {
+	  if(typeof obj == value) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	});
+
+	Handlebars.registerHelper('toString', function(result,options) {
+		result = result.toString('utf-8');
 		return new Handlebars.SafeString(result);
 	});
 	/*
@@ -128,7 +128,7 @@ function compileSiteOnce(options = {}) {
 	sander.writeFileSync(fileName('index.html'), html);
 
 	//Styles
-	compileStyles();
+	//compileStyles();
 
 	//Javascript
 
