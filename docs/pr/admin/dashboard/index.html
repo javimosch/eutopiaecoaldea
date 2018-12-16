@@ -8,7 +8,7 @@
 	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-		<link rel="stylesheet" type="text/css" href="/libs/codemirror.css">
+		
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 		<script type="text/javascript" src="/js/common-admin.js"></script>
 	<script type="text/javascript">
@@ -23,9 +23,9 @@
 		    Eutopía - Ecoaldea
 		    <img src="/img/logo.webp"/>
 			</a>
-		    <nav>
+		    <nav class="headerNav">
 		        <ul class="menu">
-		            <li><a href="/ecoaldea">Ecoaldea</a></li>
+		            <li><a href="/ecoaldea">Descubrir</a></li>
 		            <li>
 		                <a href="/pr/grupos">Grupos</a>
 		                <ul class="subMenu">
@@ -37,20 +37,25 @@
 		            </li>
 		            <li>
 		                <a href="/pr/productos-y-ferias">
-		                Productos y ferias</a>
+		                        Productos y ferias</a>
+		                <!--
 		                <ul class="subMenu">
 		                    <li>
 		                        <a href="/pr/nuestros-productos">Nuestros productos</a>
 		                    </li>
 		                    <li>
 		                        <a href="/pr/ferias-de-productores">
-		                    Ferias de productores</a></li>
+		                            Ferias de productores</a></li>
 		                </ul>
+		            -->
 		            </li>
-		            <li><a href="/pr/hospedajes">
-			        Hospedajes</a></li>
 		            <li>
-		                <a href="/grupos">Portugués</a>
+		                <a href="/pr/hospedajes">
+		                    Hospedajes
+		                </a>
+		            </li>
+		            <li class="languageMenuItem">
+		                <a >Portugués</a>
 		                <ul class="subMenu">
 		                    <li><a href="/">Español</a></li>
 		                    <li><a href="/en">Ingles</a></li>
@@ -59,14 +64,14 @@
 		                    <li><a href="/pr">Portugués</a></li>
 		                </ul>
 		            </li>
-		        </ul>
-		    </nav>
-		    <hr>
+		        </ul>    </nav>
 		</header>
 		<section>
-		    <h2 class="image-title centered"
+		    <div class="image-title centered"
 		            style="background-image:url(https://static.wixstatic.com/media/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.jpg/v1/fill/w_699,h_466,al_c,q_90,usm_0.66_1.00_0.01/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.webp);"
-		            >Vive la experiencia de la naturaleza</h2>
+		            >
+		        <h2>Vive la experiencia de la naturaleza</h2>            
+		    </div>
 		</section>		<!--
 		<section class="admin_header">
 	        <h3 class="brand">
@@ -104,6 +109,7 @@
 		        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros</a>
 		        <section v-show="collapsables.parameters">
 		            <parameters></parameters>
+		            
 		        </section>
 		
 		        
@@ -118,29 +124,71 @@
 		    </section>
 		</section>	</div>
 
+		<nav class="footerNav">
+		    <hr>
+		        <ul class="menu">
+		            <li><a href="/ecoaldea">Descubrir</a></li>
+		            <li>
+		                <a href="/pr/grupos">Grupos</a>
+		                <ul class="subMenu">
+		                    <li><a href="/grupos-escuelas">Escuelas</a></li>
+		                    <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
+		                    <li><a href="/grupos-familia">Familias</a></li>
+		                    <li><a href="/grupos-profesionales">Profresionales</a></li>
+		                </ul>
+		            </li>
+		            <li>
+		                <a href="/pr/productos-y-ferias">
+		                        Productos y ferias</a>
+		                <!--
+		                <ul class="subMenu">
+		                    <li>
+		                        <a href="/pr/nuestros-productos">Nuestros productos</a>
+		                    </li>
+		                    <li>
+		                        <a href="/pr/ferias-de-productores">
+		                            Ferias de productores</a></li>
+		                </ul>
+		            -->
+		            </li>
+		            <li>
+		                <a href="/pr/hospedajes">
+		                    Hospedajes
+		                </a>
+		            </li>
+		            <li class="languageMenuItem">
+		                <a >Portugués</a>
+		                <ul class="subMenu">
+		                    <li><a href="/">Español</a></li>
+		                    <li><a href="/en">Ingles</a></li>
+		                    <li><a href="/fr">Frances</a></li>
+		                    <li><a href="/de">Aleman</a></li>
+		                    <li><a href="/pr">Portugués</a></li>
+		                </ul>
+		            </li>
+		        </ul></nav>
 		<footer>
 		    <ul class="menu">
 		        <li><a href="/pr/sobre-nos">Sobre nós</a></li>
 		        <li><a href="/pr/entre-em-contato">Entre em contato</a></li>
 		        <li><a href="/pr/voluntariado">Voluntariado</a></li>
-		        <li>
+		        <li class="socialIcons">
 		        	<a href="https://web.facebook.com/Eutopia-Ecoaldea-401715843328614/?_rdc=1&_rdr" target="_blank">
 		        		<i class="fab fa-facebook"></i>
 		        	</a>
+		            <a href="http://instagram.com/eutopiaecoaldea" target="_blank">
+		                <i class="fab fa-instagram"></i>
+		            </a>
 		        </li>
-		        <li>
-		        	<a href="http://instagram.com/eutopiaecoaldea" target="_blank">
-		        		<i class="fab fa-instagram"></i>
-		        	</a>
-		        </li>
+		        
 		    </ul>
 		</footer>
 	<script type="text/javascript" src="/libs/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/libs/vue.js"></script>
 	<script type="text/javascript" src="/libs/moment.js"></script>
 
-		<script type="text/javascript" src="/libs/codemirror.js"></script>
-		<script type="text/javascript" src="/libs/codemirror.javascript.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/theme-monokai.js"></script>
 
 	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
@@ -151,10 +199,12 @@
 				Vue.component('parameters', {
 					template: `<div  class="parameters-component">
 						<codemirror v-model="data"></codemirror>
+						<button @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
 					</div>`,
 					data() {
 						return {
-							data: ''
+							data: '',
+							progress: false
 						}
 					},
 					created() {
@@ -164,31 +214,59 @@
 					},
 					mounted() {
 
+					},
+					methods: {
+						saveParameters() {
+							this.progress = true;
+							$.ajax({
+								url: `${SERVER.API_URL}/api/deploy/path`,
+								data: JSON.stringify({
+									files: [{
+										contents: this.data,
+										path: 'config/data.js'
+									}],
+									path: 'config/data.js'
+								}),
+								contentType: "application/json; charset=utf-8",
+								type: 'POST',
+								error: () => {
+									this.progress = false;
+									console.warn('NOT SAVED')
+								},
+								success: (data) => {
+									this.progress = false;
+									console.log('SAVED')
+								}
+							});
+						}
+
 					}
 				});
 
 				Vue.component('codemirror', {
 					props: ['value'],
 					template: `<div  class="codemirror-component">
-						<div ref="editor"></div>
+						<div ref="editor" style="width: -webkit-fill-available;height: 300px;"></div>
 					</div>`,
-					data(){
+					data() {
 						return {
-							editor:null
+							editor: null,
+							init:false
 						}
 					},
-					watch:{
-						value(){
-							if(!!this.editor){
+					watch: {
+						value() {
+							if (!!this.editor && !this.init) {
 								this.editor.setValue(this.value);
+								this.init = true;
 							}
 						}
 					},
 					mounted() {
-						this.editor = CodeMirror(this.$refs.editor, {
-							value: this.value,
-							mode: "javascript",
-						});
+						var editor = ace.edit(this.$refs.editor);
+						editor.setTheme("ace/theme/monokai");
+						editor.session.setMode("ace/mode/javascript");
+						this.editor = editor;
 						this.editor.on('change', () => {
 							var value = this.editor.getValue();
 							console.log('change', value);
@@ -205,35 +283,36 @@
 							uploading: false,
 							single_image: null,
 							images: [],
-							deployedAt:'',
+							deployedAt: '',
 							collapsables: {
 								upload_image: false,
 								view_images: false,
 								parameters: true,
-								deploy:true
+								deploy: true
 							}
 						}
 					},
 					created() {
 						fetch(`/manifest.json`).then(r => r.json().then(response => {
-							this.deployedAt = moment(response.created_at,'x').format('DD-MM-YY HH:mm');
+							this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 						}));
 					},
 					mounted() {
 						this.browseImages();
 					},
 					methods: {
+
 						deploy,
 						uploadImage,
 						browseImages
 					}
 				})
 
-				function deploy(){
-					this.uploading=true;
-					setTimeout(()=>this.uploading=false,5000)
+				function deploy() {
+					this.uploading = true;
+					setTimeout(() => this.uploading = false, 5000)
 					fetch(`${SERVER.API_URL}/api/deploy`).then(r => r.json().then(response => {
-						
+
 					}));
 				}
 
