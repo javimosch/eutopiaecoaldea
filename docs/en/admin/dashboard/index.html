@@ -19,7 +19,9 @@
 	
 
 		<section class="admin_header">
-	        <h3 class="brand">Eutopía - Ecovillage - Admin</h3>
+	        <h3 class="brand">
+	        <a href="/">Eutopía - Ecovillage</a>
+	         - Admin</h3>
 	        <hr>
 	    </section>
 
@@ -33,9 +35,12 @@
 		        </section>
 		        <a href="#">General: Ver imagenes</a>
 		        <section class="view-images imagesViewBox">
-		            <div class="admin-image-thumb" 
-		            v-for="item in images"
-		            :style="`background-image:url(/uploads/images/${item});`"></div>
+		            <div v-for="item in images">
+		                <div class="admin-image-thumb" 
+		                :style="`background-image:url(/uploads/images/${item});`">
+		                </div>
+		                <input :value="`/uploads/images/${item}`" class="imageUrl"/>
+		            </div>
 		        </section>
 		        <a href="#">Hospedajes: Titulo: Color</a>
 		        <a href="#">Hospedajes: Titulo: Texto</a>
