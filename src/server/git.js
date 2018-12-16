@@ -87,10 +87,10 @@ function pushPath(gitPath, options = {}) {
 		});
 	}
 	exec(`cd ${basePath}; git add ${gitPath}`);
-	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin master`);
-	if (process.env.NODE_ENV === 'production') {
-		pullCurrent();
-	}
+	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin master:heroku`);
+	//if (process.env.NODE_ENV === 'production') {
+	//	pullCurrent();
+	//}
 }
 
 function deploy() {
