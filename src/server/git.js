@@ -73,8 +73,8 @@ function pushPath(gitPath, options = {}) {
 	prepare();
 	var basePath = cache.basePath;
 	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
-	exec(`cd ${basePath}; git reset HEAD --hard; ${userSet};git pull origin master`);
-	exec(`cd ${basePath}; git checkout master;`);
+	exec(`cd ${basePath}; git reset HEAD --hard; ${userSet};git pull origin heroku`);
+	exec(`cd ${basePath}; git checkout heroku;`);
 	console.log('git pushPath',{
 		options
 	});
@@ -87,7 +87,7 @@ function pushPath(gitPath, options = {}) {
 		});
 	}
 	exec(`cd ${basePath}; git add ${gitPath}`);
-	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin master:heroku --force`);
+	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin heroku --force`);
 	//if (process.env.NODE_ENV === 'production') {
 	//	pullCurrent();
 	//}
