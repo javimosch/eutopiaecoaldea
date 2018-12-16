@@ -1,13 +1,13 @@
 <head>
-	<link rel="stylesheet" type="text/css" href="/styles.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 	<title>Eutopía - Ecovillage</title>
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/	codemirror.min.css">
+	<link rel="stylesheet" type="text/css" href="/styles.css">
 		<script type="text/javascript" src="/js/common-admin.js"></script>
-
 	<script type="text/javascript">
 		window.SERVER={
 			API_URL: 'https://utopiaecoaldea.herokuapp.com'
@@ -15,26 +15,74 @@
 	</script>
 </head>
 <body>
-
-	
-
+		<header>
+		    <a class="brand" href="/en">
+		    Eutopía - Ecovillage
+		    <img src="/img/logo.webp"/>
+			</a>
+		    <nav>
+		        <ul class="menu">
+		            <li><a href="/ecoaldea">Ecocenter</a></li>
+		            <li>
+		                <a href="/en/groups">Groups</a>
+		                <ul class="subMenu">
+		                    <li><a href="/grupos-escuelas">Schools</a></li>
+		                    <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
+		                    <li><a href="/grupos-familia">Families</a></li>
+		                    <li><a href="/grupos-profesionales">Professionals</a></li>
+		                </ul>
+		            </li>
+		            <li>
+		                <a href="/en/products-and-fairs">
+		                Products and fairs</a>
+		                <ul class="subMenu">
+		                    <li>
+		                        <a href="/en/our-products">Our products</a>
+		                    </li>
+		                    <li>
+		                        <a href="/en/producers-fairs">
+		                    Producers fairs</a></li>
+		                </ul>
+		            </li>
+		            <li><a href="/en/lodgings">
+			        Lodgings</a></li>
+		            <li>
+		                <a href="/grupos">English</a>
+		                <ul class="subMenu">
+		                    <li><a href="/">Spanish</a></li>
+		                    <li><a href="/en">English</a></li>
+		                    <li><a href="/fr">French</a></li>
+		                    <li><a href="/de">German</a></li>
+		                    <li><a href="/pr">Portuguese</a></li>
+		                </ul>
+		            </li>
+		        </ul>
+		    </nav>
+		    <hr>
+		</header>
+		<section>
+		    <h2 class="image-title centered"
+		            style="background-image:url(https://static.wixstatic.com/media/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.jpg/v1/fill/w_699,h_466,al_c,q_90,usm_0.66_1.00_0.01/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.webp);"
+		            >Enjoy the experience into the nature</h2>
+		</section>		<!--
 		<section class="admin_header">
 	        <h3 class="brand">
 	        <a href="/">Eutopía - Ecovillage</a>
 	         - Admin</h3>
 	        <hr>
 	    </section>
+	-->
 
 	<div class="mainContent">
 		<section class="admin protected">
 		    <section class="admin_menu">
-		        <a href="#">General: Subir imagenes</a>
-		        <section class="upload-images">
+		        <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
+		        <section class="upload-images" v-show="collapsables.upload_image">
 		            <input type="file" name="image" id="image"/>
 		            <button @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
 		        </section>
-		        <a href="#">General: Ver imagenes</a>
-		        <section class="view-images imagesViewBox">
+		        <a @click="()=>collapsables.view_images=!collapsables.view_images">General: Ver imagenes</a>
+		        <section class="view-images imagesViewBox" v-show="collapsables.view_images">
 		            <div v-for="item in images">
 		                <div class="admin-image-thumb" 
 		                :style="`background-image:url(/uploads/images/${item});`">
@@ -42,84 +90,145 @@
 		                <input :value="`/uploads/images/${item}`" class="imageUrl"/>
 		            </div>
 		        </section>
+		
+		        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros</a>
+		        <section v-show="collapsables.parameters">
+		            <parameters></parameters>
+		        </section>
+		
+		        <a @click="()=>collapsables.deploy=!collapsables.deploy">Deployment</a>
+		        <section v-show="collapsables.deploy">
+		            <label>Deployed at <span v-html="deployedAt"></span></label>
+		            <button @click="deploy">Deploy</button>
+		        </section>
+		        
+		
+		        <!--
 		        <a href="#">Hospedajes: Titulo: Color</a>
 		        <a href="#">Hospedajes: Titulo: Texto</a>
 		        <a href="#">Hospedajes: Titulo: Imagen</a>
 		        <a href="#" onclick="logout()" class="logout">Salir</a>
-		        <hr>
+		        <hr>-->
 		    </section>
 		</section>	</div>
 
-	<!--
-
-	<section class="common_sections">
-		<section class="team">
-			<h2 class="title">Sobre nosotros</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-		<section class="contact">
-			<h2 class="title">Contacto</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-		<section class="volunteers">
-			<h2 class="title">Voluntariado</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-		<section class="legalMentions">
-			<h2 class="title">Menciones legales</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-
-		<section class="hospedajesCamping">
-			<h2 class="title">Hospedajes: Camping</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-	</section>
-
--->
-
-	
-
+		<footer>
+		    <ul class="menu">
+		        <li><a href="/en/about-us">About us</a></li>
+		        <li><a href="/en/contact">Contact</a></li>
+		        <li><a href="/en/voluntariado">Voluntariado</a></li>
+		        <li>
+		        	<a href="https://web.facebook.com/Eutopia-Ecoaldea-401715843328614/?_rdc=1&_rdr" target="_blank">
+		        		<i class="fab fa-facebook"></i>
+		        	</a>
+		        </li>
+		        <li>
+		        	<a href="http://instagram.com/eutopiaecoaldea" target="_blank">
+		        		<i class="fab fa-instagram"></i>
+		        	</a>
+		        </li>
+		    </ul>
+		</footer>
 	<script type="text/javascript" src="/libs/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/libs/vue.js"></script>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/codemirror.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/mode/javascript/javascript.min.js"></script>
+
 	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
 -->
 	<script type="text/javascript">
 			function init() {
+
+				Vue.component('parameters', {
+					template: `<div  class="parameters-component">
+						<codemirror v-model="data"></codemirror>
+					</div>`,
+					data() {
+						return {
+							data: ''
+						}
+					},
+					created() {
+						fetch(`${SERVER.API_URL}/api/config/fetch`).then(r => r.json().then(response => {
+							this.data = response.result;
+						}));
+					},
+					mounted() {
+
+					}
+				});
+
+				Vue.component('codemirror', {
+					props: ['value'],
+					template: `<div  class="codemirror-component">
+						<div ref="editor"></div>
+					</div>`,
+					data(){
+						return {
+							editor:null
+						}
+					},
+					watch:{
+						value(){
+							if(!!this.editor){
+								this.editor.setValue(this.value);
+							}
+						}
+					},
+					mounted() {
+						this.editor = CodeMirror(this.$refs.editor, {
+							value: this.value,
+							mode: "javascript",
+						});
+						this.editor.on('change', () => {
+							var value = this.editor.getValue();
+							console.log('change', value);
+							this.$emit('input', value);
+						});
+					}
+				});
+
 				new Vue({
 					el: '.admin',
 					name: 'admin_dashboard',
 					data() {
 						return {
-							uploading:false,
-							single_image:null,
-							images:[]
+							uploading: false,
+							single_image: null,
+							images: [],
+							deployedAt:'',
+							collapsables: {
+								upload_image: false,
+								view_images: false,
+								parameters: true,
+								deploy:false
+							}
 						}
 					},
 					created() {
-						console.log('admin_dashboard')
+						fetch(`/manifest.json`).then(r => r.json().then(response => {
+							this.deployedAt = response.created_at;
+						}));
 					},
-					mounted(){
+					mounted() {
 						this.browseImages();
 					},
 					methods: {
+						deploy,
 						uploadImage,
 						browseImages
 					}
 				})
 
-				function browseImages(){
+				function deploy(){
+					fetch(`${SERVER.API_URL}/api/deploy`).then(r => r.json().then(response => {
+						
+					}));
+				}
+
+				function browseImages() {
 					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
 						this.images = response.images;
 					}));
@@ -129,7 +238,7 @@
 					var data = new FormData();
 					var file = $('#image')[0].files[0];
 					data.append('image', file);
-					this.uploading=true;
+					this.uploading = true;
 					$.ajax({
 						url: `${SERVER.API_URL}/api/upload/images/single`,
 						data: data,
@@ -137,12 +246,12 @@
 						contentType: false,
 						processData: false,
 						type: 'POST',
-						error:()=>{
-							this.uploading=false;
+						error: () => {
+							this.uploading = false;
 							$('#image').val('');
 						},
-						success: (data)=>{
-							this.uploading=false;
+						success: (data) => {
+							this.uploading = false;
 							$('#image').val('');
 							alert('Image uploaded!')
 						}
