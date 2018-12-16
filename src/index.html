@@ -1,15 +1,17 @@
 <head>
-	<link rel="stylesheet" type="text/css" href="/styles.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 	<title>{{lang.META_TITLE}}</title>
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	{{#if (eq type 'admin')}}
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/	codemirror.min.css">
+	{{/if}}
+	<link rel="stylesheet" type="text/css" href="/styles.css">
 	{{#if (eq type 'admin')}}
 		<script type="text/javascript" src="/js/common-admin.js"></script>
 	{{/if}}
-
 	<script type="text/javascript">
 		window.SERVER={
 			API_URL: '{{API_URL}}'
@@ -17,70 +19,38 @@
 	</script>
 </head>
 <body>
-
-	
-
 	{{#if (neq type 'admin')}}
 		{{> partial_header}}
 	{{else}}
+		{{> partial_header}}
+		<!--
 		<section class="admin_header">
 	        <h3 class="brand">
 	        <a href="/">{{lang.META_TITLE}}</a>
 	         - Admin</h3>
 	        <hr>
 	    </section>
+	-->
 	{{/if}}
 
 	<div class="mainContent">
 		{{> (lookup . 'currentPage') }}
 	</div>
 
-	<!--
-
-	<section class="common_sections">
-		<section class="team">
-			<h2 class="title">Sobre nosotros</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-		<section class="contact">
-			<h2 class="title">Contacto</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-		<section class="volunteers">
-			<h2 class="title">Voluntariado</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-		<section class="legalMentions">
-			<h2 class="title">Menciones legales</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-
-		<section class="hospedajesCamping">
-			<h2 class="title">Hospedajes: Camping</h2>
-			<article>
-				<p class="text">Lorem ipsum team. Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.Lorem ipsum team.</p>
-			</article>
-		</section>
-	</section>
-
--->
-
 	{{#if (neq type 'admin')}}
-	{{> partial_footer}}
+		{{> partial_footer}}
 	{{else}}
-	
+		{{> partial_footer}}
 	{{/if}}
 
 	<script type="text/javascript" src="/libs/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/libs/vue.js"></script>
+
+	{{#if (eq type 'admin')}}
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/codemirror.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/mode/javascript/javascript.min.js"></script>
+	{{/if}}
+
 	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
 -->

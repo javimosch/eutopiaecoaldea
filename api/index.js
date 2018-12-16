@@ -9,6 +9,13 @@ module.exports = function configure(app){
 	require('./upload')(app);
 	require('./images')(app);
 
+	app.get('/api/deploy',(req,res)=>{
+		res.json({
+			result:true
+		});
+		server.git.deploy();
+	});
+
 	app.get('/api/config',(req,res)=>{
 		res.json({
 			config: reload('../config')
@@ -21,8 +28,17 @@ module.exports = function configure(app){
 		});
 	});
 	app.get('/api/login/validate',(req,res)=>{
+		var code = reload('../config').login.code
 		return res.json({
-			result: reload('../config').login.code == req.query.code
+			result: code == req.query.code
 		});
 	})
+
+
+	app.get('/api/config/fetch',(req,res)=>{
+		res.json({
+			result: sander.readFileSync(filePath('config/data.js')).toString('utf-8')
+		})
+	})
+
 };
