@@ -10,8 +10,8 @@ var self = module.exports = {
 	API_URL: process.env.API_URL,
 	defaultLanguage: 'es',
 	context:{
-		defaultCurrentPage:'page_home',
-		currentPage: 'page_home',
+		defaultCurrentPage:'page_ecoaldea',
+		currentPage: 'page_ecoaldea',
 		NODE_ENV: process.env.NODE_ENV,
 		API_URL: process.env.API_URL
 	},
@@ -27,18 +27,22 @@ var self = module.exports = {
 					sentenceValue= sentenceObject[language];
 				}else{
 					if(sentenceObject[self.defaultLanguage]){
-						sentenceValue= sentenceObject[language];	
+						sentenceValue= sentenceObject[self.defaultLanguage];	
 					}else{
 						sentenceValue= setenceKey;
 					}
 				}
 				lang[setenceKey]= sentenceValue;
 			});
+			//console.log('LANG',language,JSON.stringify(lang,null,4))
 			return lang;
 		}
-		return Object.assign({},self.context,{
+		var result = Object.assign({},self.context,{
 			lang: collectLanguage(language)
 		});
+		result.currentLanguage = result.lang[language];
+		result.currentLanguageCode = language;
+		return result;
 	}
 };
 
