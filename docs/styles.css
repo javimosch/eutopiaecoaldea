@@ -2,12 +2,18 @@
 body {
   /* background: url(https://subtlepatterns.com/patterns/stardust.png); */ }
 
-* {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #333;
   font-family: 'Oswald', sans-serif;
   box-sizing: border-box; }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: 'Open Sans'; }
@@ -19,14 +25,57 @@ body {
 
 header {
   background: white;
-  padding-top: 10px; }
+  padding-top: 10px;
+  min-height: 50px;
+  border-bottom: 5px solid #dbe9e2; }
+
+.languageMenuItem {
+  display: none !important; }
 
 .imagesViewBox {
   max-height: 300px;
   overflow: auto; }
 
+.footerNav {
+  display: block; }
+
+.headerNav {
+  display: none; }
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto; }
+
+form > label, form > input, form > textarea {
+  min-width: -webkit-fill-available;
+  display: block; }
+
+form > textarea {
+  min-height: 150px; }
+
+form > label {
+  padding-bottom: 5px;
+  padding-top: 10px;
+  text-align: left; }
+
+form > button {
+  margin-top: 20px;
+  border: 0px;
+  background-color: darkslateblue;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer; }
+
+form > button:hover {
+  opacity: 0.8; }
+
+form > button:hover, form > button:focus, form > button:active {
+  outline: 0;
+  box-shadow: none; }
+
 .brand {
-  font-size: 25px;
+  font-size: 22px;
   color: #3ac826;
   font-family: monospace;
   text-decoration: none;
@@ -34,6 +83,18 @@ header {
   display: block;
   text-align: center;
   text-transform: uppercase; }
+
+.sectionMainImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  background-color: dimgrey;
+  padding: 20px; }
+
+.sectionMainImage h2 {
+  color: white;
+  text-align: center; }
 
 .brand img {
   max-width: 28px;
@@ -44,18 +105,25 @@ header {
   padding-left: 0px; }
 
 .subMenu a {
-  font-size: 16px;
+  font-size: 12px;
   color: #333;
   text-decoration: none; }
 
 .menu li .subMenu {
-  display: block;
-  background-color: white; }
+  display: none;
+  background-color: white;
+  padding-top: 10px; }
 
 .subMenu li {
   display: block;
   min-height: 30px;
   padding: 0px 20px; }
+
+footer ul.menu > li.socialIcons > a:hover {
+  color: black !important; }
+
+footer ul.menu > li.socialIcons:hover > a {
+  color: #569b56; }
 
 ul.menu > li:hover > a {
   color: black; }
@@ -64,7 +132,8 @@ ul.menu > li:hover > a {
   background-color: green;
   color: white; }
 
-.menu li:hover .subMenu, .subMenu:hover {
+.menu li:hover .subMenu,
+.subMenu:hover {
   display: block;
   left: 0px;
   z-index: 999999999; }
@@ -77,10 +146,12 @@ ul.menu {
   margin-top: 20px; }
 
 ul.menu > li {
-  display: block;
+  display: inline-block;
   position: relative;
   margin-bottom: 15px;
-  text-align: center; }
+  text-align: center;
+  width: 48%;
+  vertical-align: top; }
 
 ul.menu > li > a {
   font-size: 14px;
@@ -105,18 +176,26 @@ section .image-title {
   background-color: dimgrey;
   margin: 0px;
   min-height: 150px;
-  line-height: 150px;
-  color: white;
   background-size: cover;
   background-repeat: no-repeat;
-  font-size: 35px; }
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
-article h4 {
+section .image-title h2 {
+  font-size: 32px;
+  color: white; }
+
+article h1, article h2, article h3, article h4, article h5 {
   color: teal; }
 
 article .text {
   font-size: 14px;
   color: grey; }
+
+footer ul.menu > li.socialIcons > a {
+  display: inline-block;
+  width: 25px; }
 
 footer ul.menu > li > a {
   font-size: 14px;
@@ -206,6 +285,11 @@ footer {
   background-color: #a9f08280;
   padding-top: 10px; }
 
+.mobileCentered {
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+
 /*==========  Mobile First Method  ==========*/
 /*==========  Mobile First Method  ==========*/
 /*==========  Mobile First Method  ==========*/
@@ -219,6 +303,31 @@ footer {
 /* Small Devices, Tablets */
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
+  .desktopCentered {
+    text-align: center; }
+  .mobileCentered {
+    display: initial; }
+  .desktopCentered {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  form > label, form > input, form > textarea {
+    min-width: 320px;
+    text-align: left; }
+  .sectionMainImage {
+    min-height: 350px; }
+  .introduction > div, .introduction > article {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%; }
+  .languageMenuItem {
+    display: inline-block !important; }
+  .footerNav {
+    display: none; }
+  .headerNav {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center; }
   .menu li .subMenu {
     display: none; }
   .menu li:hover .subMenu {
@@ -234,7 +343,10 @@ footer {
     display: inline;
     border-radius: 100px; }
   footer {
-    height: 100px; }
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; }
   .mainContent {
     min-height: calc(100vh - 156px); }
   header {
@@ -242,30 +354,32 @@ footer {
     height: 56px; }
   nav {
     display: inline-block;
-    width: calc(60vw);
+    width: 69%;
     vertical-align: top;
     height: 56px;
-    padding-right: 50px; }
+    padding-right: 0; }
   .brand {
     margin: 0 auto;
     display: inline-block;
     text-align: center;
-    width: calc(32vw);
+    width: 30%;
     margin-top: 14px; }
   ul.menu {
     list-style: none;
     padding: 0px;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
     margin: 0px;
-    margin-top: 20px;
-    /* max-width: 600px; */
+    /* margin-top: 20px; */
+    width: fit-content;
     display: block;
-    float: right; }
+    float: right;
+    /* min-width: 700px; */ }
   ul.menu > li {
     display: inline-block;
     margin-bottom: 0;
     margin: 0px 20px;
-    position: relative; }
+    position: relative;
+    width: unset; }
   ul.menu > li > a {
     font-size: 16px;
     text-decoration: none;
