@@ -5,29 +5,95 @@ module.exports = function() {
 		context: {
 			type: 'admin',
 			init: function init() {
+
+				Vue.component('parameters', {
+					template: `<div  class="parameters-component">
+						<codemirror v-model="data"></codemirror>
+					</div>`,
+					data() {
+						return {
+							data: ''
+						}
+					},
+					created() {
+						fetch(`${SERVER.API_URL}/api/config/fetch`).then(r => r.json().then(response => {
+							this.data = response.result;
+						}));
+					},
+					mounted() {
+
+					}
+				});
+
+				Vue.component('codemirror', {
+					props: ['value'],
+					template: `<div  class="codemirror-component">
+						<div ref="editor"></div>
+					</div>`,
+					data(){
+						return {
+							editor:null
+						}
+					},
+					watch:{
+						value(){
+							if(!!this.editor){
+								this.editor.setValue(this.value);
+							}
+						}
+					},
+					mounted() {
+						this.editor = CodeMirror(this.$refs.editor, {
+							value: this.value,
+							mode: "javascript",
+						});
+						this.editor.on('change', () => {
+							var value = this.editor.getValue();
+							console.log('change', value);
+							this.$emit('input', value);
+						});
+					}
+				});
+
 				new Vue({
 					el: '.admin',
 					name: 'admin_dashboard',
 					data() {
 						return {
-							uploading:false,
-							single_image:null,
-							images:[]
+							uploading: false,
+							single_image: null,
+							images: [],
+							deployedAt:'',
+							collapsables: {
+								upload_image: false,
+								view_images: false,
+								parameters: true,
+								deploy:false
+							}
 						}
 					},
 					created() {
-						console.log('admin_dashboard')
+						fetch(`/manifest.json`).then(r => r.json().then(response => {
+							this.deployedAt = response.created_at;
+						}));
 					},
-					mounted(){
+					mounted() {
 						this.browseImages();
 					},
 					methods: {
+						deploy,
 						uploadImage,
 						browseImages
 					}
 				})
 
-				function browseImages(){
+				function deploy(){
+					fetch(`${SERVER.API_URL}/api/deploy`).then(r => r.json().then(response => {
+						
+					}));
+				}
+
+				function browseImages() {
 					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
 						this.images = response.images;
 					}));
@@ -37,7 +103,7 @@ module.exports = function() {
 					var data = new FormData();
 					var file = $('#image')[0].files[0];
 					data.append('image', file);
-					this.uploading=true;
+					this.uploading = true;
 					$.ajax({
 						url: `${SERVER.API_URL}/api/upload/images/single`,
 						data: data,
@@ -45,12 +111,12 @@ module.exports = function() {
 						contentType: false,
 						processData: false,
 						type: 'POST',
-						error:()=>{
-							this.uploading=false;
+						error: () => {
+							this.uploading = false;
 							$('#image').val('');
 						},
-						success: (data)=>{
-							this.uploading=false;
+						success: (data) => {
+							this.uploading = false;
 							$('#image').val('');
 							alert('Image uploaded!')
 						}

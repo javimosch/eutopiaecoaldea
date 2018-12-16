@@ -14,7 +14,7 @@ if (argv.s || argv.server) {
 	//exec(`cd ${gitPath}; cd src/static; cp ${testFile} .`)
 	//server.git.pushPath('src/*');
 
-	
+
 	runLocalServer();
 	if (argv.a || argv.api) {
 
@@ -32,7 +32,7 @@ if (argv.s || argv.server) {
 				exec('git add api/*; git add index.js;git commit -m "auto:api";git stash; git pull --rebase origin master; git stash pop;git push heroku master');
 			} else {
 				compileEntireSite();
-				exec('git add docs/*; git commit -m "auto"; git stash; git pull --rebase origin master; git stash pop; git push origin master');
+				exec('git add docs/*; git commit -m "deploy"; git stash; git pull --rebase origin master; git stash pop; git push origin master');
 			}
 		}
 	}
@@ -45,14 +45,14 @@ function compileEntireSite() {
 		exec(`mkdir ${outputFolder}; echo 1;`);
 		exec(`cd ${outputFolder}; cp ${path.join(process.cwd(),'CNAME')} .; rm ${path.join(process.cwd(),'CNAME')}`)
 	}
-	
+
 	exec(`cd ${outputFolder}; cp -R ../src/static/* .`);
 
 	//Helpers
 	loadHandlebarHelpers()
 
 	//Styles
-	if(process.env.NODE_ENV==='production'){
+	if (process.env.NODE_ENV === 'production') {
 		compileStyles();
 	}
 
@@ -80,6 +80,11 @@ function compileEntireSite() {
 		language: 'pr',
 		outputFolder: 'docs/pr'
 	});
+
+	//manifest
+	sander.writeFileSync(path.join(outputFolder, 'manifest.json'), JSON.stringify({
+		created_at: Date.now()
+	}, null, 4))
 }
 
 function compileStyles() {

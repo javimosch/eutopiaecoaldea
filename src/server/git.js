@@ -11,6 +11,7 @@ var cache = {
 }
 
 module.exports = {
+	deploy,
 	pushPath,
 	getPath: ()=>{
 		prepare();
@@ -77,4 +78,14 @@ function pushPath(gitPath) {
 	if(process.env.NODE_ENV==='production'){
 		pullCurrent();
 	}
+}
+
+function deploy(){
+	prepare();
+	var basePath = cache.basePath;
+	console.log('git deploy: reset and pull')
+	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
+	exec(`cd ${basePath}; ln -s ${path.join(process.cwd(),'node_modules')} node_modules;`)
+	console.log('git deploy: deploying...')
+	exec(`cd ${basePath}; yarn deploy`)
 }

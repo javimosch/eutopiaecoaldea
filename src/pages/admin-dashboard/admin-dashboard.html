@@ -1,12 +1,12 @@
 <section class="admin protected">
     <section class="admin_menu">
-        <a href="#">General: Subir imagenes</a>
-        <section class="upload-images">
+        <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
+        <section class="upload-images" v-show="collapsables.upload_image">
             <input type="file" name="image" id="image"/>
             <button @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
         </section>
-        <a href="#">General: Ver imagenes</a>
-        <section class="view-images imagesViewBox">
+        <a @click="()=>collapsables.view_images=!collapsables.view_images">General: Ver imagenes</a>
+        <section class="view-images imagesViewBox" v-show="collapsables.view_images">
             <div v-for="item in images">
                 <div class="admin-image-thumb" 
                 :style="`background-image:url(/uploads/images/${item});`">
@@ -14,10 +14,24 @@
                 <input :value="`/uploads/images/${item}`" class="imageUrl"/>
             </div>
         </section>
+
+        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros</a>
+        <section v-show="collapsables.parameters">
+            <parameters></parameters>
+        </section>
+
+        <a @click="()=>collapsables.deploy=!collapsables.deploy">Deployment</a>
+        <section v-show="collapsables.deploy">
+            <label>Deployed at <span v-html="deployedAt"></span></label>
+            <button @click="deploy">Deploy</button>
+        </section>
+        
+
+        <!--
         <a href="#">Hospedajes: Titulo: Color</a>
         <a href="#">Hospedajes: Titulo: Texto</a>
         <a href="#">Hospedajes: Titulo: Imagen</a>
         <a href="#" onclick="logout()" class="logout">Salir</a>
-        <hr>
+        <hr>-->
     </section>
 </section>
