@@ -1,6 +1,6 @@
 {
   "name": "ecoaldea",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon --exec 'node index.js -s' --watch src/static --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json",
@@ -8,9 +8,9 @@
     "deploy": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d",
     "api": "npx cross-env NODE_ENV=production cross-env PORT=3001 node index.js -s -a",
     "startProd": "npx cross-env NODE_ENV=production node index.js -s",
-    "deployFromTemp":"npx cross-env NODE_ENV=production node index.js --gitd",
+    "deployFromTemp": "npx cross-env NODE_ENV=production node index.js --gitd",
     "heroku": "yarn deployFromTemp && yarn startProd",
-    "publish":"git push origin master:heroku",
+    "push": "git push origin master:heroku",
     "apid": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d -a"
   },
   "license": "MIT",
