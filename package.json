@@ -8,7 +8,7 @@
     "deploy": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d",
     "api": "npx cross-env NODE_ENV=production cross-env PORT=3001 node index.js -s -a",
     "startProd": "npx cross-env NODE_ENV=production node index.js -s",
-    "deployFromTemp":"npx cross-env NODE_ENV=production node index.js -gitd",
+    "deployFromTemp":"npx cross-env NODE_ENV=production node index.js --gitd",
     "heroku": "yarn deployFromTemp && yarn startProd",
     "apid": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d -a"
   },

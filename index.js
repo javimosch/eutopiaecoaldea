@@ -8,8 +8,9 @@ const sander = require('sander');
 const path = require('path');
 
 if(argv.gitd){
+	console.log('Deploy from temp...')
 	server.git.deploy()
-	return process.exit(0);
+	process.exit(0);
 }
 
 if (argv.s || argv.server) {
