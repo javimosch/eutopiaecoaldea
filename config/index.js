@@ -56,4 +56,7 @@ try{
 	console.error('config: invalid data')
 }
 Object.assign(self, savedData || {});
+Object.assign(self,{
+	API_URL: process.env.API_URL||self.API_URL
+});
 
