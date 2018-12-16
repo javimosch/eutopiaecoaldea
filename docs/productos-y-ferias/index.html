@@ -18,55 +18,89 @@
 	
 
 		<header>
-		    <a class="brand" href="/inicio">
+		    <a class="brand" href="/es">
 		    Eutopía - Ecoaldea
 		    <img src="/img/logo.webp"/>
 			</a>
 		    <nav>
-			    <ul class="menu">
-			        <li><a href="/ecoaldea">Ecoaldea</a></li>
-			        <li>
-			        	<a href="/grupos">Grupos</a>
-			        	<ul class="subMenu">
-			        		<li><a href="/grupos-escuelas">Escuelas</a></li>
-			        		<li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
-			        		<li><a href="/grupos-familia">Familia</a></li>
-			        		<li><a href="/grupos-profesionales">Profesionales</a></li>
-			        	</ul>
-			        </li>
-			        <li><a href="/productos-y-ferias">Productos y feria</a></li>
-			        <li><a href="/hospedajes">Hospedajes</a></li>
-			    </ul>
-			</nav>
+		        <ul class="menu">
+		            <li><a href="/ecoaldea">Ecoaldea</a></li>
+		            <li>
+		                <a href="/grupos">Grupos</a>
+		                <ul class="subMenu">
+		                    <li><a href="/grupos-escuelas">Escuelas</a></li>
+		                    <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
+		                    <li><a href="/grupos-familia">Familias</a></li>
+		                    <li><a href="/grupos-profesionales">Profresionales</a></li>
+		                </ul>
+		            </li>
+		            <li>
+		                <a href="/productos-y-ferias">
+		                Productos y ferias</a>
+		                <ul class="subMenu">
+		                    <li>
+		                        <a href="/nuestros-productos">Nuestros productos</a>
+		                    </li>
+		                    <li>
+		                        <a href="/ferias-de-productores">
+		                    Ferias de productores</a></li>
+		                </ul>
+		            </li>
+		            <li><a href="/hospedajes">
+			        Hospedajes</a></li>
+		            <li>
+		                <a href="/grupos">Español</a>
+		                <ul class="subMenu">
+		                    <li><a href="/">Español</a></li>
+		                    <li><a href="/en">Ingles</a></li>
+		                    <li><a href="/fr">Frances</a></li>
+		                    <li><a href="/de">Aleman</a></li>
+		                    <li><a href="/pr">Portugués</a></li>
+		                </ul>
+		            </li>
+		        </ul>
+		    </nav>
 		    <hr>
 		</header>
-
+		<section>
+		    <h2 class="image-title centered"
+		            style="background-image:url(https://static.wixstatic.com/media/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.jpg/v1/fill/w_699,h_466,al_c,q_90,usm_0.66_1.00_0.01/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.webp);"
+		            >Vive la experiencia de la naturaleza</h2>
+		</section>
 	<div class="mainContent">
 		<section class="view_productos">
 		    <section>
-		        <h2 class="image-title centered"
-					style="background-image:url(/img/ecoaldea_title.jpg);"
-					>Productos ecologicos</h2>
 		        <article>
-		            <h4>Comparti la experiencia en grupo</h4>
-		            <p class="text">Lorem ipsum opsum Lorem ipsum opsumLorem;.</p>
+		            <h4>Productos y ferias</h4>
+		            <p class="text">
+		Nuestra aldea produce productos frescos a partir de ingredientes orgánicos de nuestra huerta.
+		Aquí encontraras nuestro catalogo de productos.<br>
+		Todos nuestros productos están disponibles por pedido.<br>
+		También nos puedes visitar en nuestra aldea o en las ferias a las cuales participamos (ver programacion) para descubrir y comprar nuestras producciones !
+		            </p>
 		        </article>
 		    </section>
+		    <!--
 		    <section class="group_types">
 		        <a href="#">
 						<div class="icon-link">
 							<img src="/img/ecoaldea_title.jpg"/>
-							<h5 class="icon-link-text">Ferias de productos</h5>
+							<a href="/ferias-de-productores">
+								<h5 class="icon-link-text">Ferias de productores</h5>
+							</a>
 						</div>
 					</a>
 		        <a href="#">
 						<div class="icon-link">
 							<img src="/img/ecoaldea_title.jpg"/>
-							<h5 class="icon-link-text">Productos de la aldea</h5>
+							<a href="/nuestros-productos">
+								<h5 class="icon-link-text">Nuestros productos</h5>
+							</a>
 						</div>
 					</a>
 		    </section>
 		    <hr />
+		-->
 		</section>	</div>
 
 	<!--
@@ -108,19 +142,23 @@
 -->
 
 	<footer>
-		<ul class="menu">
-			<li><a href="#">Sobre nosotros</a></li>
-			<li><a href="#">Contacto</a></li>
-			<li><a href="#">Voluntariado</a></li>
-			<li><a href="#">Menciones legales</a></li>
-		</ul>
+	    <ul class="menu">
+	        <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+	        <li><a href="/contacto">Contacto</a></li>
+	        <li><a href="/voluntariado">Voluntariado</a></li>
+	    </ul>
 	</footer>
-
 	<script type="text/javascript" src="/libs/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/libs/vue.js"></script>
 	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
 -->
 	<script type="text/javascript">
+			function init() {
+
+			}
+			if(!!init){
+				init();
+			}
 	</script>
 </body>
