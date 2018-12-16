@@ -3,48 +3,14 @@
     {{lang.META_TITLE}}
     <img src="/img/logo.webp"/>
 	</a>
-    <nav>
-        <ul class="menu">
-            <li><a href="/ecoaldea">{{lang.ECOALDEA}}</a></li>
-            <li>
-                <a href="{{#pagePath langPath lang.GRUPOS}}{{/pagePath}}">{{lang.GRUPOS}}</a>
-                <ul class="subMenu">
-                    <li><a href="/grupos-escuelas">{{lang.ESCUELAS}}</a></li>
-                    <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
-                    <li><a href="/grupos-familia">{{lang.FAMILIAS}}</a></li>
-                    <li><a href="/grupos-profesionales">{{lang.PROFESIONALES}}</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="{{#pagePath langPath lang.PRODUCTOS_FERIAS}}{{/pagePath}}">
-                {{lang.PRODUCTOS_FERIAS}}</a>
-                <ul class="subMenu">
-                    <li>
-                        <a href="{{#pagePath langPath lang.NUESTROS_PRODUCTOS}}{{/pagePath}}">{{lang.NUESTROS_PRODUCTOS}}</a>
-                    </li>
-                    <li>
-                        <a href="{{#pagePath langPath lang.FERIAS_PRODUCTORES}}{{/pagePath}}">
-                    {{lang.FERIAS_PRODUCTORES}}</a></li>
-                </ul>
-            </li>
-            <li><a href="/{{langPath}}{{lang.HOSPEDAJES}}">
-	        {{#capitalize}}{{lang.HOSPEDAJES}}{{/capitalize}}</a></li>
-            <li>
-                <a href="/grupos">{{currentLanguage}}</a>
-                <ul class="subMenu">
-                    <li><a href="/">{{lang.es}}</a></li>
-                    <li><a href="/en">{{lang.en}}</a></li>
-                    <li><a href="/fr">{{lang.fr}}</a></li>
-                    <li><a href="/de">{{lang.de}}</a></li>
-                    <li><a href="/pr">{{lang.pr}}</a></li>
-                </ul>
-            </li>
-        </ul>
+    <nav class="headerNav">
+        {{> partial_nav}}
     </nav>
-    <hr>
 </header>
 <section>
-    <h2 class="image-title centered"
+    <div class="image-title centered"
             style="background-image:url(https://static.wixstatic.com/media/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.jpg/v1/fill/w_699,h_466,al_c,q_90,usm_0.66_1.00_0.01/e8020c_9f32e3f33d284c99b541159458c7be48~mv2_d_1920_1280_s_2.webp);"
-            >{{lang.HEADER_MESSAGE}}</h2>
+            >
+        <h2>{{lang.HEADER_MESSAGE}}</h2>            
+    </div>
 </section>
