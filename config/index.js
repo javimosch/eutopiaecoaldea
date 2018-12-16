@@ -68,6 +68,9 @@ function merge(self, savedData) {
 			self[k] = savedData[k] || self[k];
 		}
 	});
+	Object.keys(savedData).filter(k=>Object.keys(self).indexOf(k)==-1).forEach(newK=>{
+		self[newK] = savedData[newK];
+	})
 }
 
 
