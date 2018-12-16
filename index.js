@@ -33,12 +33,14 @@ if (argv.s || argv.server) {
 		console.log('Site compiled');
 	} else {
 		if (argv.d || argv.deploy) {
+			console.log('DEPRECATED (yarn deploy)')
+			return process.exit(0);
 			if (argv.a || argv.api) {
 				console.log('Commiting and deploying api')
 				exec('git add api/*; git add index.js;git commit -m "auto:api";git stash; git pull --rebase origin master; git stash pop;git push heroku master');
 			} else {
-				compileEntireSite();
-				exec('git add docs/*; git commit -m "deploy"; git stash; git pull --rebase origin master; git stash pop; git push origin master');
+				//compileEntireSite();
+				//exec('git add docs/*; git commit -m "deploy"; git stash; git pull --rebase origin master; git stash pop; git push origin master');
 			}
 		}
 	}
