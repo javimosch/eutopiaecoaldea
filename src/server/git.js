@@ -74,7 +74,8 @@ function pushPath(gitPath) {
 	var basePath = cache.basePath;
 	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
 	exec(`cd ${basePath}; git checkout master; git add ${gitPath}`);
-	exec(`cd ${basePath}; git commit -m 'pushPath commit'; git push origin master`);
+	var userSet = `git config user.name 'heroku'; git config.user.email 'noreply@heroku.com'`;
+	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin master`);
 	if(process.env.NODE_ENV==='production'){
 		pullCurrent();
 	}
