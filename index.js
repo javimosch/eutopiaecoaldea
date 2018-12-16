@@ -54,6 +54,10 @@ function compileEntireSite() {
 	//Styles
 	if (process.env.NODE_ENV === 'production') {
 		compileStyles();
+	} else {
+		if (!sander.existsSync(path.join(outputFolder, 'styles.css'))) {
+			compileStyles();
+		}
 	}
 
 	//Javascript
@@ -187,6 +191,16 @@ function runLocalServer() {
 	var cors = require('cors')
 
 	app.use(cors());
+
+	var bodyParser = require('body-parser')
+	
+	// parse application/x-www-form-urlencoded
+	app.use(bodyParser.urlencoded({
+		extended: true
+	}))
+
+	// parse application/json
+	app.use(bodyParser.json())
 
 	const port = process.env.PORT || 3000;
 

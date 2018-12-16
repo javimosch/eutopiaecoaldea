@@ -9,10 +9,12 @@ module.exports = function() {
 				Vue.component('parameters', {
 					template: `<div  class="parameters-component">
 						<codemirror v-model="data"></codemirror>
+						<button @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
 					</div>`,
 					data() {
 						return {
-							data: ''
+							data: '',
+							progress: false
 						}
 					},
 					created() {
@@ -22,31 +24,59 @@ module.exports = function() {
 					},
 					mounted() {
 
+					},
+					methods: {
+						saveParameters() {
+							this.progress = true;
+							$.ajax({
+								url: `${SERVER.API_URL}/api/deploy/path`,
+								data: JSON.stringify({
+									files: [{
+										contents: this.data,
+										path: 'config/data.js'
+									}],
+									path: 'config/data.js'
+								}),
+								contentType: "application/json; charset=utf-8",
+								type: 'POST',
+								error: () => {
+									this.progress = false;
+									console.warn('NOT SAVED')
+								},
+								success: (data) => {
+									this.progress = false;
+									console.log('SAVED')
+								}
+							});
+						}
+
 					}
 				});
 
 				Vue.component('codemirror', {
 					props: ['value'],
 					template: `<div  class="codemirror-component">
-						<div ref="editor"></div>
+						<div ref="editor" style="width: -webkit-fill-available;height: 300px;"></div>
 					</div>`,
-					data(){
+					data() {
 						return {
-							editor:null
+							editor: null,
+							init:false
 						}
 					},
-					watch:{
-						value(){
-							if(!!this.editor){
+					watch: {
+						value() {
+							if (!!this.editor && !this.init) {
 								this.editor.setValue(this.value);
+								this.init = true;
 							}
 						}
 					},
 					mounted() {
-						this.editor = CodeMirror(this.$refs.editor, {
-							value: this.value,
-							mode: "javascript",
-						});
+						var editor = ace.edit(this.$refs.editor);
+						editor.setTheme("ace/theme/monokai");
+						editor.session.setMode("ace/mode/javascript");
+						this.editor = editor;
 						this.editor.on('change', () => {
 							var value = this.editor.getValue();
 							console.log('change', value);
@@ -63,35 +93,36 @@ module.exports = function() {
 							uploading: false,
 							single_image: null,
 							images: [],
-							deployedAt:'',
+							deployedAt: '',
 							collapsables: {
 								upload_image: false,
 								view_images: false,
 								parameters: true,
-								deploy:true
+								deploy: true
 							}
 						}
 					},
 					created() {
 						fetch(`/manifest.json`).then(r => r.json().then(response => {
-							this.deployedAt = moment(response.created_at,'x').format('DD-MM-YY HH:mm');
+							this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 						}));
 					},
 					mounted() {
 						this.browseImages();
 					},
 					methods: {
+
 						deploy,
 						uploadImage,
 						browseImages
 					}
 				})
 
-				function deploy(){
-					this.uploading=true;
-					setTimeout(()=>this.uploading=false,5000)
+				function deploy() {
+					this.uploading = true;
+					setTimeout(() => this.uploading = false, 5000)
 					fetch(`${SERVER.API_URL}/api/deploy`).then(r => r.json().then(response => {
-						
+
 					}));
 				}
 
