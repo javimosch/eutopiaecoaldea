@@ -68,13 +68,13 @@ module.exports = function() {
 								upload_image: false,
 								view_images: false,
 								parameters: true,
-								deploy:false
+								deploy:true
 							}
 						}
 					},
 					created() {
 						fetch(`/manifest.json`).then(r => r.json().then(response => {
-							this.deployedAt = response.created_at;
+							this.deployedAt = moment(response.created_at,'x').format('DD-MM-YY HH:mm');
 						}));
 					},
 					mounted() {
@@ -88,6 +88,8 @@ module.exports = function() {
 				})
 
 				function deploy(){
+					this.uploading=true;
+					setTimeout(()=>this.uploading=false,5000)
 					fetch(`${SERVER.API_URL}/api/deploy`).then(r => r.json().then(response => {
 						
 					}));

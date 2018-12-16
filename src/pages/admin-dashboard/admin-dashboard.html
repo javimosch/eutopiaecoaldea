@@ -1,5 +1,12 @@
 <section class="admin protected">
     <section class="admin_menu">
+
+        <a @click="()=>collapsables.deploy=!collapsables.deploy">Deployment</a>
+        <section v-show="collapsables.deploy">
+            <label>Deployed at <span v-html="deployedAt"></span></label>
+            <button @click="deploy" v-html="uploading?'Deploying':'Deploy'">Deploy</button>
+        </section>
+        
         <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
         <section class="upload-images" v-show="collapsables.upload_image">
             <input type="file" name="image" id="image"/>
@@ -20,11 +27,7 @@
             <parameters></parameters>
         </section>
 
-        <a @click="()=>collapsables.deploy=!collapsables.deploy">Deployment</a>
-        <section v-show="collapsables.deploy">
-            <label>Deployed at <span v-html="deployedAt"></span></label>
-            <button @click="deploy">Deploy</button>
-        </section>
+        
         
 
         <!--
