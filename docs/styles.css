@@ -84,6 +84,14 @@ form > button:hover, form > button:focus, form > button:active {
   text-align: center;
   text-transform: uppercase; }
 
+.flexImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  background-color: dimgrey;
+  padding: 20px; }
+
 .sectionMainImage {
   display: flex;
   justify-content: center;
