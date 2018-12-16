@@ -98,7 +98,7 @@ function deploy() {
 	var basePath = cache.basePath;
 	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
 	console.log('git deploy: reset and pull')
-	exec(`cd ${basePath}; git reset HEAD --hard; ${userSet}; git checkout heroku;git pull origin heroku`);
+	//exec(`cd ${basePath}; git reset HEAD --hard; ${userSet}; git checkout heroku;git pull origin heroku`);
 	exec(`cd ${basePath}; rm node_modules; ln -s ${path.join(process.cwd(),'node_modules')} node_modules;`)
 	console.log('git deploy: deploying...')
 	exec(`${userSet}; cd ${basePath}; yarn deploy`)
