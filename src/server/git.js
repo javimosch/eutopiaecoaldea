@@ -72,7 +72,7 @@ function pushPath(gitPath) {
 	}
 	prepare();
 	var basePath = cache.basePath;
-	var userSet = `cd ${basePath}; git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
+	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
 	exec(`cd ${basePath}; git reset HEAD --hard; ${userSet};git pull origin master`);
 	exec(`cd ${basePath}; git checkout master; git add ${gitPath}`);
 	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin master`);
@@ -84,7 +84,7 @@ function pushPath(gitPath) {
 function deploy(){
 	prepare();
 	var basePath = cache.basePath;
-	var userSet = `cd ${basePath}; git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
+	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
 	console.log('git deploy: reset and pull')
 	exec(`cd ${basePath}; git reset HEAD --hard; ${userSet};git pull origin master`);
 	exec(`cd ${basePath}; ln -s ${path.join(process.cwd(),'node_modules')} node_modules;`)
