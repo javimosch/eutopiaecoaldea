@@ -74,7 +74,7 @@ function pushPath(gitPath) {
 	var basePath = cache.basePath;
 	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
 	exec(`cd ${basePath}; git checkout master; git add ${gitPath}`);
-	var userSet = `git config user.name 'heroku'; git config.user.email 'noreply@heroku.com'`;
+	var userSet = `git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
 	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin master`);
 	if(process.env.NODE_ENV==='production'){
 		pullCurrent();
@@ -88,5 +88,6 @@ function deploy(){
 	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
 	exec(`cd ${basePath}; ln -s ${path.join(process.cwd(),'node_modules')} node_modules;`)
 	console.log('git deploy: deploying...')
-	exec(`cd ${basePath}; yarn deploy`)
+	var userSet = `git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
+	exec(`${userSet}; cd ${basePath}; yarn deploy`)
 }
