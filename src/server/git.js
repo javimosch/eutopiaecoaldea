@@ -100,7 +100,7 @@ function deploy() {
 	//exec(`cd ${basePath}; git reset HEAD --hard; ${userSet}; git checkout heroku;git pull origin heroku`);
 	exec(`cd ${basePath}; rm node_modules; ln -s ${path.join(process.cwd(),'node_modules')} node_modules;`)
 	console.log('git deploy: build, add, commit..');
-	exec(`cd ${basePath}; yarn build; git add docs/*; git commit -m 'build'`)
+	exec(`cd ${basePath}; yarn build; ${userSet}; git add docs/*; git commit -m 'build'`)
 	console.log('git deploy: deploying...')
 	exec(`${userSet}; cd ${basePath}; git push origin heroku:master --force`)
 }
