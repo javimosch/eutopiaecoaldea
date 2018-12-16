@@ -7,6 +7,11 @@ var rimraf = server.fs.rimraf;
 const sander = require('sander');
 const path = require('path');
 
+if(argv.gitd){
+	server.git.deploy()
+	return process.exit(0);
+}
+
 if (argv.s || argv.server) {
 
 	//var testFile = path.join(process.cwd(), 'deploy.pub')
