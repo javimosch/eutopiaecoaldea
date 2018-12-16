@@ -51,7 +51,7 @@ var data = require('sander').readFileSync(__dirname+'/data.js').toString('utf-8'
 var savedData  = {}
 try{
 	savedData = dJSON.parse(data);
-	//console.log('config: parameters merge', savedData)
+	
 }catch(err){
 	console.error('config: invalid data')
 }
