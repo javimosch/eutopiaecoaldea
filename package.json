@@ -10,6 +10,7 @@
     "startProd": "npx cross-env NODE_ENV=production node index.js -s",
     "deployFromTemp":"npx cross-env NODE_ENV=production node index.js --gitd",
     "heroku": "yarn deployFromTemp && yarn startProd",
+    "publish":"git push origin master:heroku",
     "apid": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d -a"
   },
   "license": "MIT",
