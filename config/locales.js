@@ -1,4 +1,20 @@
 module.exports = {
+	ENVIAR:{
+		es:"Enviar",
+		en:"Send"
+	},
+	MENSAJE:{
+		es:"Mensaje",
+		en:"Message"
+	},
+	EMAIL:{
+		es:"Email",
+		en:"Email"
+	},
+	NOMBRE_APELLIDO:{
+		es:"Nombre y apellido",
+		en:"Name"
+	},
 	HEADER_MESSAGE:{
 		es:"Vive la experiencia de la naturaleza",
 		en:"Enjoy the experience into the nature"
@@ -57,6 +73,10 @@ module.exports = {
 		es:"Grupos",
 		en:"Groups"
 	},
+	HEADER_HOME_LABEL:{
+		es:"Descubrir",
+		en:"Discover"
+	},
 	ECOALDEA:{
 		es:"Ecoaldea",
 		en:"Ecocenter"
@@ -79,11 +99,11 @@ module.exports = {
 		de: 'Über uns'
 	},
 	META_TITLE: {
-		en: 'Eutopía - Ecovillage',
+		en: 'Eutopía - Ecocenter',
 		es: 'Eutopía - Ecoaldea'
 	},
 	HOSPEDAJES: {
-		es: 'hospedajes',
-		en: 'lodgings'
+		es: 'Hospedajes',
+		en: 'Lodgings'
 	}
 };

@@ -1,0 +1,41 @@
+<ul class="menu">
+    <li><a href="/ecoaldea">{{lang.HEADER_HOME_LABEL}}</a></li>
+    <li>
+        <a href="{{#pagePath langPath lang.GRUPOS}}{{/pagePath}}">{{lang.GRUPOS}}</a>
+        <ul class="subMenu">
+            <li><a href="/grupos-escuelas">{{lang.ESCUELAS}}</a></li>
+            <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
+            <li><a href="/grupos-familia">{{lang.FAMILIAS}}</a></li>
+            <li><a href="/grupos-profesionales">{{lang.PROFESIONALES}}</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="{{#pagePath langPath lang.PRODUCTOS_FERIAS}}{{/pagePath}}">
+                {{lang.PRODUCTOS_FERIAS}}</a>
+        <!--
+        <ul class="subMenu">
+            <li>
+                <a href="{{#pagePath langPath lang.NUESTROS_PRODUCTOS}}{{/pagePath}}">{{lang.NUESTROS_PRODUCTOS}}</a>
+            </li>
+            <li>
+                <a href="{{#pagePath langPath lang.FERIAS_PRODUCTORES}}{{/pagePath}}">
+                    {{lang.FERIAS_PRODUCTORES}}</a></li>
+        </ul>
+    -->
+    </li>
+    <li>
+        <a href="{{#pagePath langPath lang.HOSPEDAJES}}{{/pagePath}}">
+            {{#capitalize}}{{lang.HOSPEDAJES}}{{/capitalize}}
+        </a>
+    </li>
+    <li class="languageMenuItem">
+        <a >{{currentLanguage}}</a>
+        <ul class="subMenu">
+            <li><a href="/">{{lang.es}}</a></li>
+            <li><a href="/en">{{lang.en}}</a></li>
+            <li><a href="/fr">{{lang.fr}}</a></li>
+            <li><a href="/de">{{lang.de}}</a></li>
+            <li><a href="/pr">{{lang.pr}}</a></li>
+        </ul>
+    </li>
+</ul>
