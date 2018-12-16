@@ -1,6 +1,6 @@
 {
 	context:{
-		defaultCurrentPage:'page_about_us',
+		defaultCurrentPage:'page_ecoaldea',
 		API_URL:'https://utopiaecoaldea.herokuapp.com'
 	},
 	login:{
