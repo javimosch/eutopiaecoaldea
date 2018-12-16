@@ -72,9 +72,9 @@ function pushPath(gitPath) {
 	}
 	prepare();
 	var basePath = cache.basePath;
-	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
+	var userSet = `cd ${basePath}; git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
+	exec(`cd ${basePath}; git reset HEAD --hard; ${userSet};git pull origin master`);
 	exec(`cd ${basePath}; git checkout master; git add ${gitPath}`);
-	var userSet = `git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
 	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin master`);
 	if(process.env.NODE_ENV==='production'){
 		pullCurrent();
@@ -84,10 +84,10 @@ function pushPath(gitPath) {
 function deploy(){
 	prepare();
 	var basePath = cache.basePath;
+	var userSet = `cd ${basePath}; git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
 	console.log('git deploy: reset and pull')
-	exec(`cd ${basePath}; git reset HEAD --hard; git pull origin master`);
+	exec(`cd ${basePath}; git reset HEAD --hard; ${userSet};git pull origin master`);
 	exec(`cd ${basePath}; ln -s ${path.join(process.cwd(),'node_modules')} node_modules;`)
 	console.log('git deploy: deploying...')
-	var userSet = `git config user.name 'robot'; git config.user.email 'noreply@robot.com'`;
 	exec(`${userSet}; cd ${basePath}; yarn deploy`)
 }
