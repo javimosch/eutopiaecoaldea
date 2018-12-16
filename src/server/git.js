@@ -58,7 +58,7 @@ function prepare() {
 		var sshAgent = `ssh-agent bash -c 'ssh-add ${keyPath}'`;
 		gitClone = `${sshAgent};${gitClone}`;
 		if (process.env.AUTH_REPO_URL) {
-			gitClone = `git clone ${process.env.AUTH_REPO_URL} .`;
+			gitClone = `git clone ${process.env.AUTH_REPO_URL} .; git checkout heroku`;
 		}
 		exec(`rm -rf ${basePath}; echo 1`)
 		exec(`mkdir ${basePath}; cd ${basePath}; ${gitClone}`);
