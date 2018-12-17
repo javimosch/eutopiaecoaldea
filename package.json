@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon --exec 'node index.js -s' --watch src/static --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json",
+    "start": "npx nodemon --exec 'node index.js -s' --watch src/static --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json,pdf",
     "build": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -b",
     "deploy": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -d",
     "api": "npx cross-env NODE_ENV=production cross-env PORT=3001 node index.js -s -a",
@@ -23,6 +23,7 @@
     "dirty-json": "^0.7.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "gmail-send": "^1.2.14",
     "handlebars": "^4.0.12",
     "jquery": "^3.3.1",
     "just-handlebars-helpers": "^1.0.14",
