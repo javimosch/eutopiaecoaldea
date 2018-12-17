@@ -7,9 +7,10 @@ module.exports = function() {
 			init: function init() {
 
 				Vue.component('parameters', {
+					props:['enabled'],
 					template: `<div  class="parameters-component">
-						<codemirror v-model="data"></codemirror>
-						<button @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
+						<codemirror :enabled="enabled" v-model="data"></codemirror>
+						<button class="btn" @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
 					</div>`,
 					data() {
 						return {
@@ -54,34 +55,52 @@ module.exports = function() {
 				});
 
 				Vue.component('codemirror', {
-					props: ['value'],
+					props: ['value', 'enabled'],
 					template: `<div  class="codemirror-component">
 						<div ref="editor" style="width: -webkit-fill-available;height: 300px;"></div>
 					</div>`,
 					data() {
 						return {
 							editor: null,
-							init:false
+							init:false,
+							activated:false
 						}
 					},
 					watch: {
 						value() {
 							if (!!this.editor && !this.init) {
-								this.editor.setValue(this.value);
+								this.editor.setValue(this.value, -1);
 								this.init = true;
+							}
+						},
+						enabled(){
+							if(this.enabled===true && !this.activated){
+								this.activate();
+							}
+						}
+					},
+					methods:{
+						activate(){
+							if(this.activated) return;
+							this.activated=true;
+							var editor = ace.edit(this.$refs.editor);
+							editor.setTheme("ace/theme/monokai");
+							editor.session.setMode("ace/mode/javascript");
+							this.editor = editor;
+							this.editor.on('change', () => {
+								var value = this.editor.getValue();
+								console.log('change', value);
+								this.$emit('input', value);
+							});	
+							if(!!this.value){
+								this.editor.setValue(this.value, -1);
 							}
 						}
 					},
 					mounted() {
-						var editor = ace.edit(this.$refs.editor);
-						editor.setTheme("ace/theme/monokai");
-						editor.session.setMode("ace/mode/javascript");
-						this.editor = editor;
-						this.editor.on('change', () => {
-							var value = this.editor.getValue();
-							console.log('change', value);
-							this.$emit('input', value);
-						});
+						if(this.enabled || this.enabled===undefined){
+							this.activate();
+						}
 					}
 				});
 
@@ -97,7 +116,7 @@ module.exports = function() {
 							collapsables: {
 								upload_image: false,
 								view_images: false,
-								parameters: true,
+								parameters: false,
 								deploy: true
 							}
 						}

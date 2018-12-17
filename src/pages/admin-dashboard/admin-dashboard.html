@@ -1,16 +1,16 @@
 <section class="admin protected">
     <section class="admin_menu">
 
-        <a @click="()=>collapsables.deploy=!collapsables.deploy">Deployment</a>
+        <a @click="()=>collapsables.deploy=true">Estado del sitio</a>
         <section v-show="collapsables.deploy">
-            <label>Deployed at <span v-html="deployedAt"></span></label>
-            <button @click="deploy" v-html="uploading?'Deploying':'Deploy'">Deploy</button>
+            <label>Pagina actualizada el <span v-html="deployedAt"></span></label>
+            <button class="btn" v-cloak v-if="false" @click="deploy" v-html="uploading?'Deploying':'Deploy'">Deploy</button>
         </section>
         
         <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
         <section class="upload-images" v-show="collapsables.upload_image">
             <input type="file" name="image" id="image"/>
-            <button @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
+            <button class="btn" @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
         </section>
         <a @click="()=>collapsables.view_images=!collapsables.view_images">General: Ver imagenes</a>
         <section class="view-images imagesViewBox" v-show="collapsables.view_images">
@@ -22,10 +22,9 @@
             </div>
         </section>
 
-        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros</a>
+        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros (Avanzado)</a>
         <section v-show="collapsables.parameters">
-            <parameters></parameters>
-            
+            <parameters :enabled="collapsables.parameters"></parameters>
         </section>
 
         
