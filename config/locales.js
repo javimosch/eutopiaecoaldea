@@ -32,7 +32,7 @@ module.exports = {
 		en:"Products and fairs"
 	},
 	PROFESIONALES:{
-		es:"Profesionales",
+		es:"Profresionales",
 		en:"Professionals"
 	},
 	FAMILIAS:{
