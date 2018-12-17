@@ -8,6 +8,7 @@ module.exports = function configure(app) {
 
 	require('./upload')(app);
 	require('./images')(app);
+	require('./email')(app);
 
 	app.post('/api/deploy/path', (req, res) => {
 		var gitPath = server.git.getPath();

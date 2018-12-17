@@ -3,10 +3,18 @@
     <li>
         <a href="{{#pagePath langPath lang.GRUPOS}}{{/pagePath}}">{{lang.GRUPOS}}</a>
         <ul class="subMenu">
-            <li><a href="/grupos-escuelas">{{lang.ESCUELAS}}</a></li>
-            <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
-            <li><a href="/grupos-familia">{{lang.FAMILIAS}}</a></li>
-            <li><a href="/grupos-profesionales">{{lang.PROFESIONALES}}</a></li>
+            <li>
+                <a href="{{#pagePath langPath lang.GRUPOS}}{{/pagePath}}#escuelas">
+                {{lang.ESCUELAS}}</a></li>
+            <li>
+                <a href="{{#pagePath langPath lang.GRUPOS}}{{/pagePath}}#adultos">
+                Adultos&nbsp;mayores</a></li>
+            <li>
+                <a href="{{#pagePath langPath lang.GRUPOS}}{{/pagePath}}#familias">
+                {{lang.FAMILIAS}}</a></li>
+            <li>
+                <a href="{{#pagePath langPath lang.GRUPOS}}{{/pagePath}}#profesionales">
+                {{lang.PROFESIONALES}}</a></li>
         </ul>
     </li>
     <li>
@@ -23,11 +31,13 @@
         </ul>
     -->
     </li>
+    
     <li>
         <a href="{{#pagePath langPath lang.HOSPEDAJES}}{{/pagePath}}">
             {{#capitalize}}{{lang.HOSPEDAJES}}{{/capitalize}}
         </a>
     </li>
+
     <li class="languageMenuItem">
         <a >{{currentLanguage}}</a>
         <ul class="subMenu">

@@ -1,17 +1,24 @@
 <section class="container">
     <article>
-    	<h2 class="desktopCentered">{{lang.CONTACTO}}</h2>
+        <h2 class="desktopCentered">{{lang.CONTACTO}}</h2>
         <div class="desktopCentered">
-
-	        <form>
-	            <label>{{lang.NOMBRE_APELLIDO}}</label>
-	            <input />
-	            <label>{{lang.EMAIL}}</label>
-	            <input />
-	            <label>{{lang.MENSAJE}}</label>
-	            <textarea></textarea>
-	            <button class="mobileCentered">{{lang.ENVIAR}}</button>
-	        </form>
+            <form>
+                <label>{{lang.NOMBRE_APELLIDO}}</label>
+                <input v-model="name" />
+                <label>{{lang.EMAIL}}</label>
+                <input v-model="email"/>
+                <label>{{lang.MENSAJE}}</label>
+                <textarea v-model="message"></textarea>
+                <button type="button" class="mobileCentered" @click="send">{{lang.ENVIAR}}</button>
+            </form>
         </div>
+        <div class="desktopCentered">
+        	<p class="contactInfo">
+                Mz. S Lot. 2 - Sector La Clake- Reque.<br>
+                <a href="mailto:ecocentroeutopia@yahoo.es">ecocentroeutopia@yahoo.es</a><br>
+                Tel: <a href="tel:+51966510895">+51966510895</a> / <a href="tel:+51922461042">+51922461042</a>.
+            </p>
+        </div>
+        <img src="/img/mapa-ubicacion.webp" class="centeredVideo locationMap" style="transform: rotate(90deg);"/>
     </article>
 </section>
