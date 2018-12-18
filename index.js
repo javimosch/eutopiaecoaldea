@@ -59,10 +59,10 @@ function compileEntireSite() {
 
 	//Styles
 	if (process.env.NODE_ENV === 'production') {
-		compileStyles();
+		//compileStyles();
 	} else {
 		if (!sander.existsSync(path.join(outputFolder, 'styles.css'))) {
-			compileStyles();
+			//compileStyles();
 		}
 	}
 
