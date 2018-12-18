@@ -15,7 +15,7 @@
 		window.SERVER={
 			API_URL: 'https://utopiaecoaldea.herokuapp.com',
 			defaultCurrentPage:'page_about_us',
-			updateCode:'M7rsg_w1Y'
+			updateCode:'PCFW6_vWu'
 		}
 	</script>
 </head>
@@ -367,10 +367,10 @@
 
 				function deploy() {
 					this.uploading = true;
-					setTimeout(() => this.uploading = false, 5000)
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
 						window.localStorage.setItem('updateCode', response.updateCode);
 						this.waitingUpdate = true;
+						this.uploading = false;
 						console.info('updateCode', response.updateCode)
 					}));
 				}
