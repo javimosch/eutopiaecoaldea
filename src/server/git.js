@@ -17,7 +17,10 @@ module.exports = {
 	pushPath,
 	getPath: () => {
 		prepare();
-		sync();
+		if(!cache.syncDone){
+			sync();
+			cache.syncDone=true;
+		}
 		return cache.basePath;
 	}
 }
