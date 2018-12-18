@@ -10,15 +10,15 @@ module.exports = function configure(app) {
 	require('./images')(app);
 	require('./email')(app);
 
-	app.post('/api/deploy/path', (req, res) => {
+	app.post('/api/git/path', (req, res) => {
 		var gitPath = server.git.getPath();
-		console.log('API',req.url,{
-				body:req.body
-			})
+		console.log('API', req.url, {
+			body: req.body
+		})
 		if (!req.body.path) return res.status(400).send();
 		try {
-			
-			server.git.pushPath(req.body.path,{
+
+			server.git.pushPath(req.body.path, {
 				files: req.body.files
 			});
 			res.json({
@@ -33,11 +33,30 @@ module.exports = function configure(app) {
 
 	});
 
-	app.get('/api/deploy', (req, res) => {
+	app.get('/api/deployment/publish', (req, res) => {
+		var shortid = require('shortid');
+		var updateCode = shortid.generate();
+		var data = sander.readFileSync(filePath('config/data.js')).toString('utf-8');
+		const dJSON = require('dirty-json');
+		try {
+			data = dJSON.parse(data);
+			data.context = data.context || {}
+			data.context.updateCode = updateCode;
+			server.git.pushPath('config/data.js', {
+				files: [{
+					path: 'config/data.js',
+					contents: JSON.stringify(data, null, 4)
+				}]
+			});
+		} catch (err) {
+			console.error(err.stack);
+			return res.status(500).send();
+		}
 		res.json({
-			result: true
+			result: true,
+			updateCode: updateCode
 		});
-		server.git.deploy();
+		server.git.deployAll();
 	});
 
 	app.get('/api/config', (req, res) => {

@@ -7,7 +7,7 @@ var rimraf = server.fs.rimraf;
 const sander = require('sander');
 const path = require('path');
 
-if(argv.gitd){
+if (argv.gitd) {
 	console.log('Deploy from temp...')
 	server.git.deploy()
 	process.exit(0);
@@ -47,13 +47,11 @@ if (argv.s || argv.server) {
 }
 
 function compileEntireSite() {
-	if (process.env.NODE_ENV === 'production') {
-		exec(`cd ${process.cwd()}; cp ${path.join(outputFolder,'CNAME')} .`)
-		rimraf(path.join(outputFolder, '/**'), '/docs/');
-		exec(`mkdir ${outputFolder}; echo 1;`);
-		exec(`cd ${outputFolder}; cp ${path.join(process.cwd(),'CNAME')} .; rm ${path.join(process.cwd(),'CNAME')}`)
-	}
-
+	var outputFiles = sander.readdirSync(outputFolder);
+		outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).forEach(n => {
+			rimraf(path.join(outputFolder, n), '/docs/');
+	});
+	
 	exec(`cd ${outputFolder}; cp -R ../src/static/* .`);
 
 	//Helpers
@@ -200,7 +198,7 @@ function runLocalServer() {
 	app.use(cors());
 
 	var bodyParser = require('body-parser')
-	
+
 	// parse application/x-www-form-urlencoded
 	app.use(bodyParser.urlencoded({
 		extended: true
