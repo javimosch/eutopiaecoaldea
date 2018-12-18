@@ -184,7 +184,7 @@ module.exports = function() {
 						console.info(response);
 					}));
 				}
-				function deployWipMode(){
+				function deployStaging(){
 					fetch(`${SERVER.API_URL}/api/deployment/publish?staging=1`).then(r => r.json().then(response => {
 						this.cooldownVariable('deployStaging');
 						console.info(response);
