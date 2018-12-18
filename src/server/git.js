@@ -17,15 +17,17 @@ module.exports = {
 	deployAll,
 	deploy,
 	pushPath,
-	getPath: () => {
-		prepare();
-		sync();
-		return cache.basePath;
-	}
+	getPath
 }
 
-function gitFilePath(p){
-	var gitPath = server.git.getPath();
+function getPath() {
+	prepare();
+	sync();
+	return cache.basePath;
+}
+
+function gitFilePath(p) {
+	var gitPath = getPath();
 	return path.join(gitPath, p)
 }
 
@@ -101,10 +103,10 @@ function writeFiles(files) {
 function sync() {
 	console.log('git sync');
 	console.log('git sync: checkout latest');
-	
 	gitExec(`git reset HEAD --hard; git rebase --abort; echo 1`);
 	gitExec('git fetch');
 	gitExec(`git branch -D temp;git branch -m temp; git branch -D latest;git checkout ${cache.syncedBranch}; git branch -D temp`);
+	report();
 }
 
 function pushPath(gitPaths, options = {}) {
@@ -127,6 +129,7 @@ function pushPath(gitPaths, options = {}) {
 	var branch = options.branch || 'latest';
 	console.log('git pushPath: commit and push')
 	gitExec(`git commit -m 'pushPath commit'; git push origin ${cache.syncedBranch}:${branch} --force`);
+	report();
 }
 
 function deployAll() {
@@ -150,4 +153,10 @@ function deploy(options = {}) {
 	var branches = options.branches || ['master'];
 	var pushCmd = branches.map(branch => `git push origin ${cache.syncedBranch}:${branch} --force`).join(';');
 	gitExec(`${pushCmd}`);
+	report();
+}
+
+function report() {
+	gitExec('git status');
+	console.log('git waiting !');
 }
