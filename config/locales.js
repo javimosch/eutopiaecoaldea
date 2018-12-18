@@ -119,7 +119,7 @@ module.exports = {
 		de: 'Über uns'
 	},
 	ABOUT_US_CONTENT_1:{
-		es:"Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades."
+		es:"Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.",
 		fr:"Nous sommes un ensemble de personnes qui cherchent à vivre de manière durable et autonome. Nous promouvons la permaculture, l'agroécologie, l'éco pédagogie, la santé et le bien-être grâce à divers projets entrepreneuriaux qui nous permettent de financer nos activités."
 
 	},
@@ -149,8 +149,25 @@ module.exports = {
 		fr:'Eutopía - Centre écologique'
 	},
 	HOSPEDAJES: {
-		es: 'Hospedajes',
+		es: 'Hospedajes'
 		en: 'Lodgings',
 		fr:'Hébergement'
+	}
+
+	HOSPEDAJES_CONTENT_1: {
+		es:'Nuestra aldea propone varios espacios y servicios de alojamiento para que puedas pasar la noche en la naturaleza y que dure más el fin de semana !',
+		en: 'Our eco-center offers lodging services so that you can spend the night in the nature and make the week-end last longer !',
+		fr:"Notre centre écologique propose des espaces et des services d'hébergement pour que vous puissiez profiter d'une nuit dans la nature et faire durer le week-end !"
+	}
+
+	HOSPEDAJES_CONTENT_2: {
+		es:'Con duchas, banos, electricidad, cocina equipada, zona de recreacion, piscina, y mucho más ! 10 soles por carpa.',
+		en: 'With shower, toilets, electricity, fully-equiped kitchen, playground, swimming pool, and many other services and facilities ! 10 soles per tent',
+		fr:"Avec douches, toilettes, électricité, cuisine équipée, piscine, zone de jeux, et beaucoup d'autres espaces et services à découvrir ! 10 soles par tente."
+	}
+	HOSPEDAJES_CONTENT_3: {
+		es:'Estamos construyendo una albergue para fines de semana en la naturaleza, con todas las comodidades de su casa ! Apertura en Febrero 2019, mantente al tanto !',
+		en: 'We are building ',
+		fr:"Nous construisons des cabanes en dur pour vos week-end dans la nature, avec tout le confort de votre maison ! Ouverture prévue en Février 2019 : Tenez-vous prêts !"
 	}
 };
