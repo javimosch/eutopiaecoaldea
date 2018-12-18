@@ -139,8 +139,15 @@ module.exports = function() {
 						if (!!updateCode) {
 							if (SERVER.updateCode != updateCode) {
 								this.waitingUpdate = true;
+								var when = window.localStorage.getItem('updateCodeDate')
+								if(!!when){
+									when = parseInt(when);
+									if(Date.now()-when > 1000*60*2){
+										window.localStorage.setItem('updateCode', '');		
+									}
+								}
 							} else {
-								window.localStorage.setItem('updateCode', '')
+								window.localStorage.setItem('updateCode', '');
 							}
 						}
 
@@ -151,12 +158,45 @@ module.exports = function() {
 						this.browseImages();
 					},
 					methods: {
-
+						isCooldown(name){
+							var v = window.localStorage.getItem('cooldown_'+name);
+							if(!!v){
+								v = parseInt(v);
+								if(Date.now()-v > 1000 * 60 * 2){
+									window.localStorage.setItem('cooldown_'+name,'')
+									return false;
+								}else{
+									return true;
+								}
+							}else{
+								return false;
+							}
+						},
+						deployWipMode,
 						deploy,
 						uploadImage,
-						browseImages
+						browseImages,
+						cooldownVariable
 					}
 				})
+
+				function deployWipMode(){
+					fetch(`${SERVER.API_URL}/api/deployment/publish?wipMode=1`).then(r => r.json().then(response => {
+						this.cooldownVariable('wipMode');
+						console.info(response);
+					}));
+				}
+				function deployWipMode(){
+					fetch(`${SERVER.API_URL}/api/deployment/publish?staging=1`).then(r => r.json().then(response => {
+						this.cooldownVariable('deployStaging');
+						console.info(response);
+					}));
+				}
+
+				function cooldownVariable(variable){
+					window.localStorage.setItem('cooldown_'+variable, Date.now());
+					this.$forceUpdate();
+				}
 
 				function deploy() {
 					this.uploading = true;

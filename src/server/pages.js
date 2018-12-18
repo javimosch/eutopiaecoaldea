@@ -13,6 +13,7 @@ module.exports = {
 		var basePath = path.join(process.cwd(), outputFolder);
 		var srcPath = path.join(process.cwd(), 'src');
 
+		var writeFns = [];
 
 		var pages = sander.readdirSync(srcFile('pages'));
 		pages.forEach(name => {
@@ -45,10 +46,10 @@ module.exports = {
 			}
 
 			var normalizeName = (name, isPageFile = false) => {
-				if(!isPageFile){
+				if (!isPageFile) {
 					name = name.split('-').join('_')
 					name = name.split(' ').join('_')
-				}else{
+				} else {
 					name = name.split(' ').join('-')
 					name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
 				}
@@ -61,19 +62,21 @@ module.exports = {
 			pageConfig.name = normalizeName(pageConfig.name, true)
 
 			Handlebars.registerPartial(pageName, source);
-
-			//Write file
-			source = sander.readFileSync(srcFile('index.html')).toString('utf-8');
-			var template = Handlebars.compile(source);
-			context.currentLanguage = context.lang[options.language];
-			context.currentPage = pageName;
-			context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;
-			var html = template(Object.assign({}, context, pageConfig.context || {}));
-			var writePath = path.join(basePath, pageConfig.path || '', pageConfig.name.toLowerCase(), 'index.html');
-			sander.writeFileSync(writePath, html);
-
-
 			//console.log(`pages: ${pageName} registered (${options.language} ${pageConfig.name.toLowerCase()})`)
+
+			writeFns.push(function() {
+				//Write file
+				source = sander.readFileSync(srcFile('index.html')).toString('utf-8');
+				var template = Handlebars.compile(source);
+				context.currentLanguage = context.lang[options.language];
+				context.currentPage = pageName;
+				context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;
+				var html = template(Object.assign({}, context, pageConfig.context || {}));
+				var writePath = path.join(basePath, pageConfig.path || '', pageConfig.name.toLowerCase(), 'index.html');
+				sander.writeFileSync(writePath, html);
+			})
 		});
+
+		writeFns.forEach(fn=>fn());
 	}
 };

@@ -19,13 +19,14 @@
 		window.SERVER={
 			API_URL: '{{API_URL}}',
 			defaultCurrentPage:'{{defaultCurrentPage}}',
-			updateCode:'{{updateCode}}'
+			updateCode:'{{updateCode}}',
+			wipMode: '{{wipMode}}'
 		}
 	</script>
 </head>
 <body>
 	{{#if (neq type 'admin')}}
-		{{> partial_header}}
+		{{> partial_header}}		
 	{{else}}
 		{{> partial_header}}
 		<!--
@@ -38,9 +39,26 @@
 	-->
 	{{/if}}
 
-	<div class="mainContent">
-		{{> (lookup . 'currentPage') }}
-	</div>
+	{{#if (neq type 'admin')}}
+		{{#if (eq wipMode true)}}
+			<div class="mainContent">
+				{{> page_wip}}
+			</div>
+		{{else}}    
+			<div class="mainContent">
+				{{> (lookup . 'currentPage') }}
+			</div>
+		{{/if}}
+	{{else}}
+		<div class="mainContent">
+				{{> (lookup . 'currentPage') }}
+		</div>
+	{{/if}}
+		
+    
+    
+
+	
 
 	{{#if (neq type 'admin')}}
 		{{> partial_footer}}
@@ -51,6 +69,9 @@
 	<script type="text/javascript" src="/libs/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/libs/vue.js"></script>
 	<script type="text/javascript" src="/libs/moment.js"></script>
+	<script type="text/javascript">
+		window.moment.locale('es');
+	</script>
 
 	{{#if (eq type 'admin')}}
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>

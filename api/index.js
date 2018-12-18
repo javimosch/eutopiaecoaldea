@@ -42,6 +42,7 @@ module.exports = function configure(app) {
 			data = dJSON.parse(data);
 			data.context = data.context || {}
 			data.context.updateCode = updateCode;
+			data.wipMode = req.query.wipMode === '1' ? true : false;
 			server.git.pushPath('config/data.js', {
 				files: [{
 					path: 'config/data.js',
@@ -52,7 +53,19 @@ module.exports = function configure(app) {
 				result: true,
 				updateCode: updateCode
 			});
-			server.git.deployAll();
+			if (data.wipMode) {
+				server.git.deploy({
+					branches: ['master']
+				});
+			} else {
+				if (req.query.staging === '1') {
+					server.git.deploy({
+						branches: ['heroku']
+					});
+				} else {
+					server.git.deployAll();
+				}
+			}
 		} catch (err) {
 			console.error(err.stack);
 			return res.status(500).send();
@@ -80,15 +93,15 @@ module.exports = function configure(app) {
 
 
 	app.get('/api/config/fetch', (req, res) => {
-		var gitPath= server.git.getPath();
-		var gitFilePath = p => path.join(gitPath,p)
+		var gitPath = server.git.getPath();
+		var gitFilePath = p => path.join(gitPath, p)
 		res.json({
 			result: sander.readFileSync(gitFilePath('config/data.js')).toString('utf-8')
 		})
 	})
 	app.get('/api/locales/fetch', (req, res) => {
-		var gitPath= server.git.getPath();
-		var gitFilePath = p => path.join(gitPath,p)
+		var gitPath = server.git.getPath();
+		var gitFilePath = p => path.join(gitPath, p)
 		res.json({
 			result: sander.readFileSync(gitFilePath('config/locales.js')).toString('utf-8')
 		})
