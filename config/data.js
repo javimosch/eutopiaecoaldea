@@ -2,6 +2,7 @@
 	"context": {
 		wipMode: false,
 		"defaultCurrentPage": "page_about_us",
+		"PUBLIC_URL":"https://eutopiaecoaldea.com",
 		"API_URL": "https://utopiaecoaldea.herokuapp.com",
 		"updateCode": "gtdB1Q27s",
 		programacion: [{

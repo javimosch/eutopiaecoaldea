@@ -368,6 +368,7 @@ section.admin.protected {
 
 section.admin {
     padding: 10px;
+    padding-top: 50px;
 }
 
 .admin_menu a {

@@ -64,11 +64,26 @@ function prepare() {
 		var sshAgent = `ssh-agent bash -c 'ssh-add ${keyPath}'`;
 		gitClone = `${sshAgent};${gitClone}`;
 		if (process.env.AUTH_REPO_URL) {
-			gitClone = `git clone ${process.env.AUTH_REPO_URL} .; git checkout heroku`;
+			gitClone = `git clone ${process.env.AUTH_REPO_URL} .`;
 		}
 		exec(`rm -rf ${basePath}; echo 1`)
 		exec(`mkdir ${basePath}; cd ${basePath}; ${gitClone}`);
+		checkoutBranch('heroku');
 		cache.basePath = basePath;
+	}
+}
+
+function gitExec(cmd){
+	return exec(`cd ${cache.basePath};${cmd}`);
+}
+
+function checkoutBranch(name){
+	gitExec(`git reset HEAD --hard; git rebase --abort; echo 1`);
+	try{
+		gitExec(`git checkout ${name}`)
+	}catch(err){
+		gitExec('git fetch');
+		gitExec(`git checkout ${name}`)
 	}
 }
 
@@ -89,7 +104,7 @@ function sync() {
 	prepare();
 	var basePath = cache.basePath;
 	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
-	exec(`cd ${basePath}; git checkout heroku;`);
+	checkoutBranch('heroku');
 	console.log('git pushPath: reset, checkout and pull')
 	exec(`cd ${basePath}; ${userSet}; git reset HEAD --hard; git checkout .;git pull --rebase origin heroku; git pull --rebase origin latest`);
 }
@@ -104,7 +119,7 @@ function pushPath(gitPaths, options = {}) {
 
 	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
 
-	exec(`cd ${basePath}; git checkout heroku;`);
+	checkoutBranch('heroku');
 	console.log('git pushPath: reset, checkout and pull')
 	exec(`cd ${basePath}; ${userSet}; git reset HEAD --hard; git checkout .;git pull --rebase origin heroku; git pull --rebase origin latest`);
 	writeFiles(options.files);

@@ -1,35 +1,55 @@
-<section class="admin protected">
+<section class="admin protected container">
     <section class="admin_menu">
-        <a @click="()=>collapsables.deploy=collapsables.deploy">Publicacion</a>
+        <a @click="()=>collapsables.deploy=!collapsables.deploy">
+        <i :class="collapsables.deploy?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
+
+        Publicacion</a>
         <section v-show="collapsables.deploy">
             <div class="developmentPage">
                 <label>Pagina oficial</label>
                 <div>
-                    <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
+                    <p class="italic fnt-12" style="margin-top:5px">
+                        <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
+                    </p>
                 </div>
                 <div>
-                    <button class="btn" v-cloak v-if="true" @click="(uploading||waitingUpdate)||deploy()" :disabled="uploading||waitingUpdate" v-html="uploading?'Publicando...':'Publicar cambios recientes'"></button>
+                    <a href="{{PUBLIC_URL}}" target="_blank">Vista previa {{PUBLIC_URL}}</a>
+                    <button class="btn" v-cloak v-if="true" @click="(uploading||isCooldown('deploy'))||deploy()" :disabled="uploading||isCooldown('deploy')" v-html="uploading?'Publicando...':'Publicar cambios'"></button>
+                    <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
+                        Cambios publicados recientemente, espera un momento...
+                    </p>
                 </div>
                 <div>
                     <button class="btn" v-cloak v-if="true" @click="(isCooldown('wipMode'))||deployWipMode()" :disabled="uploading||isCooldown('wipMode')" v-html="uploading?'Procesando...':'Activar modo construccion'"></button>
+                    <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('wipMode')">
+                        Cambios publicados recientemente, espera un momento...
+                    </p>
                     <p class="italic fnt-12" style="margin-top:5px">El modo construccion desactivara la pagina y mostrara un mensaje el cual indica que se estan realizando actualizaciones. Esta operacion solo afecta al dominio oficial (https://eutopiaecoaldea.com)</p>
                 </div>
             </div>
             <div class="developmentPage">
-                <label>Pagina de pruebas</label>
+                <label>Pagina de desarrollo</label>
                 <div>
-                    <button class="btn" v-cloak v-if="true" @click="(uploading||isCooldown('deployStaging'))||deploy()" :disabled="uploading||isCooldown('deployStaging')" v-html="uploading?'Publicando...':'Publicar cambios recientes en pagina de pruebas'"></button>
-                    <p class="italic fnt-12" style="margin-top:5px">La pagina de prubas es una copia del proyecto alojada en otro hosting. Cuando no estamos seguros como quedaran los cambios recomendamos publicar primero en la pagina de pruebas. (Normalmente https://ecoaldea.incubadoraitinerante.com/ o https://utopiaecoaldea.herokuapp.com)</p>
+                    <a href="{{API_URL}}" target="_blank">Vista previa {{API_URL}}</a>
+                    <button class="btn" v-cloak v-if="true" @click="(uploading||isCooldown('deployStaging'))||deploy()" :disabled="uploading||isCooldown('deployStaging')" v-html="uploading?'Publicando...':'Publicar cambios'"></button>
+                    <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deployStaging')">
+                        Cambios publicados recientemente, espera un momento...
+                    </p>
+                    <p class="italic fnt-12" style="margin-top:5px">La pagina de desarrollo es una copia del proyecto alojada en otro hosting. Cuando no estamos seguros como quedaran los cambios recomendamos publicar primero en la pagina de desarrollo. (Normalmente https://ecoaldea.incubadoraitinerante.com/ o https://utopiaecoaldea.herokuapp.com)</p>
                 </div>
-                <a href="{{API_URL}}" target="_blank">Abrir pagina de pruebas</a>
             </div>
         </section>
-        <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
+        
+        <a @click="()=>collapsables.upload_image=!collapsables.upload_image">
+        <i :class="collapsables.upload_image?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
+        General: Subir imagenes</a>
         <section class="upload-images" v-show="collapsables.upload_image">
             <input type="file" name="image" id="image" />
             <button class="btn" @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
         </section>
-        <a @click="()=>collapsables.view_images=!collapsables.view_images">General: Ver imagenes</a>
+        <a @click="()=>collapsables.view_images=!collapsables.view_images">
+        <i :class="collapsables.view_images?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
+        General: Ver imagenes</a>
         <section class="view-images imagesViewBox" v-show="collapsables.view_images">
             <div v-for="item in images">
                 <div class="admin-image-thumb" :style="`background-image:url(/uploads/images/${item});`">
@@ -37,16 +57,12 @@
                 <input :value="`/uploads/images/${item}`" class="imageUrl" />
             </div>
         </section>
-        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros (Avanzado)</a>
+        <a @click="()=>collapsables.parameters=!collapsables.parameters">
+        <i :class="collapsables.parameters?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
+        General: Parametros (Avanzado)</a>
         <section v-show="collapsables.parameters">
             <parameters type="data" :enabled="collapsables.parameters"></parameters>
             <parameters type="locales" :enabled="collapsables.parameters"></parameters>
         </section>
-        <!--
-        <a href="#">Hospedajes: Titulo: Color</a>
-        <a href="#">Hospedajes: Titulo: Texto</a>
-        <a href="#">Hospedajes: Titulo: Imagen</a>
-        <a href="#" onclick="logout()" class="logout">Salir</a>
-        <hr>-->
     </section>
 </section>

@@ -117,7 +117,6 @@ module.exports = function() {
 					name: 'admin_dashboard',
 					data() {
 						return {
-							waitingUpdate: false,
 							uploading: false,
 							single_image: null,
 							images: [],
@@ -138,7 +137,6 @@ module.exports = function() {
 						var updateCode = window.localStorage.getItem('updateCode');
 						if (!!updateCode) {
 							if (SERVER.updateCode != updateCode) {
-								this.waitingUpdate = true;
 								var when = window.localStorage.getItem('updateCodeDate')
 								if(!!when){
 									when = parseInt(when);
@@ -201,11 +199,8 @@ module.exports = function() {
 				function deploy() {
 					this.uploading = true;
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
-						window.localStorage.setItem('updateCode', response.updateCode);
-						window.localStorage.setItem('updateCodeDate', Date.now());
-						this.waitingUpdate = true;
+						window.localStorage.setItem('cooldown_deploy');
 						this.uploading = false;
-						console.info('updateCode', response.updateCode)
 					}));
 				}
 
