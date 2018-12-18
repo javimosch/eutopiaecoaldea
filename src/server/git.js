@@ -79,11 +79,7 @@ function gitExec(cmd) {
 	return exec(`cd ${cache.basePath};${userSet};${cmd}`);
 }
 
-function checkoutBranch(name) {
-	gitExec(`git reset HEAD --hard; git rebase --abort; echo 1`);
-	gitExec('git fetch');
-	gitExec(`git checkout ${name}`)
-}
+
 
 function writeFiles(files) {
 	prepare();
@@ -102,7 +98,10 @@ function writeFiles(files) {
 function sync() {
 	console.log('git sync');
 	console.log('git sync: checkout latest');
-	checkoutBranch(cache.syncedBranch);
+	
+	gitExec(`git reset HEAD --hard; git rebase --abort; echo 1`);
+	gitExec('git fetch');
+	gitExec(`git branch -D temp;git branch -m temp; git branch -D latest;git checkout ${cache.syncedBranch}; git branch -D temp`);
 }
 
 function pushPath(gitPaths, options = {}) {
