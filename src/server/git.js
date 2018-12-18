@@ -71,6 +71,7 @@ function writeFiles(files) {
 	if (files && files.length > 0) {
 		files.forEach(file => {
 			var writePath = path.join(cache.basePath, file.path);
+			console.log('git writeFile',writePath);
 			sander.writeFileSync(writePath, file.contents, {
 				encoding: 'utf8',
 				flag: 'w'
@@ -81,7 +82,7 @@ function writeFiles(files) {
 
 function pushPath(gitPaths, options = {}) {
 	prepare();
-	writeFiles(options.files);
+
 	if (!gitPaths) {
 		return console.error('pushPath: gitPaths required')
 	}
@@ -89,9 +90,10 @@ function pushPath(gitPaths, options = {}) {
 	
 	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
 	
+	exec(`cd ${basePath}; git checkout heroku;`);
 	console.log('git pushPath: reset, checkout and pull')
 	exec(`cd ${basePath}; ${userSet}; git reset HEAD --hard; git checkout .;git pull --rebase origin heroku; git pull --rebase origin latest`);
-	exec(`cd ${basePath}; git checkout heroku;`);
+	writeFiles(options.files);
 	var adds = '';
 	if(!(gitPaths instanceof Array)){
 		gitPaths = [gitPaths];
@@ -99,7 +101,7 @@ function pushPath(gitPaths, options = {}) {
 	console.log('git pushPath: adds...')
 	adds = gitPaths.map(singlePath=>`git add ${singlePath}`).join(';')
 	exec(`cd ${basePath}; ${adds}`);
-	var branch = options.branch || 'heroku';
+	var branch = options.branch || 'latest';
 	console.log('git pushPath: commit and push')
 	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin heroku:${branch} --force`);
 }

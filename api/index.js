@@ -48,15 +48,16 @@ module.exports = function configure(app) {
 					contents: JSON.stringify(data, null, 4)
 				}]
 			});
+			res.json({
+				result: true,
+				updateCode: updateCode
+			});
+			//server.git.deployAll();
 		} catch (err) {
 			console.error(err.stack);
 			return res.status(500).send();
 		}
-		res.json({
-			result: true,
-			updateCode: updateCode
-		});
-		server.git.deployAll();
+
 	});
 
 	app.get('/api/config', (req, res) => {
