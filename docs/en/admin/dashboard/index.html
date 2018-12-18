@@ -14,7 +14,8 @@
 	<script type="text/javascript">
 		window.SERVER={
 			API_URL: 'https://utopiaecoaldea.herokuapp.com',
-			defaultCurrentPage:'page_about_us'
+			defaultCurrentPage:'page_about_us',
+			updateCode:'M7rsg_w1Y'
 		}
 	</script>
 </head>
@@ -99,7 +100,7 @@
 		        <a @click="()=>collapsables.deploy=true">Estado del sitio</a>
 		        <section v-show="collapsables.deploy">
 		            <label>Pagina actualizada el <span v-html="deployedAt"></span></label>
-		            <button class="btn" v-cloak v-if="true" @click="deploy" :disabled="uploading||waitingUpdate" v-html="uploading?'Publicando...':'Publicar cambios recientes'"></button>
+		            <button class="btn" v-cloak v-if="true" @click="(uploading||waitingUpdate)||deploy()" :disabled="uploading||waitingUpdate" v-html="uploading?'Publicando...':'Publicar cambios recientes'"></button>
 		        </section>
 		        
 		        <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
@@ -341,9 +342,13 @@
 							this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 						}));
 
-						var updateCode = window.localSession.getItem('updateCode');
-						if (!!updateCode && SERVER.updateCode != updateCode) {
-							this.waitingUpdate = true;
+						var updateCode = window.localStorage.getItem('updateCode');
+						if (!!updateCode) {
+							if (SERVER.updateCode != updateCode) {
+								this.waitingUpdate = true;
+							} else {
+								window.localStorage.setItem('updateCode', '')
+							}
 						}
 
 
@@ -364,8 +369,8 @@
 					this.uploading = true;
 					setTimeout(() => this.uploading = false, 5000)
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
-						window.localSession.setItem('updateCode',response.updateCode);
-						this.waitingUpdate=true;
+						window.localStorage.setItem('updateCode', response.updateCode);
+						this.waitingUpdate = true;
 						console.info('updateCode', response.updateCode)
 					}));
 				}
