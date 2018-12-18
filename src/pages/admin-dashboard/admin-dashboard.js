@@ -7,7 +7,7 @@ module.exports = function() {
 			init: function init() {
 
 				Vue.component('parameters', {
-					props:['enabled'],
+					props: ['enabled'],
 					template: `<div  class="parameters-component">
 						<codemirror :enabled="enabled" v-model="data"></codemirror>
 						<button class="btn" @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
@@ -30,7 +30,7 @@ module.exports = function() {
 						saveParameters() {
 							this.progress = true;
 							$.ajax({
-								url: `${SERVER.API_URL}/api/deploy/path`,
+								url: `${SERVER.API_URL}/api/git/path`,
 								data: JSON.stringify({
 									files: [{
 										contents: this.data,
@@ -62,8 +62,8 @@ module.exports = function() {
 					data() {
 						return {
 							editor: null,
-							init:false,
-							activated:false
+							init: false,
+							activated: false
 						}
 					},
 					watch: {
@@ -73,16 +73,16 @@ module.exports = function() {
 								this.init = true;
 							}
 						},
-						enabled(){
-							if(this.enabled===true && !this.activated){
+						enabled() {
+							if (this.enabled === true && !this.activated) {
 								this.activate();
 							}
 						}
 					},
-					methods:{
-						activate(){
-							if(this.activated) return;
-							this.activated=true;
+					methods: {
+						activate() {
+							if (this.activated) return;
+							this.activated = true;
 							var editor = ace.edit(this.$refs.editor);
 							editor.setTheme("ace/theme/monokai");
 							editor.session.setMode("ace/mode/javascript");
@@ -91,14 +91,14 @@ module.exports = function() {
 								var value = this.editor.getValue();
 								console.log('change', value);
 								this.$emit('input', value);
-							});	
-							if(!!this.value){
+							});
+							if (!!this.value) {
 								this.editor.setValue(this.value, -1);
 							}
 						}
 					},
 					mounted() {
-						if(this.enabled || this.enabled===undefined){
+						if (this.enabled || this.enabled === undefined) {
 							this.activate();
 						}
 					}
@@ -109,6 +109,7 @@ module.exports = function() {
 					name: 'admin_dashboard',
 					data() {
 						return {
+							waitingUpdate: false,
 							uploading: false,
 							single_image: null,
 							images: [],
@@ -125,6 +126,14 @@ module.exports = function() {
 						fetch(`/manifest.json`).then(r => r.json().then(response => {
 							this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 						}));
+
+						var updateCode = window.localSession.getItem('updateCode');
+						if (!!updateCode && SERVER.updateCode != updateCode) {
+							this.waitingUpdate = true;
+						}
+
+
+
 					},
 					mounted() {
 						this.browseImages();
@@ -140,8 +149,10 @@ module.exports = function() {
 				function deploy() {
 					this.uploading = true;
 					setTimeout(() => this.uploading = false, 5000)
-					fetch(`${SERVER.API_URL}/api/deploy`).then(r => r.json().then(response => {
-
+					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
+						window.localSession.setItem('updateCode',response.updateCode);
+						this.waitingUpdate=true;
+						console.info('updateCode', response.updateCode)
 					}));
 				}
 

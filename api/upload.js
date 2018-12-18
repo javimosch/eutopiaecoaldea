@@ -27,7 +27,9 @@ module.exports = app => {
 		sander.mkdirSync(targetBasePath);
 		server.fs.execSync(`mv ${req.file.path} ${targetPath}`);
 		console.log('saving image in repo')
-		server.git.pushPath(`${basePath}${fileName}`);
+		server.git.pushPath(`${basePath}${fileName}`,{
+			branch:'latest'
+		});
 		res.json({
 			file: req.file
 		})
