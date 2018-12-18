@@ -94,6 +94,26 @@ module.exports = {
 		en:"Discover",
 		fr:"Découvrir"
 	},
+		HOME_INTRO:{
+		es:"Ven a disfrutar de nuestra aldea cada fin de semana !",
+		en:"Visit and enjoy our eco-center every week-end !",
+		fr:"Venez profitez de notre centre écologique tous les week-end !"
+	},
+	HOME_CONTENT_1:{
+		es:"Nuestro eco-centro en la naturaleza está abierto cada fin de semana para brindarle un lugar recreativo y de relajación donde toda la familia encontrará su felicidad.",
+		en:"Our eco-center in the nature is opened every week-end so that you can enjoy being in the countryside, in a place where you can have fun and relax with activities for all the family !",
+		fr:"Notre centre ecologique est ouvert chaque week-end pour que vous puissiez profiter en famille de nos espaces de jeux et de détente, avec des activités pour tous !"
+	},
+		HOME_CONTENT_2:{
+		es:"Zona de juego, piscina, zona de descanso, biblioteca.<br>                    Eco-restaurante con productos frescos y orgánicos cocinados en el momento.<br>                    Talleres y actividades variadas para aprender a toda edad sobre las plantas, la cerámica, la pintura o también practicar la meditación, el yoga y el tai-chi !<br>                    Visita guiada de nuestro vivero, la huerta, el centro de tratamiento de los desechos.<br>                    Escenario con música en vivo y otros espectaculos (ver programacion)<br>                    Zona de camping<br>                    Y mucho más !",
+		en:"playground, swimming pool, relaxing area, reading area.<br>                    Eco-restaurant with fresh ecological product homecooked.<br>                    Workshops to learn and discover at any age about nature, crops, ceramic, painting, or to practice meditation, yoga, or Tai-chi !<br>                    Visits with explainations about our garden, plant nursery, compost and waste treatment area.<br>                    Stage with live music and a diversity of shows (see our programation)<br>                    Camping zone<br>                    And much more ! !",
+		fr:"Aire de jeux, piscine, zone de détente, bibliotèque.<br>                    Eco-restaurant avec des produits frais et biologiques cuisinés sur place.<br>                    Ateliers et activités pour apprendre à tout age sur les plantes, la céramique, la peinture ou pour pratiquer la méditation, le yoga ou le tai-chi!<br>                    Visite guidée de notre jardin, pépinière, compost et du centre de traitement des déchets.<br>                    Scène avec de la musique en live et une offre variée de spectacles (voir programmation)<br>                    Aire de camping<br>                   Et beaucoup plus !"
+
+		HOME_CONTENT_3:{
+		es:" La entrada al parque es gratis. Los horarios de atencion al publico son del sábado al domingo, de las 9h a las 18h.",
+		en:"The entry to our eco-center is free. We are opened for the visitors from saturday to sunday, from 9am to 6pm",
+		fr:"L'entrée du parc est gratuite. Les horaires d'ouverture au public son du samedi au dimanche, de 9h à 18h"
+	},
 	ECOALDEA:{
 		es:"Ecoaldea",
 		en:"Ecocenter",
@@ -159,15 +179,26 @@ module.exports = {
 		en: 'Our eco-center offers lodging services so that you can spend the night in the nature and make the week-end last longer !',
 		fr:"Notre centre écologique propose des espaces et des services d'hébergement pour que vous puissiez profiter d'une nuit dans la nature et faire durer le week-end !"
 	}
+	HOSPEDAJES_TITLE_1: {
+		es: 'Zona de camping',
+		en: 'Camping',
+		fr:'Camping'
+	}
 
 	HOSPEDAJES_CONTENT_2: {
 		es:'Con duchas, banos, electricidad, cocina equipada, zona de recreacion, piscina, y mucho más ! 10 soles por carpa.',
 		en: 'With shower, toilets, electricity, fully-equiped kitchen, playground, swimming pool, and many other services and facilities ! 10 soles per tent',
 		fr:"Avec douches, toilettes, électricité, cuisine équipée, piscine, zone de jeux, et beaucoup d'autres espaces et services à découvrir ! 10 soles par tente."
 	}
-	HOSPEDAJES_CONTENT_3: {
-		es:'Estamos construyendo una albergue para fines de semana en la naturaleza, con todas las comodidades de su casa ! Apertura en Febrero 2019, mantente al tanto !',
-		en: 'We are building ',
-		fr:"Nous construisons des cabanes en dur pour vos week-end dans la nature, avec tout le confort de votre maison ! Ouverture prévue en Février 2019 : Tenez-vous prêts !"
+	HOSPEDAJES_TITLE_2: {
+		es: 'Eco-Albergue',
+		en: 'Eco-bungalows',
+		fr:'Eco-bungalows'
 	}
+	HOSPEDAJES_CONTENT_3: {
+		es:'Estamos construyendo una albergue para fines de semana en la naturaleza, con todo el confort de su casa ! Apertura en Febrero 2019, mantente al tanto !',
+		en: 'We are building bungalows so that you can spend the week-end in the nature with all the confort of your house ! Opening in February 2019 : Stay tuned !',
+		fr:"Nous construisons des bungalows pour vos week-end dans la nature, avec tout le confort de votre maison ! Ouverture prévue en février 2019 : Tenez-vous prêts !"
+	}
+
 };
