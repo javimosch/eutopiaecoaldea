@@ -31,7 +31,7 @@
                 <label>Pagina de desarrollo</label>
                 <div>
                     <a href="{{API_URL}}" target="_blank">Vista previa {{API_URL}}</a>
-                    <button class="btn" v-cloak v-if="true" @click="(uploading||isCooldown('deployStaging'))||deploy()" :disabled="uploading||isCooldown('deployStaging')" v-html="uploading?'Publicando...':'Publicar cambios'"></button>
+                    <button class="btn" v-cloak v-if="true" @click="(uploading||isCooldown('deployStaging'))||deployStaging()" :disabled="uploading||isCooldown('deployStaging')" v-html="uploading?'Publicando...':'Publicar cambios'"></button>
                     <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deployStaging')">
                         Cambios publicados recientemente, espera un momento...
                     </p>
