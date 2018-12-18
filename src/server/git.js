@@ -11,11 +11,13 @@ var cache = {
 }
 
 module.exports = {
+	sync,
 	deployAll,
 	deploy,
 	pushPath,
 	getPath: () => {
 		prepare();
+		sync();
 		return cache.basePath;
 	}
 }
@@ -71,13 +73,22 @@ function writeFiles(files) {
 	if (files && files.length > 0) {
 		files.forEach(file => {
 			var writePath = path.join(cache.basePath, file.path);
-			console.log('git writeFile',writePath);
+			console.log('git writeFile', writePath);
 			sander.writeFileSync(writePath, file.contents, {
 				encoding: 'utf8',
 				flag: 'w'
 			});
 		});
 	}
+}
+
+function sync() {
+	prepare();
+	var basePath = cache.basePath;
+	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
+	exec(`cd ${basePath}; git checkout heroku;`);
+	console.log('git pushPath: reset, checkout and pull')
+	exec(`cd ${basePath}; ${userSet}; git reset HEAD --hard; git checkout .;git pull --rebase origin heroku; git pull --rebase origin latest`);
 }
 
 function pushPath(gitPaths, options = {}) {
@@ -87,47 +98,48 @@ function pushPath(gitPaths, options = {}) {
 		return console.error('pushPath: gitPaths required')
 	}
 	var basePath = cache.basePath;
-	
+
 	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
-	
+
 	exec(`cd ${basePath}; git checkout heroku;`);
 	console.log('git pushPath: reset, checkout and pull')
 	exec(`cd ${basePath}; ${userSet}; git reset HEAD --hard; git checkout .;git pull --rebase origin heroku; git pull --rebase origin latest`);
 	writeFiles(options.files);
 	var adds = '';
-	if(!(gitPaths instanceof Array)){
+	if (!(gitPaths instanceof Array)) {
 		gitPaths = [gitPaths];
 	}
 	console.log('git pushPath: adds...')
-	adds = gitPaths.map(singlePath=>`git add ${singlePath}`).join(';')
+	adds = gitPaths.map(singlePath => `git add ${singlePath}`).join(';')
 	exec(`cd ${basePath}; ${adds}`);
 	var branch = options.branch || 'latest';
 	console.log('git pushPath: commit and push')
 	exec(`cd ${basePath}; git commit -m 'pushPath commit'; ${userSet};git push origin heroku:${branch} --force`);
 }
 
-function deployAll(){
+function deployAll() {
 	//This will deploy to production (github) and heroku.
 	//WARNING: run deployAll using API to avoid overflow
 	deploy({
-		branches:['master','heroku']
+		branches: ['master', 'heroku']
 	});
 }
+
 function deploy(options = {}) {
 	prepare();
 	var basePath = cache.basePath;
 	var userSet = `cd ${basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
-	
+
 	exec(`cd ${basePath}; rm node_modules; ln -s ${path.join(process.cwd(),'node_modules')} node_modules;`)
 
 	console.log('git deploy: reset, checkout and pull')
 	exec(`cd ${basePath}; ${userSet}; git reset HEAD --hard; git checkout .;git pull --rebase origin heroku; git pull --rebase origin latest`);
-	
+
 	console.log('git deploy: build, add, commit..');
 	exec(`cd ${basePath}; yarn build; ${userSet}; git add docs/*; git commit -m 'build'`)
-	
+
 	console.log('git deploy: deploying...')
 	var branches = options.branches || ['master'];
-	var pushCmd = branches.map(branch=>`git push origin heroku:${branch} --force`).join(';');
+	var pushCmd = branches.map(branch => `git push origin heroku:${branch} --force`).join(';');
 	exec(`${userSet}; cd ${basePath}; ${pushCmd}`);
 }

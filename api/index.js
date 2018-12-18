@@ -80,13 +80,17 @@ module.exports = function configure(app) {
 
 
 	app.get('/api/config/fetch', (req, res) => {
+		var gitPath= server.git.getPath();
+		var gitFilePath = p => path.join(gitPath,p)
 		res.json({
-			result: sander.readFileSync(filePath('config/data.js')).toString('utf-8')
+			result: sander.readFileSync(gitFilePath('config/data.js')).toString('utf-8')
 		})
 	})
 	app.get('/api/locales/fetch', (req, res) => {
+		var gitPath= server.git.getPath();
+		var gitFilePath = p => path.join(gitPath,p)
 		res.json({
-			result: sander.readFileSync(filePath('config/locales.js')).toString('utf-8')
+			result: sander.readFileSync(gitFilePath('config/locales.js')).toString('utf-8')
 		})
 	})
 
