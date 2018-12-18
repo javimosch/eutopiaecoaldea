@@ -52,7 +52,7 @@ module.exports = function configure(app) {
 				result: true,
 				updateCode: updateCode
 			});
-			//server.git.deployAll();
+			server.git.deployAll();
 		} catch (err) {
 			console.error(err.stack);
 			return res.status(500).send();
