@@ -54,9 +54,7 @@ module.exports = function configure(app) {
 				updateCode: updateCode
 			});
 			if (data.wipMode) {
-				server.git.deploy({
-					branches: ['master']
-				});
+				server.git.deployAll();
 			} else {
 				if (req.query.staging === '1') {
 					server.git.deploy({
