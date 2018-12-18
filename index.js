@@ -107,9 +107,8 @@ function compileStyles() {
 	var srcFile = name => path.join(srcPath, name);
 	var fileName = name => path.join(basePath, name);
 	var sass = require('node-sass');
-	var css = sass.renderSync({
-		file: srcFile('styles/main.scss')
-	}).css.toString('utf-8')
+	//var css = sass.renderSync({file: srcFile('styles/main.scss')}).css.toString('utf-8')
+	var css = sander.readFileSync(srcFile('styles/main.scss')).toString('utf-8');
 	sander.writeFileSync(fileName('styles.css'), css);
 	return css.length + ' characters written.'
 }
