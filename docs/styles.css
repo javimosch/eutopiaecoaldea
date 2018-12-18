@@ -85,6 +85,9 @@ form>label {
 }
 
 form>button,
+.btn[disabled]{
+    opacity: 0.5;
+}
 .btn {
     margin-top: 20px;
     border: 0px;
