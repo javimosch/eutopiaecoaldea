@@ -117,8 +117,6 @@ module.exports = function() {
 					name: 'admin_dashboard',
 					data() {
 						return {
-							waitingUpdate: false,
-							uploading: false,
 							single_image: null,
 							images: [],
 							deployedAt: '',
@@ -127,6 +125,12 @@ module.exports = function() {
 								view_images: false,
 								parameters: false,
 								deploy: true
+							},
+							loaders:{
+								imageUpload:false,
+								wipMode:false,
+								staging:false,
+								deploy:false
 							}
 						}
 					},
@@ -134,25 +138,6 @@ module.exports = function() {
 						fetch(`/manifest.json`).then(r => r.json().then(response => {
 							this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 						}));
-
-						var updateCode = window.localStorage.getItem('updateCode');
-						if (!!updateCode) {
-							if (SERVER.updateCode != updateCode) {
-								this.waitingUpdate = true;
-								var when = window.localStorage.getItem('updateCodeDate')
-								if(!!when){
-									when = parseInt(when);
-									if(Date.now()-when > 1000*60*2){
-										window.localStorage.setItem('updateCode', '');		
-									}
-								}
-							} else {
-								window.localStorage.setItem('updateCode', '');
-							}
-						}
-
-
-
 					},
 					mounted() {
 						this.browseImages();
@@ -181,14 +166,18 @@ module.exports = function() {
 				})
 
 				function deployWipMode(){
+					this.loaders.wipMode=true
 					fetch(`${SERVER.API_URL}/api/deployment/publish?wipMode=1`).then(r => r.json().then(response => {
 						this.cooldownVariable('wipMode');
+						this.loaders.wipMode=false
 						console.info(response);
 					}));
 				}
-				function deployWipMode(){
+				function deployStaging(){
+					this.loaders.staging=true
 					fetch(`${SERVER.API_URL}/api/deployment/publish?staging=1`).then(r => r.json().then(response => {
 						this.cooldownVariable('deployStaging');
+						this.loaders.staging=false;
 						console.info(response);
 					}));
 				}
@@ -199,13 +188,10 @@ module.exports = function() {
 				}
 
 				function deploy() {
-					this.uploading = true;
+					this.loaders.deploy=true
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
-						window.localStorage.setItem('updateCode', response.updateCode);
-						window.localStorage.setItem('updateCodeDate', Date.now());
-						this.waitingUpdate = true;
-						this.uploading = false;
-						console.info('updateCode', response.updateCode)
+						this.cooldownVariable('cooldown_deploy');
+						this.loaders.deploy=false
 					}));
 				}
 
@@ -219,7 +205,7 @@ module.exports = function() {
 					var data = new FormData();
 					var file = $('#image')[0].files[0];
 					data.append('image', file);
-					this.uploading = true;
+					this.loaders.imageUpload = true;
 					$.ajax({
 						url: `${SERVER.API_URL}/api/upload/images/single`,
 						data: data,
@@ -228,11 +214,11 @@ module.exports = function() {
 						processData: false,
 						type: 'POST',
 						error: () => {
-							this.uploading = false;
+							this.loaders.imageUpload = false;
 							$('#image').val('');
 						},
 						success: (data) => {
-							this.uploading = false;
+							this.loaders.imageUpload = false;
 							$('#image').val('');
 							alert('Image uploaded!')
 						}

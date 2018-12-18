@@ -204,32 +204,31 @@ module.exports = {
 		fr:'Eutopía - Centre écologique'
 	},
 	HOSPEDAJES: {
-		es: 'Hospedajes'
+		es: 'Hospedajes',
 		en: 'Lodgings',
 		fr:'Hébergement'
-	}
-
+	},
 	HOSPEDAJES_CONTENT_1: {
 		es:'Nuestra aldea propone varios espacios y servicios de alojamiento para que puedas pasar la noche en la naturaleza y que dure más el fin de semana !',
 		en: 'Our eco-center offers lodging services so that you can spend the night in the nature and make the week-end last longer !',
 		fr:"Notre centre écologique propose des espaces et des services d'hébergement pour que vous puissiez profiter d'une nuit dans la nature et faire durer le week-end !"
-	}
+	},
 	HOSPEDAJES_TITLE_1: {
 		es: 'Zona de camping',
 		en: 'Camping',
 		fr:'Camping'
-	}
-
+	},
 	HOSPEDAJES_CONTENT_2: {
 		es:'Con duchas, banos, electricidad, cocina equipada, zona de recreacion, piscina, y mucho más ! 10 soles por carpa.',
 		en: 'With shower, toilets, electricity, fully-equiped kitchen, playground, swimming pool, and many other services and facilities ! 10 soles per tent',
 		fr:"Avec douches, toilettes, électricité, cuisine équipée, piscine, zone de jeux, et beaucoup d'autres espaces et services à découvrir ! 10 soles par tente."
-	}
+
+	},
 	HOSPEDAJES_TITLE_2: {
 		es: 'Eco-Albergue',
 		en: 'Eco-bungalows',
 		fr:'Eco-bungalows'
-	}
+	},
 	HOSPEDAJES_CONTENT_3: {
 		es:'Estamos construyendo una albergue para fines de semana en la naturaleza, con todo el confort de su casa ! Apertura en Febrero 2019, mantente al tanto !',
 		en: 'We are building bungalows so that you can spend the week-end in the nature with all the confort of your house ! Opening in February 2019 : Stay tuned !',
