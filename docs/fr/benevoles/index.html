@@ -8,9 +8,7 @@
 	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-		
 	<link rel="stylesheet" type="text/css" href="/styles.css">
-		<script type="text/javascript" src="/js/common-admin.js"></script>
 	<script type="text/javascript">
 		window.SERVER={
 			API_URL: 'https://utopiaecoaldea.herokuapp.com',
@@ -84,24 +82,15 @@
 		            >
 		        <h2>Vivez l&#x27;expérience de la nature</h2>            
 		    </div>
-		</section>		<!--
-		<section class="admin_header">
-	        <h3 class="brand">
-	        <a href="/">Eutopía - Centre écologique</a>
-	         - Admin</h3>
-	        <hr>
-	    </section>
-	-->
-
-	<div class="mainContent">
-		<section class="admin">
-		    <section class="admin_login">
-		        <input class="password" type="password" placeholder="password" v-model="password" ref="pwd"/>
-		        <button class="login" @click="login()">Ingresar</button>
-		        <hr>
-		    </section>
 		</section>
-	</div>
+	<div class="mainContent">
+		<section class="container">
+		    <article>
+		        <h2>Bénévoles</h2>
+		        
+		        </div>
+		    </article>
+		</section>	</div>
 
 		<nav class="footerNav">
 		    <hr>
@@ -180,8 +169,6 @@
 	<script type="text/javascript" src="/libs/vue.js"></script>
 	<script type="text/javascript" src="/libs/moment.js"></script>
 
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/theme-monokai.js"></script>
 
 	<!--
 	<script type="text/javascript" src="/bundle.js"></script>
@@ -189,34 +176,6 @@
 	<script type="text/javascript">
 			function init() {
 
-				new Vue({
-					el: '.admin_login',
-					name: 'admin_login',
-					data(){
-						return {
-							password:''
-						}
-					},
-					created() {
-						console.log('admin_login')
-					},
-					methods: {
-						login
-					}
-				})
-
-				function login() {
-					var password = this.password;
-					var encoded = window.btoa(password);
-					fetch(`${SERVER.API_URL}/api/login/validate?code=${encoded}`).then(r => r.json().then(response => {
-						if (response.result) {
-							window.localStorage.setItem('adminToken', encoded);
-							window.location.href="/admin/dashboard";
-						} else {
-							this.$refs.pwd.focus();
-						}
-					}));
-				}
 			}
 			if(!!init){
 				init();
