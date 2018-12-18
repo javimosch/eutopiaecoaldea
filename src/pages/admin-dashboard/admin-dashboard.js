@@ -162,6 +162,7 @@ module.exports = function() {
 					this.uploading = true;
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
 						window.localStorage.setItem('updateCode', response.updateCode);
+						window.localStorage.setItem('updateCodeDate', Date.now());
 						this.waitingUpdate = true;
 						this.uploading = false;
 						console.info('updateCode', response.updateCode)
