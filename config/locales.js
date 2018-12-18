@@ -1,88 +1,108 @@
 module.exports = {
 	ENVIAR:{
 		es:"Enviame  !",
-		en:"Send"
+		en:"Send",
+		fr:"Envoyer"
 	},
 	MENSAJE:{
 		es:"Mensaje",
-		en:"Message"
+		en:"Message",
+		fr:"Message"
 	},
 	EMAIL:{
 		es:"Email",
-		en:"Email"
+		en:"Email",
+		fr:"Email"
 	},
 	NOMBRE_APELLIDO:{
 		es:"Nombre y apellido",
-		en:"Name"
+		en:"Name and surname",
+		fr:"Nom et prénom"
 	},
 	HEADER_MESSAGE:{
 		es:"Vive la experiencia de la naturaleza",
-		en:"Enjoy the experience into the nature"
+		en:"Enjoy the experience of nature",
+		fr:"Vivez l'expérience de la nature"
 	},
 	FERIAS_PRODUCTORES:{
 		es:"Ferias de productores",
-		en:"Producers fairs"
+		en:"Local products market",
+		fr:"Marché de producteurs"
 	},
 	NUESTROS_PRODUCTOS:{
 		es:"Nuestros productos",
-		en:"Our products"
+		en:"Our products",
+		fr:"Nos produits"
 	},
 	PRODUCTOS_FERIAS:{
 		es:"Productos y ferias",
-		en:"Products and fairs"
+		en:"Products and fairs",
+		fr:"Produits et marchés"
 	},
 	PROFESIONALES:{
-		es:"Profresionales",
-		en:"Professionals"
+		es:"Empresas",
+		en:"Companies",
+		fr:"Entreprises"
 	},
 	FAMILIAS:{
 		es:"Familias",
-		en:"Families"
+		en:"Families",
+		fr:"Familles"
 	},
 	ESCUELAS:{
 		es:"Escuelas",
-		en:"Schools"
+		en:"Schools",
+		fr:"Ecoles"
 	},
 	pr:{
 		es:'Portugués',
-		en:'Portuguese'
+		en:'Portuguese',
+		fr:"Portugais"
 	},
 	de:{
 		es:"Aleman",
-		en:"German"
+		en:"German",
+		fr:"Allemand"
 	},
 	fr:{
 		es:"Frances",
 		en:"French",
-		fr:'Francais'
+		fr:'Français'
 	},
 	en:{
 		es:"Ingles",
 		en:"English",
-		fr:"Anglais"
+		fr:"Anglais",
 	},
 	es:{
 		es:'Español',
-		en:"Spanish"
+		en:"Spanish",
+		fr:"Espagnol"
 	},
 	IDIOMAS:{
-		es:"Idiomas",
-		en:"Languages"
+		es:"Idioma",
+		en:"Language",
+		fr:"Langue"
 	},
 	GRUPOS:{
 		es:"Grupos",
-		en:"Groups"
+		en:"Groups",
+		fr:"Groupes"
 	},
 	HEADER_HOME_LABEL:{
 		es:"Descubrir",
-		en:"Discover"
+		en:"Discover",
+		fr:"Découvrir"
 	},
 	ECOALDEA:{
 		es:"Ecoaldea",
-		en:"Ecocenter"
+		en:"Ecocenter",
+		fr:"Centre écologique"
 	},
 	VOLUNTARIADO:{
-		es:"Voluntariado"
+		es:"Voluntariado",
+		en:"Volonteer",
+		fr:"Bénévoles"
 	},
 	CONTACTO:{
 		en:'Contact',
@@ -100,10 +120,12 @@ module.exports = {
 	},
 	META_TITLE: {
 		en: 'Eutopía - Ecocenter',
-		es: 'Eutopía - Ecoaldea'
+		es: 'Eutopía - Ecoaldea',
+		fr:'Eutopía - Centre écologique'
 	},
 	HOSPEDAJES: {
 		es: 'Hospedajes',
-		en: 'Lodgings'
+		en: 'Lodgings',
+		fr:'Hébergement'
 	}
 };
