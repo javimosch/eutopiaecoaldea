@@ -84,6 +84,10 @@ form>label {
     text-align: left;
 }
 
+.parameters-component{
+    margin-top:20px;
+}
+
 form>button,
 .btn[disabled]{
     opacity: 0.5;
