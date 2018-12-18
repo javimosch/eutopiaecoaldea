@@ -152,10 +152,10 @@ module.exports = function() {
 
 				function deploy() {
 					this.uploading = true;
-					setTimeout(() => this.uploading = false, 5000)
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
 						window.localStorage.setItem('updateCode', response.updateCode);
 						this.waitingUpdate = true;
+						this.uploading = false;
 						console.info('updateCode', response.updateCode)
 					}));
 				}
