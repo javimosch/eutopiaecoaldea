@@ -118,11 +118,30 @@ module.exports = {
 		pr: 'Sobre nós',
 		de: 'Über uns'
 	},
-
 	ABOUT_US_CONTENT_1:{
 		es:"Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades."
-		fr:"Nous sommes un collectif "
+		fr:"Nous sommes un ensemble de personnes qui cherchent à vivre de manière durable et autonome. Nous promouvons la permaculture, l'agroécologie, l'éco pédagogie, la santé et le bien-être grâce à divers projets entrepreneuriaux qui nous permettent de financer nos activités."
 
+	},
+	MISSION: {
+		en: 'Mission',
+		es: 'Mission',
+		fr: 'Mission'
+	},
+	MISSION_CONTENT_1: {
+		es: 'Compartir un espacio para la conexión profunda con la Naturaleza, con uno mismo y con las demás personas, que permite distintas formas de relacionarnos e interactuar con otros seres vivos, y compartir nuestras experiencias con quienes estén interesados en ellas.',
+		fr: "Partager un lieu au coeur de la Nature où chacun puisse être en connection avec soi-même et avec les autres, qui nous permette d'interagir entre êtres vivants et d'échanger nos connaissances et expériences avec ceux qui le souhaitent"
+		en:"Share a place in deep connection with nature, with one-self and the other living beings to create interactions and share one's knowledge and experiences with anyone interested in it"
+	},
+	VISION: {
+		en: 'Vision',
+		es: 'Vision',
+		fr: 'Vision'
+	},
+	VISION_CONTENT_1: {
+		es: 'Ser una Ecoaldea sustentable, reconocida por su misión y la diversidad de sus cultivos, productos y servicios propuestos a la comunidad.',
+		fr: "Etre un centre écologique fonctionnant durablement en autonomie, reconnue pour sa mission et la diversité de cultures, produits et services proposés à la communauté"
+		en:"Be an eco-center self-sustained and recognized for its mission and the diversity of crops, products and services proposed to the comunity "
 	},
 	META_TITLE: {
 		en: 'Eutopía - Ecocenter',
