@@ -4,7 +4,12 @@
     <img src="/img/logo.webp"/>
 	</a>
     <nav class="headerNav">
-        {{> partial_nav}}
+        {{#if (eq wipMode true)}}
+
+        {{else}}    
+            {{> partial_nav}}
+        {{/if}}
+        
     </nav>
 </header>
 <section>

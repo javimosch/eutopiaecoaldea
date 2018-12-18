@@ -1,4 +1,8 @@
 module.exports = {
+	PROGRAMACION:{
+		es:"Programacion",
+		en:"Programation"
+	},
 	ENVIAR:{
 		es:"Enviame  !",
 		en:"Send",
