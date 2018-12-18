@@ -2,7 +2,7 @@
     "context": {
         "defaultCurrentPage": "page_about_us",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "F4w2_hA4v"
+        "updateCode": "iwDxvgaR2"
     },
     "login": {
         "code": "cm5y"
