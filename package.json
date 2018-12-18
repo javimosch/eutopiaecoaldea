@@ -7,7 +7,6 @@
     "build": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -b",
     "start:prod": "npx cross-env NODE_ENV=production node index.js -s",
     "worker:deploy": "npx cross-env NODE_ENV=production node index.js --gitd",
-    "heroku": "yarn worker:deploy && yarn start:prod"
   },
   "license": "MIT",
   "dependencies": {
