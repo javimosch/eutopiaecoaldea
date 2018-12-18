@@ -36,9 +36,10 @@ header {
     border-bottom: 5px solid #dbe9e2;
 }
 
-.contactInfo a{
-    color:teal;
+.contactInfo a {
+    color: teal;
 }
+
 .locationMap {
     transform: rotate(90deg);
     height: 100vw;
@@ -84,14 +85,15 @@ form>label {
     text-align: left;
 }
 
-.parameters-component{
-    margin-top:20px;
+.parameters-component {
+    margin-top: 20px;
 }
 
 form>button,
-.btn[disabled]{
+.btn[disabled] {
     opacity: 0.5;
 }
+
 .btn {
     margin-top: 20px;
     border: 0px;
@@ -145,6 +147,18 @@ form>button:active,
     width: -webkit-fill-available;
     font-size: 30px;
     margin: 0px;
+}
+
+.fnt-12{
+    font-size: 12px!important;
+}
+.italic{
+    font-style: italic!important;
+}
+
+.developmentPage{
+    padding: 20px 10px;
+    background-color: papayawhip;
 }
 
 .groupHeader {
@@ -370,8 +384,26 @@ section.admin {
     color: indianred;
 }
 
-.admin_login {
+.admin_login{
+    max-width: 600px;
+    margin:0 auto;
     padding-bottom: 10px;
+}
+.admin_login label{
+    margin-bottom: 10px;
+}
+
+
+.admin_login >div{
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding:0px 10px;
+}
+.admin_login >div>*{
+    width:100%;
 }
 
 .admin_login input {
@@ -387,7 +419,7 @@ section.admin {
 
 .admin_login button {
     display: -webkit-box;
-    margin-top: 5px;
+    margin-top: 15px;
     color: white;
     background-color: indigo;
     border: 0px;
@@ -422,6 +454,10 @@ footer {
     display: flex;
     align-items: center;
     flex-direction: column-reverse;
+}
+
+.column{
+    flex-direction: column!important;
 }
 
 .equalFlexBox.top {
@@ -460,6 +496,13 @@ iframe {
     min-width: -webkit-fill-available;
 }
 
+@media only screen and (min-width: 480px) {
+    .admin_login >div>*{
+        width:initial;
+        
+    }
+
+}
 @media only screen and (min-width: 992px) {
     .photoQuote {
         font-size: 20px;
@@ -643,9 +686,50 @@ iframe {
         text-align: center;
     }
 }
+.list{
+    list-style: none;
+    padding: 0px;
+}
+.img-fluid{
+    max-width: 100%;
+}
+.inline-block{
+    display:inline-block;
+}
+.programacion_date{
+background-color: cadetblue;
+    color: white;
+    padding: 10px 0px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.programacion_item_texto{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-basis: 100%;
+}
+.programacion_item{}
+.programacion_item img{
+    max-width: 30%;
+    min-width: 30%;
+}
+.vertical-top{
+    vertical-align: top;
+}
+.programacion_item h3{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.programacion_item p{
+    margin-top: 5px;
+}
+.programacion {
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 300px;
+}
 
-/* Custom, iPhone Retina */
-/* Extra Small Devices, Phones */
-/* Small Devices, Tablets */
-/* Medium Devices, Desktops */
-/* Large Devices, Wide Screens */
+.programacion_titulo {
+    text-align: center;
+}
