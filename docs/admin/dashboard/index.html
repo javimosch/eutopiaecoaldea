@@ -14,7 +14,7 @@
 	<script type="text/javascript">
 		window.SERVER={
 			API_URL: 'https://utopiaecoaldea.herokuapp.com',
-			defaultCurrentPage:'page_ecoaldea'
+			defaultCurrentPage:'page_about_us'
 		}
 	</script>
 </head>
@@ -30,10 +30,18 @@
 		            <li>
 		                <a href="/grupos">Grupos</a>
 		                <ul class="subMenu">
-		                    <li><a href="/grupos-escuelas">Escuelas</a></li>
-		                    <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
-		                    <li><a href="/grupos-familia">Familias</a></li>
-		                    <li><a href="/grupos-profesionales">Profresionales</a></li>
+		                    <li>
+		                        <a href="/grupos#escuelas">
+		                        Escuelas</a></li>
+		                    <li>
+		                        <a href="/grupos#adultos">
+		                        Adultos&nbsp;mayores</a></li>
+		                    <li>
+		                        <a href="/grupos#familias">
+		                        Familias</a></li>
+		                    <li>
+		                        <a href="/grupos#profesionales">
+		                        Profresionales</a></li>
 		                </ul>
 		            </li>
 		            <li>
@@ -50,11 +58,13 @@
 		                </ul>
 		            -->
 		            </li>
+		            
 		            <li>
 		                <a href="/hospedajes">
 		                    Hospedajes
 		                </a>
 		            </li>
+		        
 		            <li class="languageMenuItem">
 		                <a >Español</a>
 		                <ul class="subMenu">
@@ -86,16 +96,16 @@
 		<section class="admin protected">
 		    <section class="admin_menu">
 		
-		        <a @click="()=>collapsables.deploy=!collapsables.deploy">Deployment</a>
+		        <a @click="()=>collapsables.deploy=true">Estado del sitio</a>
 		        <section v-show="collapsables.deploy">
-		            <label>Deployed at <span v-html="deployedAt"></span></label>
-		            <button @click="deploy" v-html="uploading?'Deploying':'Deploy'">Deploy</button>
+		            <label>Pagina actualizada el <span v-html="deployedAt"></span></label>
+		            <button class="btn" v-cloak v-if="true" @click="deploy" :disabled="uploading||waitingUpdate" v-html="uploading?'Publicando...':'Publicar cambios recientes'"></button>
 		        </section>
 		        
 		        <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
 		        <section class="upload-images" v-show="collapsables.upload_image">
 		            <input type="file" name="image" id="image"/>
-		            <button @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
+		            <button class="btn" @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
 		        </section>
 		        <a @click="()=>collapsables.view_images=!collapsables.view_images">General: Ver imagenes</a>
 		        <section class="view-images imagesViewBox" v-show="collapsables.view_images">
@@ -107,10 +117,9 @@
 		            </div>
 		        </section>
 		
-		        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros</a>
+		        <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros (Avanzado)</a>
 		        <section v-show="collapsables.parameters">
-		            <parameters></parameters>
-		            
+		            <parameters :enabled="collapsables.parameters"></parameters>
 		        </section>
 		
 		        
@@ -132,10 +141,18 @@
 		            <li>
 		                <a href="/grupos">Grupos</a>
 		                <ul class="subMenu">
-		                    <li><a href="/grupos-escuelas">Escuelas</a></li>
-		                    <li><a href="/grupos-adultos-mayores">Adultos&nbsp;mayores</a></li>
-		                    <li><a href="/grupos-familia">Familias</a></li>
-		                    <li><a href="/grupos-profesionales">Profresionales</a></li>
+		                    <li>
+		                        <a href="/grupos#escuelas">
+		                        Escuelas</a></li>
+		                    <li>
+		                        <a href="/grupos#adultos">
+		                        Adultos&nbsp;mayores</a></li>
+		                    <li>
+		                        <a href="/grupos#familias">
+		                        Familias</a></li>
+		                    <li>
+		                        <a href="/grupos#profesionales">
+		                        Profresionales</a></li>
 		                </ul>
 		            </li>
 		            <li>
@@ -152,11 +169,13 @@
 		                </ul>
 		            -->
 		            </li>
+		            
 		            <li>
 		                <a href="/hospedajes">
 		                    Hospedajes
 		                </a>
 		            </li>
+		        
 		            <li class="languageMenuItem">
 		                <a >Español</a>
 		                <ul class="subMenu">
@@ -170,9 +189,13 @@
 		        </ul></nav>
 		<footer>
 		    <ul class="menu">
+		        
 		        <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+		    
 		        <li><a href="/contacto">Contacto</a></li>
+		        <!--
 		        <li><a href="/voluntariado">Voluntariado</a></li>
+		    -->
 		        <li class="socialIcons">
 		        	<a href="https://web.facebook.com/Eutopia-Ecoaldea-401715843328614/?_rdc=1&_rdr" target="_blank">
 		        		<i class="fab fa-facebook"></i>
@@ -198,9 +221,10 @@
 			function init() {
 
 				Vue.component('parameters', {
+					props: ['enabled'],
 					template: `<div  class="parameters-component">
-						<codemirror v-model="data"></codemirror>
-						<button @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
+						<codemirror :enabled="enabled" v-model="data"></codemirror>
+						<button class="btn" @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
 					</div>`,
 					data() {
 						return {
@@ -220,7 +244,7 @@
 						saveParameters() {
 							this.progress = true;
 							$.ajax({
-								url: `${SERVER.API_URL}/api/deploy/path`,
+								url: `${SERVER.API_URL}/api/git/path`,
 								data: JSON.stringify({
 									files: [{
 										contents: this.data,
@@ -245,34 +269,52 @@
 				});
 
 				Vue.component('codemirror', {
-					props: ['value'],
+					props: ['value', 'enabled'],
 					template: `<div  class="codemirror-component">
 						<div ref="editor" style="width: -webkit-fill-available;height: 300px;"></div>
 					</div>`,
 					data() {
 						return {
 							editor: null,
-							init:false
+							init: false,
+							activated: false
 						}
 					},
 					watch: {
 						value() {
 							if (!!this.editor && !this.init) {
-								this.editor.setValue(this.value);
+								this.editor.setValue(this.value, -1);
 								this.init = true;
+							}
+						},
+						enabled() {
+							if (this.enabled === true && !this.activated) {
+								this.activate();
+							}
+						}
+					},
+					methods: {
+						activate() {
+							if (this.activated) return;
+							this.activated = true;
+							var editor = ace.edit(this.$refs.editor);
+							editor.setTheme("ace/theme/monokai");
+							editor.session.setMode("ace/mode/javascript");
+							this.editor = editor;
+							this.editor.on('change', () => {
+								var value = this.editor.getValue();
+								console.log('change', value);
+								this.$emit('input', value);
+							});
+							if (!!this.value) {
+								this.editor.setValue(this.value, -1);
 							}
 						}
 					},
 					mounted() {
-						var editor = ace.edit(this.$refs.editor);
-						editor.setTheme("ace/theme/monokai");
-						editor.session.setMode("ace/mode/javascript");
-						this.editor = editor;
-						this.editor.on('change', () => {
-							var value = this.editor.getValue();
-							console.log('change', value);
-							this.$emit('input', value);
-						});
+						if (this.enabled || this.enabled === undefined) {
+							this.activate();
+						}
 					}
 				});
 
@@ -281,6 +323,7 @@
 					name: 'admin_dashboard',
 					data() {
 						return {
+							waitingUpdate: false,
 							uploading: false,
 							single_image: null,
 							images: [],
@@ -288,7 +331,7 @@
 							collapsables: {
 								upload_image: false,
 								view_images: false,
-								parameters: true,
+								parameters: false,
 								deploy: true
 							}
 						}
@@ -297,6 +340,14 @@
 						fetch(`/manifest.json`).then(r => r.json().then(response => {
 							this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 						}));
+
+						var updateCode = window.localSession.getItem('updateCode');
+						if (!!updateCode && SERVER.updateCode != updateCode) {
+							this.waitingUpdate = true;
+						}
+
+
+
 					},
 					mounted() {
 						this.browseImages();
@@ -312,8 +363,10 @@
 				function deploy() {
 					this.uploading = true;
 					setTimeout(() => this.uploading = false, 5000)
-					fetch(`${SERVER.API_URL}/api/deploy`).then(r => r.json().then(response => {
-
+					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
+						window.localSession.setItem('updateCode',response.updateCode);
+						this.waitingUpdate=true;
+						console.info('updateCode', response.updateCode)
 					}));
 				}
 
