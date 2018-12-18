@@ -24,7 +24,8 @@
 
         <a @click="()=>collapsables.parameters=!collapsables.parameters">General: Parametros (Avanzado)</a>
         <section v-show="collapsables.parameters">
-            <parameters :enabled="collapsables.parameters"></parameters>
+            <parameters type="data" :enabled="collapsables.parameters"></parameters>
+            <parameters type="locales" :enabled="collapsables.parameters"></parameters>
         </section>
 
         

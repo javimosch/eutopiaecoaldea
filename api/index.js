@@ -84,5 +84,10 @@ module.exports = function configure(app) {
 			result: sander.readFileSync(filePath('config/data.js')).toString('utf-8')
 		})
 	})
+	app.get('/api/locales/fetch', (req, res) => {
+		res.json({
+			result: sander.readFileSync(filePath('config/locales.js')).toString('utf-8')
+		})
+	})
 
 };

@@ -7,10 +7,10 @@ module.exports = function() {
 			init: function init() {
 
 				Vue.component('parameters', {
-					props: ['enabled'],
+					props: ['enabled', "type"],
 					template: `<div  class="parameters-component">
 						<codemirror :enabled="enabled" v-model="data"></codemirror>
-						<button class="btn" @click="saveParameters" v-html="progress?'Saving...':'Save'">Deploy</button>
+						<button class="btn" @click="saveParameters" v-html="progress?'Guardando...':'Guardar'"></button>
 					</div>`,
 					data() {
 						return {
@@ -19,7 +19,11 @@ module.exports = function() {
 						}
 					},
 					created() {
-						fetch(`${SERVER.API_URL}/api/config/fetch`).then(r => r.json().then(response => {
+						var url = ({
+							data: 'config/fetch',
+							locales: 'locales/fetch'
+						})[this.type || 'data']
+						fetch(`${SERVER.API_URL}/api/${url}`).then(r => r.json().then(response => {
 							this.data = response.result;
 						}));
 					},
@@ -29,14 +33,18 @@ module.exports = function() {
 					methods: {
 						saveParameters() {
 							this.progress = true;
+							var path = ({
+								data: 'config/data.js',
+								locales: 'config/locales.js'
+							})[this.type || 'data']
 							$.ajax({
 								url: `${SERVER.API_URL}/api/git/path`,
 								data: JSON.stringify({
 									files: [{
 										contents: this.data,
-										path: 'config/data.js'
+										path: path
 									}],
-									path: 'config/data.js'
+									path: path
 								}),
 								contentType: "application/json; charset=utf-8",
 								type: 'POST',
