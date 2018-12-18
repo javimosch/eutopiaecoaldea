@@ -127,7 +127,7 @@ module.exports = function() {
 							this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 						}));
 
-						var updateCode = window.localSession.getItem('updateCode');
+						var updateCode = window.localStorage.getItem('updateCode');
 						if (!!updateCode && SERVER.updateCode != updateCode) {
 							this.waitingUpdate = true;
 						}
@@ -150,7 +150,7 @@ module.exports = function() {
 					this.uploading = true;
 					setTimeout(() => this.uploading = false, 5000)
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
-						window.localSession.setItem('updateCode',response.updateCode);
+						window.localStorage.setItem('updateCode',response.updateCode);
 						this.waitingUpdate=true;
 						console.info('updateCode', response.updateCode)
 					}));

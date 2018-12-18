@@ -4,7 +4,7 @@
         <a @click="()=>collapsables.deploy=true">Estado del sitio</a>
         <section v-show="collapsables.deploy">
             <label>Pagina actualizada el <span v-html="deployedAt"></span></label>
-            <button class="btn" v-cloak v-if="true" @click="deploy" :disabled="uploading||waitingUpdate" v-html="uploading?'Publicando...':'Publicar cambios recientes'"></button>
+            <button class="btn" v-cloak v-if="true" @click="(uploading||waitingUpdate)||deploy()" :disabled="uploading||waitingUpdate" v-html="uploading?'Publicando...':'Publicar cambios recientes'"></button>
         </section>
         
         <a @click="()=>collapsables.upload_image=!collapsables.upload_image">General: Subir imagenes</a>
