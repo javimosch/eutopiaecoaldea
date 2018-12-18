@@ -12,6 +12,7 @@ var cache = {
 }
 
 module.exports = {
+	gitFilePath,
 	sync,
 	deployAll,
 	deploy,
@@ -21,6 +22,11 @@ module.exports = {
 		sync();
 		return cache.basePath;
 	}
+}
+
+function gitFilePath(p){
+	var gitPath = server.git.getPath();
+	return path.join(gitPath, p)
 }
 
 

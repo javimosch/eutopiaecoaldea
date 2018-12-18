@@ -14,13 +14,13 @@
                 </div>
                 <div>
                     <a href="{{PUBLIC_URL}}" target="_blank">Vista previa {{PUBLIC_URL}}</a>
-                    <button class="btn" v-cloak v-if="true" @click="(uploading||isCooldown('deploy'))||deploy()" :disabled="uploading||isCooldown('deploy')" v-html="uploading?'Publicando...':'Publicar cambios'"></button>
+                    <button class="btn" v-cloak v-if="true" @click="(loaders.deploy||isCooldown('deploy'))||deploy()" :disabled="loaders.deploy||isCooldown('deploy')" v-html="loaders.deploy?'Publicando...':'Publicar cambios'"></button>
                     <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
                         Cambios publicados recientemente, espera un momento...
                     </p>
                 </div>
                 <div>
-                    <button class="btn" v-cloak v-if="true" @click="(isCooldown('wipMode'))||deployWipMode()" :disabled="uploading||isCooldown('wipMode')" v-html="uploading?'Procesando...':'Activar modo construccion'"></button>
+                    <button class="btn" v-cloak v-if="true" @click="loaders.wipMode||(isCooldown('wipMode'))||deployWipMode()" :disabled="loaders.wipMode||isCooldown('wipMode')" v-html="loaders.wipMode?'Procesando...':'Activar modo construccion'"></button>
                     <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('wipMode')">
                         Cambios publicados recientemente, espera un momento...
                     </p>
@@ -31,7 +31,7 @@
                 <label>Pagina de desarrollo</label>
                 <div>
                     <a href="{{API_URL}}" target="_blank">Vista previa {{API_URL}}</a>
-                    <button class="btn" v-cloak v-if="true" @click="(uploading||isCooldown('deployStaging'))||deployStaging()" :disabled="uploading||isCooldown('deployStaging')" v-html="uploading?'Publicando...':'Publicar cambios'"></button>
+                    <button class="btn" v-cloak v-if="true" @click="(loaders.staging||isCooldown('deployStaging'))||deployStaging()" :disabled="loaders.staging||isCooldown('deployStaging')" v-html="loaders.staging?'Publicando...':'Publicar cambios'"></button>
                     <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deployStaging')">
                         Cambios publicados recientemente, espera un momento...
                     </p>

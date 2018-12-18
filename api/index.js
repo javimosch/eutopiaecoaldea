@@ -36,7 +36,7 @@ module.exports = function configure(app) {
 	app.get('/api/deployment/publish', (req, res) => {
 		var shortid = require('shortid');
 		var updateCode = shortid.generate();
-		var data = sander.readFileSync(filePath('config/data.js')).toString('utf-8');
+		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8');
 		const dJSON = require('dirty-json');
 		try {
 			data = dJSON.parse(data);
@@ -93,17 +93,14 @@ module.exports = function configure(app) {
 
 
 	app.get('/api/config/fetch', (req, res) => {
-		var gitPath = server.git.getPath();
-		var gitFilePath = p => path.join(gitPath, p)
 		res.json({
-			result: sander.readFileSync(gitFilePath('config/data.js')).toString('utf-8')
+			result: sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
 		})
 	})
 	app.get('/api/locales/fetch', (req, res) => {
-		var gitPath = server.git.getPath();
-		var gitFilePath = p => path.join(gitPath, p)
+		
 		res.json({
-			result: sander.readFileSync(gitFilePath('config/locales.js')).toString('utf-8')
+			result: sander.readFileSync(server.git.gitFilePath('config/locales.js')).toString('utf-8')
 		})
 	})
 
