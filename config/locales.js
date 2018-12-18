@@ -1,6 +1,6 @@
 module.exports = {
 	ENVIAR:{
-		es:"Enviame",
+		es:"Enviar Ya !",
 		en:"Send"
 	},
 	MENSAJE:{
