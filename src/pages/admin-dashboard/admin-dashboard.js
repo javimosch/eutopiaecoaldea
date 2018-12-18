@@ -199,7 +199,7 @@ module.exports = function() {
 				function deploy() {
 					this.uploading = true;
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
-						window.localStorage.setItem('cooldown_deploy');
+						this.cooldownVariable('cooldown_deploy');
 						this.uploading = false;
 					}));
 				}
