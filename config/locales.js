@@ -118,6 +118,12 @@ module.exports = {
 		pr: 'Sobre nós',
 		de: 'Über uns'
 	},
+
+	ABOUT_US_CONTENT_1:{
+		es:"Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades."
+		fr:"Nous sommes un collectif "
+
+	},
 	META_TITLE: {
 		en: 'Eutopía - Ecocenter',
 		es: 'Eutopía - Ecoaldea',
