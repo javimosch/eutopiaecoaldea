@@ -20,7 +20,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans';
-    font-size: 12px;
+    font-size: 17px;
 }
 
 body {
@@ -68,7 +68,7 @@ header {
     margin: 0 auto;
 }
 
-form>input,form>textarea{
+form>input,form>textarea, form>select,.form input,.form textarea,.form select{
     border-radius: 5px;
     border: 1px solid lightskyblue;
 }
@@ -193,7 +193,7 @@ form>button:active,
 
 .developmentPage{
     padding: 20px 10px;
-    background-color: papayawhip;
+    /* background-color: papayawhip; */
 }
 
 .groupHeader {
@@ -334,6 +334,8 @@ hr {
     background: #dbe9e2;
     padding: 0px;
     margin: 0px;
+    margin-bottom: 10px;
+    margin-top: 15px;
 }
 
 article {
@@ -352,6 +354,11 @@ section .image-title {
     align-items: center;
 }
 
+a > i {
+    min-width: 50px;
+    margin: 0 auto;
+    text-align: left;
+}
 section .image-title h2 {
     font-size: 32px;
     color: white;

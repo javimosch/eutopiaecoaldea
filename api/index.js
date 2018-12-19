@@ -12,6 +12,7 @@ module.exports = function configure(app) {
 	require('./email')(app);
 	require('./voluntariado')(app);
 	require('./programacion')(app);
+	require('./pages')(app);
 
 	app.post('/api/git/path', (req, res) => {
 		var gitPath = server.git.getPath();
