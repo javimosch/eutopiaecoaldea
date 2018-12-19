@@ -11,6 +11,7 @@ module.exports = function configure(app) {
 	require('./images')(app);
 	require('./email')(app);
 	require('./voluntariado')(app);
+	require('./programacion')(app);
 
 	app.post('/api/git/path', (req, res) => {
 		var gitPath = server.git.getPath();
@@ -40,7 +41,7 @@ module.exports = function configure(app) {
 		var updateCode = shortid.generate();
 		var dataPath = server.git.gitFilePath('config/data.js')
 		var data = sander.readFileSync(dataPath).toString('utf-8');
-		
+
 		try {
 			data = dJSON.parse(data);
 			data.context = data.context || {}
@@ -99,7 +100,7 @@ module.exports = function configure(app) {
 		})
 	})
 	app.get('/api/locales/fetch', (req, res) => {
-		
+
 		res.json({
 			result: sander.readFileSync(server.git.gitFilePath('config/locales.js')).toString('utf-8')
 		})
@@ -111,5 +112,6 @@ module.exports = function configure(app) {
 			result: data.context.voluntarios
 		})
 	})
+
 
 };

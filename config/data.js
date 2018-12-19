@@ -15,6 +15,12 @@
                         "title": "La danza de la flor",
                         "message": "El proximo sabado 04 de Abril, ven a descubrir la danza de la flor, grupo de musica local. Tambien estara disponible el Eco-restaurant.",
                         "time": "16:30"
+                    },
+                    {
+                        "image": "",
+                        "title": "Plantas carnivoras",
+                        "message": "Vamos a plantar 500 plantas",
+                        "time": "09:00"
                     }
                 ]
             },
