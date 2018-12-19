@@ -1,37 +1,52 @@
 {
-	"context": {
-		wipMode: false,
-		"defaultCurrentPage": "page_ecoaldea",
-		"PUBLIC_URL":"https://eutopiaecoaldea.com",
-		"API_URL": "https://utopiaecoaldea.herokuapp.com",
-		"updateCode": "gtdB1Q27s",
-		programacion: [{
-				fecha: "04-04-2018",
-				eventos: [{
-					image: "/img/flor-permacultura.webp",
-					title: "La danza de la flor",
-					message: "El proximo sabado 04 de Abril, ven a descubrir la danza de la flor, grupo de musica local. Tambien estara disponible el Eco-restaurant.",
-					time: "16:30"
-				}]
-			},{
-				fecha:"07-10-2018",
-				eventos:[{
-					image:"/img/logo.png",
-					title:"Brainstorming Eutopia",
-					message:"En Octubre recibimos a cientificos de la NASA para pensar juntos en el futuro de la tierra.",
-					time: "10:00"
-				}]
-			}
-
-		]
-	},
-	"login": {
-		"code": "cm5y"
-	},
     "context": {
-        "defaultCurrentPage": "page_about_us",
+        "wipMode": false,
+        "defaultCurrentPage": "page_ecoaldea",
+        "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "iwDxvgaR2"
+        "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
+        "updateCode": "IMAdjxtYY",
+        "programacion": [
+            {
+                "fecha": "04-04-2018",
+                "eventos": [
+                    {
+                        "image": "/img/flor-permacultura.webp",
+                        "title": "Evento de prueba",
+                        "message": "Prueba",
+                        "time": "16:30",
+                        "id": "_5lal0n8ht",
+                        "show": true
+                    }
+                ],
+                "_expand": false,
+                "show": true
+            },
+            {
+                "fecha": "07-10-2018",
+                "eventos": [
+                    {
+                        "image": "/img/logo.png",
+                        "title": "Brainstorming Eutopia",
+                        "message": "En Octubre recibimos a cientificos de la NASA para pensar juntos en el futuro de la tierra.",
+                        "time": "10:00",
+                        "id": "_oyldhbtl6",
+                        "show": false
+                    }
+                ],
+                "_expand": false,
+                "show": true
+            }
+        ],
+        "voluntarios": [
+            {
+                "name": "Pepe Alfonso Ramirez",
+                "email": "pepe@asd.com",
+                "whyMessage": "Por el BosqueEscuela",
+                "helpMessage": "Eco-quinta",
+                "dateMessage": "Verano"
+            }
+        ]
     },
     "login": {
         "code": "cm5y"

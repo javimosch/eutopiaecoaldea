@@ -68,11 +68,17 @@ header {
     margin: 0 auto;
 }
 
+form>input,form>textarea{
+    border-radius: 5px;
+    border: 1px solid lightskyblue;
+}
 form>label,
 form>input,
 form>textarea {
     min-width: -webkit-fill-available;
     display: block;
+    /* border-radius: 5px; */
+    /* border: 1px solid lightskyblue; */
 }
 
 form>textarea {
@@ -85,15 +91,30 @@ form>label {
     text-align: left;
 }
 
+.eventItem{
+    display: inline-block;
+    width: -webkit-fill-available;
+    padding: 20px;
+    background-color: ghostwhite;
+    margin-bottom: 15px;
+}
+.eventItem .eventoTitle{
+    margin-bottom: 10px;
+}
+
 .parameters-component {
     margin-top: 20px;
 }
 
-form>button,
+form>button[disabled],
 .btn[disabled] {
     opacity: 0.5;
 }
 
+.btn.danger{
+    background-color: tomato;
+    color:white;
+}
 .btn {
     margin-top: 20px;
     border: 0px;
@@ -126,7 +147,11 @@ form>button:active,
 }
 
 .imageUrl {
-    min-width: 300px;
+    width: -webkit-fill-available;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px;
 }
 
 .brand {
@@ -155,6 +180,10 @@ form>button:active,
 .italic{
     font-style: italic!important;
 }
+.bold{
+    font-weight: bold!important;
+}
+
 
 .developmentPage{
     padding: 20px 10px;
@@ -178,6 +207,23 @@ form>button:active,
     padding: 0px 20px;
 }
 
+.volunteerItem{
+    padding: 20px;
+    background-color: peachpuff;
+    color: black;
+    font-size: 14px;
+}
+.programationItem{
+    padding: 20px;
+    background-color: peachpuff;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.adminProgramacionItemImage{
+    max-width: 100px;
+    margin-bottom: 10px;
+}
 .sectionMainImage {
     display: flex;
     justify-content: center;
@@ -243,7 +289,12 @@ ul.menu>li:hover>a {
     left: 0px;
     z-index: 999999999;
 }
-
+textarea.text{
+        min-width: 320px;
+        text-align: left;
+        width: -webkit-fill-available;
+        min-height: 100px;
+    }
 ul.menu {
     list-style: none;
     padding: 0px;
@@ -299,7 +350,12 @@ section .image-title h2 {
     font-size: 32px;
     color: white;
 }
-
+.form .blockChilds{
+        margin-bottom: 5px;
+    }
+.blockChilds > *{
+    display: block;
+}
 article h1,
 article h2,
 article h3,
@@ -368,7 +424,8 @@ section.admin.protected {
 
 section.admin {
     padding: 10px;
-    padding-top: 50px;
+    padding-top: 15px;
+    padding-bottom: 50px;
 }
 
 .admin_menu a {
@@ -432,12 +489,13 @@ section.admin section {
     padding-bottom: 50px;
 }
 
+.adminImageItem{}
 .admin-image-thumb {
     min-height: 155px;
-    /* background: yellowgreen; */
-    width: -webkit-fill-available;
+    width: 200px;
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
+    margin: 0 auto;
 }
 
 footer {
@@ -496,15 +554,44 @@ footer {
 iframe {
     min-width: -webkit-fill-available;
 }
+.backBtn{
+    margin-left: 5px;
+}
 
 @media only screen and (min-width: 480px) {
     .admin_login >div>*{
         width:initial;
         
     }
-
+    .imageUrl {}
+.adminImageItem{
+    display: inline-block;
+    width: 44%;
+    margin: 0px 20px;
+}
+.admin-image-thumb {}
 }
 @media only screen and (min-width: 992px) {
+    .eventItem{}
+    .adminProgramacionItemImage{
+    margin: 0 auto;
+    max-width: 200px;
+}
+    .desktopSplitTwo > div{
+        flex-basis: 100%;
+    }
+    .desktopSplitTwo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 100%;
+    }
+
+    .imageUrl {}
+.adminImageItem{
+    width: 30%;
+}
+.admin-image-thumb {}
     .photoQuote {
         font-size: 20px;
         text-align: justify;
@@ -565,13 +652,21 @@ iframe {
         justify-content: center;
         align-items: center;
     }
-
-    form>label,
-    form>input,
-    form>textarea {
+    
+    form>label,.form>label,
+    form>input,.form>input,
+    form>textarea,.form>textarea {
         min-width: 320px;
         text-align: left;
+        width: -webkit-fill-available;
     }
+    input.semless{
+        border:0px;
+        border-bottom: 1px solid lightgray;
+        margin-bottom: 5px;
+    }
+
+    
 
 
 

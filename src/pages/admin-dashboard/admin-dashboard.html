@@ -1,5 +1,17 @@
 <section class="admin protected container">
+    <h3>Menu principal <a class="fnt-12 backBtn" href="/" target="_blank">ver sitio</a></h3>
     <section class="admin_menu">
+
+        <a href="/admin/programacion">
+            <i class="fas fa-calendar-alt"></i>
+            Programacion
+        </a>
+
+        <a href="/admin/voluntarios">
+            <i class="fas fa-people-carry"></i>
+            Voluntarios
+        </a>
+
         <a @click="()=>collapsables.deploy=!collapsables.deploy">
         <i :class="collapsables.deploy?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
 
@@ -30,7 +42,7 @@
             <div class="developmentPage">
                 <label>Pagina de desarrollo</label>
                 <div>
-                    <a href="{{API_URL}}" target="_blank">Vista previa {{API_URL}}</a>
+                    <a href="{{PREVIEW_URL}}" target="_blank">Vista previa {{PREVIEW_URL}}</a>
                     <button class="btn" v-cloak v-if="true" @click="(loaders.staging||isCooldown('deployStaging'))||deployStaging()" :disabled="loaders.staging||isCooldown('deployStaging')" v-html="loaders.staging?'Publicando...':'Publicar cambios'"></button>
                     <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deployStaging')">
                         Cambios publicados recientemente, espera un momento...
@@ -39,30 +51,43 @@
                 </div>
             </div>
         </section>
-        
+    
+
         <a @click="()=>collapsables.upload_image=!collapsables.upload_image">
+
         <i :class="collapsables.upload_image?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
         General: Subir imagenes</a>
         <section class="upload-images" v-show="collapsables.upload_image">
-            <input type="file" name="image" id="image" />
-            <button class="btn" @click="uploadImage()" v-html="uploading?'Wait':'Upload'"></button>
+            <div class="developmentPage">
+                <input type="file" name="image" id="image" />
+                <button class="btn" @click="uploadImage()" v-html="loaders.imageUpload?'Wait':'Upload'"></button>
+            </div>
         </section>
         <a @click="()=>collapsables.view_images=!collapsables.view_images">
         <i :class="collapsables.view_images?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
         General: Ver imagenes</a>
         <section class="view-images imagesViewBox" v-show="collapsables.view_images">
-            <div v-for="item in images">
-                <div class="admin-image-thumb" :style="`background-image:url(/uploads/images/${item});`">
+            <div class="developmentPage">
+                <div v-for="item in images" class="adminImageItem">
+                    <a :href="`/uploads/images/${item}`" target="_blank">
+                    <div class="admin-image-thumb" :style="`background-image:url(/uploads/images/${item});`">
+                    </div>
+                    </a>
+                    <input :value="`/uploads/images/${item}`" class="imageUrl adminImageItemUrl" />
                 </div>
-                <input :value="`/uploads/images/${item}`" class="imageUrl" />
             </div>
         </section>
         <a @click="()=>collapsables.parameters=!collapsables.parameters">
         <i :class="collapsables.parameters?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
-        General: Parametros (Avanzado)</a>
+        Base de datos: Avanzado</a>
         <section v-show="collapsables.parameters">
-            <parameters type="data" :enabled="collapsables.parameters"></parameters>
-            <parameters type="locales" :enabled="collapsables.parameters"></parameters>
+            <div class="developmentPage">
+                <label>Informacion</label>
+                <parameters type="data" :enabled="collapsables.parameters"></parameters>
+                <hr/>
+                <label>Traduccion</label>
+                <parameters type="locales" :enabled="collapsables.parameters"></parameters>
+            </div>
         </section>
     </section>
 </section>
