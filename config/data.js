@@ -12,21 +12,11 @@
                 "eventos": [
                     {
                         "image": "/img/flor-permacultura.webp",
-                        "title": "La danza de la flor 2",
-                        "message": "El proximo sabado 04 de Abril, ven a descubrir la danza de la flor, grupo de musica local. Tambien estara disponible el Eco-restaurant.",
-                        "time": "16:30"
-                    },
-                    {
-                        "image": "",
-                        "title": "Plantas carnivoras",
-                        "message": "Vamos a plantar 500 plantas",
-                        "time": "09:00"
-                    },
-                    {
-                        "image": "/img/logo.png",
-                        "title": "Brainstorming Eutopia",
-                        "message": "En Octubre recibimos a cientificos de la NASA para pensar juntos en el futuro de la tierra.",
-                        "time": "10:00"
+                        "title": "Evento de prueba",
+                        "message": "Prueba",
+                        "time": "16:30",
+                        "id": "_5lal0n8ht",
+                        "show": true
                     }
                 ],
                 "_expand": false,
@@ -39,7 +29,9 @@
                         "image": "/img/logo.png",
                         "title": "Brainstorming Eutopia",
                         "message": "En Octubre recibimos a cientificos de la NASA para pensar juntos en el futuro de la tierra.",
-                        "time": "10:00"
+                        "time": "10:00",
+                        "id": "_oyldhbtl6",
+                        "show": false
                     }
                 ],
                 "_expand": false,
