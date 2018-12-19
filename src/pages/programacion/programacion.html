@@ -9,7 +9,7 @@
                 <p class="text-center programacion_date">
                     {{#date fecha 'DD-MM-YYYY HH:mm' 'dddd DD [de] MMMM YYYY'}}{{/date}}
                 </p>
-                {{#each eventos}}
+                {{#each (filterArrByKey eventos 'show')}}
                 <div class="programacion_item">
                     <img src="{{image}}" class="inline-block img-fluid"/>
                     <div class="inline-block vertical-top" style="width:69%;">

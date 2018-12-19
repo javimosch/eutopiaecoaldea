@@ -24,14 +24,14 @@
                             </div>
                             <div class="blockChilds">
                               <label>Imagen</label>
-                              <input v-html="evento.image"/>
+                              <input v-model="evento.image"/>
                             </div>
                             <div class="blockChilds">
                               <label>Hora</label>
                               <input v-model="evento.time" placeholder="HH:mm" />
                             </div>
-                            <div v-if="false">
-                                <button class="btn danger"><i class="fas fa-trash-alt"></i></button>
+                            <div >
+                                <button @click="remove(evento.id)" class="btn danger"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
                     </div>
