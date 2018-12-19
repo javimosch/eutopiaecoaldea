@@ -31,9 +31,9 @@
         ],
         "voluntarios": [
             {
-                "name": "pepe",
+                "name": "Pepe grillo",
                 "email": "pepe@asd.com",
-                "whyMessage": "",
+                "whyMessage": "Por el BosqueEscuela",
                 "helpMessage": "",
                 "dateMessage": ""
             }
