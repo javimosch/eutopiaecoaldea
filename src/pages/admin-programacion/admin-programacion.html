@@ -30,8 +30,8 @@
                               <label>Hora</label>
                               <input v-model="evento.time" placeholder="HH:mm" />
                             </div>
-                            <div v-if="false">
-                                <button class="btn danger"><i class="fas fa-trash-alt"></i></button>
+                            <div >
+                                <button @click="remove(evento.id)" class="btn danger"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
                     </div>
