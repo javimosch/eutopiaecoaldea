@@ -28,6 +28,15 @@
                     }
                 ]
             }
+        ],
+        "voluntarios": [
+            {
+                "name": "pepe",
+                "email": "pepe@asd.com",
+                "whyMessage": "",
+                "helpMessage": "",
+                "dateMessage": ""
+            }
         ]
     },
     "login": {
