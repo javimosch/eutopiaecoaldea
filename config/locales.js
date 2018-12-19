@@ -139,7 +139,7 @@ module.exports = {
 		fr:"Nous proposons un large choix d'activités, de visites guidées, d'ateliers participatifs afin de créer des événements sur mesure, toujours dans le respect de nos valeurs, en profitant de la nature, dans le partage et l'apprentissage pour des moments inoubliables !"
 	},
 
-	ESCUELA_1:{
+	ESCUELAS_1:{
 		es:"Acompanamos sus estudiantes en la creacion y el mantenimiento de una huerta, un vivero y un centro de tratamiento de los desechos para el plan ambiantal de su escuela.",
 		en:"We guide your students through the creation of a plant nursery, a garden and a waste treatment area for you school !",
 		fr:"Nous accompagnons vos élèves dans la création et l'entretien d'une pépinière, d'un potager et d'un centre de traitement des déchets pour votre école, dans le cadre du plan pour l'environnement !"
@@ -170,7 +170,7 @@ module.exports = {
 		HOME_INTRO:{
 		es:"Ven a disfrutar de nuestra aldea cada fin de semana !",
 		en:"Visit and enjoy our eco-center every week-end !",
-		fr:"Venez profitez de notre centre écologique tous les week-end !"
+		fr:"Venez profiter de notre centre écologique tous les week-end !"
 	},
 	HOME_CONTENT_1:{
 		es:"Nuestro eco-centro en la naturaleza está abierto cada fin de semana para brindarle un lugar recreativo y de relajación donde toda la familia encontrará su felicidad.",
