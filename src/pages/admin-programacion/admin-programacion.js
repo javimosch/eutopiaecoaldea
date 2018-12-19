@@ -23,6 +23,9 @@ module.exports = function() {
 
 					},
 					methods: {
+						showProgramacion(pr){
+							return pr.eventos && pr.eventos.length>0
+						},
 						normalize(items) {
 							return items.map(v => {
 								v._expand = false;
@@ -53,11 +56,9 @@ module.exports = function() {
 									indexToRemove = index;
 								}
 							})
-							if(!!indexToRemove){
+							if(indexToRemove!==undefined){
 								var removed = pr.eventos.splice(indexToRemove,1);
-								console.log('SPLICE', pr.eventos,{
-									removed
-								});
+								this.$forceUpdate();
 							}
 						}
 					})
