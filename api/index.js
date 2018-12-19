@@ -3,6 +3,7 @@ const sander = require('sander');
 const server = require('../src/server');
 var filePath = name => path.join(process.cwd(), name);
 const reload = require('require-reload')(require);
+const dJSON = require('dirty-json');
 
 module.exports = function configure(app) {
 
@@ -39,7 +40,7 @@ module.exports = function configure(app) {
 		var updateCode = shortid.generate();
 		var dataPath = server.git.gitFilePath('config/data.js')
 		var data = sander.readFileSync(dataPath).toString('utf-8');
-		const dJSON = require('dirty-json');
+		
 		try {
 			data = dJSON.parse(data);
 			data.context = data.context || {}
@@ -101,6 +102,13 @@ module.exports = function configure(app) {
 		
 		res.json({
 			result: sander.readFileSync(server.git.gitFilePath('config/locales.js')).toString('utf-8')
+		})
+	})
+	app.get('/api/voluntarios/fetch', (req, res) => {
+		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
+		data = dJSON.parse(data);
+		res.json({
+			result: data.context.voluntarios
 		})
 	})
 

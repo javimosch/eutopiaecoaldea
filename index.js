@@ -151,7 +151,7 @@ function loadHandlebarHelpers() {
     });
 
     Handlebars.registerHelper('stringify', function(obj, options) {
-        return JSON.stringify(obj);
+        return JSON.stringify(obj||{});
     });
 
     Handlebars.registerHelper('typeIs', function(obj, value, options) {

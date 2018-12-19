@@ -121,10 +121,10 @@ module.exports = function() {
 							images: [],
 							deployedAt: '',
 							collapsables: {
+								deploy: false,
 								upload_image: false,
 								view_images: false,
 								parameters: false,
-								deploy: true
 							},
 							loaders: {
 								imageUpload: false,

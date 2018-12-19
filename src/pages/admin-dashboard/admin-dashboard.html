@@ -1,5 +1,12 @@
 <section class="admin protected container">
+    <h3>Menu principal <a class="fnt-12 backBtn" href="/" target="_blank">ver sitio</a></h3>
     <section class="admin_menu">
+
+        <a href="/admin/voluntarios">
+            <i class="fas fa-people-carry"></i>
+            Voluntarios
+        </a>
+
         <a @click="()=>collapsables.deploy=!collapsables.deploy">
         <i :class="collapsables.deploy?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
 
@@ -39,8 +46,10 @@
                 </div>
             </div>
         </section>
-        
+    
+
         <a @click="()=>collapsables.upload_image=!collapsables.upload_image">
+
         <i :class="collapsables.upload_image?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
         General: Subir imagenes</a>
         <section class="upload-images" v-show="collapsables.upload_image">

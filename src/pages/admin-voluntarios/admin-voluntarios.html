@@ -1,0 +1,31 @@
+<section class="admin protected container">
+	<h3>Voluntarios <a class="fnt-12 backBtn" href="/admin/dashboard">Atras</a></h3>
+	<ul class="list">
+            
+            <li class="volunteerItem" v-for="item in voluntarios">
+            	<div class="desktopSplitTwo">
+            		<div>
+            			<p class="bold">Nombre</p> 
+            			<p v-html="item.name"></p>
+            		</div>
+            		<div>
+            			<p class="bold">Email</p>
+            			<p v-html="item.email"></p>
+            		</div>
+            	</div>
+            	<div v-show="item._expand">
+            		<p><b>Por que estas interesado en visitarnos?</b></p>
+            		<p class="italic" v-html="item.whyMessage||'(sin completar)'"></p>
+            		<p><b>Con que te gustaria ayudar o que proyecto te gustaria proponer?</b></p>
+            		<p class="italic" v-html="item.helpMessage||'(sin completar)'"></p>
+            		<p><b>En que epoca pensas venir ?</b></p>
+            		<p class="italic" v-html="item.dateMessage||'(sin completar)'"></p>
+            	</div>
+            	<button class="btn" @click="item._expand=!item._expand" v-html="item._expand?'Ver menos':'Ver mas'"></button>
+            </li>
+            
+    </ul>
+</section>
+<script type="text/javascript">
+	window.voluntarios = JSON.parse(`{{#stringify voluntarios}}{{/stringify}}`);
+</script>
