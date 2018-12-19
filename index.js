@@ -143,6 +143,17 @@ function loadHandlebarHelpers() {
         return output.charAt(0).toUpperCase() + output.substring(1);
     });
 
+    
+    Handlebars.registerHelper('filterArrByKey', function(obj, key, options) {
+        return obj.filter(evt=>evt[key]===undefined?true:evt[key]);
+    })
+    Handlebars.registerHelper('emptyIf', function(str, emptyIf, options) {
+        if((eval(emptyIf)).includes(str)){
+            return '';
+        }else{
+            return str;
+        }
+    });
     Handlebars.registerHelper('pagePath', function(langPath, name, options) {
         name = name.split(' ').join('-')
         name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
