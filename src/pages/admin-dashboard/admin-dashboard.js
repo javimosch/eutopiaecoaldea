@@ -121,7 +121,7 @@ module.exports = function() {
 							images: [],
 							deployedAt: '',
 							collapsables: {
-								deploy: false,
+								deploy: true,
 								upload_image: false,
 								view_images: false,
 								parameters: false,
