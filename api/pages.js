@@ -23,7 +23,7 @@ module.exports = app => {
 						jsPath,
 						htmlPath,
 						label: f,
-						basePath: path.join(pagesPath,f),
+						basePath: path.join('src/pages',f)+'/*',
 						jsData: (await sander.readFile(jsPath)).toString('utf-8'),
 						htmlData: (await sander.readFile(htmlPath)).toString('utf-8')
 					}
