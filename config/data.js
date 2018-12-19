@@ -24,16 +24,7 @@
             },
             {
                 "fecha": "07-10-2018",
-                "eventos": [
-                    {
-                        "image": "/img/logo.png",
-                        "title": "Brainstorming Eutopia",
-                        "message": "En Octubre recibimos a cientificos de la NASA para pensar juntos en el futuro de la tierra.",
-                        "time": "10:00",
-                        "id": "_oyldhbtl6",
-                        "show": false
-                    }
-                ],
+                "eventos": [],
                 "_expand": false,
                 "show": true
             }
