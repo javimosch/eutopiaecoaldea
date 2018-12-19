@@ -5,7 +5,7 @@
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
         "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "kaDYjUWhL",
+        "updateCode": "saQ7rxD5W",
         "programacion": [
             {
                 "fecha": "04-04-2018",
@@ -28,6 +28,15 @@
                         "time": "10:00"
                     }
                 ]
+            }
+        ],
+        "voluntarios": [
+            {
+                "name": "Pepe Alfonso del Bosque",
+                "email": "pepe@asd.com",
+                "whyMessage": "Por el BosqueEscuela",
+                "helpMessage": "",
+                "dateMessage": "Verano"
             }
         ]
     },
