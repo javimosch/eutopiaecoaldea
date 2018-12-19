@@ -32,6 +32,5 @@
     },
     "login": {
         "code": "cm5y"
-    },
-    "wipMode": true
+    }
 }
