@@ -162,6 +162,7 @@ module.exports = function() {
 							}
 						},
 						deployWipMode,
+						deployStaging,
 						deploy,
 						uploadImage,
 						browseImages,
