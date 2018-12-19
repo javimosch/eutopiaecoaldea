@@ -31,11 +31,11 @@
         ],
         "voluntarios": [
             {
-                "name": "Pepe grillo",
+                "name": "Pepe Alfonso del Bosque",
                 "email": "pepe@asd.com",
                 "whyMessage": "Por el BosqueEscuela",
                 "helpMessage": "",
-                "dateMessage": ""
+                "dateMessage": "Verano"
             }
         ]
     },
