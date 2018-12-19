@@ -1,11 +1,11 @@
 {
     "context": {
-        "wipMode": true,
+        "wipMode": false,
         "defaultCurrentPage": "page_ecoaldea",
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
         "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "SHqF-GmMO",
+        "updateCode": "dhRI8uoOR",
         "programacion": [
             {
                 "fecha": "04-04-2018",
