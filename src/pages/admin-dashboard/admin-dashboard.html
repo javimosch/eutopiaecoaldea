@@ -30,7 +30,7 @@
             <div class="developmentPage">
                 <label>Pagina de desarrollo</label>
                 <div>
-                    <a href="{{API_URL}}" target="_blank">Vista previa {{API_URL}}</a>
+                    <a href="{{PREVIEW_URL}}" target="_blank">Vista previa {{PREVIEW_URL}}</a>
                     <button class="btn" v-cloak v-if="true" @click="(loaders.staging||isCooldown('deployStaging'))||deployStaging()" :disabled="loaders.staging||isCooldown('deployStaging')" v-html="loaders.staging?'Publicando...':'Publicar cambios'"></button>
                     <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deployStaging')">
                         Cambios publicados recientemente, espera un momento...

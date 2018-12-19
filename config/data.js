@@ -4,6 +4,7 @@
         "defaultCurrentPage": "page_ecoaldea",
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
+        "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
         "updateCode": "kaDYjUWhL",
         "programacion": [
             {
