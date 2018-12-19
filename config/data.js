@@ -5,7 +5,7 @@
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
         "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "HC7ihMq6-",
+        "updateCode": "dkOgo0NLb",
         "programacion": [
             {
                 "fecha": "04-04-2018",
