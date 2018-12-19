@@ -1,10 +1,16 @@
 module.exports = {
+	VOLUNTARIADO_ENVIAR_SOLICITUD_ERROR:{
+		es:'No pudimos registrar tu solicitud, por favor intenta en otro momento o envianos un email directamente con la informacion. Gracias !'
+	},
+	VOLUNTARIADO_ENVIAR_SOLICITUD_SUCCESS:{
+		es:'Revisaremos tu solicitud y nos pondremos en contacto contigo, gracias!'
+	},
 	PROGRAMACION:{
 		es:"Programacion",
 		en:"Programation"
 	},
 	ENVIAR:{
-		es:"Enviame  !",
+		es:"Enviar",
 		en:"Send",
 		fr:"Envoyer"
 	},

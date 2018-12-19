@@ -3,5 +3,6 @@ module.exports = {
 	partials: require('./partials'),
 	webpack: require('./webpack'),
 	fs: require('./fs'),
-	git: require('./git')
+	git: require('./git'),
+	helpers: require('./helpers')
 }

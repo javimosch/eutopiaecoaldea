@@ -91,8 +91,8 @@ function compileEntireSite() {
             language: 'pr',
             outputFolder: 'docs/pr'
         });
-    }else{
-    	console.log('WARN: i18N Disabled')
+    } else {
+        console.log('WARN: i18N Disabled')
     }
 
     //manifest
@@ -148,6 +148,10 @@ function loadHandlebarHelpers() {
         name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
         name = name.toLowerCase();
         return `/${langPath}${name}`;
+    });
+
+    Handlebars.registerHelper('stringify', function(obj, options) {
+        return JSON.stringify(obj||{});
     });
 
     Handlebars.registerHelper('typeIs', function(obj, value, options) {

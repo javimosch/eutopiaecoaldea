@@ -3,12 +3,15 @@ const sander = require('sander');
 const server = require('../src/server');
 var filePath = name => path.join(process.cwd(), name);
 const reload = require('require-reload')(require);
+const dJSON = require('dirty-json');
 
 module.exports = function configure(app) {
 
 	require('./upload')(app);
 	require('./images')(app);
 	require('./email')(app);
+	require('./voluntariado')(app);
+	require('./programacion')(app);
 
 	app.post('/api/git/path', (req, res) => {
 		var gitPath = server.git.getPath();
@@ -36,13 +39,14 @@ module.exports = function configure(app) {
 	app.get('/api/deployment/publish', (req, res) => {
 		var shortid = require('shortid');
 		var updateCode = shortid.generate();
-		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8');
-		const dJSON = require('dirty-json');
+		var dataPath = server.git.gitFilePath('config/data.js')
+		var data = sander.readFileSync(dataPath).toString('utf-8');
+
 		try {
 			data = dJSON.parse(data);
 			data.context = data.context || {}
 			data.context.updateCode = updateCode;
-			data.wipMode = req.query.wipMode === '1' ? true : false;
+			data.context.wipMode = req.query.wipMode === '1' ? true : false;
 			server.git.pushPath('config/data.js', {
 				files: [{
 					path: 'config/data.js',
@@ -96,10 +100,18 @@ module.exports = function configure(app) {
 		})
 	})
 	app.get('/api/locales/fetch', (req, res) => {
-		
+
 		res.json({
 			result: sander.readFileSync(server.git.gitFilePath('config/locales.js')).toString('utf-8')
 		})
 	})
+	app.get('/api/voluntarios/fetch', (req, res) => {
+		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
+		data = dJSON.parse(data);
+		res.json({
+			result: data.context.voluntarios
+		})
+	})
+
 
 };
