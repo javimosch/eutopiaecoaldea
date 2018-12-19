@@ -91,6 +91,17 @@ form>label {
     text-align: left;
 }
 
+.eventItem{
+    display: inline-block;
+    width: -webkit-fill-available;
+    padding: 20px;
+    background-color: ghostwhite;
+    margin-bottom: 15px;
+}
+.eventItem .eventoTitle{
+    margin-bottom: 10px;
+}
+
 .parameters-component {
     margin-top: 20px;
 }
@@ -100,6 +111,10 @@ form>button[disabled],
     opacity: 0.5;
 }
 
+.btn.danger{
+    background-color: tomato;
+    color:white;
+}
 .btn {
     margin-top: 20px;
     border: 0px;
@@ -198,7 +213,17 @@ form>button:active,
     color: black;
     font-size: 14px;
 }
-
+.programationItem{
+    padding: 20px;
+    background-color: peachpuff;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.adminProgramacionItemImage{
+    max-width: 100px;
+    margin-bottom: 10px;
+}
 .sectionMainImage {
     display: flex;
     justify-content: center;
@@ -264,7 +289,12 @@ ul.menu>li:hover>a {
     left: 0px;
     z-index: 999999999;
 }
-
+textarea.text{
+        min-width: 320px;
+        text-align: left;
+        width: -webkit-fill-available;
+        min-height: 100px;
+    }
 ul.menu {
     list-style: none;
     padding: 0px;
@@ -320,7 +350,12 @@ section .image-title h2 {
     font-size: 32px;
     color: white;
 }
-
+.form .blockChilds{
+        margin-bottom: 5px;
+    }
+.blockChilds > *{
+    display: block;
+}
 article h1,
 article h2,
 article h3,
@@ -537,6 +572,11 @@ iframe {
 .admin-image-thumb {}
 }
 @media only screen and (min-width: 992px) {
+    .eventItem{}
+    .adminProgramacionItemImage{
+    margin: 0 auto;
+    max-width: 200px;
+}
     .desktopSplitTwo > div{
         flex-basis: 100%;
     }
@@ -612,14 +652,21 @@ iframe {
         justify-content: center;
         align-items: center;
     }
-
-    form>label,
-    form>input,
-    form>textarea {
+    
+    form>label,.form>label,
+    form>input,.form>input,
+    form>textarea,.form>textarea {
         min-width: 320px;
         text-align: left;
         width: -webkit-fill-available;
     }
+    input.semless{
+        border:0px;
+        border-bottom: 1px solid lightgray;
+        margin-bottom: 5px;
+    }
+
+    
 
 
 

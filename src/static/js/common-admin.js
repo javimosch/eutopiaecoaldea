@@ -1,3 +1,23 @@
+function apiPost(uri, data) {
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			url: `${SERVER.API_URL}${uri}`,
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			type: 'POST',
+			error: () => {
+				return resolve({
+					err: true,
+					result: null
+				})
+			},
+			success: (data) => {
+				return resolve(data)
+			}
+		});
+	})
+}
+
 (function init() {
 	var el = document.querySelector('body');
 	if (!el || typeof window.Vue === 'undefined') return setTimeout(() => init(), 100);
@@ -19,9 +39,9 @@
 					fetch(`${SERVER.API_URL}/api/login/validate?code=${encoded}`).then(r => r.json().then(response => {
 						if (response.result) {
 							console.info('authSuccess');
-							try{
+							try {
 								document.querySelector('section.admin.protected').style.display = "block";
-							}catch(err){}
+							} catch (err) {}
 						} else {
 							this.authFail();
 						}
@@ -29,13 +49,13 @@
 				} else {
 					this.authFail();
 				}
-			}else{
+			} else {
 				console.log('authSkip');
 			}
 
-			window.logout = function(){
-				window.localStorage.setItem('adminToken','');
-				window.location.href="/admin";
+			window.logout = function() {
+				window.localStorage.setItem('adminToken', '');
+				window.location.href = "/admin";
 			}
 		},
 		methods: {
