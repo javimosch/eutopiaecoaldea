@@ -126,7 +126,11 @@ form>button:active,
 }
 
 .imageUrl {
-    min-width: 300px;
+    width: -webkit-fill-available;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px;
 }
 
 .brand {
@@ -432,12 +436,13 @@ section.admin section {
     padding-bottom: 50px;
 }
 
+.adminImageItem{}
 .admin-image-thumb {
     min-height: 155px;
-    /* background: yellowgreen; */
-    width: -webkit-fill-available;
+    width: 200px;
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
+    margin: 0 auto;
 }
 
 footer {
@@ -502,9 +507,20 @@ iframe {
         width:initial;
         
     }
-
+    .imageUrl {}
+.adminImageItem{
+    display: inline-block;
+    width: 44%;
+    margin: 0px 20px;
+}
+.admin-image-thumb {}
 }
 @media only screen and (min-width: 992px) {
+    .imageUrl {}
+.adminImageItem{
+    width: 30%;
+}
+.admin-image-thumb {}
     .photoQuote {
         font-size: 20px;
         text-align: justify;

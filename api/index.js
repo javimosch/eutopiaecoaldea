@@ -36,7 +36,8 @@ module.exports = function configure(app) {
 	app.get('/api/deployment/publish', (req, res) => {
 		var shortid = require('shortid');
 		var updateCode = shortid.generate();
-		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8');
+		var dataPath = server.git.gitFilePath('config/data.js')
+		var data = sander.readFileSync(dataPath).toString('utf-8');
 		const dJSON = require('dirty-json');
 		try {
 			data = dJSON.parse(data);

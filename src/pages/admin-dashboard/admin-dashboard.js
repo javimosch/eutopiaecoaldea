@@ -126,11 +126,11 @@ module.exports = function() {
 								parameters: false,
 								deploy: true
 							},
-							loaders:{
-								imageUpload:false,
-								wipMode:false,
-								staging:false,
-								deploy:false
+							loaders: {
+								imageUpload: false,
+								wipMode: false,
+								staging: false,
+								deploy: false
 							}
 						}
 					},
@@ -141,19 +141,23 @@ module.exports = function() {
 					},
 					mounted() {
 						this.browseImages();
+
+						$(".adminImageItemUrl").on("click", function() {
+							$(this).select();
+						});
 					},
 					methods: {
-						isCooldown(name){
-							var v = window.localStorage.getItem('cooldown_'+name);
-							if(!!v){
+						isCooldown(name) {
+							var v = window.localStorage.getItem('cooldown_' + name);
+							if (!!v) {
 								v = parseInt(v);
-								if(Date.now()-v > 1000 * 60 * 2){
-									window.localStorage.setItem('cooldown_'+name,'')
+								if (Date.now() - v > 1000 * 60 * 2) {
+									window.localStorage.setItem('cooldown_' + name, '')
 									return false;
-								}else{
+								} else {
 									return true;
 								}
-							}else{
+							} else {
 								return false;
 							}
 						},
@@ -165,33 +169,34 @@ module.exports = function() {
 					}
 				})
 
-				function deployWipMode(){
-					this.loaders.wipMode=true
+				function deployWipMode() {
+					this.loaders.wipMode = true
 					fetch(`${SERVER.API_URL}/api/deployment/publish?wipMode=1`).then(r => r.json().then(response => {
 						this.cooldownVariable('wipMode');
-						this.loaders.wipMode=false
-						console.info(response);
-					}));
-				}
-				function deployStaging(){
-					this.loaders.staging=true
-					fetch(`${SERVER.API_URL}/api/deployment/publish?staging=1`).then(r => r.json().then(response => {
-						this.cooldownVariable('deployStaging');
-						this.loaders.staging=false;
+						this.loaders.wipMode = false
 						console.info(response);
 					}));
 				}
 
-				function cooldownVariable(variable){
-					window.localStorage.setItem('cooldown_'+variable, Date.now());
+				function deployStaging() {
+					this.loaders.staging = true
+					fetch(`${SERVER.API_URL}/api/deployment/publish?staging=1`).then(r => r.json().then(response => {
+						this.cooldownVariable('deployStaging');
+						this.loaders.staging = false;
+						console.info(response);
+					}));
+				}
+
+				function cooldownVariable(variable) {
+					window.localStorage.setItem('cooldown_' + variable, Date.now());
 					this.$forceUpdate();
 				}
 
 				function deploy() {
-					this.loaders.deploy=true
+					this.loaders.deploy = true
 					fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
 						this.cooldownVariable('cooldown_deploy');
-						this.loaders.deploy=false
+						this.loaders.deploy = false
 					}));
 				}
 
