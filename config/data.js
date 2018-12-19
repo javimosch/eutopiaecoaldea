@@ -32,10 +32,10 @@
         ],
         "voluntarios": [
             {
-                "name": "Pepe Alfonso del Bosque",
+                "name": "Pepe Alfonso Ramirez",
                 "email": "pepe@asd.com",
                 "whyMessage": "Por el BosqueEscuela",
-                "helpMessage": "",
+                "helpMessage": "Eco-quinta",
                 "dateMessage": "Verano"
             }
         ]
