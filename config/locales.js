@@ -6,7 +6,7 @@ module.exports = {
 	},
 	VOLUNTARIADO_ENVIAR_SOLICITUD_SUCCESS:{
 		es:'Gracias por tu solicitud, ya nos pondremos en contacto contigo :)',
-		en:"Thank you for your application ! We will contact you soon :)"
+		en:"Thank you for your application ! We will contact you soon :)",
 		fr:"Merci pour votre message ! Nous vous contacterons sous peu :)"
 	},
 	PROGRAMACION:{
@@ -69,9 +69,9 @@ module.exports = {
 		fr:"Venez découvrir notre marché et ses producteurs, et profitez-en pour passer la journée en famille dans notre centre écologique, loin du stress de la ville !"
 	},
 	FERIAS_PRODUCTORES_CONTENT_3:{
-		es:"Proponemos una zona de juego, piscina, zona de descanso, biblioteca.<br>                    Eco-restaurante con productos frescos y orgánicos cocinados en el momento.<br>                    Talleres y actividades variadas para aprender a toda edad sobre las plantas, la cerámica, la pintura o también practicar la meditación, el yoga y el tai-chi !<br>                    Visita guiada de nuestro vivero, la huerta, el centro de tratamiento de los desechos.<br>                    Escenario con música en vivo y otros espectaculos (ver programacion)<br>                    Zona de camping<br>                    Y mucho más !",
-		en:"We offer all the facilities for you to have a great day : playground, swimming pool, relaxing area, reading area.<br>                    Eco-restaurant with fresh ecological product homecooked.<br>                    Workshops to learn and discover at any age about nature, crops, ceramic, painting, or to practice meditation, yoga, or Tai-chi !<br>                    Visits with explainations about our garden, plant nursery, compost and waste treatment area.<br>                    Stage with live music and a diversity of shows (see our programation)<br>                    Camping zone<br>                    And much more ! !",
-		fr:"Nous vous proposons tous les services pour une journée réussie : aire de jeux, piscine, zone de détente, bibliotèque.<br>                    Eco-restaurant avec des produits frais et biologiques cuisinés sur place.<br>                    Ateliers et activités pour apprendre à tout age sur les plantes, la céramique, la peinture ou pour pratiquer la méditation, le yoga ou le tai-chi!<br>                    Visite guidée de notre jardin, pépinière, compost et du centre de traitement des déchets.<br>                    Scène avec de la musique en live et une offre variée de spectacles (voir programmation)<br>                    Aire de camping<br>                   Et beaucoup plus !"
+		es:"Proponemos una zona de juego, piscina, zona de descanso, biblioteca.<br>                    Eco-restaurante con productos frescos y orgánicos cocinados en el momento.<br>                    Talleres y actividades variadas para aprender a toda edad sobre la permacultura, las plantas, la arcilla, la pintura o también practicar la meditación, el yoga y el tai-chi !<br>                    Visita guiada de nuestro vivero, la huerta, el centro de tratamiento de los desechos.<br>                    Escenario con música en vivo y otros espectaculos (ver programacion)<br>                    Zona de camping<br>                    Y mucho más !",
+		en:"We offer all the facilities for you to have a great day : playground, swimming pool, relaxing area, reading area.<br>                    Eco-restaurant with fresh ecological product homecooked.<br>                    Workshops to learn and discover at any age about permaculture, crops, ceramic, painting, or to practice meditation, yoga, or Tai-chi !<br>                    Visits with explainations about our garden, plant nursery, compost and waste treatment area.<br>                    Stage with live music and a diversity of shows (see our programation)<br>                    Camping zone<br>                    And much more ! !",
+		fr:"Nous vous proposons tous les services pour une journée réussie : aire de jeux, piscine, zone de détente, bibliotèque.<br>                    Eco-restaurant avec des produits frais et biologiques cuisinés sur place.<br>                    Ateliers et activités pour apprendre à tout age sur la permaculture, les plantes, la céramique, la peinture ou pour pratiquer la méditation, le yoga ou le tai-chi!<br>                    Visite guidée de notre jardin, pépinière, compost et du centre de traitement des déchets.<br>                    Scène avec de la musique en live et une offre variée de spectacles (voir programmation)<br>                    Aire de camping<br>                   Et beaucoup plus !"
 	},
 	PROFESIONALES:{
 		es:"Empresas",
@@ -87,6 +87,11 @@ module.exports = {
 		es:"Escuelas",
 		en:"Schools",
 		fr:"Ecoles"
+	},
+	ADULTOS:{
+		es:"Centros de Atencion para Adultos Mayores",
+		en:"Care centers for elderly people",
+		fr:"Maisons de retraite et centres de soin pour personnes agées"
 	},
 	pr:{
 		es:'Portugués',
@@ -134,25 +139,25 @@ module.exports = {
 		fr:"Nous proposons un large choix d'activités, de visites guidées, d'ateliers participatifs afin de créer des événements sur mesure, toujours dans le respect de nos valeurs, en profitant de la nature, dans le partage et l'apprentissage pour des moments inoubliables !"
 	},
 
-	ESCUELA_2:{
+	ESCUELA_1:{
 		es:"Acompanamos sus estudiantes en la creacion y el mantenimiento de una huerta, un vivero y un centro de tratamiento de los desechos para el plan ambiantal de su escuela.",
 		en:"We guide your students through the creation of a plant nursery, a garden and a waste treatment area for you school !",
 		fr:"Nous accompagnons vos élèves dans la création et l'entretien d'une pépinière, d'un potager et d'un centre de traitement des déchets pour votre école, dans le cadre du plan pour l'environnement !"
 	},
 
-	ADULTOS_2:{
+	ADULTOS_1:{
 		es:"Les ayudamos mejorar la calidad de vida de sus pacientes.                Proponemos dias de relajacion en nuestra aldea, con actividades                simples para aprender y compartir conocimientos sobre la naturaleza, la permacultura y las plantas que nos                ayudan a estar en buena salud.",
 		en:"We help you improve the well being of the elderly. We offer a full relaxing days of activities in the nature to learn and share knowledge about permaculture and the plants that help us keep a good health ! ",
 		fr:"Nous vous aidons à améliorer la qualité de vie et le bien-être des personnes agées grâce à des journées de détente, d'apprentissage et de partage de connaissances dans la nature, autour de la permaculture et des plantes qui nous aident à rester en bonne santé"
 	},
 
-	EMPRESAS_2:{
+	EMPRESAS_1:{
 		es:"Organiza sus seminarios y celebraciones en nuestro eco-centro para                        ofrecer a sus empleados un momento unico.                        Espiritu de equipo, enfoque en el momento presente y desconnexion                        con el estress del dia dia.",
 		en:"We organize your seminars or celebrations in our eco-center to offer your employees a unique souvenir of these important moments ! Team building, focus on the present moment, in total desconnection with the day to day stress and routine.",
 		fr:"Nous organisons vos événements, séminaires, journées d'intégration ou célébrations afin d'offrir à vos employés un moment unique. Renforcement de l'esprit d'équipe, concentration sur le moment présent, en deconnection totale avec la routine et le stress du quotidien."
 	},
 
-	FAMILIAS_2:{
+	FAMILIAS_1:{
 		es:"Vengan a disfrutar de un fin de semana unico en el campo, con                    actividades y aprendizajes para toda la familia, desconnectados del                    estress de la ciudad ! Lo ideal para festejar sus cumpleanos,                    graduaciones, anniversarios.",
 		en:"Come and enjoy a unique week-end in the nature, with activities and learnings for all the family, disconnected from the day to day life and the city ! Ideal to celebrate birthdays, graduation, anniversaries !",
 		fr:"Venez profiter d'un week-end unique dans la nature, avec des activités et des apprentissages pour toute la famille, loin du stress de la ville et du quotidien. L'endroit idéal pour fêter vos anniversaires, diplomations, fêtes de familles."
@@ -173,13 +178,13 @@ module.exports = {
 		fr:"Notre centre ecologique est ouvert chaque week-end pour que vous puissiez profiter en famille de nos espaces de jeux et de détente, avec des activités pour tous !"
 	},
 		HOME_CONTENT_2:{
-		es:"Zona de juego, piscina, zona de descanso, biblioteca.<br>                    Eco-restaurante con productos frescos y orgánicos cocinados en el momento.<br>                    Talleres y actividades variadas para aprender a toda edad sobre las plantas, la cerámica, la pintura o también practicar la meditación, el yoga y el tai-chi !<br>                    Visita guiada de nuestro vivero, la huerta, el centro de tratamiento de los desechos.<br>                    Escenario con música en vivo y otros espectaculos (ver programacion)<br>                    Zona de camping<br>                    Y mucho más !",
-		en:"playground, swimming pool, relaxing area, reading area.<br>                    Eco-restaurant with fresh ecological product homecooked.<br>                    Workshops to learn and discover at any age about nature, crops, ceramic, painting, or to practice meditation, yoga, or Tai-chi !<br>                    Visits with explainations about our garden, plant nursery, compost and waste treatment area.<br>                    Stage with live music and a diversity of shows (see our programation)<br>                    Camping zone<br>                    And much more ! !",
-		fr:"Aire de jeux, piscine, zone de détente, bibliotèque.<br>                    Eco-restaurant avec des produits frais et biologiques cuisinés sur place.<br>                    Ateliers et activités pour apprendre à tout age sur les plantes, la céramique, la peinture ou pour pratiquer la méditation, le yoga ou le tai-chi!<br>                    Visite guidée de notre jardin, pépinière, compost et du centre de traitement des déchets.<br>                    Scène avec de la musique en live et une offre variée de spectacles (voir programmation)<br>                    Aire de camping<br>                   Et beaucoup plus !"
+		es:"Zona de juego, piscina, zona de descanso, biblioteca.<br>                    Eco-restaurante con productos frescos y orgánicos cocinados en el momento.<br>                    Talleres y actividades variadas para aprender a toda edad sobre la permacultura, las plantas, la arcilla, la pintura o también practicar la meditación, el yoga y el tai-chi !<br>                    Visita guiada de nuestro vivero, la huerta, el centro de tratamiento de los desechos.<br>                    Escenario con música en vivo y otros espectaculos (ver programacion)<br>                    Zona de camping<br>                    Y mucho más !",
+		en:"playground, swimming pool, relaxing area, reading area.<br>                    Eco-restaurant with fresh ecological product homecooked.<br>                    Workshops to learn and discover at any age about permaculture, crops, ceramic, painting, or to practice meditation, yoga, or Tai-chi !<br>                    Visits with explainations about our garden, plant nursery, compost and waste treatment area.<br>                    Stage with live music and a diversity of shows (see our programation)<br>                    Camping zone<br>                    And much more ! !",
+		fr:"Aire de jeux, piscine, zone de détente, bibliotèque.<br>                    Eco-restaurant avec des produits frais et biologiques cuisinés sur place.<br>                    Ateliers et activités pour apprendre à tout age sur la permaculture, les plantes, la céramique, la peinture ou pour pratiquer la méditation, le yoga ou le tai-chi!<br>                    Visite guidée de notre jardin, pépinière, compost et du centre de traitement des déchets.<br>                    Scène avec de la musique en live et une offre variée de spectacles (voir programmation)<br>                    Aire de camping<br>                   Et beaucoup plus !"
 	},
 
 		HOME_CONTENT_3:{
-		es:" La entrada al parque es gratis. Los horarios de atencion al publico son del sábado al domingo, de las 9h a las 18h.",
+		es:"La entrada al parque es gratis. Los horarios de atencion al publico son del sábado al domingo, de las 9h a las 18h.",
 		en:"The entry to our eco-center is free. We are opened for the visitors from saturday to sunday, from 9am to 6pm",
 		fr:"L'entrée du parc est gratuite. Les horaires d'ouverture au public son du samedi au dimanche, de 9h à 18h"
 	},
@@ -224,6 +229,7 @@ module.exports = {
 	},
 	ABOUT_US_CONTENT_1:{
 		es:"Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.",
+		es:"We are a group of people who look forward to live in a sustainable way, promoting permaculture, agro ecology, eco pedagogy and healthy life, generating small entrepreneurial projects to finance our activities"
 		fr:"Nous sommes un ensemble de personnes qui cherchent à vivre de manière durable et autonome. Nous promouvons la permaculture, l'agroécologie, l'éco pédagogie, la santé et le bien-être grâce à divers projets entrepreneuriaux qui nous permettent de financer nos activités."
 
 	},
