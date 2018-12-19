@@ -1,0 +1,22 @@
+<section class="admin protected container">
+    <h3>Menu principal <a class="fnt-12 backBtn" href="/" target="_blank">ver sitio</a></h3>
+    <label class="important">Subir imagenes</label>
+    <section class="upload-images">
+        <div class="developmentPage">
+            <input type="file" name="image" id="image" />
+            <button class="btn" @click="uploadImage()" v-html="loaders.imageUpload?'Wait':'Upload'"></button>
+        </div>
+    </section>
+    <label class="important">Galeria</label>
+    <section class="view-images imagesViewBox">
+        <div class="developmentPage">
+            <div v-for="item in images" class="adminImageItem">
+                <a :href="`/uploads/images/${item}`" target="_blank">
+                    <div class="admin-image-thumb" :style="`background-image:url(/uploads/images/${item});`">
+                    </div>
+                    </a>
+                <input :value="`/uploads/images/${item}`" class="imageUrl adminImageItemUrl" />
+            </div>
+        </div>
+    </section>
+</section>

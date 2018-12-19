@@ -85,6 +85,12 @@ form>textarea {
     min-height: 150px;
 }
 
+label.important{
+    font-size:30px;
+    margin-top: 30px;
+    display: block;
+}
+
 form>label {
     padding-bottom: 5px;
     padding-top: 10px;
@@ -116,7 +122,7 @@ form>button[disabled],
     color:white;
 }
 .btn {
-    margin-top: 20px;
+    margin-top: 10px;
     border: 0px;
     background-color: darkslateblue;
     padding: 10px 20px;

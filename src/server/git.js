@@ -136,7 +136,7 @@ function deployAll() {
 	//This will deploy to production (github) and heroku.
 	//WARNING: run deployAll using API to avoid overflow
 	deploy({
-		branches: ['master', 'heroku']
+		branches: ['master']
 	});
 }
 
