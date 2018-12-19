@@ -7,11 +7,11 @@
                 <input ref="name" v-model="form.name" />
                 <label>{{lang.EMAIL}} *</label>
                 <input ref="email" v-model="form.email"/>
-                <label>Por que estas interesado en visitarnos?</label>
+                <label>{{lang.VOLUNTARIADO_CONTENT_1}}</label>
                 <textarea v-model="form.whyMessage"></textarea>
-                <label>Con que te gustaria ayudar o que proyecto te gustaria proponer?</label>
+                <label>{{lang.VOLUNTARIADO_CONTENT_2}}</label>
                 <textarea v-model="form.helpMessage"></textarea>
-                <label>En que epoca pensas venir ?</label>
+                <label>{{lang.VOLUNTARIADO_CONTENT_3}}</label>
                 <textarea v-model="form.dateMessage"></textarea>
                 <button type="button" class="mobileCentered btn" :disabled="sending" @click="sending || send($event)" v-html="sending?'{{lang.ENVIAR}}...':'{{lang.ENVIAR}}'"></button>
             </form>
