@@ -12,7 +12,7 @@
                 "eventos": [
                     {
                         "image": "/img/flor-permacultura.webp",
-                        "title": "La danza de la flor",
+                        "title": "La danza de la flor 2",
                         "message": "El proximo sabado 04 de Abril, ven a descubrir la danza de la flor, grupo de musica local. Tambien estara disponible el Eco-restaurant.",
                         "time": "16:30"
                     },
