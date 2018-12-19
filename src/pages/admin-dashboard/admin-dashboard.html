@@ -1,33 +1,24 @@
-<section class="admin protected container">
-    <h3>Menu principal <a class="fnt-12 backBtn" href="/" target="_blank">ver sitio</a></h3>
-    <section class="admin_menu">
-        <a @click="()=>collapsables.deploy=!collapsables.deploy">
-        <i :class="collapsables.deploy?'fas fa-toggle-on':'fas fa-toggle-off'"></i>
-
-        Publicacion</a>
-        <section v-show="collapsables.deploy">
-            <div class="developmentPage">
-                <label>Pagina oficial</label>
-                <div>
-                    <p class="italic fnt-12" style="margin-top:5px">
-                        <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
-                    </p>
-                </div>
-                <div>
-                    <a href="{{PUBLIC_URL}}" target="_blank">Vista previa {{PUBLIC_URL}}</a>
-                    <button class="btn" v-cloak v-if="true" @click="(loaders.deploy||isCooldown('deploy'))||deploy()" :disabled="loaders.deploy||isCooldown('deploy')" v-html="loaders.deploy?'Publicando...':'Publicar cambios'"></button>
-                    <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
-                        Cambios publicados recientemente, espera un momento...
-                    </p>
-                </div>
-                <div>
-                    <button class="btn" v-cloak v-if="true" @click="loaders.wipMode||(isCooldown('wipMode'))||deployWipMode()" :disabled="loaders.wipMode||isCooldown('wipMode')" v-html="loaders.wipMode?'Procesando...':'Activar modo construccion'"></button>
-                    <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('wipMode')">
-                        Cambios publicados recientemente, espera un momento...
-                    </p>
-                </div>
-            </div>
-        </section>
+<section class="admin protected container ">
+    <div class="blockChilds form developmentPage">
+        <h3>Menu principal <a class="fnt-12 backBtn" href="/" target="_blank">ver sitio</a></h3>
+        <div>
+            <p class="italic fnt-12" style="margin-top:5px">
+                <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
+            </p>
+        </div>
+        <div>
+            <button class="btn" v-cloak v-if="true" @click="(loaders.deploy||isCooldown('deploy'))||deploy()" :disabled="loaders.deploy||isCooldown('deploy')" v-html="loaders.deploy?'Publicando...':'Publicar cambios recientes'"></button>
+            <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
+                Cambios publicados recientemente, espera un momento...
+            </p>
+        </div>
+        <div>
+            <button class="btn" v-cloak v-if="true" @click="loaders.wipMode||(isCooldown('wipMode'))||deployWipMode()" :disabled="loaders.wipMode||isCooldown('wipMode')" v-html="loaders.wipMode?'Procesando...':'Actualizar sitio con mensaje indicando que estamos trabajando en la pagina'"></button>
+            <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('wipMode')">
+                Cambios publicados recientemente, espera un momento...
+            </p>
+        </div>
+        <hr>
         <a href="/admin/programacion">
             <i class="fas fa-calendar-alt"></i>
             Programacion
@@ -40,8 +31,12 @@
             <i class="fas fa-images"></i>
             Imagenes
         </a>
+        <a href="/admin/pages">
+            <i class="fas fa-book"></i>
+            Paginas
+        </a>
         <a href="/admin/avanzado">
         <i class="fas fa-cogs"></i>
         Configuracion avanzada</a>
-    </section>
+    </div>
 </section>
