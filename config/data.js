@@ -11,7 +11,7 @@
                 "fecha": "04-04-2018",
                 "eventos": [
                     {
-                        "image": "/img/flor-permacultura.webp",
+                        "image": "/uploads/images/planta-tratamiento.jpg",
                         "title": "Evento de prueba",
                         "message": "Prueba",
                         "time": "16:30",
