@@ -9,6 +9,7 @@ module.exports = function configure(app) {
 	require('./upload')(app);
 	require('./images')(app);
 	require('./email')(app);
+	require('./voluntariado')(app);
 
 	app.post('/api/git/path', (req, res) => {
 		var gitPath = server.git.getPath();
@@ -43,7 +44,7 @@ module.exports = function configure(app) {
 			data = dJSON.parse(data);
 			data.context = data.context || {}
 			data.context.updateCode = updateCode;
-			data.wipMode = req.query.wipMode === '1' ? true : false;
+			data.context.wipMode = req.query.wipMode === '1' ? true : false;
 			server.git.pushPath('config/data.js', {
 				files: [{
 					path: 'config/data.js',
