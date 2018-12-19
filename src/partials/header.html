@@ -1,5 +1,5 @@
 <header>
-    <a class="brand" href="/{{currentLanguageCode}}">
+    <a class="brand" href="/{{#emptyIf currentLanguageCode '["es"]'}}{{/emptyIf}}">
     {{lang.META_TITLE}}
     <img src="/img/logo.webp"/>
 	</a>
