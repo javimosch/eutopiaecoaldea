@@ -5,7 +5,7 @@
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
         "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "RtKpj3YnU",
+        "updateCode": "A25RPV89w",
         "programacion": [
             {
                 "fecha": "04-04-2018",
