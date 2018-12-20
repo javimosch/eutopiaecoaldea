@@ -49,6 +49,13 @@
                 "whyMessage": "Por el BosqueEscuela",
                 "helpMessage": "Eco-quinta",
                 "dateMessage": "Verano"
+            },
+            {
+                "name": "Javier Leandro Arancibia",
+                "email": "arancibiajav@gmail.com",
+                "whyMessage": "",
+                "helpMessage": "Me gustaria crear e implementar un nuevo sitio web para el proyecto.",
+                "dateMessage": ""
             }
         ]
     },
