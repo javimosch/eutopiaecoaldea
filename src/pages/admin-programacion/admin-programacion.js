@@ -9,10 +9,15 @@ module.exports = function() {
 					el: '.admin',
 					name: 'adminProgramacion',
 					data() {
-						return Object.assign({
+						return {
+							showForm: false,
+							form: {
+								fecha: '',
+								title: ''
+							},
 							saving: false,
 							programacion: this.normalize(window.programacion)
-						}, {});
+						}
 					},
 					created() {
 						fetch(`${SERVER.API_URL}/api/programacion/fetch`).then(r => r.json().then(response => {
@@ -23,15 +28,39 @@ module.exports = function() {
 
 					},
 					methods: {
-						showProgramacion(pr){
-							return pr.eventos && pr.eventos.length>0
+						addEvent() {
+							this.programacion = this.programacion || [];
+							var pr = this.programacion.find(pr => pr.fecha.toString() == this.form.fecha.toString())
+							if (!pr) {
+								pr = {
+									fecha: this.form.fecha,
+									eventos: []
+								}
+								this.programacion.push(pr);
+							}
+							pr.eventos = pr.eventos || [];
+							pr.eventos.push({
+								id: window.generateId(),
+								title: this.form.title,
+								image: '',
+								message: '',
+								time: '',
+								show: false
+							});
+							this.form.fecha='';
+							this.form.title='';
+							this.showForm=false;
+
+						},
+						showProgramacion(pr) {
+							return pr.eventos && pr.eventos.length > 0
 						},
 						normalize(items) {
 							return items.map(v => {
 								v._expand = false;
 								v.eventos = v.eventos || []
 								v.eventos.forEach(evt => {
-									if(!evt.id){
+									if (!evt.id) {
 										evt.id = window.generateId();
 									}
 									evt.show = typeof evt.show === 'undefined' ? true : evt.show;
@@ -44,20 +73,20 @@ module.exports = function() {
 					}
 				});
 
-				function remove(id){
-					if(!window.confirm('Seguro ?')){
+				function remove(id) {
+					if (!window.confirm('Seguro ?')) {
 						return;
 					}
-					this.programacion.forEach(pr=>{
-						if(pr.eventos){
+					this.programacion.forEach(pr => {
+						if (pr.eventos) {
 							var indexToRemove;
-							pr.eventos.forEach((evt, index)=>{
-								if(evt.id == id){
+							pr.eventos.forEach((evt, index) => {
+								if (evt.id == id) {
 									indexToRemove = index;
 								}
 							})
-							if(indexToRemove!==undefined){
-								var removed = pr.eventos.splice(indexToRemove,1);
+							if (indexToRemove !== undefined) {
+								var removed = pr.eventos.splice(indexToRemove, 1);
 								this.$forceUpdate();
 							}
 						}

@@ -219,6 +219,13 @@ form>button:active,
     color: black;
     font-size: 14px;
 }
+.programacionForm{
+    max-width: 320px;
+    padding:20px;
+}
+.programacionForm > *{
+    display: block;
+}
 .programationItem{
     padding: 20px;
     background-color: peachpuff;
