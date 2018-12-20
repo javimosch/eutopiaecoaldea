@@ -32,6 +32,7 @@ body {
 header {
     background: white;
     padding-top: 10px;
+    padding-bottom: 10px;
     min-height: 50px;
     border-bottom: 5px solid #dbe9e2;
 }
@@ -847,7 +848,9 @@ iframe {
 
     header {
         padding-top: 0px;
-        height: 56px;
+        height: 80px;
+        display: flex;
+        align-items: center;
     }
 
     nav {
@@ -863,7 +866,7 @@ iframe {
         display: inline-block;
         text-align: center;
         width: 30%;
-        margin-top: 14px;
+        margin-top: 6px;
     }
 
     ul.menu {
