@@ -5,7 +5,7 @@
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
         "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "A25RPV89w",
+        "updateCode": "WnNlAgW5V",
         "programacion": [
             {
                 "fecha": "04-04-2018",
@@ -49,6 +49,13 @@
                 "whyMessage": "Por el BosqueEscuela",
                 "helpMessage": "Eco-quinta",
                 "dateMessage": "Verano"
+            },
+            {
+                "name": "Javier Leandro Arancibia",
+                "email": "arancibiajav@gmail.com",
+                "whyMessage": "",
+                "helpMessage": "Me gustaria crear e implementar un nuevo sitio web para el proyecto.",
+                "dateMessage": ""
             }
         ]
     },
