@@ -204,8 +204,8 @@ module.exports = {
 
 		HOME_CONTENT_3:{
 		es:"Los horarios de atencion al publico son del sábado al domingo, de las 9h a las 18h.",
-		en:"The entry to our eco-center is free. We are opened for the visitors from saturday to sunday, from 9am to 6pm",
-		fr:"L'entrée du parc est gratuite. Les horaires d'ouverture au public son du samedi au dimanche, de 9h à 18h"
+		en:"We are opened for the visitors from saturday to sunday, from 9am to 6pm",
+		fr:"Les horaires d'ouverture au public son du samedi au dimanche, de 9h à 18h"
 	},
 	ECOALDEA:{
 		es:"Ecoaldea",
