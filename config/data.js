@@ -39,12 +39,13 @@
                     {
                         "id": "_t0ykghezt",
                         "title": "REMODELACIÓN DE ESCENARIO",
-                        "image": "",
+                        "image": "/uploads/images/albergue-construccion.jpeg",
                         "message": "Construiremos muro de contención en piedra,muros posteriores de escenario y nivelaremos piso",
                         "time": "",
                         "show": true
                     }
-                ]
+                ],
+                "_expand": false
             }
         ],
         "voluntarios": [
