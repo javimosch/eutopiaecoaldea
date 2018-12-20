@@ -1,6 +1,15 @@
 <section class="admin protected container">
     <h3>Programacion <a class="fnt-12 backBtn" href="/admin/dashboard">Atras</a></h3>
     <button @click="saving || save()" :disabled="saving" class="btn" v-html="saving?'Guardando...':'Guardar'"></button>
+    <button @click="showForm=true" v-show="!showForm" class="btn" >Nuevo evento</button>
+    <div class="form programacionForm" v-show="showForm">
+        <label class="important">Nuevo evento</label>
+        <label>Fecha *</label>
+        <input placeholder="DD-MM-YYYY" v-model="form.fecha"/>
+        <label>Titulo *</label>
+        <input v-model="form.title" placeholder="Ejemplo: Feria de los artesanos" />
+        <button class="btn" @click="addEvent()">Agregar</button>
+    </div>
     <ul class="list">
         <li class="programationItem" v-for="item in programacion" v-show="showProgramacion(item)">
             <h3 v-html="item.fecha"></h3>
