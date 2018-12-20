@@ -362,7 +362,7 @@ section .image-title {
 }
 
 a > i {
-    min-width: 50px;
+    min-width: 30px;
     margin: 0 auto;
     text-align: left;
 }
