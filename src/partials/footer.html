@@ -3,7 +3,17 @@
         {{> partial_nav}}
 </nav>
 <footer>
-    <ul class="menu">
+    <div class="desktopSplitTwo footerFlexMobileReverse">
+        <div class="iiLogoWrapper">
+            <p class="fnt-10 italic text-center">
+                Desarrollado por
+            </p>
+            <a href="https://incubadoraitinerante.com" target="_blank">
+            <img src="https://res.cloudinary.com/misitioba/image/upload/v1545313622/incubadora_itinerante/logo_trans.png" class="img-fluid incubadoraItineranteLogo"/>
+            </a>
+        </div>
+        <div>
+            <ul class="menu">
         
         <li><a href="{{#pagePath langPath lang.ABOUT_US}}{{/pagePath}}">{{lang.ABOUT_US}}</a></li>
 
@@ -14,13 +24,16 @@
         <li><a href="{{#pagePath langPath lang.VOLUNTARIADO}}{{/pagePath}}">{{lang.VOLUNTARIADO}}</a></li>
     
         <li class="socialIcons">
-        	<a href="https://web.facebook.com/Eutopia-Ecoaldea-401715843328614/?_rdc=1&_rdr" target="_blank">
-        		<i class="fab fa-facebook"></i>
-        	</a>
+            <a href="https://web.facebook.com/Eutopia-Ecoaldea-401715843328614/?_rdc=1&_rdr" target="_blank">
+                <i class="fab fa-facebook"></i>
+            </a>
             <a href="http://instagram.com/eutopiaecoaldea" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
         </li>
         
     </ul>
+        </div>
+    </div>
+    
 </footer>

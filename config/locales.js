@@ -1,4 +1,8 @@
 module.exports = {
+	ACTUALIDADES:{
+		es:"Actualidades",
+		en:"News"
+	},
 	VOLUNTARIADO_ENVIAR_SOLICITUD_ERROR:{
 		es:'No pudimos registrar tu solicitud, por favor intenta en otro momento o envianos un email directamente con la informacion. Gracias !',
 		en:"Sorry, we could not register your application. Please, try again later or send us an email with your information. Thank you !",
