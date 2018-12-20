@@ -1,4 +1,7 @@
 module.exports = {
+	DESCARGA_PROPUESTA:{
+		es:'Descarga nuestra propuesta'
+	},
 	ACTUALIDADES:{
 		es:"Actualidades",
 		en:"News"

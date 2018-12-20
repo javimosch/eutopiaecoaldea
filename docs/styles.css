@@ -600,6 +600,7 @@ footer {
     display: block;
     padding: 0 20px;
     color: green;
+    text-decoration: none;
 }
 
 
@@ -934,6 +935,9 @@ iframe {
     min-width: 30%;
 }
 
+.vertical-middle{
+    vertical-align: middle;
+}
 .vertical-top {
     vertical-align: top;
 }
