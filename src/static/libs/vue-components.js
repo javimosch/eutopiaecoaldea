@@ -14,7 +14,7 @@
 		watch: {
 			value() {
 				if (!!this.editor && !this.init) {
-					this.editor.setValue(this.value, -1);
+					this.editor.setValue(this.value);
 					this.init = true;
 				}
 			},
@@ -25,6 +25,9 @@
 			}
 		},
 		methods: {
+			setValue(data){
+				this.editor.setValue(data,-1);
+			},
 			activate() {
 				if (this.activated) return;
 				this.activated = true;
@@ -34,7 +37,6 @@
 				this.editor = editor;
 				this.editor.on('change', () => {
 					var value = this.editor.getValue();
-					console.log('change', value);
 					this.$emit('input', value);
 				});
 				if (!!this.value) {

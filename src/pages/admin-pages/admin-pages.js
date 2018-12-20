@@ -10,9 +10,9 @@ module.exports = function() {
 					props: ['enabled', "page"],
 					template: `<div  class="page-editor-component" v-show="!!page">
 						<label class="important">Pagina <span v-html="page && page.label"></span></label>
-						<codemirror :enabled="enabled" v-model="htmlData"></codemirror>
+						<codemirror ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
 						<label class="important">Avanzado</label>
-						<codemirror :enabled="enabled" v-model="jsData"></codemirror>
+						<codemirror ref="jsEditor" :enabled="enabled" v-model="jsData"></codemirror>
 						<button class="btn" @click="saveParameters" v-html="progress?'Guardando...':'Guardar'"></button>
 					</div>`,
 					data() {
@@ -26,6 +26,10 @@ module.exports = function() {
 						page() {
 							this.jsData = this.page && this.page.jsData
 							this.htmlData = this.page && this.page.htmlData
+							window.jsEditor = this.$refs.jsEditor
+							this.$refs.jsEditor.setValue(this.jsData);
+							this.$refs.htmlEditor.setValue(this.htmlData);
+
 						}
 					},
 					methods: {
@@ -52,10 +56,10 @@ module.exports = function() {
 									}).show();
 								} else {
 									new Noty({
-										timeout: 500,
+										timeout: 2500,
 										layout: 'bottomCenter',
-										text: "Listo",
-										type: 'success',
+										text: "Los cambios se aplicaran la proxima vez que publique el sitio.",
+										type: 'info',
 										killer: true
 									}).show();
 								}
