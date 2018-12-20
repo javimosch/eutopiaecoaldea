@@ -1,5 +1,5 @@
 const outputFolder = require('path').join(process.cwd(), 'docs');
-
+const moment = require('moment-timezone');
 const argv = require('yargs').argv;
 const server = require('./src/server');
 var exec = server.fs.execSync;
@@ -143,14 +143,41 @@ function loadHandlebarHelpers() {
         return output.charAt(0).toUpperCase() + output.substring(1);
     });
 
-    
+    function filtrarProgramaciones(obj, options) {
+        obj = obj.filter(pr => {
+            var eventos = pr.eventos && pr.eventos.filter(evt => evt.show === undefined ? true : evt.show) || [];
+            if (options.data.root.programacionOcultarEventosPasados === true) {
+                eventos = eventos.filter(evt => {
+                    return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
+                })
+            }
+            return eventos.length > 0;
+        });
+        return obj;
+    }
+    Handlebars.registerHelper('hasProgramations', function(obj, options) {
+        return filtrarProgramaciones(obj, options).length > 0;
+    })
+    Handlebars.registerHelper('filtrarProgramacion', function(obj, options) {
+        return filtrarProgramaciones(obj, options);
+    })
+    Handlebars.registerHelper('filtrarEventosProgramacion', function(eventos, options) {
+        eventos = eventos.filter(evt => evt.show === undefined ? true : evt.show);
+        if (options.data.root.programacionOcultarEventosPasados === true) {
+            eventos = eventos.filter(evt => {
+                return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
+            })
+        }
+        return eventos;
+    })
+
     Handlebars.registerHelper('filterArrByKey', function(obj, key, options) {
-        return obj.filter(evt=>evt[key]===undefined?true:evt[key]);
+        return obj.filter(evt => evt[key] === undefined ? true : evt[key]);
     })
     Handlebars.registerHelper('emptyIf', function(str, emptyIf, options) {
-        if((eval(emptyIf)).includes(str)){
+        if ((eval(emptyIf)).includes(str)) {
             return '';
-        }else{
+        } else {
             return str;
         }
     });
@@ -162,7 +189,7 @@ function loadHandlebarHelpers() {
     });
 
     Handlebars.registerHelper('stringify', function(obj, options) {
-        return JSON.stringify(obj||{});
+        return JSON.stringify(obj || {});
     });
 
     Handlebars.registerHelper('typeIs', function(obj, value, options) {
