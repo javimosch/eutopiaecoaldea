@@ -11,14 +11,14 @@ module.exports = app => {
 		return res.json({
 			result: await Promise.all(folders.filter(f => {
 				if (!req.query.adminPages) {
-					return f.indexOf('admin-') == -1;
+					return f.indexOf('admin') == -1;
 				} else {
 					return true;
 				}
 			}).map(f => {
 				return (async f => {
-					var jsPath = path.join(pagesPath, f, f + '.js')
-					var htmlPath = path.join(pagesPath, f, f + '.html')
+					var jsPath = path.join('src/pages', f, f + '.js')
+					var htmlPath = path.join('src/pages', f, f + '.html')
 					return {
 						jsPath,
 						htmlPath,
