@@ -68,10 +68,16 @@ header {
     margin: 0 auto;
 }
 
-form>input,form>textarea, form>select,.form input,.form textarea,.form select{
+form>input,
+form>textarea,
+form>select,
+.form input,
+.form textarea,
+.form select {
     border-radius: 5px;
     border: 1px solid lightskyblue;
 }
+
 form>label,
 form>input,
 form>textarea {
@@ -85,8 +91,8 @@ form>textarea {
     min-height: 150px;
 }
 
-label.important{
-    font-size:30px;
+label.important {
+    font-size: 30px;
     margin-top: 30px;
     display: block;
 }
@@ -97,14 +103,15 @@ form>label {
     text-align: left;
 }
 
-.eventItem{
+.eventItem {
     display: inline-block;
     width: -webkit-fill-available;
     padding: 20px;
     background-color: ghostwhite;
     margin-bottom: 15px;
 }
-.eventItem .eventoTitle{
+
+.eventItem .eventoTitle {
     margin-bottom: 10px;
 }
 
@@ -117,10 +124,11 @@ form>button[disabled],
     opacity: 0.5;
 }
 
-.btn.danger{
+.btn.danger {
     background-color: tomato;
-    color:white;
+    color: white;
 }
+
 .btn {
     margin-top: 10px;
     border: 0px;
@@ -180,18 +188,24 @@ form>button:active,
     margin: 0px;
 }
 
-.fnt-12{
-    font-size: 12px!important;
+.fnt-12 {
+    font-size: 12px !important;
 }
-.italic{
-    font-style: italic!important;
+
+.fnt-10 {
+    font-size: 10px !important;
 }
-.bold{
-    font-weight: bold!important;
+
+.italic {
+    font-style: italic !important;
+}
+
+.bold {
+    font-weight: bold !important;
 }
 
 
-.developmentPage{
+.developmentPage {
     padding: 20px 10px;
     /* background-color: papayawhip; */
 }
@@ -213,30 +227,35 @@ form>button:active,
     padding: 0px 20px;
 }
 
-.volunteerItem{
+.volunteerItem {
     padding: 20px;
     background-color: peachpuff;
     color: black;
     font-size: 14px;
 }
-.programacionForm{
+
+.programacionForm {
     max-width: 320px;
-    padding:20px;
+    padding: 20px;
 }
-.programacionForm > *{
+
+.programacionForm>* {
     display: block;
 }
-.programationItem{
+
+.programationItem {
     padding: 20px;
     background-color: peachpuff;
     color: black;
     font-size: 14px;
     margin-bottom: 10px;
 }
-.adminProgramacionItemImage{
+
+.adminProgramacionItemImage {
     max-width: 100px;
     margin-bottom: 10px;
 }
+
 .sectionMainImage {
     display: flex;
     justify-content: center;
@@ -279,6 +298,11 @@ form>button:active,
     padding: 0px 20px;
 }
 
+.footerFlexMobileReverse {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 footer ul.menu>li.socialIcons>a:hover {
     color: black !important;
 }
@@ -302,12 +326,14 @@ ul.menu>li:hover>a {
     left: 0px;
     z-index: 999999999;
 }
-textarea.text{
-        min-width: 320px;
-        text-align: left;
-        width: -webkit-fill-available;
-        min-height: 100px;
-    }
+
+textarea.text {
+    min-width: 320px;
+    text-align: left;
+    width: -webkit-fill-available;
+    min-height: 100px;
+}
+
 ul.menu {
     list-style: none;
     padding: 0px;
@@ -361,21 +387,25 @@ section .image-title {
     align-items: center;
 }
 
-a > i {
+a>i {
     min-width: 30px;
     margin: 0 auto;
     text-align: left;
 }
+
 section .image-title h2 {
     font-size: 32px;
     color: white;
 }
-.form .blockChilds{
-        margin-bottom: 5px;
-    }
-.blockChilds > *{
+
+.form .blockChilds {
+    margin-bottom: 5px;
+}
+
+.blockChilds>* {
     display: block;
 }
+
 article h1,
 article h2,
 article h3,
@@ -462,26 +492,28 @@ a.logout {
     color: indianred;
 }
 
-.admin_login{
+.admin_login {
     max-width: 600px;
-    margin:0 auto;
+    margin: 0 auto;
     padding-bottom: 10px;
 }
-.admin_login label{
+
+.admin_login label {
     margin-bottom: 10px;
 }
 
 
-.admin_login >div{
+.admin_login>div {
     min-height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding:0px 10px;
+    padding: 0px 10px;
 }
-.admin_login >div>*{
-    width:100%;
+
+.admin_login>div>* {
+    width: 100%;
 }
 
 .admin_login input {
@@ -509,7 +541,8 @@ section.admin section {
     padding-bottom: 50px;
 }
 
-.adminImageItem{}
+.adminImageItem {}
+
 .admin-image-thumb {
     min-height: 155px;
     width: 200px;
@@ -521,6 +554,7 @@ section.admin section {
 footer {
     background-color: #a9f08280;
     padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .mobileCentered {
@@ -535,8 +569,8 @@ footer {
     flex-direction: column-reverse;
 }
 
-.column{
-    flex-direction: column!important;
+.column {
+    flex-direction: column !important;
 }
 
 .equalFlexBox.top {
@@ -567,6 +601,7 @@ footer {
     color: green;
 }
 
+
 .text-center {
     text-align: center;
 }
@@ -574,33 +609,84 @@ footer {
 iframe {
     min-width: -webkit-fill-available;
 }
-.backBtn{
+
+.backBtn {
     margin-left: 5px;
 }
 
 @media only screen and (min-width: 480px) {
-    .admin_login >div>*{
-        width:initial;
-        
+    .admin_login>div>* {
+        width: initial;
+
     }
+
     .imageUrl {}
-.adminImageItem{
-    display: inline-block;
-    width: 44%;
-    margin: 0px 20px;
+
+    .adminImageItem {
+        display: inline-block;
+        width: 44%;
+        margin: 0px 20px;
+    }
+
+    .admin-image-thumb {}
 }
-.admin-image-thumb {}
+
+.incubadoraItineranteLogo {
+    max-width: 100px !important;
+    margin: 0 auto;
+    display: block;
+}
+
+.iiLogoWrapper > p {
+    color: darkblue;
+    margin-bottom: 0px;
+    position: absolute;
+    width: 100px;
+    background: white;
+    margin-left: calc(50% - 50px);
 }
 @media only screen and (min-width: 992px) {
-    .eventItem{}
-    .adminProgramacionItemImage{
-    margin: 0 auto;
-    max-width: 200px;
-}
-    .desktopSplitTwo > div{
+    .iiLogoWrapper {
+        margin-left: 15px;
+        flex-basis: 70%;
+
+    }
+
+    .iiLogoWrapper>p {
+        position: absolute;
+        background: white;
+        color: midnightblue;
+        width: 100px;
+        opacity: 0.8;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .text-lg-left {
+        text-align: left;
+    }
+
+    .footerFlexMobileReverse {
+        flex-direction: unset !important;
+    }
+
+    .incubadoraItineranteLogo {
+        margin: 0;
+
+    }
+
+    .eventItem {}
+
+    .adminProgramacionItemImage {
+        margin: 0 auto;
+        max-width: 200px;
+    }
+
+    .desktopSplitTwo>div {
         flex-basis: 100%;
     }
-    .desktopSplitTwo{
+
+    .desktopSplitTwo {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -608,10 +694,13 @@ iframe {
     }
 
     .imageUrl {}
-.adminImageItem{
-    width: 30%;
-}
-.admin-image-thumb {}
+
+    .adminImageItem {
+        width: 30%;
+    }
+
+    .admin-image-thumb {}
+
     .photoQuote {
         font-size: 20px;
         text-align: justify;
@@ -672,21 +761,25 @@ iframe {
         justify-content: center;
         align-items: center;
     }
-    
-    form>label,.form>label,
-    form>input,.form>input,
-    form>textarea,.form>textarea {
+
+    form>label,
+    .form>label,
+    form>input,
+    .form>input,
+    form>textarea,
+    .form>textarea {
         min-width: 320px;
         text-align: left;
         width: -webkit-fill-available;
     }
-    input.semless{
-        border:0px;
+
+    input.semless {
+        border: 0px;
         border-bottom: 1px solid lightgray;
         margin-bottom: 5px;
     }
 
-    
+
 
 
 
@@ -802,44 +895,55 @@ iframe {
         text-align: center;
     }
 }
-.list{
+
+.list {
     list-style: none;
     padding: 0px;
 }
-.img-fluid{
+
+.img-fluid {
     max-width: 100%;
 }
-.inline-block{
-    display:inline-block;
+
+.inline-block {
+    display: inline-block;
 }
-.programacion_date{
-background-color: cadetblue;
+
+.programacion_date {
+    background-color: cadetblue;
     color: white;
     padding: 10px 0px;
     font-size: 16px;
     font-weight: bold;
 }
-.programacion_item_texto{
+
+.programacion_item_texto {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-basis: 100%;
 }
-.programacion_item{}
-.programacion_item img{
+
+.programacion_item {}
+
+.programacion_item img {
     max-width: 30%;
     min-width: 30%;
 }
-.vertical-top{
+
+.vertical-top {
     vertical-align: top;
 }
-.programacion_item h3{
+
+.programacion_item h3 {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-.programacion_item p{
+
+.programacion_item p {
     margin-top: 5px;
 }
+
 .programacion {
     max-width: 800px;
     margin: 0 auto;
