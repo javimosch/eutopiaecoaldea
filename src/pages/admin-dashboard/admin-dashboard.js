@@ -99,6 +99,9 @@ module.exports = function() {
 						});
 					},
 					methods: {
+						logout(){
+							window.logout();
+						},
 						isCooldown(name) {
 							var v = window.localStorage.getItem('cooldown_' + name);
 							if (!!v) {
