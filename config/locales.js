@@ -1,4 +1,16 @@
 module.exports = {
+	PRODUCTOS_CATALOGO_TITULO:{
+		es:"Nuestra aldea tambien produce una variedad de productos organicos y buenos para la salud!"
+	},
+	PRODUCTOS_CATALOGO_BOTON_DESCARGA:{
+		es:"Descarga nuestro catalogo"
+	},
+	CONOCER_FERIA:{
+		es:"Conoce nuestra feria"
+	},
+	VOLUNTARIADO_FORM_TITLE:{
+		es:"Solicitud"
+	},
 	DESCARGA_PROPUESTA:{
 		es:'Descarga nuestra propuesta'
 	},

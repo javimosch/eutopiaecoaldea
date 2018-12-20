@@ -378,7 +378,7 @@ article {
 }
 
 section .image-title {
-    background-color: dimgrey;
+    /* background-color: dimgrey; */
     margin: 0px;
     min-height: 150px;
     background-size: cover;
@@ -556,6 +556,7 @@ footer {
     background-color: #a9f08280;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top: 30px;
 }
 
 .mobileCentered {
@@ -605,7 +606,7 @@ footer {
 
 
 .text-center {
-    text-align: center;
+    text-align: center!important;
 }
 
 iframe {
@@ -841,6 +842,7 @@ iframe {
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        margin-top: 50px;
     }
 
     .mainContent {
