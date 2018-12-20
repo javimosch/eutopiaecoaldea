@@ -12,7 +12,7 @@
                 "eventos": [
                     {
                         "image": "/uploads/images/planta-tratamiento.jpg",
-                        "title": "Evento de prueba",
+                        "title": "REMODELACIÓN DE ESCENARIO",
                         "message": "Prueba",
                         "time": "16:30",
                         "id": "_5lal0n8ht",
@@ -39,7 +39,8 @@
                         "time": "20:55",
                         "show": false
                     }
-                ]
+                ],
+                "_expand": false
             }
         ],
         "voluntarios": [
