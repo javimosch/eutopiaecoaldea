@@ -9,16 +9,7 @@
         "programacion": [
             {
                 "fecha": "04-04-2018",
-                "eventos": [
-                    {
-                        "image": "/uploads/images/planta-tratamiento.jpg",
-                        "title": "REMODELACIÓN DE ESCENARIO",
-                        "message": "Prueba",
-                        "time": "16:30",
-                        "id": "_5lal0n8ht",
-                        "show": true
-                    }
-                ],
+                "eventos": [],
                 "_expand": false,
                 "show": true
             },
@@ -41,6 +32,19 @@
                     }
                 ],
                 "_expand": false
+            },
+            {
+                "fecha": "21-12-18",
+                "eventos": [
+                    {
+                        "id": "_t0ykghezt",
+                        "title": "REMODELACIÓN DE ESCENARIO",
+                        "image": "",
+                        "message": "Construiremos muro de contención en piedra,muros posteriores de escenario y nivelaremos piso",
+                        "time": "",
+                        "show": true
+                    }
+                ]
             }
         ],
         "voluntarios": [
