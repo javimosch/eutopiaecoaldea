@@ -27,6 +27,19 @@
                 "eventos": [],
                 "_expand": false,
                 "show": true
+            },
+            {
+                "fecha": "03-04-2018",
+                "eventos": [
+                    {
+                        "id": "_k1xylagqk",
+                        "title": "Lunes por la madrugada",
+                        "image": "https://eutopiaecoaldea.com/img/logo.webp",
+                        "message": "Prueba",
+                        "time": "20:55",
+                        "show": false
+                    }
+                ]
             }
         ],
         "voluntarios": [
