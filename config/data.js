@@ -62,6 +62,13 @@
                 "whyMessage": "",
                 "helpMessage": "Me gustaria crear e implementar un nuevo sitio web para el proyecto.",
                 "dateMessage": ""
+            },
+            {
+                "name": "Karin siesquen",
+                "email": "Reykarin@gmail.com",
+                "whyMessage": "Porque quiero una vida mas saludable para mi y mi familia",
+                "helpMessage": "En las areas de biohuerto, bioferias, tratamiento de residuos, bioconstruccion",
+                "dateMessage": "sabados o domingos\n"
             }
         ]
     },
