@@ -247,13 +247,13 @@ module.exports = {
 		de: 'Über uns'
 	},
 	ABOUT_US_CONTENT_1:{
-		es:"Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.",
+		es:"Somos un equipo que busca vivir de manera autosustentable, promoviendo permacultura, agroecología, eco-pedagogía y vida saludable, generando emprendimientos que permitan financiar nuestras actividades.",
 		en:"We are a group of people who look forward to live in a sustainable way, promoting permaculture, agro ecology, eco pedagogy and healthy life, generating small entrepreneurial projects to finance our activities",
 		fr:"Nous sommes un ensemble de personnes qui cherchent à vivre de manière durable et autonome. Nous promouvons la permaculture, l'agroécologie, l'éco pédagogie, la santé et le bien-être grâce à divers projets entrepreneuriaux qui nous permettent de financer nos activités."
 	},
 	MISSION: {
 		en: 'Mission',
-		es: 'Mission',
+		es: 'Mision',
 		fr: 'Mission'
 	},
 	MISSION_CONTENT_1: {
