@@ -91,12 +91,16 @@
         ],
         "formularioContacto": [
             {
-                name:"Maelle Aubert",
+                "name": "Maelle Aubert",
                 "email": "mae.aubert@gmail.com",
                 "messages": [
                     {
                         "message": "Mensaje de prueba 3",
                         "date": "24-12-2018 16:45"
+                    },
+                    {
+                        "message": "Mensaje de prueba 2",
+                        "date": "24-12-2018 17:02"
                     }
                 ]
             }
