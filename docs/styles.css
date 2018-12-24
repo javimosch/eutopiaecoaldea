@@ -544,6 +544,20 @@ section.admin section {
 
 .adminImageItem {}
 
+.2{
+    background-color: dimgrey;
+}
+.admin-file-thumb {
+    min-height: 50px;
+    width: 300px;
+    background-size: contain;
+    background-repeat: repeat;
+    margin: 0 auto;
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .admin-image-thumb {
     min-height: 155px;
     width: 200px;

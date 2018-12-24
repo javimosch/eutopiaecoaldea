@@ -9,6 +9,7 @@ module.exports = function configure(app) {
 
 	require('./upload')(app);
 	require('./images')(app);
+	require('./files')(app);
 	require('./email')(app);
 	require('./voluntariado')(app);
 	require('./programacion')(app);

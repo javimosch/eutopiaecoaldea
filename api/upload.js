@@ -6,7 +6,10 @@ var sander = require('sander');
 var path = require('path');
 module.exports = app => {
 	var server = require('../src/server');
-	app.post('/api/upload/images/single', upload.single('image'), function(req, res, next) {
+
+
+
+	app.post('/api/upload/single', upload.single('singleFile'), function(req, res, next) {
 		// req.file is the `avatar` file
 		// req.body will hold the text fields, if there were any
 		/*
@@ -19,8 +22,9 @@ module.exports = app => {
 		6: "path"
 		7: "size"
 		*/
+		var type = req.body.type || 'images';
 		var fileName = req.file.originalname;
-		var basePath = 'src/static/uploads/images/';
+		var basePath = `src/static/uploads/${type}/`;
 		var gitPath = server.git.getPath();
 		var targetBasePath = path.join(gitPath,basePath);
 		var targetPath = path.join(targetBasePath, fileName);

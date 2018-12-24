@@ -1,0 +1,25 @@
+<section class="admin protected container">
+    <h3>Archivos <a class="fnt-12 backBtn" href="/admin/dashboard">Atras</a></h3>
+    <label class="important">Subir archivo</label>
+    <section class="upload-images">
+        <div class="developmentPage">
+            <input type="file" name="image" id="file" />
+            <button class="btn" @click="upload()" v-html="loaders.imageUpload?'Espera...':'Subir'"></button>
+        </div>
+    </section>
+    <label class="important">Archivos almacenados</label>
+    <section class="view-images imagesViewBox">
+        <div class="developmentPage">
+            <div v-for="item in files" class="adminImageItem">
+                <a :href="`/uploads/files/${item}`" target="_blank">
+                    <div class="admin-file-thumb">
+                        <div>
+                            <i class="fas fa-file"></i>
+                        </div>
+                    </div>
+                </a>
+                <input :value="`/uploads/files/${item}`" class="imageUrl fileUrl" />
+            </div>
+        </div>
+    </section>
+</section>
