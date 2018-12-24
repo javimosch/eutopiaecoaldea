@@ -77,7 +77,11 @@
                 "helpMessage": "Estoy interesado en participar de la estadía como voluntario en la modalidad de trueque, tengo una iniciativa que es para acoplar un tablero de trabajo tomado de marcos de trabajo de creación de productos e forma agil que sirva para articular el trabajo de los colaboradores con las huertas, pensando en que hay rotación de personal constante y se puede desarticular el trabajo. También estoy tejiendo bolsas de fique; en un proceso de sustitición de bolsas plásticas, se podría hacer con cualquier fibra natural",
                 "dateMessage": "El 4 de enero de 2019, estaría 15 días."
             }
-        ]
+        ],
+        changelog:[{
+            date:"24-12-2018",
+            list:["Agregamos una seccion llamada Historial de cambios para ver todos los cambios realizados luego de la primera version del sitio web.","Actualizamos los archivos pdf de propuestas","Agregamos una seccion llamada archivos para ver y subir archivos"]
+        }]
     },
     "login": {
         "code": "cm5y"
