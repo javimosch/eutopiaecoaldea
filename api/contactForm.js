@@ -4,8 +4,19 @@ const sander = require('sander');
 const server = require('../src/server');
 var filePath = name => path.join(process.cwd(), name);
 const reload = require('require-reload')(require);
+const dJSON = require('dirty-json');
 module.exports = app => {
-	app.post('/api/formulario-de-contacto/guardar', (req, res) => {
+
+	app.get('/api/formularioContacto/fetch', (req, res) => {
+		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
+		data = dJSON.parse(data);
+		res.json({
+			result: data.context.formularioContacto
+		})
+	})
+
+
+	app.post('/api/formularioContacto/save', (req, res) => {
 		var dataPath = server.git.gitFilePath('config/data.js')
 		var data = sander.readFileSync(dataPath).toString('utf-8');
 		const dJSON = require('dirty-json');
@@ -21,12 +32,15 @@ module.exports = app => {
 				date: moment().tz('America/Guayaqui').format('DD-MM-YYYY HH:mm')
 			});
 			delete payload.email;
+			delete payload.name;
 			if (item) {
 				//server.helpers.deepMerge(item, payload);
+				item.name = req.body.name;
 				item.messages = item.messages || []
 				item.messages.push(payload)
 			} else {
 				data.context.formularioContacto.push({
+					name: req.body.name,
 					email: req.body.email,
 					messages: [payload]
 				});

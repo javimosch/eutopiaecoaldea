@@ -1,0 +1,37 @@
+<section class="admin protected container">
+	<h3>Formulario de contacto <a class="fnt-12 backBtn" href="/admin/dashboard">Atras</a></h3>
+	<ul class="list">
+            
+            <li class="volunteerItem" v-for="item in items">
+            	<div class="desktopSplitTwo">
+            		<div>
+            			<p class="bold">Nombre</p> 
+            			<p v-html="item.name"></p>
+            		</div>
+            		<div>
+            			<p class="bold">Email</p>
+            			<p v-html="item.email"></p>
+            		</div>
+            	</div>
+            	<div v-show="item._expand">
+                        <p class="text-center italic" v-show="item.messages.length===0">No hay mensajes</p>
+                        <ul class="list" v-show="item.messages.length>0">
+                              <li v-for="m in item.messages">
+                        
+                        <p><b>Fecha</b></p>
+                        <p class="italic" v-html="m.date||'(sin completar)'"></p>            
+                        <p><b>Mesaje</b></p>
+                        <p class="italic" v-html="m.message||'(sin completar)'"></p>
+
+                              </li>
+                        </ul>
+            		
+            	</div>
+            	<button class="btn" @click="item._expand=!item._expand" v-html="item._expand?'Ver menos':'Ver mas'"></button>
+            </li>
+            
+    </ul>
+</section>
+<script type="text/javascript">
+	window.voluntarios = JSON.parse(`{{#stringify voluntarios}}{{/stringify}}`);
+</script>

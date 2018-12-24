@@ -31,7 +31,7 @@ module.exports = function(options, config, context) {
 							}
 							this.sending = true;
 							$.ajax({
-								url: `${SERVER.API_URL}/api/formulario-de-contacto/guardar`,
+								url: `${SERVER.API_URL}/api/formularioContacto/save`,
 								data: JSON.stringify(Object.assign({}, this.form)),
 								contentType: "application/json; charset=utf-8",
 								type: 'POST',
