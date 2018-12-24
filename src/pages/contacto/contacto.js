@@ -6,15 +6,60 @@ module.exports = function(options, config, context) {
 				new Vue({
 					el: 'form',
 					name: 'contact',
-					data(){
+					data() {
 						return {
-							name:'',
-							email:'',
-							message:''
+							sending: false,
+							form: {
+								name: '',
+								email: '',
+								message: ''
+							}
 						}
 					},
-					methods:{
-						send(e){
+					methods: {
+						send(e) {
+
+							e.stopPropagation();
+							if (!this.form.name || !this.form.email) {
+								if (!this.form.name) {
+									this.$refs.name.focus()
+								}
+								if (!this.form.email) {
+									this.$refs.email.focus()
+								}
+								return;
+							}
+							this.sending = true;
+							$.ajax({
+								url: `${SERVER.API_URL}/api/formulario-de-contacto/guardar`,
+								data: JSON.stringify(Object.assign({}, this.form)),
+								contentType: "application/json; charset=utf-8",
+								type: 'POST',
+								error: () => {
+									this.sending = false;
+								},
+								success: (data) => {
+									this.sending = false;
+									if (!data.result) {
+										new Noty({
+											layout: 'bottomRight',
+											text: window.SERVER.lang.VOLUNTARIADO_ENVIAR_SOLICITUD_ERROR,
+											type: 'error',
+											killer: true,
+											delay: false
+										}).show();
+									} else {
+										new Noty({
+											layout: 'bottomRight',
+											text: window.SERVER.lang.VOLUNTARIADO_ENVIAR_SOLICITUD_SUCCESS,
+											type: 'success',
+											killer: true
+										}).show();
+									}
+								}
+							});
+
+							/*
 							e.stopPropagation();
 							if(!this.name){
 								return;
@@ -49,7 +94,9 @@ module.exports = function(options, config, context) {
 								success: (data) => {
 									console.info('RES',data);
 								}
+
 							});
+								*/
 						}
 					}
 				});
