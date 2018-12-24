@@ -15,7 +15,11 @@ module.exports = function() {
 						}
 					},
 					created() {
-						console.log('admin_login')
+						var encoded = window.localStorage.getItem('adminToken');
+						if(!!encoded){
+							this.password = window.atob(encoded);
+							this.login();
+						}
 					},
 					methods: {
 						login
