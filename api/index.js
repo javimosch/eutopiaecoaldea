@@ -48,7 +48,7 @@ module.exports = function configure(app) {
 		try {
 			data = dJSON.parse(data);
 			data.context = data.context || {}
-			data.context.updateCode = updateCode;
+			//data.context.updateCode = updateCode;
 			data.context.wipMode = req.query.wipMode === '1' ? true : false;
 			server.git.pushPath('config/data.js', {
 				files: [{
