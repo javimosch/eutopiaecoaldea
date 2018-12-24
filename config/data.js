@@ -90,7 +90,14 @@
         ],
         "formularioContacto": [
             {
-                "email": "mae.aubert@gmail.com"
+                "email": "mae.aubert@gmail.com",
+                "messages": [
+                    {
+                        "name": "Maelle Aubert",
+                        "message": "Mensaje de prueba 2",
+                        "date": "24-12-2018"
+                    }
+                ]
             }
         ]
     },
