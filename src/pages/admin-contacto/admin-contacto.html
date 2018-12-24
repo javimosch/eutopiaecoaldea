@@ -15,13 +15,15 @@
             	</div>
             	<div v-show="item._expand">
                         <p class="text-center italic" v-show="item.messages.length===0">No hay mensajes</p>
-                        <ul class="list" v-show="item.messages.length>0">
-                              <li v-for="m in item.messages">
+                        <ul class="list adminContactFormMessages" v-show="item.messages.length>0">
+                              <li v-for="m in item.messages" class="">
                         
                         <p><b>Fecha</b></p>
                         <p class="italic" v-html="m.date||'(sin completar)'"></p>            
-                        <p><b>Mesaje</b></p>
+                        <p><b>Mensaje</b></p>
                         <p class="italic" v-html="m.message||'(sin completar)'"></p>
+                        <p><b>Telefono</b></p>
+                        <p class="italic" v-html="m.phone||'(sin completar)'"></p>
 
                               </li>
                         </ul>
@@ -32,6 +34,3 @@
             
     </ul>
 </section>
-<script type="text/javascript">
-	window.voluntarios = JSON.parse(`{{#stringify voluntarios}}{{/stringify}}`);
-</script>

@@ -3,10 +3,12 @@
         <h2 class="desktopCentered">{{lang.CONTACTO}}</h2>
         <div class="desktopCentered">
             <form>
-                <label>{{lang.NOMBRE_APELLIDO}}</label>
+                <label>{{lang.NOMBRE_APELLIDO}}*</label>
                 <input v-model="form.name" ref="name"/>
-                <label>{{lang.EMAIL}}</label>
+                <label>{{lang.EMAIL}}*</label>
                 <input v-model="form.email" ref="email"/>
+                <label>{{lang.TELEFONO}}</label>
+                <input v-model="form.phone" ref="phone"/>
                 <label>{{lang.MENSAJE}}</label>
                 <textarea v-model="form.message" ref="message"></textarea>
                 <button type="button" class="btn mobileCentered" :disabled="sending" @click="sending || send($event)" v-html="sending?'{{lang.ENVIAR}}...':'{{lang.ENVIAR}}'"></button>

@@ -37,6 +37,10 @@ module.exports = {
 		en:"Send",
 		fr:"Envoyer"
 	},
+	TELEFONO:{
+		es:"Telefono",
+		en:"Phone"
+	},
 	MENSAJE:{
 		es:"Mensaje",
 		en:"Message",
