@@ -5,7 +5,7 @@
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
         "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
-        "updateCode": "sz0YAYre-",
+        "updateCode": "rGA7Jgd-u",
         "programacion": [
             {
                 "fecha": "04-04-2018",
@@ -78,10 +78,16 @@
                 "dateMessage": "El 4 de enero de 2019, estaría 15 días."
             }
         ],
-        changelog:[{
-            date:"24-12-2018",
-            list:["Agregamos una seccion llamada Historial de cambios para ver todos los cambios realizados luego de la primera version del sitio web.","Actualizamos los archivos pdf de propuestas","Agregamos una seccion llamada archivos para ver y subir archivos"]
-        }]
+        "changelog": [
+            {
+                "date": "24-12-2018",
+                "list": [
+                    "Agregamos una seccion llamada Historial de cambios para ver todos los cambios realizados luego de la primera version del sitio web.",
+                    "Actualizamos los archivos pdf de propuestas",
+                    "Agregamos una seccion llamada archivos para ver y subir archivos"
+                ]
+            }
+        ]
     },
     "login": {
         "code": "cm5y"
