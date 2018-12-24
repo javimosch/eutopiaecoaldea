@@ -18,7 +18,7 @@ module.exports = app => {
 			data.context.formularioContacto = data.context.formularioContacto || [];
 			var item = data.context.formularioContacto.find(v => v.email == req.body.email);
 			var payload = Object.assign({},req.body,{
-				date: moment().tz('America/Guayaqui').format('DD-MM-YYYY')
+				date: moment().tz('America/Guayaqui').format('DD-MM-YYYY HH:mm')
 			});
 			delete payload.email;
 			if (item) {
