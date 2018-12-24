@@ -2,6 +2,34 @@ function generateId() {
 	return '_' + Math.random().toString(36).substr(2, 9);
 }
 
+function showInfo(text, timeout, killer) {
+	showNoty(text, timeout, killer, 'info');
+}
+function showWarn(text, timeout, killer) {
+	showNoty(text, timeout, killer, 'warning');
+}
+function showError(text, timeout, killer) {
+	showNoty(text, timeout, killer, 'error');
+}
+function showSuccess(text, timeout, killer) {
+	showNoty(text, timeout, killer, 'success');
+}
+
+function showNoty(text, timeout, killer, type) {
+	var opts = {
+		layout: 'bottomCenter',
+		text: text,
+		type: type,
+		killer: killer === undefined ? false : killer,
+	}
+	if (timeout == false) {
+		opts.delay = false
+	} else {
+		opts.timeout = opts.timeout || 2500;
+	}
+	new Noty(opts).show();
+}
+
 function apiGet(uri) {
 	return new Promise((resolve, reject) => {
 		fetch(`${SERVER.API_URL}${uri}`).then(r => r.json().then(response => {

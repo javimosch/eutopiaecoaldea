@@ -1,17 +1,17 @@
 module.exports = function() {
 	return {
-		name: 'images',
+		name: 'files',
 		path: 'admin',
 		context: {
 			type: 'admin',
 			init: function init() {
-
 				new Vue({
 					el: '.admin',
-					name: 'adminImages',
+					name: 'adminFiles',
 					data() {
 						return {
-							images: [],
+							single_file: null,
+							files: [],
 							loaders: {
 								imageUpload: false,
 							}
@@ -21,30 +21,31 @@ module.exports = function() {
 
 					},
 					mounted() {
-						this.browseImages();
+						this.browse();
 
-						$(".adminImageItemUrl").on("click", function() {
+						$(".fileUrl").on("click", function() {
 							$(this).select();
 						});
 					},
 					methods: {
 
-						uploadImage,
-						browseImages,
+						upload,
+						browse,
 
 					}
 				})
 
-				function browseImages() {
-					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
-						this.images = response.images;
+				function browse() {
+					fetch(`${SERVER.API_URL}/api/files/browse`).then(r => r.json().then(response => {
+						this.files = response.items;
 					}));
 				}
 
-				function uploadImage() {
+				function upload() {
 					var data = new FormData();
-					var file = $('#image')[0].files[0];
+					var file = $('#file')[0].files[0];
 					data.append('singleFile', file);
+					data.append('type', 'files');
 					this.loaders.imageUpload = true;
 					$.ajax({
 						url: `${SERVER.API_URL}/api/upload/single`,
@@ -55,15 +56,17 @@ module.exports = function() {
 						type: 'POST',
 						error: () => {
 							this.loaders.imageUpload = false;
-							$('#image').val('');
+							$('#file').val('');
 						},
 						success: (data) => {
 							this.loaders.imageUpload = false;
-							$('#image').val('');
-							showInfo("Imagen subida !");
+							$('#file').val('');
+							showInfo("Archivo subido !");
 						}
 					});
 				}
+
+
 			}
 		}
 	}
