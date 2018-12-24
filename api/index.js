@@ -12,6 +12,7 @@ module.exports = function configure(app) {
 	require('./files')(app);
 	require('./email')(app);
 	require('./voluntariado')(app);
+	require('./contactForm')(app);
 	require('./programacion')(app);
 	require('./pages')(app);
 
