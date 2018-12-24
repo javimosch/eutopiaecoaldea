@@ -87,6 +87,14 @@
                     "Agregamos una seccion llamada archivos para ver y subir archivos"
                 ]
             }
+        ],
+        "formularioContacto": [
+            {
+                "name": "Maelle Aubert",
+                "email": "mae.aubert@gmail.com",
+                "message": "Mensaje de prueba",
+                "date": "24-12-2018"
+            }
         ]
     },
     "login": {
