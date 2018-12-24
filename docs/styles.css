@@ -230,9 +230,9 @@ form>button:active,
 
 .volunteerItem {
     padding: 20px;
-    background-color: peachpuff;
-    color: black;
-    font-size: 14px;
+    background-color: sandybrown;
+    color: white;
+    font-size: 16px;
 }
 
 .programacionForm {
@@ -919,6 +919,19 @@ iframe {
 .list {
     list-style: none;
     padding: 0px;
+}
+
+.adminContactFormMessages{
+    margin-left: 0px;
+}
+.adminContactFormMessages li{
+    background: azure;
+    padding: 5px;
+    color: black;
+}
+.adminContactFormMessages li:nth-child(odd){
+  background-color: antiquewhite;
+  color: black;
 }
 
 .img-fluid {
