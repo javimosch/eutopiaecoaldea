@@ -82,18 +82,19 @@
             {
                 "date": "24-12-2018",
                 "list": [
-                    "Agregamos una seccion llamada Historial de cambios para ver todos los cambios realizados luego de la primera version del sitio web.",
+                    "Agregamos una seccion llamada formulario de contacto para ver los mensajes recibidos",
                     "Actualizamos los archivos pdf de propuestas",
-                    "Agregamos una seccion llamada archivos para ver y subir archivos"
+                    "Agregamos una seccion llamada archivos para ver y subir archivos",
+                    "Agregamos una seccion llamada Historial de cambios para ver todos los cambios realizados luego de la primera version del sitio web."
                 ]
             }
         ],
         "formularioContacto": [
             {
+                name:"Maelle Aubert",
                 "email": "mae.aubert@gmail.com",
                 "messages": [
                     {
-                        "name": "Maelle Aubert",
                         "message": "Mensaje de prueba 3",
                         "date": "24-12-2018 16:45"
                     }
