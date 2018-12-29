@@ -12,6 +12,7 @@ module.exports = function() {
 						<label class="important">Vista parcial <span v-html="item && item.label"></span></label>
 						<hr>
 						<codemirror ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
+						<button class="btn" @click="save" v-html="progress?'Guardando...':'Guardar'"></button>
 					</div>`,
 					data() {
 						return {
@@ -27,7 +28,7 @@ module.exports = function() {
 						}
 					},
 					methods: {
-						saveParameters() {
+						save() {
 							this.progress = true;
 							apiPost('/api/git/path', {
 								files: [{
