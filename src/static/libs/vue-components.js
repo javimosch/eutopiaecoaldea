@@ -14,7 +14,7 @@
 		watch: {
 			value() {
 				if (!!this.editor && !this.init) {
-					this.editor.setValue(this.value);
+					this.editor.setValue(this.value, -1);
 					this.init = true;
 				}
 			},

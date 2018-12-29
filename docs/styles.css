@@ -696,7 +696,8 @@ iframe {
 
     .adminProgramacionItemImage {
         margin: 0 auto;
-        max-width: 200px;
+        max-width: 150px;
+        padding: 10px;
     }
 
     .desktopSplitTwo>div {
