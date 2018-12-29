@@ -1,6 +1,6 @@
 {
     "context": {
-        "wipMode": true,
+        "wipMode": false,
         "defaultCurrentPage": "page_ecoaldea",
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
