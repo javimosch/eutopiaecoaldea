@@ -2,9 +2,8 @@
 <section class="admin protected container">
 	<h3>Voluntarios <a class="fnt-12 backBtn" href="/admin/dashboard">Atras</a></h3>
 	<ul class="list">
-            
             <li class="volunteerItem" v-for="item in voluntarios">
-            	<div class="desktopSplitTwo">
+            	<div class="tabletSplitTwo">
             		<div>
             			<p class="bold">Nombre</p> 
             			<p v-html="item.name"></p>
@@ -24,7 +23,6 @@
             	</div>
             	<button class="btn" @click="item._expand=!item._expand" v-html="item._expand?'Ver menos':'Ver mas'"></button>
             </li>
-            
     </ul>
 </section>
 <script type="text/javascript">
