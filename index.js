@@ -189,7 +189,20 @@ function loadHandlebarHelpers() {
     });
 
     Handlebars.registerHelper('stringify', function(obj, options) {
-        return JSON.stringify(obj || {});
+        function escape(key, val) {
+            if (typeof(val) != "string") return val;
+            return val
+                .replace(/[\\]/g, '\\\\')
+                .replace(/[\/]/g, '\\/')
+                .replace(/[\b]/g, '\\b')
+                .replace(/[\f]/g, '\\f')
+                .replace(/[\n]/g, '\\n')
+                .replace(/[\r]/g, '\\r')
+                .replace(/[\t]/g, '\\t')
+                .replace(/[\"]/g, '\\"')
+                .replace(/\\'/g, "\\'");
+        }
+        return JSON.stringify(obj || {}, escape);
     });
 
     Handlebars.registerHelper('typeIs', function(obj, value, options) {

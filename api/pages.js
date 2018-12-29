@@ -10,7 +10,7 @@ module.exports = app => {
 		var folders = await sander.readdir(pagesPath);
 		return res.json({
 			result: await Promise.all(folders.filter(f => {
-				if (!req.query.adminPages) {
+				if (false && !req.query.adminPages) {
 					if(f.indexOf('faq')!==-1){
 						return true;
 					}

@@ -1,6 +1,7 @@
 const path = require('path');
 const sander = require('sander');
 const server = require('../src/server');
+const moment = require('moment-timezone');
 var filePath = name => path.join(process.cwd(), name);
 const reload = require('require-reload')(require);
 module.exports = app => {
@@ -16,10 +17,13 @@ module.exports = app => {
 			data.context = data.context || {};
 			data.context.voluntarios = data.context.voluntarios || [];
 			var voluntario = data.context.voluntarios.find(v => v.email == req.body.email);
+			var payload = Object.assign({}, req.body, {
+				date: moment().tz('America/Guayaqui').format('DD-MM-YYYY HH:mm')
+			})
 			if (voluntario) {
-				server.helpers.deepMerge(voluntario, req.body);
+				server.helpers.deepMerge(voluntario, payload);
 			} else {
-				data.context.voluntarios.push(req.body);
+				data.context.voluntarios.push(payload);
 			}
 			server.git.pushPath('config/data.js', {
 				files: [{
