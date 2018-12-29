@@ -99,6 +99,16 @@ function writeFiles(files) {
 		});
 	}
 }
+function unlinkFiles(filePaths) {
+	if (filePaths && filePaths.length > 0) {
+		prepare();
+		filePaths.forEach(filePath => {
+			var unlinkPath = path.join(cache.basePath, filePath);
+			console.log('git unlinkFile', unlinkPath);
+			sander.unlinkSync(unlinkPath);
+		});
+	}
+}
 
 function sync() {
 	console.log('git sync');
@@ -116,7 +126,7 @@ function pushPath(gitPaths, options = {}) {
 
 	console.log('git pushPath: sync')
 	sync();
-
+	unlinkFiles(options.unlink);
 	writeFiles(options.files);
 	var adds = '';
 	if (!(gitPaths instanceof Array)) {

@@ -14,6 +14,7 @@ module.exports = function() {
 							images: [],
 							loaders: {
 								imageUpload: false,
+								removingImage: false
 							}
 						}
 					},
@@ -23,21 +24,76 @@ module.exports = function() {
 					mounted() {
 						this.browseImages();
 
-						$(".adminImageItemUrl").on("click", function() {
-							$(this).select();
-						});
+
 					},
 					methods: {
-
+						removeImage,
 						uploadImage,
 						browseImages,
-
 					}
 				})
 
+				function removeImage(name) {
+					if (window.confirm('Seguro ?')) {
+						this.loaders.removingImage = true;
+						apiPost('/api/images/remove', {
+							name: name
+						}).then(res => {
+							this.loaders.removingImage = false;
+							if (!res.err) {
+								showInfo("Imagen removida !");
+								this.browseImages()
+							}
+						});
+					}
+				}
+
+				const imagesCheck = (function() {
+					const images = {};
+					const self = (url, cache = true) => {
+						return new Promise((resolve, reject) => {
+							if (images[url]) return resolve(images[url]);
+
+							const image = new Image();
+							image.src = url;
+							image.onload = () => {
+								const data = {
+									url,
+									width: image.width,
+									height: image.height
+								};
+								if (cache) images[url] = data;
+								return resolve(data);
+							};
+							image.onerror = (err) => {
+								return reject(err);
+							};
+						});
+					};
+					return self;
+				})();
+
 				function browseImages() {
-					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(response => {
-						this.images = response.images;
+					fetch(`${SERVER.API_URL}/api/images/browse`).then(r => r.json().then(async response => {
+						
+						this.images = await Promise.all(response.images.map(image => {
+							return new Promise((resolve,reject)=>{
+								return imagesCheck(`/uploads/images/${image.name}`).then(()=>{
+									image.link = `/uploads/images/${image.name}`
+									image.pending = false;
+									resolve(image)
+								}).catch(err=>{
+									image.pending = true;
+									resolve(image)
+								})
+							})
+						}));
+
+						setTimeout(() => {
+							$(".adminImageItemUrl").off('click').on("click", function() {
+								$(this).select();
+							});
+						}, 1000);
 					}));
 				}
 
@@ -60,6 +116,7 @@ module.exports = function() {
 						success: (data) => {
 							this.loaders.imageUpload = false;
 							$('#image').val('');
+							this.browseImages();
 							showInfo("Imagen subida !");
 						}
 					});

@@ -12,11 +12,15 @@
     <section class="view-images imagesViewBox">
         <div class="developmentPage">
             <div v-for="item in images" class="adminImageItem">
-                <a :href="`/uploads/images/${item}`" target="_blank">
-                    <div class="admin-image-thumb" :style="`background-image:url(/uploads/images/${item});`">
+                <a :href="`${item.link}`" target="_blank">
+                    <div class="admin-image-thumb" :style="`background-image:url(${item.link});`">
                     </div>
                     </a>
-                <input :value="`/uploads/images/${item}`" class="imageUrl adminImageItemUrl" />
+                <input :value="`/uploads/images/${item.name}`" class="imageUrl adminImageItemUrl" />
+                <p class="fnt-12 italic text-center" v-show="item.pending">Requiere publicar cambios</p>
+                <div >
+                                <button :disabled="loaders.removingImage" @click="loaders.removingImage || removeImage(item.name)" class="btn danger mx-auto"><i class="fas fa-trash-alt"></i></button>
+                            </div>
             </div>
         </div>
     </section>
