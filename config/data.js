@@ -80,6 +80,14 @@
         ],
         "changelog": [
             {
+                "date": "28-12-2018",
+                "list": [
+                    "Las imagenes subidas recientemente tienen una leyenda 'Requiere publicar cambios'. Dichas imagenes no se visualizaran correctamente hasta publicar cambios",
+                    "Las imagenes se visualizan luego de cargarse sin necesidad de recargar la pagina",
+                    "Agregamos nueva seccion Vistas parciales. Similar a paginas, permite editar el codigo fuente que se utiliza en diferentes lugares del sitio."
+                ]
+            },
+            {
                 "date": "24-12-2018",
                 "list": [
                     "Agregamos una seccion llamada formulario de contacto para ver los mensajes recibidos",
