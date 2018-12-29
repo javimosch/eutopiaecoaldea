@@ -9,18 +9,18 @@ module.exports = function() {
 					el: '.admin',
 					name: 'adminVoluntarios',
 					data() {
-						return Object.assign({
-							voluntarios: window.voluntarios.map(v=>{
-								v._expand = false
-								return v;
-							})
-						}, {});
+						return {
+							voluntarios: []
+						}
 					},
 					created(){
 						fetch(`${SERVER.API_URL}/api/voluntarios/fetch`).then(r => r.json().then(response => {
 							this.voluntarios = response.result.map(v=>{
 								v._expand = false
 								return v;
+							}).sort((a,b)=>{
+								var bd = moment(b.date,'DD-MM-YYYY HH:mm');
+								return moment(a.date,'DD-MM-YYYY HH:mm').isBefore(bd) ? -1 : 1
 							});
 						}));
 					},
