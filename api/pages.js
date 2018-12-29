@@ -11,6 +11,9 @@ module.exports = app => {
 		return res.json({
 			result: await Promise.all(folders.filter(f => {
 				if (!req.query.adminPages) {
+					if(f.indexOf('faq')!==-1){
+						return true;
+					}
 					return f.indexOf('admin') == -1;
 				} else {
 					return true;
