@@ -1,0 +1,7 @@
+<section class="admin protected container form">
+    <h3>Vistas parciales <a class="fnt-12 backBtn" href="/admin/dashboard">Atras</a></h3>
+    <select  v-model="selectedItem">
+    	<option v-for="item in items" v-html="item.label" :value="item"></option>
+    </select>
+    <partial-editor :item="selectedItem"></partial-editor>
+</section>
