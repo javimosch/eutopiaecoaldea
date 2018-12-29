@@ -20,7 +20,7 @@ module.exports = function() {
 								return v;
 							}).sort((a,b)=>{
 								var bd = moment(b.date,'DD-MM-YYYY HH:mm');
-								return moment(a.date,'DD-MM-YYYY HH:mm').isBefore(bd) ? -1 : 1
+								return moment(a.date,'DD-MM-YYYY HH:mm').isAfter(bd) ? -1 : 1
 							});
 						}));
 					},

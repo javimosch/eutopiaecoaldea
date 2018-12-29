@@ -232,9 +232,11 @@ form>button:active,
 
 .volunteerItem {
     padding: 20px;
-    background-color: sandybrown;
+    background-color: coral;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 .volunteerItem:nth-child(odd){
   background-color: antiquewhite;
@@ -669,6 +671,19 @@ iframe {
     width: 100px;
     background: white;
     margin-left: calc(50% - 50px);
+}
+@media only screen and (min-width: 768px) {
+    .tabletSplitTwo>div {
+        flex-basis: 100%;
+    }
+
+    .tabletSplitTwo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 100%;
+    }
+
 }
 @media only screen and (min-width: 992px) {
     .iiLogoWrapper {
