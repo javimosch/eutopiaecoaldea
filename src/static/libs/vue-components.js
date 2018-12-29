@@ -1,8 +1,8 @@
 
 	Vue.component('codemirror', {
-		props: ['value', 'enabled'],
+		props: ['value', 'enabled','mode'],
 		template: `<div  class="codemirror-component">
-						<div ref="editor" style="width: -webkit-fill-available;height: 300px;"></div>
+						<div ref="editor" style="width: -webkit-fill-available;min-height: calc(100vh);"></div>
 					</div>`,
 		data() {
 			return {
@@ -33,12 +33,13 @@
 				this.activated = true;
 				var editor = ace.edit(this.$refs.editor);
 				editor.setTheme("ace/theme/monokai");
-				editor.session.setMode("ace/mode/javascript");
+				editor.session.setMode(`ace/mode/${this.mode||'javascript'}`);
 				this.editor = editor;
 				this.editor.on('change', () => {
 					var value = this.editor.getValue();
 					this.$emit('input', value);
 				});
+				this.editor.setFontSize(16);
 				if (!!this.value) {
 					this.editor.setValue(this.value, -1);
 				}

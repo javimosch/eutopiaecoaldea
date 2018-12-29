@@ -10,7 +10,7 @@ module.exports = function() {
 					props: ['enabled', "page"],
 					template: `<div  class="page-editor-component" v-show="!!page">
 						<label class="important">Pagina <span v-html="page && page.label"></span></label>
-						<codemirror ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
+						<codemirror mode="html" ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
 						<label class="important">Avanzado</label>
 						<codemirror ref="jsEditor" :enabled="enabled" v-model="jsData"></codemirror>
 						<button class="btn" @click="saveParameters" v-html="progress?'Guardando...':'Guardar'"></button>

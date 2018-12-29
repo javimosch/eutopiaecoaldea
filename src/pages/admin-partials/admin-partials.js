@@ -11,7 +11,7 @@ module.exports = function() {
 					template: `<div  class="partial-editor-component" v-show="!!item">
 						<label class="important">Vista parcial <span v-html="item && item.label"></span></label>
 						<hr>
-						<codemirror ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
+						<codemirror mode="html" ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
 						<button class="btn" @click="save" v-html="progress?'Guardando...':'Guardar'"></button>
 					</div>`,
 					data() {
