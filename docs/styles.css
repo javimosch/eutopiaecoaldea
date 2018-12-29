@@ -52,8 +52,10 @@ header {
 }
 
 .imagesViewBox {
-    max-height: 300px;
+    max-height: 1000px;
     overflow: auto;
+    background: wheat;
+    margin-top: 20px;
 }
 
 .footerNav {
@@ -166,7 +168,7 @@ form>button:active,
     max-width: 300px;
     margin: 0 auto;
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
 .brand {
@@ -562,8 +564,9 @@ section.admin section {
     min-height: 155px;
     width: 200px;
     background-size: contain;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     margin: 0 auto;
+    background-position: center;
 }
 
 footer {
@@ -643,6 +646,7 @@ iframe {
         display: inline-block;
         width: 44%;
         margin: 0px 20px;
+        padding-bottom: 50px;
     }
 
     .admin-image-thumb {}
@@ -989,4 +993,10 @@ iframe {
 
 .programacion_titulo {
     text-align: center;
+}
+
+.mx-auto{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }

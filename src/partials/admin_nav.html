@@ -65,7 +65,7 @@
     <hr>
     <script type="text/javascript">
         (function init() {
-    if (typeof window.Vue === 'undefined') return setTimeout(() => init(), 100);
+    if (typeof window.Vue === 'undefined' || typeof window.moment === 'undefined') return setTimeout(() => init(), 100);
             new Vue({
                     el: '.adminNav',
                     name: 'admin_nav',
