@@ -71,6 +71,14 @@
                 "whyMessage": "Quiero viajar, quiero conocer ecoaldeas oorque tenemos un proyecto similar con un colectivo de amigos de Providencia, Nariño, Colombia. ",
                 "helpMessage": "Estoy interesado en participar de la estadía como voluntario en la modalidad de trueque, tengo una iniciativa que es para acoplar un tablero de trabajo tomado de marcos de trabajo de creación de productos e forma agil que sirva para articular el trabajo de los colaboradores con las huertas, pensando en que hay rotación de personal constante y se puede desarticular el trabajo. También estoy tejiendo bolsas de fique; en un proceso de sustitición de bolsas plásticas, se podría hacer con cualquier fibra natural",
                 "dateMessage": "El 4 de enero de 2019, estaría 15 días."
+            },
+            {
+                "name": "Umberto Pepe",
+                "email": "darioderulo123@gmail.com",
+                "whyMessage": "porque vengo a Perú por primera vez y me gustaría comenzar en un lugar donde puedo ayudar y aprender el idioma. También me interesa la permacultura y la disciplina del yoga.(soy italiano)",
+                "helpMessage": "Estoy dispuesto a participar y ayudar en todos tus proyectos.Tengo 22 años y tengo mucha energía.",
+                "dateMessage": "18 o 19 de enero",
+                "date": "07-01-2019 16:39"
             }
         ],
         "changelog": [
