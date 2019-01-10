@@ -69,14 +69,17 @@ Vue.component('html-editor', {
   methods: {
     setHtml() {
       if (!!this.quill && !!this.value) {
-        this.quill.setText(this.value);
+        this.quill.setHtml(this.value);
         this.firstLoad = true;
       }
     },
     init() {
       Quill.prototype.getHtml = function() {
-    return this.container.querySelector('.ql-editor').innerHTML;
-};
+        return this.container.querySelector('.ql-editor').innerHTML;
+      };
+      Quill.prototype.setHtml = function(html) {
+        return this.container.querySelector('.ql-editor').innerHTML = html;
+      };
       this.$refs.editor.id = 'HE' + Math.random().toString(36).substr(2, 9);
       this.$refs.toolbar.id = 'HE' + Math.random().toString(36).substr(2, 9);
       this.quill = new Quill(`#${this.$refs.editor.id}`, {
