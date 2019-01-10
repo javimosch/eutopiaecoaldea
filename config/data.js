@@ -45,7 +45,7 @@
                         "id": "_n43bj65dh",
                         "title": "“Pachawasi” Ecoverano 2019",
                         "image": "/uploads/images/evento-pachawasi-3.jpg",
-                        "message": "Pachawasi Ecoverano es un programa educativo piloto que durará 4 semanas que aborda el aprendizaje a través de proyectos en las áreas de matemáticas, comunicación y habilidades sociales con lenguajes artísticos.\n\nLos horarios son de lunes a viernes en dos espacios, martes y jueves en espacio urbano y lunes, miércoles y viernes en Eutopia Ecoaldea.\n\n\n",
+                        "message": "<p>Pachawasi Ecoverano es un programa educativo piloto que durará 4 semanas que aborda el aprendizaje a través de proyectos en las áreas de matemáticas, comunicación y habilidades sociales con lenguajes artísticos.</p><p><br></p><p>Los horarios son de lunes a viernes en dos espacios, martes y jueves en espacio urbano y lunes, miércoles y viernes en Eutopia Ecoaldea.</p><p><br></p><p><img src=\"https://mail.google.com/mail/u/3?ui=2&amp;ik=f3c48dc349&amp;attid=0.0.1&amp;permmsgid=msg-f:1622290920128696599&amp;th=168388ff209cd117&amp;view=fimg&amp;sz=s0-l75-ft&amp;attbid=ANGjdJ-gonD4mX8QYXZIny5traOudOgGA5LNY33Pwo-sANt9q5HKEfLzvOr1gaA8PVeHLT-_jZEPik1G7HehQMdYQvxbKy6m5oMkQ6nzC52og6aNp-v0F4_rDCws0HE&amp;disp=emb&amp;realattid=ii_jqqtedbs6\" alt=\"49008866_2292562077477325_3599464872183595008_n.jpg\"></p><p><br></p><p><br></p>",
                         "time": "",
                         "show": true
                     }
