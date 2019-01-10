@@ -116,6 +116,8 @@ form>label {
 
 .eventItem .eventoTitle {
     margin-bottom: 10px;
+    width: 100%;
+    font-size: 25px;
 }
 
 .parameters-component {
@@ -719,7 +721,7 @@ iframe {
 
     .adminProgramacionItemImage {
         margin: 0 auto;
-        max-width: 150px;
+        max-width: 350px;
         padding: 10px;
     }
 
@@ -974,11 +976,15 @@ iframe {
     font-weight: bold;
 }
 
+.programacion_item_texto img{
+    max-width: 100%!important;
+}
 .programacion_item_texto {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-basis: 100%;
+    padding: 0px 10px;
 }
 
 .programacion_item {}
