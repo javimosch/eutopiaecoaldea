@@ -9,9 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="/libs/noty.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-	{{#if (eq type 'admin')}}
-		
-	{{/if}}
+	{{#ifNotEmpty pageLinks}}
+    {{#each pageLinks}}
+    	<link rel="stylesheet" type="text/css" href="{{this}}">
+    {{/each}}
+    {{/ifNotEmpty}}
+
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 	{{#if (eq type 'admin')}}
 		<script type="text/javascript" src="/js/common-admin.js"></script>
@@ -88,9 +91,13 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/theme-monokai.js"></script>
 	{{/if}}
 
-	<!--
-	<script type="text/javascript" src="/bundle.js"></script>
--->
+	
+	{{#ifNotEmpty pageScripts}}
+    	{{#each pageScripts}}
+    		<script type="text/javascript" src="{{this}}"></script>
+    	{{/each}}
+    {{/ifNotEmpty}}
+
 	<script type="text/javascript">
 		{{#if (typeIs init 'function')}}
 			{{#toString init}}{{/toString}}

@@ -4,7 +4,11 @@ module.exports = function() {
 		path: 'admin',
 		context: {
 			type: 'admin',
+			pageLinks: ['https://cdn.quilljs.com/1.3.6/quill.snow.css'],
+			pageScripts: [ 'https://cdn.quilljs.com/1.3.6/quill.js'],
 			init: function init() {
+
+
 				new Vue({
 					el: '.admin',
 					name: 'adminProgramacion',
@@ -47,9 +51,9 @@ module.exports = function() {
 								time: '',
 								show: false
 							});
-							this.form.fecha='';
-							this.form.title='';
-							this.showForm=false;
+							this.form.fecha = '';
+							this.form.title = '';
+							this.showForm = false;
 
 						},
 						showProgramacion(pr) {
@@ -95,6 +99,9 @@ module.exports = function() {
 
 				function save() {
 					this.saving = true;
+
+					this.programacion = this.programacion.filter(p=>p.eventos.length>0);
+
 					apiPost('/api/programacion/save', this.programacion).then(res => {
 						this.saving = false
 						if (!res.result) {

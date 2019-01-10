@@ -25,7 +25,11 @@
                               <input class="eventoTitle semless bold" v-model="evento.title"></input>
                             </div>
                             <div>
+                                <!--
                               <textarea class="text" v-model="evento.message"></textarea>
+                          -->
+                            <html-editor v-model="evento.message"></html-editor>
+
                             </div>
                             <p class="fnt-12 italic" v-html="evento.time"></p>
                             <div class="blockChilds">

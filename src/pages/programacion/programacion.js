@@ -3,7 +3,9 @@ module.exports = function(options, config, context) {
 		name: context.lang.PROGRAMACION,
 		context: {
 			init: function init() {
-				console.log('programation')
+
+				
+
 			}
 		}
 	};

@@ -153,6 +153,11 @@ function loadHandlebarHelpers() {
             }
             return eventos.length > 0;
         });
+        obj = obj.sort(function(pr1,pr2){
+            pr1 = moment(pr1.fecha, 'DD-MM-YYYY')
+            pr2 = moment(pr2.fecha, 'DD-MM-YYYY')
+            return pr1.isSameOrAfter(pr2, 'day') ? -1 : 1
+        })
         return obj;
     }
     Handlebars.registerHelper('hasProgramations', function(obj, options) {
@@ -216,6 +221,13 @@ function loadHandlebarHelpers() {
     Handlebars.registerHelper('toString', function(result, options) {
         result = result.toString('utf-8');
         return new Handlebars.SafeString(result);
+    });
+    Handlebars.registerHelper('ifNotEmpty', function(conditional, options) {
+        if (!!conditional) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
     });
     /*
     Handlebars.registerHelper('if', function(conditional, options) {

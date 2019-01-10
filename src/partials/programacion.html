@@ -16,10 +16,12 @@
                 <div class="inline-block vertical-top" style="width:69%;">
                     <div class="programacion_item_texto column">
                         <h3>{{title}}</h3>
-                        <p>{{message}}</p>
+                        <p>{{{message}}}</p>
+                        {{#if (neq time '')}}
                         <p>
                             Horario: {{time}}<br>
                         </p>
+                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -28,4 +30,25 @@
         {{/each}}
     </ul>
 </div>
+
+<script type="text/javascript">
+    initImages();
+    function initImages(){
+        if(window.$ === undefined){
+            return setTimeout(initImages,100);
+        }
+        if ($('.programacion_item_texto img').length > 0) {
+            $('.programacion_item_texto img').each(function() {
+                var img = $(this);
+                var parent = img.parent()
+                parent.empty();
+
+                var a = $(`<a href="${img.attr('src')}" target="_blank"></a>`)
+                a.append(img);
+                parent.append(a);
+            });
+        }
+                }
+</script>
+
 {{/if}}
