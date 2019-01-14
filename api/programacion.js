@@ -13,13 +13,22 @@ module.exports = app => {
 		})
 	});
 	app.post('/api/programacion/save', (req, res) => {
-		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
-		data = dJSON.parse(data);
-		data.context.programacion = req.body;
+
+		try {
+			var localPath = path.join(process.cwd(), 'config/data.js');
+			var data = sander.readFileSync(localPath).toString('utf-8')
+			data = dJSON.parse(data);
+			data.context.programacion = req.body;
+			var dataToWrite = JSON.stringify(data, null, 4)
+			sander.writeFileSync(localPath, dataToWrite);
+		} catch (err) {
+			console.error('WHILE SAVING LOCAL DATA', err.stack);
+		}
+
 		server.git.pushPath('config/data.js', {
 			files: [{
 				path: 'config/data.js',
-				contents: JSON.stringify(data, null, 4)
+				contents: dataToWrite
 			}]
 		});
 		res.json({

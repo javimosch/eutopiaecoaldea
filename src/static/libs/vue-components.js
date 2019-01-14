@@ -60,7 +60,7 @@ Vue.component('html-editor', {
   },
   props: ['value'],
   watch: {
-    "item.html": function() {
+    "value": function() {
       if (!this.firstLoad) {
         this.setHtml();
       }
@@ -68,7 +68,7 @@ Vue.component('html-editor', {
   },
   methods: {
     setHtml() {
-      if (!!this.quill && !!this.value) {
+      if (!!this.quill && this.value!=undefined) {
         this.quill.setHtml(this.value);
         this.firstLoad = true;
       }
@@ -94,6 +94,7 @@ Vue.component('html-editor', {
         }
         let html = this.quill.getHtml();
         this.$emit('input', html);
+        this.$emit('change', html);
       });
       this.setHtml();
     }
