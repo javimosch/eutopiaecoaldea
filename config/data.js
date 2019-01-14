@@ -42,7 +42,7 @@
                         "id": "_3i1jeh7cb",
                         "title": "Minga: Remodelación escenario Q'uncha Pachaq",
                         "image": "/uploads/images/1.jpg",
-                        "message": "",
+                        "message": "<p>Continuaremos con la construcción del muro de contención y el llenado de la plataforma del escenario.</p><p>Escríbenos y únete a la minga!</p>",
                         "time": "08:00",
                         "show": true
                     }
@@ -51,22 +51,6 @@
             }
         ],
         "voluntarios": [
-            {
-                "date": "10-12-2018 12:00",
-                "name": "Pepe Alfonso Ramirez",
-                "email": "pepe@asd.com",
-                "whyMessage": "Por el BosqueEscuela",
-                "helpMessage": "Eco-quinta",
-                "dateMessage": "Verano"
-            },
-            {
-                "date": "11-12-2018 12:00",
-                "name": "Javier Leandro Arancibia",
-                "email": "arancibiajav@gmail.com",
-                "whyMessage": "",
-                "helpMessage": "Me gustaria crear e implementar un nuevo sitio web para el proyecto.",
-                "dateMessage": ""
-            },
             {
                 "date": "20-12-2018 12:00",
                 "name": "Karin siesquen",
