@@ -34,6 +34,19 @@
                     }
                 ],
                 "_expand": false
+            },
+            {
+                "fecha": "15-01-2018",
+                "eventos": [
+                    {
+                        "id": "_3i1jeh7cb",
+                        "title": "Minga: Remodelación escenario Q'uncha Pachaq",
+                        "image": "",
+                        "message": "",
+                        "time": "08:00",
+                        "show": true
+                    }
+                ]
             }
         ],
         "voluntarios": [
