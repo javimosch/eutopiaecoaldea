@@ -41,12 +41,13 @@
                     {
                         "id": "_3i1jeh7cb",
                         "title": "Minga: Remodelación escenario Q'uncha Pachaq",
-                        "image": "",
+                        "image": "/uploads/images/1.jpg",
                         "message": "",
                         "time": "08:00",
                         "show": true
                     }
-                ]
+                ],
+                "_expand": false
             }
         ],
         "voluntarios": [
