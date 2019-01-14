@@ -42,7 +42,7 @@
                         "id": "_3i1jeh7cb",
                         "title": "Minga: Remodelación escenario Q'uncha Pachaq",
                         "image": "/uploads/images/1.jpg",
-                        "message": "",
+                        "message": "<p>Continuaremos con la construcción del muro de contención y el llenado de la plataforma del escenario.</p><p>Escríbenos y únete a la minga!</p>",
                         "time": "08:00",
                         "show": true
                     }
