@@ -5,27 +5,32 @@
             Programacion
         </h2>
     <ul class="list">
-        {{#each (filtrarProgramacion programacion)}}
+        {{#each (filtrarEventosProgramacion programacion)}}
         <li>
             <p class="text-center programacion_date">
-                {{#date fecha 'DD-MM-YYYY HH:mm' 'dddd DD [de] MMMM YYYY'}}{{/date}}
+                {{#date fechaDesde 'DD-MM-YYYY HH:mm' 'dddd DD [de] MMMM YYYY'}}{{/date}} 
+                {{#ifNotEmpty fechaHasta}}
+                    al {{#date fechaHasta 'DD-MM-YYYY HH:mm' 'dddd DD [de] MMMM YYYY'}}{{/date}}
+                {{/ifNotEmpty}}
+                
             </p>
-            {{#each (filtrarEventosProgramacion eventos)}}
             <div class="programacion_item">
                 <img src="{{image}}" class="inline-block img-fluid"/>
                 <div class="inline-block vertical-top" style="width:69%;">
                     <div class="programacion_item_texto column">
                         <h3>{{title}}</h3>
                         <p>{{{message}}}</p>
-                        {{#if (neq time '')}}
+                        {{#ifNotEmpty timeFrom}}
                         <p>
-                            Horario: {{time}}<br>
+                            Horario: {{timeFrom}}
+                            {{#ifNotEmpty timeTo}}
+                                a {{timeTo}}
+                            {{/ifNotEmpty}}
                         </p>
-                        {{/if}}
+                        {{/ifNotEmpty}}
                     </div>
                 </div>
-            </div>
-            {{/each}}
+            </div>            
         </li>
         {{/each}}
     </ul>

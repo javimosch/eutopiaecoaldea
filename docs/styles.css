@@ -112,8 +112,14 @@ form>label {
     padding: 20px;
     background-color: ghostwhite;
     margin-bottom: 15px;
+    box-shadow: 1px 5px 20px #483d8b61;
 }
 
+.eventoFecha{
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 100;
+}
 .eventItem .eventoTitle {
     margin-bottom: 10px;
     width: 100%;
@@ -240,9 +246,10 @@ form>button:active,
     margin-bottom: 20px;
     border-radius: 5px;
 }
-.volunteerItem:nth-child(odd){
-  background-color: antiquewhite;
-  color: black;
+
+.volunteerItem:nth-child(odd) {
+    background-color: antiquewhite;
+    color: black;
 }
 
 .programacionForm {
@@ -256,7 +263,7 @@ form>button:active,
 
 .programationItem {
     padding: 20px;
-    background-color: peachpuff;
+    /* background-color: peachpuff; */
     color: black;
     font-size: 14px;
     margin-bottom: 10px;
@@ -554,9 +561,10 @@ section.admin section {
 
 .adminImageItem {}
 
-.2{
+.2 {
     background-color: dimgrey;
 }
+
 .admin-file-thumb {
     min-height: 50px;
     width: 300px;
@@ -568,6 +576,7 @@ section.admin section {
     justify-content: center;
     align-items: center;
 }
+
 .admin-image-thumb {
     min-height: 155px;
     width: 200px;
@@ -631,7 +640,7 @@ footer {
 
 
 .text-center {
-    text-align: center!important;
+    text-align: center !important;
 }
 
 iframe {
@@ -666,7 +675,7 @@ iframe {
     display: block;
 }
 
-.iiLogoWrapper > p {
+.iiLogoWrapper>p {
     color: darkblue;
     margin-bottom: 0px;
     position: absolute;
@@ -674,6 +683,7 @@ iframe {
     background: white;
     margin-left: calc(50% - 50px);
 }
+
 @media only screen and (min-width: 768px) {
     .tabletSplitTwo>div {
         flex-basis: 100%;
@@ -687,6 +697,21 @@ iframe {
     }
 
 }
+
+@media only screen and (min-width: 1400px) {
+    .bigDesktopSplitTwo>div {
+        flex-basis: 100%;
+    }
+
+    .bigDesktopSplitTwo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 100%;
+    }
+
+}
+
 @media only screen and (min-width: 992px) {
     .iiLogoWrapper {
         margin-left: 15px;
@@ -947,17 +972,19 @@ iframe {
     padding: 0px;
 }
 
-.adminContactFormMessages{
+.adminContactFormMessages {
     margin-left: 0px;
 }
-.adminContactFormMessages li{
+
+.adminContactFormMessages li {
     background: azure;
     padding: 5px;
     color: black;
 }
-.adminContactFormMessages li:nth-child(odd){
-  background-color: antiquewhite;
-  color: black;
+
+.adminContactFormMessages li:nth-child(odd) {
+    background-color: antiquewhite;
+    color: black;
 }
 
 .img-fluid {
@@ -976,9 +1003,10 @@ iframe {
     font-weight: bold;
 }
 
-.programacion_item_texto img{
-    max-width: 100%!important;
+.programacion_item_texto img {
+    max-width: 100% !important;
 }
+
 .programacion_item_texto {
     display: flex;
     justify-content: center;
@@ -994,9 +1022,10 @@ iframe {
     min-width: 30%;
 }
 
-.vertical-middle{
+.vertical-middle {
     vertical-align: middle;
 }
+
 .vertical-top {
     vertical-align: top;
 }
@@ -1020,8 +1049,8 @@ iframe {
     text-align: center;
 }
 
-.mx-auto{
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
+.mx-auto {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
