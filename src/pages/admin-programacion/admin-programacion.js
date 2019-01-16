@@ -5,7 +5,7 @@ module.exports = function() {
 		context: {
 			type: 'admin',
 			pageLinks: ['https://cdn.quilljs.com/1.3.6/quill.snow.css'],
-			pageScripts: [ 'https://cdn.quilljs.com/1.3.6/quill.js'],
+			pageScripts: ['https://cdn.quilljs.com/1.3.6/quill.js'],
 			init: function init() {
 
 
@@ -25,25 +25,26 @@ module.exports = function() {
 					},
 					created() {
 						fetch(`${SERVER.API_URL}/api/programacion/fetch`).then(r => r.json().then(response => {
-							this.programacion = this.normalize(response.result);
+							//this.programacion = this.normalize(response.result);
 						}));
 					},
 					mounted() {
-
+						this.sort();
 					},
 					methods: {
+						sort(){
+							this.programacion = this.programacion.sort(function(a,b){
+								return moment(a.fechaDesde,'DD-MM-YYYY').isBefore(moment(b.fechaDesde,'DD-MM-YYYY'),'day') ? 1 : -1;
+							});
+						},
 						addEvent() {
 							this.programacion = this.programacion || [];
-							var pr = this.programacion.find(pr => pr.fecha.toString() == this.form.fecha.toString())
-							if (!pr) {
-								pr = {
-									fecha: this.form.fecha,
-									eventos: []
-								}
-								this.programacion.push(pr);
+							if(!this.form.fechaDesde || !this.form.title){
+								return;
 							}
-							pr.eventos = pr.eventos || [];
-							pr.eventos.push({
+							this.programacion.push({
+								fechaDesde: this.form.fechaDesde,
+								fechaHasta: this.form.fechaHasta || '',
 								id: window.generateId(),
 								title: this.form.title,
 								image: '',
@@ -51,24 +52,19 @@ module.exports = function() {
 								time: '',
 								show: false
 							});
-							this.form.fecha = '';
+							this.form.fechaDesde = this.form.fechaHasta = '';
 							this.form.title = '';
 							this.showForm = false;
-
+							this.sort();
 						},
 						showProgramacion(pr) {
-							return pr.eventos && pr.eventos.length > 0
+							return this.programacion.length>0
 						},
 						normalize(items) {
 							return items.map(v => {
-								v._expand = false;
-								v.eventos = v.eventos || []
-								v.eventos.forEach(evt => {
-									if (!evt.id) {
-										evt.id = window.generateId();
-									}
-									evt.show = typeof evt.show === 'undefined' ? true : evt.show;
-								})
+								v.id = v.id || window.generateId();
+								v.show = typeof v.show === 'undefined' ? false : v.show;
+								v.showInfo = typeof v.showInfo === 'undefined' ? false : v.showInfo;
 								return v;
 							})
 						},
@@ -81,28 +77,28 @@ module.exports = function() {
 					if (!window.confirm('Seguro ?')) {
 						return;
 					}
-					this.programacion.forEach(pr => {
-						if (pr.eventos) {
-							var indexToRemove;
-							pr.eventos.forEach((evt, index) => {
-								if (evt.id == id) {
-									indexToRemove = index;
-								}
-							})
-							if (indexToRemove !== undefined) {
-								var removed = pr.eventos.splice(indexToRemove, 1);
-								this.$forceUpdate();
-							}
+					var indexToRemove;
+					this.programacion.forEach((evt, index) => {
+						if (evt.id == id) {
+							indexToRemove = index;
 						}
-					})
+					});
+					if (indexToRemove !== undefined) {
+						var removed = this.programacion.splice(indexToRemove, 1);
+						this.$forceUpdate();
+					}
+
 				}
 
 				function save() {
 					this.saving = true;
-
-					this.programacion = this.programacion.filter(p=>p.eventos.length>0);
-
-					apiPost('/api/programacion/save', this.programacion).then(res => {
+					var dataToSave = this.programacion.map(pr=>{
+						var r = {};
+						Object.assign(r,pr);
+						delete r.showInfo;
+						return r;
+					})
+					apiPost('/api/programacion/save', dataToSave).then(res => {
 						this.saving = false
 						if (!res.result) {
 							new Noty({

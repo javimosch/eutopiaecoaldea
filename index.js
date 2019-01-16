@@ -144,19 +144,17 @@ function loadHandlebarHelpers() {
     });
 
     function filtrarProgramaciones(obj, options) {
-        obj = obj.filter(pr => {
-            var eventos = pr.eventos && pr.eventos.filter(evt => evt.show === undefined ? true : evt.show) || [];
-            if (options.data.root.programacionOcultarEventosPasados === true) {
-                eventos = eventos.filter(evt => {
-                    return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
-                })
-            }
-            return eventos.length > 0;
-        });
-        obj = obj.sort(function(pr1,pr2){
+        var eventos = obj;
+        if (options.data.root.programacionOcultarEventosPasados === true) {
+            eventos = eventos.filter(evt => {
+                return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
+            })
+        }
+        eventos = eventos && eventos.filter(evt => evt.show === undefined ? true : evt.show) || [];
+        obj = obj.sort(function(pr1, pr2) {
             pr1 = moment(pr1.fecha, 'DD-MM-YYYY')
             pr2 = moment(pr2.fecha, 'DD-MM-YYYY')
-            return pr1.isSameOrAfter(pr2, 'day') ? -1 : 1
+            return pr1.isSameOrAfter(pr2, 'day') ? 1 : -1
         })
         return obj;
     }
@@ -170,7 +168,7 @@ function loadHandlebarHelpers() {
         eventos = eventos.filter(evt => evt.show === undefined ? true : evt.show);
         if (options.data.root.programacionOcultarEventosPasados === true) {
             eventos = eventos.filter(evt => {
-                return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
+                return moment(evt.fechaDesde, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
             })
         }
         return eventos;

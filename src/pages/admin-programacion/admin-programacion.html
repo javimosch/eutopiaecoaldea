@@ -2,54 +2,63 @@
 <section class="admin protected container">
     <h3>Programacion <a class="fnt-12 backBtn" href="/admin/dashboard">Atras</a></h3>
     <button @click="saving || save()" :disabled="saving" class="btn" v-html="saving?'Guardando...':'Guardar'"></button>
-    <button @click="showForm=true" v-show="!showForm" class="btn" >Nuevo evento</button>
+    <button @click="showForm=true" v-show="!showForm" class="btn">Nuevo evento</button>
+    <button @click="sort" v-show="true" class="btn">Ordenar por fecha</button>
     <div class="form programacionForm" v-show="showForm">
         <label class="important">Nuevo evento</label>
-        <label>Fecha *</label>
-        <input placeholder="DD-MM-YYYY" v-model="form.fecha"/>
+        <label>Fecha desde*</label>
+        <input placeholder="DD-MM-YYYY" v-model="form.fechaDesde" />
+        <label>Fecha hasta</label>
+        <input placeholder="DD-MM-YYYY" v-model="form.fechaHasta" />
         <label>Titulo *</label>
         <input v-model="form.title" placeholder="Ejemplo: Feria de los artesanos" />
         <button class="btn" @click="addEvent()">Agregar</button>
     </div>
     <ul class="list">
-        <li class="programationItem" v-for="item in programacion" v-show="showProgramacion(item)">
-            <h3 v-html="item.fecha"></h3>
-            <div>
-                <div class="eventItem form" v-for="evento in item.eventos" >
-                    <div class="desktopSplitTwo">
-                        <div class="adminProgramacionItemImage">
-                            <img class="img-fluid" :src="evento.image||'https://via.placeholder.com/150x150'"/>
-                        </div>
-                        <div>
+        <li class="programationItem" v-for="evento in programacion" v-show="showProgramacion(evento)">
+            <div class="eventItem form">
+                <label>Fecha desde</label>
+                <input class="eventoFecha semless " v-model="evento.fechaDesde"></input>
+                <label>Fecha hasta</label>
+                <input class="eventoFecha semless " v-model="evento.fechaHasta"></input>
+                <label>Horario</label>
+                <p class="fnt-12 italic" v-html="(evento.timeFrom||'(Sin especificar)')+' a '+(evento.timeTo||'(Sin especificar)')"></p>
+                <div>
+                    <input class="eventoTitle semless bold" v-model="evento.title"></input>
+                </div>
+                <button class="btn" @click="evento.showInfo=!evento.showInfo" v-show="!evento.showInfo">Ver mas</button>
+                <button class="btn" @click="evento.showInfo=!evento.showInfo" v-show="evento.showInfo">Ver menos</button>
+                <div class="bigDesktopSplitTwo" v-show="evento.showInfo">
+                    <div class="adminProgramacionItemImage">
+                        <img class="img-fluid" :src="evento.image||'https://via.placeholder.com/150x150'"/>
+                    </div>
+                    <div>
+                            
                             <div>
-                              <input class="eventoTitle semless bold" v-model="evento.title"></input>
+                                <html-editor v-model="evento.message"></html-editor>
                             </div>
-                            <div>
-                                <!--
-                              <textarea class="text" v-model="evento.message"></textarea>
-                          -->
-                            <html-editor v-model="evento.message"></html-editor>
-
-                            </div>
-                            <p class="fnt-12 italic" v-html="evento.time"></p>
                             <div class="blockChilds">
                                 <label>Mostrar</label>
                                 <input type="checkbox" v-model="evento.show" />
                             </div>
                             <div class="blockChilds">
-                              <label>Imagen</label>
-                              <input v-model="evento.image"/>
+                                <label>Imagen</label>
+                                <input v-model="evento.image" />
                             </div>
                             <div class="blockChilds">
-                              <label>Hora</label>
-                              <input v-model="evento.time" placeholder="HH:mm" />
+                                <label>Hora desde</label>
+                                <input v-model="evento.timeFrom" placeholder="HH:mm" />
                             </div>
-                            <div >
+                            <div class="blockChilds">
+                                <label>Hora hasta</label>
+                                <input v-model="evento.timeTo" placeholder="HH:mm" />
+                            </div>
+                            <div>
                                 <button @click="remove(evento.id)" class="btn danger"><i class="fas fa-trash-alt"></i></button>
                             </div>
-                        </div>
                     </div>
                 </div>
+            </div>
         </li>
     </ul>
 </section>
