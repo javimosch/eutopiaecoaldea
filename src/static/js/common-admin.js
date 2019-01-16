@@ -5,12 +5,15 @@ function generateId() {
 function showInfo(text, timeout, killer) {
 	showNoty(text, timeout, killer, 'info');
 }
+
 function showWarn(text, timeout, killer) {
 	showNoty(text, timeout, killer, 'warning');
 }
+
 function showError(text, timeout, killer) {
 	showNoty(text, timeout, killer, 'error');
 }
+
 function showSuccess(text, timeout, killer) {
 	showNoty(text, timeout, killer, 'success');
 }
@@ -63,54 +66,149 @@ function apiPost(uri, data) {
 	})
 }
 
-(function init() {
-	var el = document.querySelector('body');
-	if (!el || typeof window.Vue === 'undefined') return setTimeout(() => init(), 100);
-	var div = document.createElement('div')
-	div.id = 'common-admin';
-	el.appendChild(div);
+(() => {
 
-	new Vue({
-		el: '#common-admin',
-		name: 'common-admin',
-		data() {
-			return {
+	window.bootstrapScripts = window.bootstrapScripts || []
+	window.bootstrapScripts.push(init);
+	init();
 
-			}
-		},
-		created() {
-			if (!!document.querySelector('section.admin.protected')) {
-				var encoded = window.localStorage.getItem('adminToken');
-				if (!!encoded) {
-					fetch(`${SERVER.API_URL}/api/login/validate?code=${encoded}`).then(r => r.json().then(response => {
-						if (response.result) {
-							console.info('authSuccess');
-							try {
-								document.querySelector('section.admin.protected').style.display = "block";
-							} catch (err) {}
-						} else {
-							this.authFail();
+	function initAdminNav() {
+		(function init() {
+			if (typeof window.Vue === 'undefined' || typeof window.moment === 'undefined') return setTimeout(() => init(), 100);
+			console.log('vue admin_nav init')
+			window.vues = window.vues || {}
+			window.vues['adminNav'] = new Vue({
+				el: '.adminNav',
+				name: 'admin_nav',
+				data() {
+					return {
+						deployedAt: '',
+						loaders: {
+							wipMode: false,
+							deploy: false
 						}
+					}
+				},
+				created() {
+					fetch(`/manifest.json`).then(r => r.json().then(response => {
+						this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 					}));
-				} else {
-					this.authFail();
+				},
+				mounted() {
+
+				},
+				methods: {
+					logout() {
+						window.logout();
+					},
+					isCooldown(name) {
+						var v = window.localStorage.getItem('cooldown_' + name);
+						if (!!v) {
+							v = parseInt(v);
+							if (Date.now() - v > 1000 * 60 * 2) {
+								window.localStorage.setItem('cooldown_' + name, '')
+								return false;
+							} else {
+								return true;
+							}
+						} else {
+							return false;
+						}
+					},
+					deployWipMode,
+					deployStaging,
+					deploy,
+					cooldownVariable
 				}
-			} else {
-				console.log('authSkip');
+			})
+
+			function deployWipMode() {
+				this.loaders.wipMode = true
+				fetch(`${SERVER.API_URL}/api/deployment/publish?wipMode=1`).then(r => r.json().then(response => {
+					this.cooldownVariable('wipMode');
+					this.loaders.wipMode = false
+					console.info(response);
+				}));
 			}
 
-			window.logout = function() {
-				window.localStorage.setItem('adminToken', '');
-				window.location.href = "/admin";
+			function deployStaging() {
+				this.loaders.staging = true
+				fetch(`${SERVER.API_URL}/api/deployment/publish?staging=1`).then(r => r.json().then(response => {
+					this.cooldownVariable('deployStaging');
+					this.loaders.staging = false;
+					console.info(response);
+				}));
 			}
-		},
-		methods: {
-			authFail() {
-				console.warn('authFail');
-				setTimeout(() => {
-					window.location.href = "/admin"
-				}, 2000);
+
+			function cooldownVariable(variable) {
+				window.localStorage.setItem('cooldown_' + variable, Date.now());
+				this.$forceUpdate();
 			}
-		}
-	})
+
+			function deploy() {
+				this.loaders.deploy = true
+				fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
+					this.cooldownVariable('cooldown_deploy');
+					this.loaders.deploy = false;
+					showInfo("Cambios enviados. La publicacion se efectuara en el proximo minuto.");
+				}));
+			}
+		})();
+	}
+
+	function init() {
+		var el = document.querySelector('body');
+		if (!el || typeof window.Vue === 'undefined') return setTimeout(() => init(), 100);
+		var div = document.createElement('div')
+		div.id = 'common-admin';
+		el.appendChild(div);
+
+		new Vue({
+			el: '#common-admin',
+			name: 'common-admin',
+			data() {
+				return {
+
+				}
+			},
+			created() {
+				if (!!document.querySelector('section.admin.protected')) {
+					var encoded = window.localStorage.getItem('adminToken');
+					if (!!encoded) {
+						fetch(`${SERVER.API_URL}/api/login/validate?code=${encoded}`).then(r => r.json().then(response => {
+							if (response.result) {
+								console.info('authSuccess');
+								try {
+									document.querySelector('section.admin.protected').style.display = "block";
+									initAdminNav();
+								} catch (err) {}
+							} else {
+								this.authFail();
+							}
+						}));
+					} else {
+						this.authFail();
+					}
+				} else {
+					console.log('authSkip');
+				}
+
+				window.logout = function() {
+					window.localStorage.setItem('adminToken', '');
+					window.location.href = "/admin";
+				}
+			},
+			methods: {
+				authFail() {
+					console.warn('authFail');
+					setTimeout(() => {
+						window.location.href = "/admin"
+					}, 2000);
+				}
+			}
+		})
+	}
+
+
+
 })();

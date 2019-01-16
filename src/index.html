@@ -2,74 +2,82 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Pragma" content="no-cache">
+	
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 	<title>{{lang.META_TITLE}}</title>
-
 	<link rel="stylesheet" type="text/css" href="/libs/noty.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
 	{{#ifNotEmpty pageLinks}}
     {{#each pageLinks}}
     	<link rel="stylesheet" type="text/css" href="{{this}}">
     {{/each}}
     {{/ifNotEmpty}}
-
 	<link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+	<div class="app">
+		{{#if (neq type 'admin')}}
+			{{> partial_header}}		
+		{{else}}
+			
+		{{/if}}
+
+		{{#if (neq type 'admin')}}
+			{{#if (eq wipMode true)}}
+				<div class="mainContent">
+					{{> page_wip}}
+				</div>
+			{{else}}    
+				<div class="mainContent">
+					{{> (lookup . 'currentPage') }}
+				</div>
+			{{/if}}
+		{{else}}
+			<div class="adminLayout">
+				<div class="adminSidebar">
+					<header>
+		    			<a class="brand" href="/{{#emptyIf currentLanguageCode '["es"]'}}{{/emptyIf}}">
+		    				<img src="/uploads/images/euto-logo-trans.png" />
+						</a>
+					    <nav class="headerNav">
+					        
+					    </nav>
+					</header>
+					{{> partial_admin_nav}}
+				</div>
+				<div class="adminMainContent">
+
+					<div class="mainContent">
+						{{> (lookup . 'currentPage') }}
+					</div>
+				</div>
+			</div>
+			
+		{{/if}}
+		
+		{{#if (neq type 'admin')}}
+			{{> partial_footer}}
+		{{else}}
+			
+		{{/if}}
+	</div>
+
 	{{#if (eq type 'admin')}}
 		<script type="text/javascript" src="/js/common-admin.js"></script>
 	{{/if}}
 	<script type="text/javascript">
+		window.vues = {};
 		window.SERVER={
 			API_URL: '{{API_URL}}',
+			currentPage: '{{currentPage}}',
+        	currentLanguage: '{{currentLanguage}}',
 			defaultCurrentPage:'{{defaultCurrentPage}}',
 			updateCode:'{{updateCode}}',
 			wipMode: '{{wipMode}}',
 			lang: JSON.parse(`{{#stringify lang}}{{/stringify}}`)
 		}
 	</script>
-</head>
-<body>
-	{{#if (neq type 'admin')}}
-		{{> partial_header}}		
-	{{else}}
-		{{> partial_header}}
-		<!--
-		<section class="admin_header">
-	        <h3 class="brand">
-	        <a href="/">{{lang.META_TITLE}}</a>
-	         - Admin</h3>
-	        <hr>
-	    </section>
-	-->
-	{{/if}}
-
-	{{#if (neq type 'admin')}}
-		{{#if (eq wipMode true)}}
-			<div class="mainContent">
-				{{> page_wip}}
-			</div>
-		{{else}}    
-			<div class="mainContent">
-				{{> (lookup . 'currentPage') }}
-			</div>
-		{{/if}}
-	{{else}}
-		<div class="mainContent">
-				{{> (lookup . 'currentPage') }}
-		</div>
-	{{/if}}
-		
-    
-    
-
-	
-
-	{{#if (neq type 'admin')}}
-		{{> partial_footer}}
-	{{else}}
-		{{> partial_footer}}
-	{{/if}}
 
 	<script type="text/javascript" src="/libs/jquery-3.3.1.min.js"></script>
 

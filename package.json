@@ -3,7 +3,8 @@
   "version": "1.0.1",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon --exec 'node index.js -s' --watch src/static/js --watch src/static/libs --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json,pdf",
+    "start": "npx nodemon --exec 'node index.js -s -w' --watch src/server --watch index.js",
+    "start2": "npx nodemon --exec 'node index.js -s' --watch src/static/js --watch src/static/libs --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json,pdf",
     "build": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -b",
     "start:prod": "npx cross-env NODE_ENV=production node index.js -s",
     "worker:deploy": "npx cross-env NODE_ENV=production node index.js --gitd"
@@ -13,6 +14,7 @@
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "babel-loader": "^8.0.4",
+    "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "dirty-json": "^0.7.0",
@@ -30,6 +32,7 @@
     "require-reload": "^0.2.2",
     "sander": "^0.6.0",
     "shortid": "^2.2.14",
+    "socket.io": "^2.2.0",
     "temp-dir": "^1.0.0",
     "vue": "^2.5.21",
     "webpack": "^4.27.1",
