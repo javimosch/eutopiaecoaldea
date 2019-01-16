@@ -14,7 +14,8 @@ module.exports = app => {
 					if(f.indexOf('faq')!==-1){
 						return true;
 					}
-					return f.indexOf('admin') == -1;
+					//return f.indexOf('admin') == -1;
+					return true;
 				} else {
 					return true;
 				}
