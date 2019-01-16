@@ -143,20 +143,14 @@ function loadHandlebarHelpers() {
         return output.charAt(0).toUpperCase() + output.substring(1);
     });
 
-    function filtrarProgramaciones(obj, options) {
-        var eventos = obj;
+    function filtrarProgramaciones(eventos, options) {
         if (options.data.root.programacionOcultarEventosPasados === true) {
             eventos = eventos.filter(evt => {
                 return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
-            })
+            });
         }
         eventos = eventos && eventos.filter(evt => evt.show === undefined ? true : evt.show) || [];
-        obj = obj.sort(function(pr1, pr2) {
-            pr1 = moment(pr1.fecha, 'DD-MM-YYYY')
-            pr2 = moment(pr2.fecha, 'DD-MM-YYYY')
-            return pr1.isSameOrAfter(pr2, 'day') ? 1 : -1
-        })
-        return obj;
+        return eventos;
     }
     Handlebars.registerHelper('hasProgramations', function(obj, options) {
         return filtrarProgramaciones(obj, options).length > 0;
@@ -171,6 +165,9 @@ function loadHandlebarHelpers() {
                 return moment(evt.fechaDesde, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
             })
         }
+        eventos = eventos.sort(function(a, b) {
+            return moment(a.fechaDesde, 'DD-MM-YYYY').isBefore(moment(b.fechaDesde, 'DD-MM-YYYY'), 'day') ? 1 : -1;
+        });
         return eventos;
     })
 
