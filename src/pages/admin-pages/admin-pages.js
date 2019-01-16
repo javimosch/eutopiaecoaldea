@@ -68,7 +68,8 @@ module.exports = function() {
 					}
 				});
 
-				new Vue({
+				window.vues=window.vues||{};
+				window.vues['main']= new Vue({
 					el: '.admin',
 					name: 'adminPages',
 					data() {

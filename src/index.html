@@ -110,6 +110,7 @@
 		{{#if (typeIs init 'function')}}
 			{{#toString init}}{{/toString}}
 			if(!!init){
+				window.pageInit = init;
 				init();
 			}
 		{{/if}}

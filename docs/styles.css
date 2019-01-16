@@ -52,9 +52,9 @@ header {
 }
 
 .imagesViewBox {
-    max-height: 1000px;
-    overflow: auto;
-    background: wheat;
+    /* max-height: 1000px; */
+    /* overflow: auto; */
+    /* background: wheat; */
     margin-top: 20px;
 }
 
@@ -595,7 +595,7 @@ section.admin section {
     background-size: contain;
     background-repeat: repeat;
     margin: 0 auto;
-    background-color: wheat;
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;

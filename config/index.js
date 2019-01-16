@@ -18,6 +18,8 @@ var self = module.exports = {
 		//console.log('getConfig',{language})
 		language = language || self.defaultLanguage;
 
+		mergeDataFile();
+
 		function collectLanguage(language) {
 			var lang = {};
 			Object.keys(locales).forEach(setenceKey => {
@@ -46,29 +48,33 @@ var self = module.exports = {
 	}
 };
 
+mergeDataFile();
 
-var data = require('sander').readFileSync(__dirname + '/data.js').toString('utf-8');
-var savedData = {}
-try {
-	savedData = dJSON.parse(data);
+function mergeDataFile() {
+	var data = require('sander').readFileSync(__dirname + '/data.js').toString('utf-8');
+	var savedData = {}
+	try {
+		savedData = dJSON.parse(data);
 
-} catch (err) {
-	console.error('config: invalid data')
+	} catch (err) {
+		console.error('config: invalid data')
+	}
+	merge(self, savedData);
 }
-//Object.assign(self, savedData || {});
-merge(self,savedData);
+
+
 function merge(self, savedData) {
-	if(savedData===undefined){
+	if (savedData === undefined) {
 		return;
 	}
 	Object.keys(self).forEach(k => {
 		if (typeof self[k] === 'object' && !(self[k] instanceof Array)) {
-			merge(self[k],savedData[k]);
+			merge(self[k], savedData[k]);
 		} else {
 			self[k] = savedData[k] || self[k];
 		}
 	});
-	Object.keys(savedData).filter(k=>Object.keys(self).indexOf(k)==-1).forEach(newK=>{
+	Object.keys(savedData).filter(k => Object.keys(self).indexOf(k) == -1).forEach(newK => {
 		self[newK] = savedData[newK];
 	})
 }
