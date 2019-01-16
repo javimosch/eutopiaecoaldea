@@ -5,7 +5,8 @@ module.exports = function() {
 		context: {
 			type: 'admin',
 			init: function init() {
-				new Vue({
+				window.vues=window.vues||{}
+				window.vues['pageVue'] = new Vue({
 					el: '.admin',
 					name: 'adminVoluntarios',
 					data() {

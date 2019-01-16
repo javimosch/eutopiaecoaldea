@@ -1,145 +1,69 @@
 <div class="blockChilds form developmentPage adminNav">
-        <h3>Menu principal <a class="fnt-12 backBtn" href="/" target="_blank">ver sitio</a></h3>
-        <div>
-            <p class="italic fnt-12" style="margin-top:5px">
-                <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
-            </p>
-        </div>
-        <div>
-            <button class="btn" v-cloak v-if="true" @click="(loaders.deploy||isCooldown('deploy'))||deploy()" :disabled="loaders.deploy||isCooldown('deploy')" v-html="loaders.deploy?'Publicando...':'Publicar cambios recientes'"></button>
-            <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
-                Cambios publicados recientemente, espera un momento...
-            </p>
-        </div>
-        <div>
-            <button class="btn" v-cloak v-if="true" @click="loaders.wipMode||(isCooldown('wipMode'))||deployWipMode()" :disabled="loaders.wipMode||isCooldown('wipMode')" v-html="loaders.wipMode?'Procesando...':'Actualizar sitio con mensaje indicando que estamos trabajando en la pagina'"></button>
-            <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('wipMode')">
-                Cambios publicados recientemente, espera un momento...
-            </p>
-        </div>
-        <p class="fnt-12 italic">Al publicar, el sitio toma entre uno y dos minutos en actualizarse. Una vez pasado este tiempo tenemos que refrescar el navegador manualmente. Si los cambios no aparecen, intentar refrescar el navegador pulsando CTRL+R en reiteradas ocaciones.</p>
-        <hr>
-        <a href="/admin/programacion">
+    <a class="backBtn" href="/" target="_blank">Ver pagina</a>
+    <div>
+        <p class="italic fnt-12" style="margin-top:5px">
+            <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
+        </p>
+    </div>
+    <div>
+        <button class="btn" v-cloak v-if="true" @click="(loaders.deploy||isCooldown('deploy'))||deploy()" :disabled="loaders.deploy||isCooldown('deploy')" v-html="loaders.deploy?'Publicando...':'Publicar cambios'"></button>
+        <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
+            Cambios publicados recientemente, espera un momento...
+        </p>
+    </div>
+    <!--
+    
+    <div>
+        <button class="btn" v-cloak v-if="true" @click="loaders.wipMode||(isCooldown('wipMode'))||deployWipMode()" :disabled="loaders.wipMode||isCooldown('wipMode')" v-html="loaders.wipMode?'Procesando...':'Actualizar sitio con mensaje indicando que estamos trabajando en la pagina'"></button>
+        <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('wipMode')">
+            Cambios publicados recientemente, espera un momento...
+        </p>
+    </div>
+    <p class="fnt-12 italic">Al publicar, el sitio toma entre uno y dos minutos en actualizarse. Una vez pasado este tiempo tenemos que refrescar el navegador manualmente. Si los cambios no aparecen, intentar refrescar el navegador pulsando CTRL+R en reiteradas ocaciones.</p>
+-->
+    <div class="sidebarMenu">
+
+    <a href="/admin/programacion">
             <i class="fas fa-calendar-alt"></i>
             Programacion
         </a>
-        <a href="/admin/voluntarios">
+    <a href="/admin/voluntarios">
             <i class="fas fa-people-carry"></i>
             Voluntarios
         </a>
-        <a href="/admin/formulario-de-contacto">
+    <a href="/admin/formulario-de-contacto">
             <i class="fas fa-phone-volume"></i>
-            Formulario de contacto
+            Contactos
         </a>
-        <a href="/admin/images">
+    <a href="/admin/images">
             <i class="fas fa-images"></i>
-            Imagenes
+            Imagenes 
         </a>
-        <a href="/admin/files">
+    <a href="/admin/files">
             <i class="fas fa-file"></i>
             Archivos
         </a>
-        <a href="/admin/pages">
+    <a href="/admin/pages">
             <i class="fas fa-book"></i>
             Paginas
         </a>
-        <a href="/admin/partials">
+    <a href="/admin/partials">
             <i class="fas fa-book"></i>
             Vistas parciales
         </a>
-        <a href="/admin/changelog">
+    <a href="/admin/changelog">
             <i class="fas fa-clipboard-list"></i>
             Historial de cambios
         </a>
-        <a href="/admin/faq">
+    <a href="/admin/faq">
             <i class="fas fa-book"></i>
-            Guia de administrador (FAQ)
+            Documentacion
         </a>
-        <a href="/admin/avanzado">
+    <a href="/admin/avanzado">
         <i class="fas fa-cogs"></i>
         Configuracion avanzada</a>
-        <a @click="logout()" class="logout">
+    <a @click="logout()" class="logout">
 
-        Salir</a>
-    </div>
-    <hr>
-    <script type="text/javascript">
-        (function init() {
-    if (typeof window.Vue === 'undefined' || typeof window.moment === 'undefined') return setTimeout(() => init(), 100);
-            new Vue({
-                    el: '.adminNav',
-                    name: 'admin_nav',
-                    data() {
-                        return {
-                            deployedAt: '',
-                            loaders: {
-                                wipMode: false,
-                                deploy: false
-                            }
-                        }
-                    },
-                    created() {
-                        fetch(`/manifest.json`).then(r => r.json().then(response => {
-                            this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
-                        }));
-                    },
-                    mounted() {
-                        
-                    },
-                    methods: {
-                        logout(){
-                            window.logout();
-                        },
-                        isCooldown(name) {
-                            var v = window.localStorage.getItem('cooldown_' + name);
-                            if (!!v) {
-                                v = parseInt(v);
-                                if (Date.now() - v > 1000 * 60 * 2) {
-                                    window.localStorage.setItem('cooldown_' + name, '')
-                                    return false;
-                                } else {
-                                    return true;
-                                }
-                            } else {
-                                return false;
-                            }
-                        },
-                        deployWipMode,
-                        deployStaging,
-                        deploy,
-                        cooldownVariable
-                    }
-                })
-
-                function deployWipMode() {
-                    this.loaders.wipMode = true
-                    fetch(`${SERVER.API_URL}/api/deployment/publish?wipMode=1`).then(r => r.json().then(response => {
-                        this.cooldownVariable('wipMode');
-                        this.loaders.wipMode = false
-                        console.info(response);
-                    }));
-                }
-
-                function deployStaging() {
-                    this.loaders.staging = true
-                    fetch(`${SERVER.API_URL}/api/deployment/publish?staging=1`).then(r => r.json().then(response => {
-                        this.cooldownVariable('deployStaging');
-                        this.loaders.staging = false;
-                        console.info(response);
-                    }));
-                }
-
-                function cooldownVariable(variable) {
-                    window.localStorage.setItem('cooldown_' + variable, Date.now());
-                    this.$forceUpdate();
-                }
-
-                function deploy() {
-                    this.loaders.deploy = true
-                    fetch(`${SERVER.API_URL}/api/deployment/publish`).then(r => r.json().then(response => {
-                        this.cooldownVariable('cooldown_deploy');
-                        this.loaders.deploy = false
-                    }));
-                }
-    })();
-    </script>
+        Desconectarse</a>
+        </div>
+</div>

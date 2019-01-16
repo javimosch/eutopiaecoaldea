@@ -3,8 +3,32 @@ const sander = require('sander');
 const Handlebars = require('handlebars');
 const dJSON = require('dirty-json');
 const reload = require('require-reload')(require);
+const livereload = require('./livereload');
+
+function injectHtml(html,name) {
+	var result = {
+		html
+	};
+	if (process.env.NODE_ENV!=='production') {
+		const cheerio = require('cheerio')
+		const $ = cheerio.load(html)
+		result.app = $('.app').html();
+		result.head = $('head').html();
+		$('body').html($('body').html() + `
+			<script src="https://cdn.jsdelivr.net/npm/socket.io-client@2.2.0/dist/socket.io.slim.min.js"></script>
+			<script>
+				fetch('/livereload.js?page='+window.SERVER.currentPage+'&language='+window.SERVER.currentLanguage).then(r=>r.text()).then(data=>{
+					eval(data);
+				})
+			</script>
+		`);
+		result.html = $.html()
+	}
+	return result;
+}
 
 module.exports = {
+	injectHtml,
 	compile: (options, config) => {
 		var srcPath = path.join(process.cwd(), 'src');
 		var srcFile = name => path.join(srcPath, name);
@@ -73,7 +97,10 @@ module.exports = {
 				context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;
 				var html = template(Object.assign({}, context, pageConfig.context || {}));
 				var writePath = path.join(basePath, pageConfig.path || '', pageConfig.name.toLowerCase(), 'index.html');
-				sander.writeFileSync(writePath, html);
+				let result = injectHtml(html, pageConfig.name);
+				let combinedContext = Object.assign({}, context, pageConfig.context || {});
+				livereload.addPage(context.currentPage, result, context.currentLanguage, combinedContext);
+				sander.writeFileSync(writePath, result.html);
 			})
 		});
 

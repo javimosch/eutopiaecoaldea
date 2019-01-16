@@ -14,39 +14,29 @@ if (argv.gitd) {
 }
 
 if (argv.s || argv.server) {
-
-    //var testFile = path.join(process.cwd(), 'deploy.pub')
-    //var gitPath = server.git.getPath();
-    //exec(`cd ${gitPath}; cd src/static; cp ${testFile} .`)
-    //server.git.pushPath('src/*');
-
-
     runLocalServer();
-    if (argv.a || argv.api) {
-
-    } else {
-        compileEntireSite();
-    }
-} else {
-    if (argv.b || argv.build) {
-        compileEntireSite();
-        console.log('Site compiled');
-    } else {
-        if (argv.d || argv.deploy) {
-            console.log('DEPRECATED (yarn deploy)')
-            return process.exit(0);
-            if (argv.a || argv.api) {
-                console.log('Commiting and deploying api')
-                exec('git add api/*; git add index.js;git commit -m "auto:api";git stash; git pull --rebase origin master; git stash pop;git push heroku master');
-            } else {
-                //compileEntireSite();
-                //exec('git add docs/*; git commit -m "deploy"; git stash; git pull --rebase origin master; git stash pop; git push origin master');
-            }
-        }
-    }
+    build();
+}
+if (argv.b || argv.build) {
+    build();
+}
+if (argv.w || argv.watch) {
+    var chokidar = require('chokidar');
+    chokidar.watch([`${__dirname}/src`, `${__dirname}/config`], {
+        ignored: /(^|[\/\\])\../,
+        ignoreInitial: true
+    }).on('change', (path, stats) => {
+        console.log('WATCH CHANGE', path);
+        build();
+        server.livereload.trigger();
+    }).on('add', (path, stats) => {
+        console.log('WATCH ADD', path);
+        build();
+        server.livereload.trigger();
+    });
 }
 
-function compileEntireSite() {
+function build() {
     var outputFiles = sander.readdirSync(outputFolder);
     outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).forEach(n => {
         rimraf(path.join(outputFolder, n), '/docs/');
@@ -68,8 +58,6 @@ function compileEntireSite() {
 
     //Javascript
     //server.webpack.compile();
-
-
     //Generate site
     compileSiteOnce({
         language: 'es'
@@ -99,6 +87,7 @@ function compileEntireSite() {
     sander.writeFileSync(path.join(outputFolder, 'manifest.json'), JSON.stringify({
         created_at: Date.now()
     }, null, 4))
+    console.log('Site compiled');
 }
 
 function compileStyles() {
@@ -261,18 +250,30 @@ function compileSiteOnce(options = {}) {
     context.currentPage = context.defaultCurrentPage;
     context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;
     var html = template(context);
-    sander.writeFileSync(fileName('index.html'), html);
-
-
+    let result = server.pages.injectHtml(html);
+    server.livereload.addPage(context.currentPage, result, context.currentLanguage, context);
+    sander.writeFileSync(fileName('index.html'), result.html);
 }
 
 function runLocalServer() {
     const express = require('express');
     const app = express();
-    var cors = require('cors')
+    var cors = require('cors');
+    var appServer = require('http').Server(app);
+
+    if (argv.w || argv.watch) {
+        var io = require('socket.io')(appServer);
+        io.on('connection', function(socket) {
+            console.log('socket connected')
+            socket.on('reportPage', data => {
+                server.livereload.addActivePage(data.page, data.lang);
+            });
+        });
+        process.io = io;
+        console.log('socket.io waiting')
+    }
 
     app.use(cors());
-
     var bodyParser = require('body-parser')
 
     // parse application/x-www-form-urlencoded
@@ -295,13 +296,17 @@ function runLocalServer() {
         createApiRoutes(app);
     }
 
-    app.listen(port, () => {
-        if (argv.a || argv.api) {
-            console.log(`Local server listening on port ${port}! (API MODE)`);
-        } else {
-            console.log(`Local server listening on port ${port}!`);
-        }
+    if (process.env.NODE_ENV !== 'production') {
+        app.get('/livereload.js', (req, res) => {
+            server.livereload.addActivePage(req.query.page,req.query.language);
+            res.send(server.livereload.getClientScript(port));
+        })
+    }
+
+    appServer.listen(port, () => {
+        console.log(`Local server listening on port ${port}!`);
     });
+
 }
 
 function createApiRoutes(app) {
