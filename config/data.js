@@ -96,73 +96,7 @@
                 ]
             }
         ],
-        "formularioContacto": [
-            {
-                "name": "Maelle Aubert",
-                "email": "mae.aubert@gmail.com",
-                "messages": [
-                    {
-                        "message": "Mensaje de prueba 3",
-                        "date": "24-12-2018 16:45"
-                    },
-                    {
-                        "message": "Mensaje de prueba 2",
-                        "date": "24-12-2018 17:02"
-                    }
-                ]
-            },
-            {
-                "name": "Javier Leandro Arancibia",
-                "email": "arancibiajav@gmail.com",
-                "messages": [
-                    {
-                        "message": "Mensaje de prueba 1",
-                        "phone": "+33782809054",
-                        "date": "24-12-2018 17:12"
-                    },
-                    {
-                        "message": "Probando 28",
-                        "phone": "+33782809054",
-                        "date": "29-12-2018 06:42"
-                    },
-                    {
-                        "message": "Esta es una prueba de envio de mensaje desde eutopia",
-                        "phone": "+33782809054",
-                        "date": "17-01-2019 17:47"
-                    },
-                    {
-                        "message": "TEST 1",
-                        "phone": "+33782809054",
-                        "date": "17-01-2019 17:52"
-                    },
-                    {
-                        "message": "TEST 2",
-                        "phone": "+33782809054",
-                        "date": "17-01-2019 17:54"
-                    },
-                    {
-                        "message": "TEST 4",
-                        "phone": "+33782809054",
-                        "date": "17-01-2019 17:55"
-                    },
-                    {
-                        "message": "TEST 5",
-                        "phone": "+33782809054",
-                        "date": "17-01-2019 17:57"
-                    },
-                    {
-                        "message": "TEST 6",
-                        "phone": "+33782809054",
-                        "date": "17-01-2019 18:01"
-                    },
-                    {
-                        "message": "ASD 2",
-                        "phone": "+33782809054",
-                        "date": "17-01-2019 18:05"
-                    }
-                ]
-            }
-        ]
+        "formularioContacto": []
     },
     "login": {
         "code": "cm5y"
