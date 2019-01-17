@@ -1,4 +1,4 @@
-ut{
+{
     "context": {
         "wipMode": false,
         "defaultCurrentPage": "page_ecoaldea",

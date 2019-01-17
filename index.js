@@ -133,6 +133,10 @@ function loadHandlebarHelpers() {
     });
 
     function filtrarProgramaciones(eventos, options) {
+        if(!eventos){
+            console.error('filtrarProgramaciones: no events provided', options.data.root.currentPage)
+            return [];
+        }
         if (options.data.root.programacionOcultarEventosPasados === true) {
             eventos = eventos.filter(evt => {
                 return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
@@ -148,6 +152,10 @@ function loadHandlebarHelpers() {
         return filtrarProgramaciones(obj, options);
     })
     Handlebars.registerHelper('filtrarEventosProgramacion', function(eventos, options) {
+        if(!eventos){
+            console.error('filtrarProgramaciones: no events provided', options.data.root.currentPage)
+            return [];
+        }
         eventos = eventos.filter(evt => evt.show === undefined ? true : evt.show);
         if (options.data.root.programacionOcultarEventosPasados === true) {
             eventos = eventos.filter(evt => {
