@@ -1,4 +1,4 @@
-{
+ut{
     "context": {
         "wipMode": false,
         "defaultCurrentPage": "page_ecoaldea",
@@ -62,17 +62,15 @@
                 "helpMessage": "Estoy dispuesto a participar y ayudar en todos tus proyectos.Tengo 22 años y tengo mucha energía.",
                 "dateMessage": "18 o 19 de enero",
                 "date": "07-01-2019 16:39"
-            },
-            {
-                "name": "Javier Leandro Arancibia",
-                "email": "arancibiajav@gmail.com",
-                "whyMessage": "PRUEBA 1",
-                "helpMessage": "PRUEBA 1",
-                "dateMessage": "PRUEBA 1",
-                "date": "17-01-2019 18:13"
             }
         ],
         "changelog": [
+            {
+                "date": "17-01-2019",
+                "list": [
+                    "Los mensajes enviados desde la seccion voluntarios y formulario de contacto ahora se notifican por correo a ecoaldeaeutopia@gmail.com. Si se necesita cambiar este email, notificar por correo a arancibiajav@gmail.com"
+                ]
+            },
             {
                 "date": "16-01-2019",
                 "list": [
