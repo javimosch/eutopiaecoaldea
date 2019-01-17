@@ -180,6 +180,7 @@ function apiPost(uri, data) {
 								console.info('authSuccess');
 								try {
 									document.querySelector('section.admin.protected').style.display = "block";
+									$('.admin.protected').toggle(true);
 									initAdminNav();
 								} catch (err) {}
 							} else {
