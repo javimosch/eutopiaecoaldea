@@ -30,17 +30,33 @@ module.exports = function(options, config, context) {
 								}
 								return;
 							}
-							this.sending=true;
+							this.sending = true;
+
+							try {
+								fetch('https://cms.misitioba.com/api/forms/submit/ecoaldeaVolunteerForm?token=e420e46dfc002280d5ffee7be5e9e0', {
+									method: 'post',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify({
+										form: Object.assign({}, this.form)
+									})
+								});
+							} catch (err) {
+
+							}
+
+
 							$.ajax({
 								url: `${SERVER.API_URL}/api/voluntariado/save`,
 								data: JSON.stringify(Object.assign({}, this.form)),
 								contentType: "application/json; charset=utf-8",
 								type: 'POST',
 								error: () => {
-									this.sending=false;
+									this.sending = false;
 								},
 								success: (data) => {
-									this.sending=false;
+									this.sending = false;
 									if (!data.result) {
 										new Noty({
 											layout: 'bottomRight',
