@@ -79,6 +79,10 @@ function build() {
             language: 'pr',
             outputFolder: 'docs/pr'
         });
+        compileSiteOnce({
+            language: 'it',
+            outputFolder: 'docs/it'
+        });
     } else {
         console.log('WARN: i18N Disabled')
     }
