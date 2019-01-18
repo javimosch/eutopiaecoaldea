@@ -1,4 +1,10 @@
 module.exports = {
+	COMO_FUNCIONA:{
+		es:"Necesitas agregar una propiedad por acada idioma. Por ejemplo, si quiero agregar una traduccion en italiano agrego una propiedad 'it'. Para visualizar este texto en la pagina, tengo que editar algunas de las paginas y agregar {{lang.COMO_FUNCIONA}}"
+		it:"Aqui va la version en italiano",
+		fr:"Aqui la version en frances"
+		de:"etc.."
+	},
 	PRODUCTOS_CATALOGO_TITULO:{
 		es:"Nuestra aldea tambien produce una variedad de productos organicos y buenos para la salud!"
 	},
@@ -120,6 +126,10 @@ module.exports = {
 		es:'Portugués',
 		en:'Portuguese',
 		fr:"Portugais"
+	},
+	it:{
+		es:'Italiano',
+		en:'Italian'
 	},
 	de:{
 		es:"Aleman",
