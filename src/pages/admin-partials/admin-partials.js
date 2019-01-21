@@ -61,7 +61,7 @@ module.exports = function() {
 				});
 
 				new Vue({
-					el: '.admin',
+					el: '.appScope',
 					name: 'adminPages',
 					data() {
 						return {

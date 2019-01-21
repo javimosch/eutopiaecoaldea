@@ -70,7 +70,7 @@ module.exports = function() {
 
 				window.vues=window.vues||{};
 				window.vues['main']= new Vue({
-					el: '.admin',
+					el: '.appScope',
 					name: 'adminPages',
 					data() {
 						return {

@@ -1,7 +1,7 @@
-<section class="admin protected container">
+<section class="admin protected container appScope">
 	<h3>Formulario de contacto </h3>
 	<ul class="list">
-            
+            <p v-show="items && items.length===0" class="italic">Por ahora, no hay mensajes...</p>
             <li class="volunteerItem" v-for="item in items">
             	<div class="desktopSplitTwo">
             		<div>

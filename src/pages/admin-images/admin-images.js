@@ -7,7 +7,7 @@ module.exports = function() {
 			init: function init() {
 				window.vues=window.vues||{};
 				window.vues['main']= new Vue({
-					el: '.admin',
+					el: '.appScope',
 					name: 'adminImages',
 					data() {
 						return {
