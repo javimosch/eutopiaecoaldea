@@ -66,9 +66,9 @@
         ],
         "changelog": [
             {
-                "date":"21-01-2019",
-                "list":[
-                    "Corregido error que dejo a todas la secciones de admin inutilizables por varios dias."    
+                "date": "21-01-2019",
+                "list": [
+                    "Corregido error que dejo a todas la secciones de admin inutilizables por varios dias."
                 ]
             },
             {
