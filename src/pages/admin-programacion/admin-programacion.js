@@ -10,7 +10,7 @@ module.exports = function() {
 
 
 				new Vue({
-					el: '.admin',
+					el: '.appScope',
 					name: 'adminProgramacion',
 					data() {
 						return {
