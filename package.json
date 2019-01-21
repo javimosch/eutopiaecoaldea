@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "main": "index.js",
   "scripts": {
+    "watch": "npx nodemon --exec 'node index.js -w' --watch src/server --watch index.js",
     "start": "npx nodemon --exec 'node index.js -s -w' --watch src/server --watch index.js",
     "start2": "npx nodemon --exec 'node index.js -s' --watch src/static/js --watch src/static/libs --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json,pdf",
     "build": "npx cross-env NODE_ENV=production API_URL=https://utopiaecoaldea.herokuapp.com node index.js -b",

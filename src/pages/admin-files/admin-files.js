@@ -6,7 +6,7 @@ module.exports = function() {
 			type: 'admin',
 			init: function init() {
 				new Vue({
-					el: '.admin',
+					el: '.appScope',
 					name: 'adminFiles',
 					data() {
 						return {

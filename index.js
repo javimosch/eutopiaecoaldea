@@ -14,13 +14,18 @@ if (argv.gitd) {
 }
 
 if (argv.s || argv.server) {
-    runLocalServer();
-    build();
+    runLocalServer().then(() => {
+        build();
+    });
 }
 if (argv.b || argv.build) {
     build();
 }
 if (argv.w || argv.watch) {
+    if (!(argv.s || argv.server)) {
+        console.log('Only watching for changes this time...');
+        build();
+    }
     var chokidar = require('chokidar');
     chokidar.watch([`${__dirname}/src`, `${__dirname}/config`], {
         ignored: /(^|[\/\\])\../,
@@ -41,12 +46,12 @@ function build() {
     outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).forEach(n => {
         rimraf(path.join(outputFolder, n), '/docs/');
     });
-
+    console.log('BUILD 1')
     exec(`cd ${outputFolder}; cp -R ../src/static/* .`);
 
     //Helpers
     loadHandlebarHelpers()
-
+    console.log('BUILD 2')
     //Styles
     if (process.env.NODE_ENV === 'production') {
         //compileStyles();
@@ -55,14 +60,16 @@ function build() {
             //compileStyles();
         }
     }
-
+    console.log('BUILD 3')
     //Javascript
     //server.webpack.compile();
     //Generate site
     compileSiteOnce({
         language: 'es'
     });
+
     if (process.env.DISABLE_I18N !== '1') {
+        console.log('BUILD 4')
         compileSiteOnce({
             language: 'en',
             outputFolder: 'docs/en'
@@ -86,12 +93,10 @@ function build() {
     } else {
         console.log('WARN: i18N Disabled')
     }
-
-    //manifest
     sander.writeFileSync(path.join(outputFolder, 'manifest.json'), JSON.stringify({
         created_at: Date.now()
     }, null, 4))
-    console.log('Site compiled');
+    console.log('BUILD DONE');
 }
 
 function compileStyles() {
@@ -137,7 +142,7 @@ function loadHandlebarHelpers() {
     });
 
     function filtrarProgramaciones(eventos, options) {
-        if(!eventos){
+        if (!eventos) {
             console.error('filtrarProgramaciones: no events provided', options.data.root.currentPage)
             return [];
         }
@@ -156,7 +161,7 @@ function loadHandlebarHelpers() {
         return filtrarProgramaciones(obj, options);
     })
     Handlebars.registerHelper('filtrarEventosProgramacion', function(eventos, options) {
-        if(!eventos){
+        if (!eventos) {
             console.error('filtrarProgramaciones: no events provided', options.data.root.currentPage)
             return [];
         }
@@ -268,57 +273,60 @@ function compileSiteOnce(options = {}) {
 }
 
 function runLocalServer() {
-    const express = require('express');
-    const app = express();
-    var cors = require('cors');
-    var appServer = require('http').Server(app);
+    return new Promise((resolve, reject) => {
+        const express = require('express');
+        const app = express();
+        var cors = require('cors');
+        var appServer = require('http').Server(app);
 
-    if (argv.w || argv.watch) {
-        var io = require('socket.io')(appServer);
-        io.on('connection', function(socket) {
-            console.log('socket connected')
-            socket.on('reportPage', data => {
-                server.livereload.addActivePage(data.page, data.lang);
+        if (argv.w || argv.watch) {
+            var io = require('socket.io')(appServer);
+            io.on('connection', function(socket) {
+                console.log('socket connected')
+                socket.on('reportPage', data => {
+                    server.livereload.addActivePage(data.page, data.lang);
+                });
             });
+            process.io = io;
+            console.log('socket.io waiting')
+        }
+
+        app.use(cors());
+        var bodyParser = require('body-parser')
+
+        // parse application/x-www-form-urlencoded
+        app.use(bodyParser.urlencoded({
+            extended: true
+        }))
+
+        // parse application/json
+        app.use(bodyParser.json())
+
+        const port = process.env.PORT || 3000;
+
+        if (argv.a || argv.api) {
+            app.get('/', function(req, res) {
+                return res.send('API OK');
+            });
+            createApiRoutes(app);
+        } else {
+            app.use('/', express.static(outputFolder));
+            createApiRoutes(app);
+        }
+
+        if (process.env.NODE_ENV !== 'production') {
+            app.get('/livereload.js', (req, res) => {
+                server.livereload.addActivePage(req.query.page, req.query.language);
+                res.send(server.livereload.getClientScript(port));
+            })
+        }
+
+        appServer.listen(port, () => {
+            console.log(`Local server listening on port ${port}!`);
+            resolve();
         });
-        process.io = io;
-        console.log('socket.io waiting')
-    }
 
-    app.use(cors());
-    var bodyParser = require('body-parser')
-
-    // parse application/x-www-form-urlencoded
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }))
-
-    // parse application/json
-    app.use(bodyParser.json())
-
-    const port = process.env.PORT || 3000;
-
-    if (argv.a || argv.api) {
-        app.get('/', function(req, res) {
-            return res.send('API OK');
-        });
-        createApiRoutes(app);
-    } else {
-        app.use('/', express.static(outputFolder));
-        createApiRoutes(app);
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-        app.get('/livereload.js', (req, res) => {
-            server.livereload.addActivePage(req.query.page,req.query.language);
-            res.send(server.livereload.getClientScript(port));
-        })
-    }
-
-    appServer.listen(port, () => {
-        console.log(`Local server listening on port ${port}!`);
     });
-
 }
 
 function createApiRoutes(app) {
