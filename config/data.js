@@ -66,6 +66,12 @@
         ],
         "changelog": [
             {
+                "date":"21-01-2019",
+                "list":[
+                    "Corregido error que dejo a todas la secciones de admin inutilizables por varios dias."    
+                ]
+            },
+            {
                 "date": "17-01-2019",
                 "list": [
                     "Los mensajes enviados desde la seccion voluntarios y formulario de contacto ahora se notifican por correo a ecoaldeaeutopia@gmail.com. Si se necesita cambiar este email, notificar por correo a arancibiajav@gmail.com"
