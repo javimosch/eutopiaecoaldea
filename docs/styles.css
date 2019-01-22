@@ -129,6 +129,7 @@ form>label {
     margin-bottom: 10px;
     width: 100%;
     font-size: 25px;
+    color: #f18e35;
 }
 
 .parameters-component {
@@ -224,6 +225,7 @@ form>button:active,
 
 .developmentPage {
     padding: 20px 10px;
+    max-width: 185px;
 }
 
 .groupHeader {
@@ -309,9 +311,11 @@ form>button:active,
     border:0px!important;
     background: transparent;
     display: block;
+    /* padding-top: 0px; */
 }
 .adminSidebar header .brand{
     width: 100%;
+    /* margin-top: 0px; */
 }
 .adminSidebar header .brand img{
     max-width: 80%;
@@ -684,9 +688,10 @@ iframe {
 .backBtn {
     text-decoration: none;
     color: #ef7f1a;
-    font-size: 16px;
+    font-size: 14px;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+    font-style: italic;
 }
 
 @media only screen and (min-width: 480px) {
@@ -768,10 +773,15 @@ iframe {
     .adminSidebar{
     min-width: calc(15%);
     box-shadow: 5px 0px 5px #ef7e1938;
+    background: linear-gradient(       rgba(255, 255, 255, 0),        rgba(255, 255, 255, 0.90)     ),url(https://images.unsplash.com/photo-1547950515-8c1f47eee34b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80);
+    background-position: right;
+    background-color: white;
+    background-size: cover;
 }
     .adminMainContent{
-    min-width: calc(80%);
+    min-width: calc(75%);
     padding: 0px 30px 0px 30px;
+    margin-right: 10px;
 }
 
     .iiLogoWrapper {
