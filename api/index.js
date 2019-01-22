@@ -16,6 +16,7 @@ module.exports = function configure(app) {
 	require('./programacion')(app);
 	require('./pages')(app);
 	require('./partials')(app);
+	require('./styles')(app);
 
 	app.post('/api/git/path', (req, res) => {
 		var gitPath = server.git.getPath();

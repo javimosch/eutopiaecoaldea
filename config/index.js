@@ -44,6 +44,11 @@ var self = module.exports = {
 		});
 		result.currentLanguage = result.lang[language];
 		result.currentLanguageCode = language;
+
+		Object.assign(result, {
+			API_URL: process.env.API_URL || self.context.API_URL
+		});
+
 		return result;
 	}
 };
@@ -78,8 +83,3 @@ function merge(self, savedData) {
 		self[newK] = savedData[newK];
 	})
 }
-
-
-Object.assign(self.context, {
-	API_URL: process.env.API_URL || self.context.API_URL
-});
