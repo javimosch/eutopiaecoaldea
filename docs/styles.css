@@ -32,6 +32,7 @@ body {
 .header-image {
     background-image: linear-gradient(#ef7f1a2e, rgba(239, 127, 26, 0.29) 80%), url(https://images.unsplash.com/photo-1539279546239-2ec5e75390ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80);
     background-position: center;
+    background-color: transparent;
 }
 header {
     background: white;
@@ -328,7 +329,7 @@ form>button:active,
 }
 .subMenu a {
     font-size: 16px;
-    color: #333;
+    color: #ef7f1a;
     text-decoration: none;
     padding: 5px;
 }
@@ -359,12 +360,12 @@ footer ul.menu>li.socialIcons:hover>a {
 }
 
 ul.menu>li:hover>a {
-    color: black;
+    color: #039541;
 }
 
 .subMenu li:hover>a {
-    background-color: #ef7f1a;
-    color: white;
+    /* background-color: #ef7f1a; */
+    color: #009440;
 }
 
 .menu li:hover .subMenu,
@@ -400,7 +401,7 @@ ul.menu>li {
 
 ul.menu>li>a {
     font-size: 14px;
-    color: #333;
+    color: #ef7f1a;
     text-decoration: none;
     font-family: sans-serif;
     margin: 0 auto;
@@ -621,7 +622,7 @@ footer {
     padding-top: 10px;
     padding-bottom: 10px;
     /* margin-top: 30px; */
-    box-shadow: 0px -1px 5px #ef7f1a78;
+    box-shadow: 0px -1px 5px #ef7f1a47;
 }
 
 footer {}
@@ -975,7 +976,7 @@ iframe {
     }
 
     header {
-        padding-top: 0px;
+        padding-top: 15px;
         height: 80px;
         display: flex;
         align-items: center;
