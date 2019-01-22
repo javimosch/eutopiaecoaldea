@@ -66,6 +66,13 @@
         ],
         "changelog": [
             {
+                "date": "22-01-2019",
+                "list": [
+                    "Nueva seccion Estilos CSS para actualizar la apariencia del sitio.",
+                    "Estilos CSS actualizados acordes a los colores de la marca."
+                ]
+            },
+            {
                 "date": "21-01-2019",
                 "list": [
                     "Corregido error que dejo a todas la secciones de admin inutilizables por varios dias."
