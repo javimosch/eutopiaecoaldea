@@ -135,7 +135,7 @@ Vue.component('codemirror', {
       if (this.activated) return;
       this.activated = true;
       var editor = ace.edit(this.$refs.editor);
-      editor.setTheme("ace/theme/monokai");
+      editor.setTheme("ace/theme/chrome");
       editor.session.setMode(`ace/mode/${this.mode||'javascript'}`);
       this.editor = editor;
       this.editor.on('change', () => {
