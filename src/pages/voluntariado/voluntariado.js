@@ -33,7 +33,7 @@ module.exports = function(options, config, context) {
 							this.sending = true;
 
 							try {
-								fetch('https://cms.misitioba.com/api/forms/submit/ecoaldeaVolunteerForm?token=e420e46dfc002280d5ffee7be5e9e0', {
+								fetch('https://cms.misitioba.com/api/forms/submit/ecoaldeaVolunteerForm?token=a4b636d604bdda445515c719bb131a', {
 									method: 'post',
 									headers: {
 										'Content-Type': 'application/json'
