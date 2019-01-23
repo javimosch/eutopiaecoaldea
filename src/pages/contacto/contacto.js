@@ -35,7 +35,7 @@ module.exports = function(options, config, context) {
 							var payload = JSON.stringify(payloadData);
 
 							try {
-								fetch('https://cms.misitioba.com/api/forms/submit/ecoaldeaContactForm?token=e420e46dfc002280d5ffee7be5e9e0', {
+								fetch('https://cms.misitioba.com/api/forms/submit/ecoaldeaContactForm?token=a4b636d604bdda445515c719bb131a', {
 										method: 'post',
 										headers: {
 											'Content-Type': 'application/json'
