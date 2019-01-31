@@ -8,12 +8,24 @@
         "updateCode": "ZYBnt9si1",
         "programacion": [
             {
-                "fechaDesde": "21-12-2018",
-                "id": "_t0ykghezt",
-                "title": "REMODELACIÓN DE ESCENARIO",
-                "image": "/uploads/images/albergue-construccion.jpeg",
-                "message": "<p>Construiremos muro de contención en piedra,muros posteriores de escenario y nivelaremos piso</p>",
+                "fechaDesde": "01-02-2019",
+                "fechaHasta": "24-02-2019",
+                "id": "_0wbuv0pg6",
+                "title": "BIOCONSTRUYENDO EN EUTOPIA ",
+                "image": "",
+                "message": "",
                 "time": "",
+                "show": false
+            },
+            {
+                "fechaDesde": "15-01-2019",
+                "fechaHasta": "16-01-2019",
+                "id": "_3i1jeh7cb",
+                "title": "Minga: Remodelación escenario Q'uncha Pachaq",
+                "image": "/uploads/images/1.jpg",
+                "message": "<p>Continuaremos con la construcción del muro de contención y el llenado de la plataforma del escenario.</p><p>Escríbenos y únete a la minga!</p>",
+                "timeFrom": "08:00",
+                "timeTo": "16:00",
                 "show": true
             },
             {
@@ -27,14 +39,12 @@
                 "show": true
             },
             {
-                "fechaDesde": "15-01-2019",
-                "fechaHasta": "16-01-2019",
-                "id": "_3i1jeh7cb",
-                "title": "Minga: Remodelación escenario Q'uncha Pachaq",
-                "image": "/uploads/images/1.jpg",
-                "message": "<p>Continuaremos con la construcción del muro de contención y el llenado de la plataforma del escenario.</p><p>Escríbenos y únete a la minga!</p>",
-                "timeFrom": "08:00",
-                "timeTo": "16:00",
+                "fechaDesde": "21-12-2018",
+                "id": "_t0ykghezt",
+                "title": "REMODELACIÓN DE ESCENARIO",
+                "image": "/uploads/images/albergue-construccion.jpeg",
+                "message": "<p>Construiremos muro de contención en piedra,muros posteriores de escenario y nivelaremos piso</p>",
+                "time": "",
                 "show": true
             }
         ],
@@ -65,13 +75,6 @@
             }
         ],
         "changelog": [
-            {
-                "date": "22-01-2019",
-                "list": [
-                    "Nueva seccion Estilos CSS para actualizar la apariencia del sitio.",
-                    "Estilos CSS actualizados acordes a los colores de la marca."
-                ]
-            },
             {
                 "date": "21-01-2019",
                 "list": [
@@ -115,19 +118,7 @@
                 ]
             }
         ],
-        "formularioContacto": [
-            {
-                "name": "Javier Leandro Arancibia",
-                "email": "arancibiajav@gmail.com",
-                "messages": [
-                    {
-                        "message": "TEST",
-                        "phone": "+33782809054",
-                        "date": "23-01-2019 19:09"
-                    }
-                ]
-            }
-        ]
+        "formularioContacto": []
     },
     "login": {
         "code": "cm5y"
