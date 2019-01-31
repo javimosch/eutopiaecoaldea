@@ -8,6 +8,16 @@
         "updateCode": "ZYBnt9si1",
         "programacion": [
             {
+                "fechaDesde": "09-02-2019",
+                "fechaHasta": "09-02-2019",
+                "id": "_zl6dtjfhr",
+                "title": "ELABORACIÓN DE JABÓN NATURAL Y ARTESANAL, ",
+                "image": "",
+                "message": "",
+                "time": "",
+                "show": false
+            },
+            {
                 "fechaDesde": "01-02-2019",
                 "fechaHasta": "24-02-2019",
                 "id": "_0wbuv0pg6",
