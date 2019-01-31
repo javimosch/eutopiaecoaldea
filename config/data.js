@@ -8,6 +8,16 @@
         "updateCode": "ZYBnt9si1",
         "programacion": [
             {
+                "fechaDesde": "10-02-2019",
+                "fechaHasta": "10-02-2019",
+                "id": "_vbedi7n27",
+                "title": "ELABORACIÓN Y PREPARADO DE TINTURAS DE PLANTAS MEDICINALES",
+                "image": "",
+                "message": "",
+                "time": "",
+                "show": false
+            },
+            {
                 "fechaDesde": "09-02-2019",
                 "fechaHasta": "09-02-2019",
                 "id": "_zl6dtjfhr",
