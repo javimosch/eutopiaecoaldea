@@ -15,7 +15,7 @@
                 "image": "/uploads/images/spring-season-sale-2.png",
                 "message": "<p><br></p>",
                 "time": "",
-                "show": false
+                "show": true
             },
             {
                 "fechaDesde": "09-02-2019",
