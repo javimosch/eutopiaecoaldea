@@ -12,8 +12,8 @@
                 "fechaHasta": "10-02-2019",
                 "id": "_vbedi7n27",
                 "title": "ELABORACIÓN Y PREPARADO DE TINTURAS DE PLANTAS MEDICINALES",
-                "image": "",
-                "message": "",
+                "image": "/uploads/images/spring-season-sale-2.png",
+                "message": "<p><br></p>",
                 "time": "",
                 "show": false
             },
@@ -22,10 +22,10 @@
                 "fechaHasta": "09-02-2019",
                 "id": "_zl6dtjfhr",
                 "title": "ELABORACIÓN DE JABÓN NATURAL Y ARTESANAL, ",
-                "image": "",
+                "image": "/uploads/images/spring-season-sale-1.png",
                 "message": "",
                 "time": "",
-                "show": false
+                "show": true
             },
             {
                 "fechaDesde": "01-02-2019",
@@ -35,7 +35,7 @@
                 "image": "",
                 "message": "",
                 "time": "",
-                "show": false
+                "show": true
             },
             {
                 "fechaDesde": "15-01-2019",
