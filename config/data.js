@@ -31,11 +31,13 @@
                 "fechaDesde": "21-04-2019",
                 "fechaHasta": "21-04-2019",
                 "id": "_e8whpwyh8",
-                "title": "Programa C.R.E.E.R Grupo 1",
-                "image": "",
-                "message": "",
+                "title": "Taller Vivencial de Elaboración de Algarrobina (Programa C.R.E.E.R)",
+                "image": "/uploads/images/programa-creer-2.jpeg",
+                "message": "<p>Programa C.R.E.E.R.</p><p>Taller Vivencial de Elaboración de Algarrobina</p><p>07 vacantes por grupo.</p><p>Grupo 1: Jueves 21,&nbsp;</p><p>Grupo 2: Sábado 23,</p><p>Horario: 9:30 a.m. - 4:00 p.m.</p><p>Inscripciones al <strong>925542300 </strong>o por inbox</p><p>Aportacción: 25.00 soles, incluye almuerzo campestre.</p>",
                 "time": "",
-                "show": false
+                "show": true,
+                "timeFrom": "09:30",
+                "timeTo": "16:00"
             },
             {
                 "fechaDesde": "09-03-2019",
