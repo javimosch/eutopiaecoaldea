@@ -174,6 +174,11 @@ function loadHandlebarHelpers() {
         eventos = eventos.sort(function(a, b) {
             return moment(a.fechaDesde, 'DD-MM-YYYY').isBefore(moment(b.fechaDesde, 'DD-MM-YYYY'), 'day') ? 1 : -1;
         });
+        /*
+        console.log('filter',{
+            eventos: eventos.map(e=>e.title)
+        })*/
+
         return eventos;
     })
 
