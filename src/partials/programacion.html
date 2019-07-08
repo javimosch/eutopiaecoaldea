@@ -17,9 +17,58 @@
             <div class="programacion_item">
                 <img src="{{image}}" class="inline-block img-fluid"/>
                 <div class="inline-block vertical-top" style="width:69%;">
-                    <div class="programacion_item_texto column">
+                    <div class="programacion_item_texto column" style="position: relative;">
                         <h3>{{title}}</h3>
                         <p>{{{message}}}</p>
+                        {{#ifNotEmpty slider}}
+<ul class="rslides" id="slider_{{id}}" class="stretch" style="min-height:300px; max-height: 300px; position: relative;">
+    {{#each slider}}
+    <li>
+        <img src="{{this}}"/>
+    </li>
+  {{/each}}
+</ul>
+
+<script type="text/javascript">
+    (function(){
+        function showSlider(){
+            var $slider = window.$ && $(document.getElementById('slider_{{id}}'))
+            
+
+            if(!window.$ || !$slider.responsiveSlides){
+                return setTimeout(function(){
+                    showSlider();
+                },100);
+            }
+            
+            var $slider = $(document.getElementById('slider_{{id}}'))
+            $slider.responsiveSlides({
+              auto: false,             // Boolean: Animate automatically, true or false
+              //speed: 500,            // Integer: Speed of the transition, in milliseconds
+              //timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+              pager: true,           // Boolean: Show pager, true or false
+              nav: true,             // Boolean: Show navigation, true or false
+             // random: false,          // Boolean: Randomize the order of the slides, true or false
+              //pause: false,           // Boolean: Pause on hover, true or false
+              //pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+              prevText: "Anterior",   // String: Text for the "previous" button
+              nextText: "Siguiente",       // String: Text for the "next" button
+              //maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+              //navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+              //manualControls: "",     // Selector: Declare custom pager navigation
+              //namespace: "rslides",   // String: Change the default namespace used
+              //before: function(){},   // Function: Before callback
+              //after: function(){}     // Function: After callback
+            });
+
+            console.log('slider activated','slider_{{id}}',document.querySelectorAll('#slider_{{id}} img'))
+        }
+        showSlider();
+    })();
+    
+</script>
+
+                         {{/ifNotEmpty}}
                         {{#ifNotEmpty timeFrom}}
                         <p>
                             Horario: {{timeFrom}}

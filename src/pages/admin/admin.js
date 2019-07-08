@@ -27,6 +27,7 @@ module.exports = function() {
 				})
 
 				function login() {
+					console.log('LOGIN')
 					var password = this.password;
 					var encoded = window.btoa(password);
 					fetch(`${SERVER.API_URL}/api/login/validate?code=${encoded}`).then(r => r.json().then(response => {
