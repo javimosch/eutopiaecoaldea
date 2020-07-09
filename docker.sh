@@ -1,0 +1,14 @@
+(docker rm -f eutopiaecoaldea || true) && docker run -d --rm -d --name eutopiaecoaldea --env-file ./.env -w /app \
+--net=caddy-node_caddy --net-alias=eutopiaecoaldea \
+-v "$(pwd)/api:/app/api" \
+-v "$(pwd)/.env:/app/.env" \
+-v "$(pwd)/config:/app/config" \
+-v "$(pwd)/src:/app/src" \
+-v "$(pwd)/uploads:/app/uploads" \
+-v "$(pwd)/deploy.key:/app/deploy.key" \
+-v "$(pwd)/deploy.pub:/app/deploy.pub" \
+-v "$(pwd)/package.json:/app/package.json" \
+-v "$(pwd)/package.lock.json:/app/package.lock.json" \
+-v "$(pwd)/entry.sh:/app/entry.sh" \
+-v "$(pwd)/index.js:/app/index.js" \
+-v "/root/.npm/_cacache:/root/.npm/_cacache" node:12.15.0-alpine sh entry.sh \

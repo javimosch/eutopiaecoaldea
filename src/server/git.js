@@ -61,12 +61,13 @@ function prepare() {
 		var basePath = path.join(tempDir, 'git_' + shortid.generate());
 		var gitClone = '';
 
-		if (process.env.AUTH_REPO_URL) {
+		let repoUrl = process.env.REPO_URL || 'git@github.com:misitioba/eutopiaecoaldea.git'
+		if (process.env.REPO_URL_HTTP) {
 			//user and password in http url method
-			gitClone = `git clone ${process.env.AUTH_REPO_URL} .`;
+			gitClone = `git clone ${process.env.REPO_URL_HTTP} .`;
 		} else {
 			//ssh key method
-			gitClone = `git clone git@github.com:javimosch/utopia-ecoaldea.git .`;
+			gitClone = `git clone ${repoUrl} .`;
 			var keyPath = path.join(process.cwd(), 'deploy.key');
 			var sshAgent = `ssh-agent bash -c 'ssh-add ${keyPath}'`;
 			gitClone = `${sshAgent};${gitClone}`;
