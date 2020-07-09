@@ -4,8 +4,15 @@ const server = require('../src/server');
 var filePath = name => path.join(process.cwd(), name);
 const reload = require('require-reload')(require);
 const dJSON = require('dirty-json');
-
+const logger = server.helpers.getLogger('API-INDEX')
 module.exports = function configure(app) {
+
+	app.use((req,res,next)=>{
+		if(req.path.indexOf('/api')!==-1){
+			logger.debug(`${req.method.toUpperCase()} ${req.url}`)
+		}
+		next();
+	})
 
 	require('./upload')(app);
 	require('./images')(app);
@@ -93,6 +100,10 @@ module.exports = function configure(app) {
 	});
 	app.get('/api/login/validate', (req, res) => {
 		var code = reload('../config').login.code
+		logger.debug("validate",{
+			expected:code,
+			received:req.query.code
+		})
 		return res.json({
 			result: code == req.query.code
 		});

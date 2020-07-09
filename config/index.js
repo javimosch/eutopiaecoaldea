@@ -2,12 +2,14 @@ require('dotenv').config({
 	silent: true
 });
 const dJSON = require('dirty-json');
-
+const argv = require('yargs').argv
 var locales = require('./locales.js');
 var self = module.exports = {
 	defaultOutputFolder: 'docs',
 	NODE_ENV: process.env.NODE_ENV,
 	defaultLanguage: 'es',
+	argv,
+	watchMode: argv.w || argv.watch,
 	context: {
 		defaultCurrentPage: 'page_ecoaldea',
 		currentPage: 'page_ecoaldea',

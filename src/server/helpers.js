@@ -1,5 +1,25 @@
 module.exports = {
-	deepMerge
+	deepMerge,
+	getLogger
+}
+
+function getLogger(ns = "default"){
+	function log(){
+		console.log(Array.prototype.slice.call(arguments))
+	}
+	function create(type){
+		return function(){
+			var args = Array.prototype.slice.call(arguments);
+			args.unshift(type.toUpperCase())
+			log.apply(this,args)	
+		}
+	}
+	return {
+		debug:create('DEBUG'),
+		warn:create('WARN'),
+		error:create('ERROR'),
+		fatal:create('FATAL')
+	}
 }
 
 function deepMerge(self, savedData, options = {}) {

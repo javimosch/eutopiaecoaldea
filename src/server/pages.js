@@ -4,17 +4,19 @@ const Handlebars = require('handlebars');
 const dJSON = require('dirty-json');
 const reload = require('require-reload')(require);
 const livereload = require('./livereload');
+const config = require('../../config')
 
-function injectHtml(html,name) {
+function injectHtml(html, name) {
 	var result = {
 		html
 	};
-	if (process.env.NODE_ENV!=='production') {
+	if (process.env.NODE_ENV !== 'production') {
 		const cheerio = require('cheerio')
 		const $ = cheerio.load(html)
 		result.app = $('.app').html();
 		result.head = $('head').html();
-		$('body').html($('body').html() + `
+		if (config.watchMode) {
+			$('body').html($('body').html() + `
 			<script src="https://cdn.jsdelivr.net/npm/socket.io-client@2.2.0/dist/socket.io.slim.min.js"></script>
 			<script>
 				fetch('/livereload.js?page='+window.SERVER.currentPage+'&language='+window.SERVER.currentLanguage).then(r=>r.text()).then(data=>{
@@ -22,6 +24,7 @@ function injectHtml(html,name) {
 				})
 			</script>
 		`);
+		}
 		result.html = $.html()
 	}
 	return result;
@@ -88,7 +91,7 @@ module.exports = {
 			Handlebars.registerPartial(pageName, source);
 			//console.log(`pages: ${pageName} registered (${options.language} ${pageConfig.name.toLowerCase()})`)
 
-			writeFns.push(function() {
+			writeFns.push(function () {
 				//Write file
 				source = sander.readFileSync(srcFile('index.html')).toString('utf-8');
 				var template = Handlebars.compile(source);
@@ -104,6 +107,6 @@ module.exports = {
 			})
 		});
 
-		writeFns.forEach(fn=>fn());
+		writeFns.forEach(fn => fn());
 	}
 };

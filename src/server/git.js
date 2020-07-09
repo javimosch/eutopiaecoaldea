@@ -157,7 +157,7 @@ function deploy(options = {}) {
 	sync();
 
 	console.log('git deploy: build, add, commit..');
-	gitExec(`yarn build; git add docs/*; git commit -m 'build'`)
+	gitExec(`npm run build; git add docs/*; git commit -m 'build'`)
 
 	console.log('git deploy: deploying...')
 	var branches = options.branches || ['master'];

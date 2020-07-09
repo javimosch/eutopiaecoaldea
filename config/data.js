@@ -33,7 +33,7 @@
                 "id": "_vwv0vey39",
                 "title": "Registro fotografico: Brigadistas ambientales",
                 "image": "/uploads/images/brigadistas_20062019_13.jpg",
-                "message": "Se realizo la primera induccion del añio a los brigadistas ambientales de las escuelas",
+                "message": "<p>Se realizo la primera induccion del añio a los brigadistas ambientales de las escuelas</p>",
                 "slider": [
                     "/uploads/images/brigadistas_20062019_01.jpg",
                     "/uploads/images/brigadistas_20062019_02.jpg",
