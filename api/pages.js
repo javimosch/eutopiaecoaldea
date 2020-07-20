@@ -5,8 +5,17 @@ var filePath = name => path.join(process.cwd(), name);
 const reload = require('require-reload')(require);
 const dJSON = require('dirty-json');
 module.exports = app => {
+
+	app.post('/api/pages/save', async (req,res)=>{
+		await sander.writeFile(path.join(process.cwd(),req.body.jsPath),req.body.jsData)
+		await sander.writeFile(path.join(process.cwd(),req.body.htmlPath),req.body.htmlData)
+		res.json({
+			result:true
+		})
+	})
+
 	app.get('/api/pages', async (req, res) => {
-		var pagesPath = server.git.gitFilePath('src/pages')
+		let pagesPath= path.join(process.cwd(),'src/pages')
 		var folders = await sander.readdir(pagesPath);
 		return res.json({
 			result: await Promise.all(folders.filter(f => {

@@ -1,9 +1,29 @@
 <section class="admin protected container form appScope">
-    <h3>Paginas</h3>
-    <select  v-model="pageItem">
-    	<option v-for="item in pages" v-html="item.label" :value="item"></option>
-    </select>
 
-    <page-editor :page="pageItem"></page-editor>
+    <div class="layout">
+        <div>
+            <label class="important">Paginas</label>
+
+            <button v-show="pageItem" class="btn" @click="savePage" v-html="isSaving?'Guardando...':'Guardar'"></button>
+            <ul>
+                <li v-for="item in pages" v-html="item.label" :value="item" @click="onPageSelected(item)"></li>
+            </ul>
+
+            <button  v-show="pageItem" class="btn" @click="savePage" v-html="isSaving?'Guardando...':'Guardar'"></button>
+        </div>
+        <page-editor ref="pageEditor" v-model="pageItem"></page-editor>
+    </div>
 
 </section>
+
+<style scoped>
+    .layout {
+        display: grid;
+        grid-template-columns: 20% 80%;
+    }
+    li{
+        list-style: none;
+        color:blue;
+        cursor:pointer;
+    }
+</style>

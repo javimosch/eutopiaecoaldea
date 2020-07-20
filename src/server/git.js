@@ -1,6 +1,7 @@
 const tempDir = require('temp-dir');
 const sander = require('sander');
 const fs = require('./fs');
+const execa = require('execa');
 const exec = fs.execSync;
 const rimraf = fs.rimraf;
 const path = require('path');

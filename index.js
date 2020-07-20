@@ -46,12 +46,12 @@ function build() {
     outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).forEach(n => {
         rimraf(path.join(outputFolder, n), '/docs/');
     });
-    console.log('BUILD 1')
+    console.log('Build: Copying static assets')
     exec(`cd ${outputFolder}; cp -R ../src/static/* .`);
 
     //Helpers
     loadHandlebarHelpers()
-    console.log('BUILD 2')
+    console.log('Build: Compiling styles')
     //Styles
     if (process.env.NODE_ENV === 'production') {
         //compileStyles();
@@ -60,16 +60,16 @@ function build() {
             //compileStyles();
         }
     }
-    console.log('BUILD 3')
+    console.log('Build: Bundling javascript')
     //Javascript
     //server.webpack.compile();
-    //Generate site
+    console.log(`Build: Compiling website in spanish`)
     compileSiteOnce({
         language: 'es'
     });
 
     if (process.env.DISABLE_I18N !== '1') {
-        console.log('BUILD 4')
+        console.log(`Build: Compiling website in other languages`)
         compileSiteOnce({
             language: 'en',
             outputFolder: 'docs/en'
@@ -96,7 +96,7 @@ function build() {
     sander.writeFileSync(path.join(outputFolder, 'manifest.json'), JSON.stringify({
         created_at: Date.now()
     }, null, 4))
-    console.log('BUILD DONE');
+    console.log('Build: Complete');
 }
 
 function compileStyles() {
@@ -327,7 +327,7 @@ function runLocalServer() {
         }
 
         appServer.listen(port, () => {
-            console.log(`Local server listening on port ${port}!`);
+            console.log(`Server: Listening on ${port}!`);
             resolve();
         });
 
