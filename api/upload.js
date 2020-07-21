@@ -1,3 +1,4 @@
+const execa = require('execa');
 var multer = require('multer')
 var upload = multer({
 	dest: 'uploads/'
@@ -9,7 +10,7 @@ module.exports = app => {
 
 
 
-	app.post('/api/upload/single', upload.single('singleFile'), function(req, res, next) {
+	app.post('/api/upload/single', upload.single('singleFile'), async function(req, res, next) {
 		// req.file is the `avatar` file
 		// req.body will hold the text fields, if there were any
 		/*
@@ -25,15 +26,11 @@ module.exports = app => {
 		var type = req.body.type || 'images';
 		var fileName = req.file.originalname;
 		var basePath = `src/static/uploads/${type}/`;
-		var gitPath = server.git.getPath();
-		var targetBasePath = path.join(gitPath,basePath);
+		var targetBasePath = path.join(process.cwd(),basePath);
 		var targetPath = path.join(targetBasePath, fileName);
-		sander.mkdirSync(targetBasePath);
-		server.fs.execSync(`mv ${req.file.path} ${targetPath}`);
-		console.log('saving image in repo')
-		server.git.pushPath(`${basePath}${fileName}`,{
-			branch:'latest'
-		});
+		await sander.mkdir(targetBasePath);
+		await execa.command(`mv ${req.file.path} ${targetPath}`);
+		
 		res.json({
 			file: req.file
 		})

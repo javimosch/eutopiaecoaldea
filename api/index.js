@@ -121,6 +121,14 @@ module.exports = function configure(app) {
 			result: sander.readFileSync(server.git.gitFilePath('config/locales.js')).toString('utf-8')
 		})
 	})
+
+	app.post('/api/advanced/:type/save',async (req,res)=>{
+		await sander.writeFile(path.join(process.cwd(),req.body.path),req.body.contents)
+		res.json({
+			result:true
+		})
+	})
+
 	app.get('/api/voluntarios/fetch', (req, res) => {
 		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
 		data = dJSON.parse(data);

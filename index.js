@@ -3,51 +3,63 @@ const moment = require('moment-timezone');
 const argv = require('yargs').argv;
 const server = require('./src/server');
 var exec = server.fs.execSync;
-var rimraf = server.fs.rimraf;
+const execa = require('execa');
 const sander = require('sander');
 const path = require('path');
+const { initParams } = require('request-promise');
 
-if (argv.gitd) {
-    console.log('Deploy from temp...')
-    server.git.deploy()
-    process.exit(0);
-}
+init().catch(console.error)
 
-if (argv.s || argv.server) {
-    runLocalServer().then(() => {
-        build();
-    });
-}
-if (argv.b || argv.build) {
-    build();
-}
-if (argv.w || argv.watch) {
-    if (!(argv.s || argv.server)) {
-        console.log('Only watching for changes this time...');
-        build();
+async function init() {
+
+    if (argv.gitd) {
+        console.log('Deploy from temp...')
+        server.git.deploy()
+        process.exit(0);
     }
-    var chokidar = require('chokidar');
-    chokidar.watch([`${__dirname}/src`, `${__dirname}/config`], {
-        ignored: /(^|[\/\\])\../,
-        ignoreInitial: true
-    }).on('change', (path, stats) => {
-        console.log('WATCH CHANGE', path);
-        build();
-        server.livereload.trigger();
-    }).on('add', (path, stats) => {
-        console.log('WATCH ADD', path);
-        build();
-        server.livereload.trigger();
-    });
+
+    if (argv.s || argv.server) {
+        runLocalServer().then(async () => {
+            await build();
+        });
+    }
+    if (argv.b || argv.build) {
+        await build();
+    }
+    if (argv.w || argv.watch) {
+        if (!(argv.s || argv.server)) {
+            console.log('Only watching for changes this time...');
+            await build();
+        }
+        var chokidar = require('chokidar');
+        chokidar.watch([`${__dirname}/src`, `${__dirname}/config`], {
+            ignored: /(^|[\/\\])\../,
+            ignoreInitial: true
+        }).on('change', async (path, stats) => {
+            console.log('WATCH CHANGE', path);
+            await build();
+            server.livereload.trigger();
+        }).on('add', async (path, stats) => {
+            console.log('WATCH ADD', path);
+            await build();
+            server.livereload.trigger();
+        });
+    }
 }
 
-function build() {
-    var outputFiles = sander.readdirSync(outputFolder);
-    outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).forEach(n => {
-        rimraf(path.join(outputFolder, n), '/docs/');
-    });
+
+async function build() {
+    var outputFiles = await sander.readdir(outputFolder);
+    await Promise.all(outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).map(n => {
+        return sander.rimraf(path.join(outputFolder, n), '/docs/');
+    }));
     console.log('Build: Copying static assets')
-    exec(`cd ${outputFolder}; cp -R ../src/static/* .`);
+    
+
+    await execa.command(`cd ${outputFolder} && cp -R ../src/static/* .`,{
+        shell:true,
+        stdout:process.stdout
+    });
 
     //Helpers
     loadHandlebarHelpers()
@@ -56,7 +68,7 @@ function build() {
     if (process.env.NODE_ENV === 'production') {
         //compileStyles();
     } else {
-        if (!sander.existsSync(path.join(outputFolder, 'styles.css'))) {
+        if (! await sander.exists(path.join(outputFolder, 'styles.css'))) {
             //compileStyles();
         }
     }
@@ -121,19 +133,19 @@ function loadHandlebarHelpers() {
 
 
 
-    Handlebars.registerHelper('bold', function(options) {
+    Handlebars.registerHelper('bold', function (options) {
         return new Handlebars.SafeString(
             '<div class="mybold">' +
             options.fn(this) +
             '</div>');
     });
-    Handlebars.registerHelper('capitalize', function(options) {
+    Handlebars.registerHelper('capitalize', function (options) {
         var result = options.fn(this);
         result = result.charAt(0).toUpperCase() + result.substring(1);
         return new Handlebars.SafeString(result);
     });
 
-    Handlebars.registerHelper('date', function(dateString, inputFormat, outputFormat, options) {
+    Handlebars.registerHelper('date', function (dateString, inputFormat, outputFormat, options) {
         //var inputFormat = "DD-MM-YYYY HH:mm"
         var moment = require('moment-timezone');
         moment.locale('es');
@@ -154,13 +166,13 @@ function loadHandlebarHelpers() {
         eventos = eventos && eventos.filter(evt => evt.show === undefined ? true : evt.show) || [];
         return eventos;
     }
-    Handlebars.registerHelper('hasProgramations', function(obj, options) {
+    Handlebars.registerHelper('hasProgramations', function (obj, options) {
         return filtrarProgramaciones(obj, options).length > 0;
     })
-    Handlebars.registerHelper('filtrarProgramacion', function(obj, options) {
+    Handlebars.registerHelper('filtrarProgramacion', function (obj, options) {
         return filtrarProgramaciones(obj, options);
     })
-    Handlebars.registerHelper('filtrarEventosProgramacion', function(eventos, options) {
+    Handlebars.registerHelper('filtrarEventosProgramacion', function (eventos, options) {
         if (!eventos) {
             console.error('filtrarProgramaciones: no events provided', options.data.root.currentPage)
             return [];
@@ -171,7 +183,7 @@ function loadHandlebarHelpers() {
                 return moment(evt.fechaDesde, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
             })
         }
-        eventos = eventos.sort(function(a, b) {
+        eventos = eventos.sort(function (a, b) {
             return moment(a.fechaDesde, 'DD-MM-YYYY').isBefore(moment(b.fechaDesde, 'DD-MM-YYYY'), 'day') ? 1 : -1;
         });
         /*
@@ -182,26 +194,26 @@ function loadHandlebarHelpers() {
         return eventos;
     })
 
-    Handlebars.registerHelper('filterArrByKey', function(obj, key, options) {
+    Handlebars.registerHelper('filterArrByKey', function (obj, key, options) {
         return obj.filter(evt => evt[key] === undefined ? true : evt[key]);
     })
-    Handlebars.registerHelper('emptyIf', function(str, emptyIf, options) {
+    Handlebars.registerHelper('emptyIf', function (str, emptyIf, options) {
         if ((eval(emptyIf)).includes(str)) {
             return '';
         } else {
             return str;
         }
     });
-    Handlebars.registerHelper('pagePath', function(langPath, name, options) {
+    Handlebars.registerHelper('pagePath', function (langPath, name, options) {
         name = name.split(' ').join('-')
         name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
         name = name.toLowerCase();
         return `/${langPath}${name}`;
     });
 
-    Handlebars.registerHelper('stringify', function(obj, options) {
+    Handlebars.registerHelper('stringify', function (obj, options) {
         function escape(key, val) {
-            if (typeof(val) != "string") return val;
+            if (typeof (val) != "string") return val;
             return val
                 .replace(/[\\]/g, '\\\\')
                 .replace(/[\/]/g, '\\/')
@@ -216,7 +228,7 @@ function loadHandlebarHelpers() {
         return JSON.stringify(obj || {}, escape);
     });
 
-    Handlebars.registerHelper('typeIs', function(obj, value, options) {
+    Handlebars.registerHelper('typeIs', function (obj, value, options) {
         if (typeof obj == value) {
             return true;
         } else {
@@ -224,11 +236,11 @@ function loadHandlebarHelpers() {
         }
     });
 
-    Handlebars.registerHelper('toString', function(result, options) {
+    Handlebars.registerHelper('toString', function (result, options) {
         result = result.toString('utf-8');
         return new Handlebars.SafeString(result);
     });
-    Handlebars.registerHelper('ifNotEmpty', function(conditional, options) {
+    Handlebars.registerHelper('ifNotEmpty', function (conditional, options) {
         if (!!conditional) {
             return options.fn(this);
         } else {
@@ -286,7 +298,7 @@ function runLocalServer() {
 
         if (argv.w || argv.watch) {
             var io = require('socket.io')(appServer);
-            io.on('connection', function(socket) {
+            io.on('connection', function (socket) {
                 console.log('socket connected')
                 socket.on('reportPage', data => {
                     server.livereload.addActivePage(data.page, data.lang);
@@ -310,7 +322,7 @@ function runLocalServer() {
         const port = process.env.PORT || 3000;
 
         if (argv.a || argv.api) {
-            app.get('/', function(req, res) {
+            app.get('/', function (req, res) {
                 return res.send('API OK');
             });
             createApiRoutes(app);

@@ -1,7 +1,37 @@
 <section class="admin protected container form appScope">
-    <h3>Vistas parciales</h3>
-    <select  v-model="selectedItem">
-    	<option v-for="item in items" v-html="item.label" :value="item"></option>
-    </select>
-    <partial-editor :item="selectedItem"></partial-editor>
+    <div class="layout">
+        <div>
+            <label class="important">Vista parciales</label>
+            <button v-show="selectedItem" class="btn" @click="save" :disabled="saving" v-html="'Guardar'"></button>
+            <ul>
+                <li v-for="item in items" v-html="item.label" :value="item" @click="onPageSelected(item)"></li>
+            </ul>
+            <button v-show="selectedItem" class="btn" @click="save" :disabled="saving" v-html="'Guardar'"></button>
+        </div>
+
+        <div>
+            <label class="important">Vista parcial <span v-html="selectedItem.label"></span></label>
+            <hr>
+            <codemirror mode="html" ref="htmlEditor" v-model="selectedItem.htmlData">
+            </codemirror>
+        </div>
+
+    </div>
 </section>
+
+<style scoped>
+    .layout {
+        display: grid;
+        grid-template-columns: 20% 80%;
+    }
+
+    ul {
+        padding: 0px;
+    }
+
+    li {
+        list-style: none;
+        color: blue;
+        cursor: pointer;
+    }
+</style>

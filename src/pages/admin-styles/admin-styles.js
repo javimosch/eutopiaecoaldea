@@ -1,43 +1,35 @@
-module.exports = function() {
+module.exports = function () {
 	return {
 		name: 'styles',
 		path: 'admin',
 		context: {
 			type: 'admin',
 			init: function init() {
-
-				Vue.component('styles-editor', {
-					props: ['enabled', "item"],
-					template: `<div  class="partial-editor-component" v-show="!!item">
-						<label class="important"><span v-html="item && item.label"></span></label>
-						<hr>
-						<codemirror mode="css" ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
-						<button class="btn" @click="save" v-html="progress?'Guardando...':'Guardar'"></button>
-					</div>`,
+				window.vues = window.vues || [];
+				window.vues['main'] = new Vue({
+					el: '.appScope',
+					name: 'adminStyles',
 					data() {
 						return {
-							jsData: '',
-							htmlData: '',
-							progress: false
+							item: {
+								htmlData: ''
+							},
+							saving: false
 						}
 					},
-					watch: {
-						item() {
-							this.htmlData = this.item && this.item.htmlData
-							this.$refs.htmlEditor.setValue(this.htmlData, -1);
-						}
+					created() {
+						apiGet('/api/styles').then(r => {
+							this.item = r.result;
+						});
 					},
+					mounted() { },
 					methods: {
 						save() {
-							this.progress = true;
-							apiPost('/api/git/path', {
-								files: [{
-									contents: this.htmlData,
-									path: this.item.htmlPath
-								}],
-								path: this.item.basePath
+							this.saving = true;
+							apiPost('/api/styles/save', {
+								...this.item
 							}).then(r => {
-								this.progress = false;
+								this.saving = false;
 								if (!r.result) {
 									new Noty({
 										layout: 'bottomCenter',
@@ -58,29 +50,8 @@ module.exports = function() {
 							});
 						}
 					}
+
 				});
-
-				window.vues=window.vues||[];
-				window.vues['main']= new Vue({
-					el: '.appScope',
-					name: 'adminStyles',
-					data() {
-						return {
-							selectedItem:null
-						}
-					},
-					created() {
-						apiGet('/api/styles').then(r => {
-							this.selectedItem = r.result;
-						});
-					},
-					mounted() {},
-					methods: {
-					}
-				});
-
-
-
 			}
 		}
 	}

@@ -1,3 +1,6 @@
 <section class="admin protected container form appScope">
-    <styles-editor :item="selectedItem"></styles-editor>
+    <label class="important"><span v-html="item && item.label"></span></label>
+    <hr>
+    <codemirror mode="css" ref="htmlEditor" v-model="item.htmlData"></codemirror>
+    <button class="btn" @click="save" :disable="saving">Guardar</button>
 </section>

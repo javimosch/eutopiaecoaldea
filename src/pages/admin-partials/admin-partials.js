@@ -6,38 +6,35 @@ module.exports = function() {
 			type: 'admin',
 			init: function init() {
 
-				Vue.component('partial-editor', {
-					props: ['enabled', "item"],
-					template: `<div  class="partial-editor-component" v-show="!!item">
-						<label class="important">Vista parcial <span v-html="item && item.label"></span></label>
-						<hr>
-						<codemirror mode="html" ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
-						<button class="btn" @click="save" v-html="progress?'Guardando...':'Guardar'"></button>
-					</div>`,
+				new Vue({
+					el: '.appScope',
+					name: 'adminPages',
 					data() {
 						return {
-							jsData: '',
-							htmlData: '',
-							progress: false
+							items: [],
+							selectedItem:{
+								htmlData:''
+							},
+							saving:false
 						}
 					},
-					watch: {
-						item() {
-							this.htmlData = this.item && this.item.htmlData
-							this.$refs.htmlEditor.setValue(this.htmlData, -1);
-						}
+					created() {
+						apiGet('/api/partials').then(r => {
+							this.items = r.result;
+						});
 					},
+					mounted() {},
 					methods: {
+						onPageSelected(page) {
+							this.selectedItem = page;
+							this.$refs.htmlEditor.setValue(page.htmlData)
+						},
 						save() {
-							this.progress = true;
-							apiPost('/api/git/path', {
-								files: [{
-									contents: this.htmlData,
-									path: this.item.htmlPath
-								}],
-								path: this.item.basePath
+							this.saving = true;
+							apiPost('/api/partials/save', {
+								...this.selectedItem
 							}).then(r => {
-								this.progress = false;
+								this.saving = false;
 								if (!r.result) {
 									new Noty({
 										layout: 'bottomCenter',
@@ -50,34 +47,12 @@ module.exports = function() {
 									new Noty({
 										timeout: 2500,
 										layout: 'bottomCenter',
-										text: "Los cambios se aplicaran la proxima vez que publique el sitio.",
+										text: "Cambios guardados",
 										type: 'info',
 										killer: true
 									}).show();
 								}
 							});
-						}
-					}
-				});
-
-				new Vue({
-					el: '.appScope',
-					name: 'adminPages',
-					data() {
-						return {
-							items: [],
-							selectedItem:null
-						}
-					},
-					created() {
-						apiGet('/api/partials').then(r => {
-							this.items = r.result;
-						});
-					},
-					mounted() {},
-					methods: {
-						onPageSelected(page) {
-							this.selectedItem = page;
 						}
 					}
 				});
