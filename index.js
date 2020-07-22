@@ -12,7 +12,7 @@ init().catch(console.error)
 async function init() {
 
     if (argv.gitd) {
-        console.log('Deploy from temp...')
+        console.log('Deploy current version (dirty)')
         server.git.deploy()
         process.exit(0);
     }
