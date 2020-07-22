@@ -7,18 +7,34 @@ const reload = require('require-reload')(require);
 const dJSON = require('dirty-json');
 module.exports = app => {
 
-	app.get('/api/formularioContacto/fetch', (req, res) => {
-		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
+	app.get('/api/formularioContacto/fetch', async (req, res) => {
+		var data = (await sander.readFile(path.join(process.cwd(),'config/data.js'))).toString('utf-8')
 		data = dJSON.parse(data);
 		res.json({
 			result: data.context.formularioContacto
 		})
 	})
 
+	app.post('/api/contacts/remove', async (req, res) => {
+		var data = (await sander.readFile(path.join(process.cwd(),'config/data.js'))).toString('utf-8')
+		data = dJSON.parse(data);
+		data.context = data.context || {};
+		data.context.formularioContacto = data.context.formularioContacto || [];
+		let _index = 0;
+		if(data.context.formularioContacto.find((v, index) => {
+			_index = index 
+			return v.email == req.body.email
+		})){
+			data.context.formularioContacto.splice(_index,1)
+			await sander.writeFile(path.join(process.cwd(),'config/data.js'),JSON.stringify(data, null, 4))
+		}
+		res.json({
+			result: true
+		})
+	});
 
-	app.post('/api/formularioContacto/save', (req, res) => {
-		var dataPath = server.git.gitFilePath('config/data.js')
-		var data = sander.readFileSync(dataPath).toString('utf-8');
+	app.post('/api/formularioContacto/save', async (req, res) => {
+		var data = (await sander.readFile(path.join(process.cwd(),'config/data.js'))).toString('utf-8');
 		const dJSON = require('dirty-json');
 		if (!req.body.name || !req.body.email) {
 			return res.status(400).send('Nombre y Email requerido');
@@ -45,12 +61,11 @@ module.exports = app => {
 					messages: [payload]
 				});
 			}
-			server.git.pushPath('config/data.js', {
-				files: [{
-					path: 'config/data.js',
-					contents: JSON.stringify(data, null, 4)
-				}]
-			});
+
+			console.log(data)
+
+			await sander.writeFile(path.join(process.cwd(),'config/data.js'),JSON.stringify(data, null, 4))
+			
 			res.json({
 				result: true
 			});

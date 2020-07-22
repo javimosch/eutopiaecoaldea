@@ -34,7 +34,7 @@ module.exports = function(options, config, context) {
 							var payloadData = Object.assign({}, this.form);
 							var payload = JSON.stringify(payloadData);
 
-							try {
+							/*try {
 								fetch('https://cms.misitioba.com/api/forms/submit/ecoaldeaContactForm?token=a4b636d604bdda445515c719bb131a', {
 										method: 'post',
 										headers: {
@@ -48,7 +48,7 @@ module.exports = function(options, config, context) {
 									.then(entry => console.log(entry));
 							} catch (err) {
 
-							}
+							}*/
 
 							$.ajax({
 								url: `${SERVER.API_URL}/api/formularioContacto/save`,
@@ -76,50 +76,19 @@ module.exports = function(options, config, context) {
 											killer: true
 										}).show();
 
-
+										this.form= {
+											name: '',
+											email: '',
+											message: ''
+										}
 
 									}
+
+
+
 								}
 							});
 
-							/*
-							e.stopPropagation();
-							if(!this.name){
-								return;
-							}
-							$.ajax({
-								url: `${SERVER.API_URL}/api/email/send`,
-								data: JSON.stringify({
-									subject:`${this.name} completo el formulario de contacto`,
-									html:`
-									<ul>
-										<li>
-											Nombre y apellido: ${this.name}
-										</li>
-										<li>
-											Email: ${this.email}
-										</li>
-										<li>
-											<p>
-											Message:<br><br>
-											${this.message}
-											</p>
-										</li>
-										
-									</ul>
-									`
-								}),
-								contentType: "application/json; charset=utf-8",
-								type: 'POST',
-								error: () => {
-									
-								},
-								success: (data) => {
-									console.info('RES',data);
-								}
-
-							});
-								*/
 						}
 					}
 				});

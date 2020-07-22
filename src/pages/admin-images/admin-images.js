@@ -18,8 +18,14 @@ module.exports = function() {
 							}
 						}
 					},
-					created() {
-
+					computed:{
+						hasFile(){
+							try{
+								return !!$('#image')[0].files[0];
+							}catch(err){
+								return false
+							}
+						}
 					},
 					mounted() {
 						this.browseImages();
@@ -100,6 +106,11 @@ module.exports = function() {
 				function uploadImage() {
 					var data = new FormData();
 					var file = $('#image')[0].files[0];
+
+					if(!file){
+						return
+					}
+
 					data.append('singleFile', file);
 					this.loaders.imageUpload = true;
 					$.ajax({

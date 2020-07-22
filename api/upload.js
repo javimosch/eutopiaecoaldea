@@ -31,6 +31,12 @@ module.exports = app => {
 		await sander.mkdir(targetBasePath);
 		await execa.command(`mv ${req.file.path} ${targetPath}`);
 		
+		const outputFolder = require('path').join(process.cwd(), 'docs');
+		await execa.command(`cd ${outputFolder} && cp ${targetPath} .`,{
+			shell:true,
+			stdout:process.stdout
+		});
+
 		res.json({
 			file: req.file
 		})

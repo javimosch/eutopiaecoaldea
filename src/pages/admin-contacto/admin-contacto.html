@@ -29,7 +29,8 @@
                         </ul>
             		
             	</div>
-            	<button class="btn" @click="item._expand=!item._expand" v-html="item._expand?'Ver menos':'Ver mas'"></button>
+                  <button class="btn" @click="item._expand=!item._expand" v-html="item._expand?'Ver menos':'Ver mas'"></button>
+                  <button class="btn danger" @click="remove(item)">Remover</button>
             </li>
             
     </ul>

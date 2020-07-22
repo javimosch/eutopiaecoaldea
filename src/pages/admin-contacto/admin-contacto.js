@@ -22,8 +22,11 @@ module.exports = function() {
 							});
 						}));
 					},
-					mounted() {
-
+					methods:{
+						async remove(item){
+							await apiPost('/api/contacts/remove', item);
+							location.reload()
+						}
 					}
 				});
 			}

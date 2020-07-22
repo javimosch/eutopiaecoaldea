@@ -4,7 +4,7 @@
     <section class="upload-images">
         <div class="developmentPage">
             <input type="file" name="image" id="image" />
-            <button class="btn" @click="uploadImage()" v-html="loaders.imageUpload?'Espera...':'Subir'"></button>
+            <button class="btn" @click="uploadImage()" :disabled="hasFile" v-html="loaders.imageUpload?'Espera...':'Subir'"></button>
         </div>
     </section>
     <label class="important">Galeria</label>

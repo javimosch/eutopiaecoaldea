@@ -6,17 +6,15 @@ var config = require('../config');
 module.exports = app => {
 
 	app.get('/api/images/link/:name', (req, res) => {
-		var gitPath = server.git.getPath();
-		var imagesPath = path.join(gitPath, 'src/static/uploads/images', req.params.name);
+		var imagesPath = path.join(process.cwd(), 'src/static/uploads/images', req.params.name);
 		res.sendFile(imagesPath);
 	});
 
-	app.get('/api/images/browse', (req, res) => {
-		var gitPath = server.git.getPath();
-		var imagesPath = path.join(gitPath, 'src/static/uploads/images');
+	app.get('/api/images/browse', async (req, res) => {
+		var imagesPath = path.join(process.cwd(), 'src/static/uploads/images');
 		var images = [];
 		try {
-			images = sander.readdirSync(imagesPath);
+			images = await sander.readdir(imagesPath);
 		} catch (err) {}
 		res.json({
 			images:images.map(image=>({
@@ -33,13 +31,9 @@ module.exports = app => {
 				result: false
 			});
 		}
-		var imagesPath = path.join('src/static/uploads/images');
+		var imagesPath = path.join(process.cwd(),'src/static/uploads/images');
 		var removePath = path.join(imagesPath, req.body.name);
-		//await sander.unlink(removePath);
-		server.git.pushPath(`${imagesPath}/`, {
-			branch: 'latest',
-			unlink: [removePath]
-		});
+		await sander.unlink(removePath);
 		res.json({
 			err: null,
 			result: true
