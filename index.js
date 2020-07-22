@@ -6,7 +6,6 @@ var exec = server.fs.execSync;
 const execa = require('execa');
 const sander = require('sander');
 const path = require('path');
-const { initParams } = require('request-promise');
 
 init().catch(console.error)
 

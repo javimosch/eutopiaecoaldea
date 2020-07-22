@@ -1,8 +1,5 @@
 const path = require('path');
 const sander = require('sander');
-const server = require('../src/server');
-var filePath = name => path.join(process.cwd(), name);
-const reload = require('require-reload')(require);
 const dJSON = require('dirty-json');
 module.exports = app => {
 

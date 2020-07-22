@@ -1,7 +1,5 @@
-var server = require('../src/server');
 var path = require('path');
 var sander = require('sander');
-var rp = require('request-promise');
 var config = require('../config');
 module.exports = app => {
 

@@ -1,4 +1,3 @@
-var server = require('../src/server');
 var path = require('path');
 var sander = require('sander');
 module.exports = app => {
