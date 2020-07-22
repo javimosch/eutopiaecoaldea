@@ -20,7 +20,8 @@
             		<p><b>En que epoca pensas venir ?</b></p>
             		<p class="italic" v-html="item.dateMessage||'(sin completar)'"></p>
             	</div>
-            	<button class="btn" @click="item._expand=!item._expand" v-html="item._expand?'Ver menos':'Ver mas'"></button>
+				<button class="btn" @click="item._expand=!item._expand" v-html="item._expand?'Ver menos':'Ver mas'"></button>
+				<button class="btn danger" @click="remover(item)">Remover</button>
             </li>
     </ul>
 </section>

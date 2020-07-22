@@ -129,13 +129,7 @@ module.exports = function configure(app) {
 		})
 	})
 
-	app.get('/api/voluntarios/fetch', (req, res) => {
-		var data = sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
-		data = dJSON.parse(data);
-		res.json({
-			result: data.context.voluntarios
-		})
-	})
+
 
 
 };

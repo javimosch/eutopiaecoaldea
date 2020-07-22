@@ -31,7 +31,7 @@ module.exports = function(options, config, context) {
 								return;
 							}
 							this.sending = true;
-
+/*
 							try {
 								fetch('https://cms.misitioba.com/api/forms/submit/ecoaldeaVolunteerForm?token=a4b636d604bdda445515c719bb131a', {
 									method: 'post',
@@ -44,7 +44,7 @@ module.exports = function(options, config, context) {
 								});
 							} catch (err) {
 
-							}
+							}*/
 
 
 							$.ajax({
