@@ -17,6 +17,7 @@ async function init() {
 
     if (argv.gitd) {
         console.log('Deploy current version (dirty)')
+        await build()
         await server.git.deploy()
         process.exit(0);
     }
