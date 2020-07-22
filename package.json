@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "npx nodemon --exec 'node index.js -s' --watch src/static/js --watch src/static/libs --watch src/js --watch src/pages --watch src/partials --watch src/server --watch src/styles --watch src/index.html --watch index.js --watch config --watch api -e html,css,scss,sass,js,json,pdf",
     "start": "npx cross-env NODE_ENV=production node index.js -s",
+    "deploy": "npx cross-env NODE_ENV=production node index.js --gitd",
     "build": "npx cross-env NODE_ENV=production API_URL=https://eutopiaecoaldea.com node index.js -b"
   },
   "license": "MIT",

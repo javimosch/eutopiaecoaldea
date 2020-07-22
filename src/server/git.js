@@ -32,6 +32,7 @@ async function prepare() {
 			gitClone = `git clone ${repoUrl} .`;
 			var keyPath = path.join(process.cwd(), 'deploy.key');
 			var sshAgent = `ssh-agent bash -c 'ssh-add ${keyPath}'`;
+			console.log('ssh set-up',sshAgent)
 			gitClone = `${sshAgent};${gitClone}`;
 		}
 
@@ -62,7 +63,7 @@ async function deploy(options = {}) {
 	await gitExec(`rm node_modules; ln -s ${path.join(process.cwd(), 'node_modules')} node_modules;`)
 	await gitExec(`git reset HEAD --hard`);
 	await gitExec('git fetch');
-	await gitExec(`git branch -D master; git checkout -b  master origin/dev`);
+	await gitExec(`git checkout -b tmp; git branch -D master; git checkout -b  master origin/dev`);
 
 	await execa.command(`cd ${cache.basePath}/docs; cp -R ${process.cwd()}/docs/* .`, {
 		shell: true,

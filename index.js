@@ -11,9 +11,13 @@ init().catch(console.error)
 
 async function init() {
 
+    console.log("YARGS",{
+        argv
+    })
+
     if (argv.gitd) {
         console.log('Deploy current version (dirty)')
-        server.git.deploy()
+        await server.git.deploy()
         process.exit(0);
     }
 
