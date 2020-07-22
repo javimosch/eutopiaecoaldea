@@ -56,6 +56,7 @@ module.exports = function() {
 							this.form.title = '';
 							this.showForm = false;
 							this.sort();
+							this.save()
 						},
 						showProgramacion(pr) {
 							return this.programacion.length>0
@@ -77,15 +78,15 @@ module.exports = function() {
 					if (!window.confirm('Seguro ?')) {
 						return;
 					}
-					var indexToRemove;
+					var indexToRemove = null;
 					this.programacion.forEach((evt, index) => {
 						if (evt.id == id) {
 							indexToRemove = index;
 						}
 					});
-					if (indexToRemove !== undefined) {
+					if (indexToRemove!==null) {
 						var removed = this.programacion.splice(indexToRemove, 1);
-						this.$forceUpdate();
+						this.save()
 					}
 
 				}

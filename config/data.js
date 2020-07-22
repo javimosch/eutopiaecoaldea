@@ -8,16 +8,6 @@
         "updateCode": "ZYBnt9si1",
         "programacion": [
             {
-                "fechaDesde": "09/03/2109",
-                "fechaHasta": "09/03/2019",
-                "id": "_bwv0vey29",
-                "title": "MERCADO ECOLÓGICO ALIANZA FRANCESA",
-                "image": "",
-                "message": "",
-                "time": "",
-                "show": false
-            },
-            {
                 "fechaDesde": "27-07-2019",
                 "fechaHasta": "28-07-2019",
                 "id": "_y90yolgdx",
@@ -84,6 +74,16 @@
                 "message": "<p><br></p>",
                 "time": "",
                 "show": true
+            },
+            {
+                "fechaDesde": "09/03/2019",
+                "fechaHasta": "09/03/2019",
+                "id": "_bwv0vey29",
+                "title": "MERCADO ECOLÓGICO ALIANZA FRANCESA",
+                "image": "",
+                "message": "",
+                "time": "",
+                "show": false
             },
             {
                 "fechaDesde": "09-02-2019",
