@@ -69,7 +69,7 @@ async function deploy(options = {}) {
 		stdout: process.stdout
 	});
 
-	await gitExec(`git add docs/.; git commit -m 'docs updated'`);
+	await gitExec(`git add --force docs/.; git commit -m 'docs updated'`);
 
 	await gitExec(`git push origin master:master --force`);
 }

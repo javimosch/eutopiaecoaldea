@@ -61,3 +61,7 @@ typings/
 
 # next.js build output
 .next
+
+docs/**
+!docs/CNAME
+!docs.style.css
