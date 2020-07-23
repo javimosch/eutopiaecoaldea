@@ -1,1 +1,1 @@
-apk add --update python g++ make --no-cache && mkdir docs && npm i && npm run start
+apk add --update python g++ make --no-cache && mkdir docs && cd docs && cp -r ../_docs/* . && npm i && npm run start

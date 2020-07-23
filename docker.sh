@@ -1,5 +1,6 @@
 (docker rm -f eutopiaecoaldea || true) && docker run -d --rm -d --name eutopiaecoaldea --env-file ./.env -w /app \
 --net=caddy-node_caddy --net-alias=eutopiaecoaldea \
+-v "$(pwd)/docs:/app/_docs" \
 -v "$(pwd)/api:/app/api" \
 -v "$(pwd)/.env:/app/.env" \
 -v "$(pwd)/config:/app/config" \
