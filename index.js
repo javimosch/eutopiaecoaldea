@@ -27,36 +27,60 @@ async function init() {
             await build();
         });
     }
+
     if (argv.b || argv.build) {
         await build();
     }
+
     if (argv.w || argv.watch) {
+       
         if (!(argv.s || argv.server)) {
             console.log('Only watching for changes this time...');
             await build();
         }
+
         var chokidar = require('chokidar');
         chokidar.watch([`${__dirname}/src`, `${__dirname}/config`], {
             ignored: /(^|[\/\\])\../,
             ignoreInitial: true
         }).on('change', async (path, stats) => {
-            console.log('WATCH CHANGE', path);
-            await build();
-            server.livereload.trigger();
+            //console.log('WATCH CHANGE', path);
+            await buildDispatch();
+            //server.livereload.trigger();
         }).on('add', async (path, stats) => {
-            console.log('WATCH ADD', path);
-            await build();
-            server.livereload.trigger();
+            //console.log('WATCH ADD', path);
+            await buildDispatch();
+            //server.livereload.trigger();
         });
     }
 }
 
+async function buildDispatch(){
+    if(server._buildTimeout){
+        clearTimeout(server._buildTimeout)
+    }
+    server._buildTimeout = setTimeout(()=> {
+        server._buildTimeout = null;
+        console.log(`${moment().tz('Europe/Paris').format('DD-MM-YYY HH:mm:ss')}`,'Build dispatch')
+        buildFast()
+    }, 500)
+}
 
-async function build() {
+async function buildFast(){
+    return build({
+        removeAssets:false
+    })
+}
+
+async function build(options = {}) {
     var outputFiles = await sander.readdir(outputFolder);
-    await Promise.all(outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).map(n => {
-        return sander.rimraf(path.join(outputFolder, n), '/docs/');
-    }));
+
+    if(options.removeAssets!==false){
+        await Promise.all(outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).map(n => {
+            return sander.rimraf(path.join(outputFolder, n), '/docs/');
+        }));
+    }
+
     console.log('Build: Copying static assets')
     
 
