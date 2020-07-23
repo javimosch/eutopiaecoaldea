@@ -1,4 +1,3 @@
-const outputFolder = require('path').join(process.cwd(), 'docs');
 const moment = require('moment-timezone');
 const argv = require('yargs').argv;
 const server = require('./src/server');
@@ -73,6 +72,8 @@ async function buildFast(){
 }
 
 async function build(options = {}) {
+    const outputFolder = require('path').join(process.cwd(), 'docs');
+
     var outputFiles = await sander.readdir(outputFolder);
 
     if(options.removeAssets!==false){
@@ -104,7 +105,7 @@ async function build(options = {}) {
     //Javascript
     //server.webpack.compile();
     console.log(`Build: Compiling website in spanish`)
-    compileSiteOnce({
+    await compileSiteOnce({
         language: 'es'
     });
 
@@ -133,7 +134,7 @@ async function build(options = {}) {
     } else {
         console.log('WARN: i18N Disabled')
     }
-    sander.writeFileSync(path.join(outputFolder, 'manifest.json'), JSON.stringify({
+    await sander.writeFile(path.join(outputFolder, 'manifest.json'), JSON.stringify({
         created_at: Date.now()
     }, null, 4))
     console.log('Build: Complete');
@@ -146,7 +147,7 @@ function compileStyles() {
     var srcPath = path.join(process.cwd(), 'src');
     var srcFile = name => path.join(srcPath, name);
     var fileName = name => path.join(basePath, name);
-    var sass = require('node-sass');
+    //var sass = require('node-sass');
     //var css = sass.renderSync({file: srcFile('styles/main.scss')}).css.toString('utf-8')
     var css = sander.readFileSync(srcFile('styles/main.scss')).toString('utf-8');
     sander.writeFileSync(fileName('styles.css'), css);
@@ -287,7 +288,7 @@ function loadHandlebarHelpers() {
 }
 
 
-function compileSiteOnce(options = {}) {
+async function compileSiteOnce(options = {}) {
 
     //Partials and Pages
     const config = require('./config');
@@ -297,15 +298,14 @@ function compileSiteOnce(options = {}) {
     //Index (Home page)
     const Handlebars = require('handlebars');
 
-    const path = require('path');
-    const sander = require('sander');
+    
     var outputFolder = options.outputFolder || config.defaultOutputFolder;
     var basePath = path.join(process.cwd(), outputFolder);
     var srcPath = path.join(process.cwd(), 'src');
     var fileName = name => path.join(basePath, name);
     var srcFile = name => path.join(srcPath, name);
 
-    var source = sander.readFileSync(srcFile('index.html')).toString('utf-8');
+    var source = (await sander.readFile(srcFile('index.html'))).toString('utf-8');
     var template = Handlebars.compile(source);
     var context = config.getContext(options.language);
     context.currentLanguage = context.lang[options.language];
@@ -313,8 +313,8 @@ function compileSiteOnce(options = {}) {
     context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;
     var html = template(context);
     let result = server.pages.injectHtml(html);
-    server.livereload.addPage(context.currentPage, result, context.currentLanguage, context);
-    sander.writeFileSync(fileName('index.html'), result.html);
+    //server.livereload.addPage(context.currentPage, result, context.currentLanguage, context);
+    await sander.writeFile(fileName('index.html'), result.html);
 }
 
 function runLocalServer() {
@@ -355,6 +355,7 @@ function runLocalServer() {
             });
             createApiRoutes(app);
         } else {
+            const outputFolder = require('path').join(process.cwd(), 'docs');
             app.use('/', express.static(outputFolder));
             createApiRoutes(app);
         }

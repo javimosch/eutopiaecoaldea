@@ -26,7 +26,7 @@ async function prepare() {
 		let repoUrl = process.env.REPO_URL || 'git@github.com:misitioba/eutopiaecoaldea.git'
 		if (process.env.REPO_URL_HTTP) {
 			//user and password in http url method
-			gitClone = `git clone ${process.env.REPO_URL_HTTP} .`;
+			gitClone = `git clone ${process.env.REPO_URL_HTTP} --branch master --single-branch .`;
 		} else {
 			//ssh key method
 			gitClone = `git clone ${repoUrl} .`;
@@ -36,41 +36,53 @@ async function prepare() {
 			gitClone = `${sshAgent};${gitClone}`;
 		}
 
-		await execa.command(`rm -rf ${basePath}; echo 1`, {
-			shell: true,
-			stdout: process.stdout
-		});
+		await exec(`rm -rf ${basePath}; echo 1`);
 
-		await execa.command(`mkdir ${basePath}; cd ${basePath}; ${gitClone}`, {
-			shell: true,
-			stdout: process.stdout
-		});
+		await exec(`mkdir ${basePath}; cd ${basePath}; ${gitClone}`);
 		cache.basePath = basePath;
 	}
 }
 
-async function gitExec(cmd) {
+async function exec(command, options = {}){
+	console.log('Exec: ',command)
+	let sub = execa.command(command, {
+		shell: true
+	});
+	sub.stdout.pipe(process.stdout)
+	sub.stderr.pipe(process.stderr)
+	try{
+		return await sub
+	}catch(err){
+		console.log("CATCH", options)
+		if(options.ignoreErrors){
+			return null
+		}
+		throw err
+	}
+	
+}
+
+async function gitExecIgnoreErrors(command){
+	return gitExec(command,{
+		ignoreErrors:true
+	})
+}
+
+async function gitExec(cmd, options = {}) {
 	await prepare();
 	var userSet = `cd ${cache.basePath}; git config user.name 'robot'; git config user.email 'noreply@robot.com'`;
-
-	await execa.command(`cd ${cache.basePath};${userSet};${cmd}`, {
-		shell: true,
-		stdout: process.stdout
-	});
+	await exec(`cd ${cache.basePath};${userSet};${cmd}`, options);
 }
 
 async function deploy(options = {}) {
 	await gitExec(`rm node_modules; ln -s ${path.join(process.cwd(), 'node_modules')} node_modules;`)
 	await gitExec(`git reset HEAD --hard`);
 	await gitExec('git fetch');
-	await gitExec(`git checkout -b tmp; git branch -D master; git checkout -b  master origin/dev`);
-
-	await execa.command(`cd ${cache.basePath}/docs; cp -R ${process.cwd()}/docs/* .`, {
-		shell: true,
-		stdout: process.stdout
-	});
-
+	await gitExecIgnoreErrors(`git branch -D master`);
+	await gitExecIgnoreErrors(`git checkout -b  master origin/dev`);
+	await gitExec('git checkout master');
+	await gitExec('git pull origin dev');
+	await exec(`cd ${cache.basePath}/docs; cp -R ${process.cwd()}/docs/* .`);
 	await gitExec(`git add --force docs/.; git commit -m 'docs updated'`);
-
 	await gitExec(`git push origin master:master --force`);
 }

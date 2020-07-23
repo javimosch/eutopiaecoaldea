@@ -48,43 +48,16 @@ module.exports = function configure(app) {
 
 	});
 
-	app.get('/api/deployment/publish', (req, res) => {
-		var shortid = require('shortid');
-		var updateCode = shortid.generate();
-		var dataPath = server.git.gitFilePath('config/data.js')
-		var data = sander.readFileSync(dataPath).toString('utf-8');
-
+	app.get('/api/deployment/publish', async (req, res) => {
 		try {
-			data = dJSON.parse(data);
-			data.context = data.context || {}
-			//data.context.updateCode = updateCode;
-			data.context.wipMode = req.query.wipMode === '1' ? true : false;
-			server.git.pushPath('config/data.js', {
-				files: [{
-					path: 'config/data.js',
-					contents: JSON.stringify(data, null, 4)
-				}]
-			});
+			await server.git.deploy();
 			res.json({
-				result: true,
-				updateCode: updateCode
+				result:true
 			});
-			if (data.wipMode) {
-				server.git.deployAll();
-			} else {
-				if (req.query.staging === '1') {
-					server.git.deploy({
-						branches: ['heroku']
-					});
-				} else {
-					server.git.deployAll();
-				}
-			}
 		} catch (err) {
 			console.error(err.stack);
 			return res.status(500).send();
 		}
-
 	});
 
 	app.get('/api/config', (req, res) => {
@@ -93,9 +66,9 @@ module.exports = function configure(app) {
 		})
 	})
 	app.get('/api/version', (req, res) => {
-		var package = JSON.parse(sander.readFileSync(filePath('package.json')).toString('utf-8'));
+		var packageJson = JSON.parse(sander.readFileSync(filePath('package.json')).toString('utf-8'));
 		res.json({
-			version: package.version
+			version: packageJson.version
 		});
 	});
 	app.get('/api/login/validate', (req, res) => {
@@ -112,13 +85,13 @@ module.exports = function configure(app) {
 
 	app.get('/api/config/fetch', (req, res) => {
 		res.json({
-			result: sander.readFileSync(server.git.gitFilePath('config/data.js')).toString('utf-8')
+			result: sander.readFileSync(path.join(process.cwd(),'config/data.js')).toString('utf-8')
 		})
 	})
 	app.get('/api/locales/fetch', (req, res) => {
 
 		res.json({
-			result: sander.readFileSync(server.git.gitFilePath('config/locales.js')).toString('utf-8')
+			result: sander.readFileSync(path.join(process.cwd(),'config/locales.js')).toString('utf-8')
 		})
 	})
 
