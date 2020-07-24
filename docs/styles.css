@@ -30,10 +30,11 @@ body {
     margin: 0px;
 }
 
-.header-image {
-    background-image: linear-gradient(#ef7f1a2e, rgba(239, 127, 26, 0.29) 80%), url(https://images.unsplash.com/photo-1539279546239-2ec5e75390ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80);
+.header_image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 80%), url(/img/portada.jpg);
     background-position: center;
     background-color: transparent;
+    background-position: bottom;
 }
 
 header {
@@ -41,7 +42,6 @@ header {
     padding-top: 10px;
     padding-bottom: 10px;
     min-height: 50px;
-    border-bottom: 5px solid lightgoldenrodyellow;
 }
 
 .contactInfo a {
@@ -204,6 +204,8 @@ form>button:active,
     text-align: center;
     text-transform: uppercase;
 }
+
+.landing_brand {}
 
 .groupHeader h1,
 .groupHeader h2 {
@@ -444,15 +446,22 @@ article {
     display: ;
 }
 
-section .image-title {
-    /* background-color: dimgrey; */
+.header_layout {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+section .image_message {
     margin: 0px;
-    min-height: 150px;
+    min-height: 450px;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    background-color: rgba(248, 255, 239, .9);
+    margin-left: -90px;
 }
 
 a>i {
@@ -461,9 +470,16 @@ a>i {
     text-align: left;
 }
 
-section .image-title h2 {
+section .image_message h2 {
     font-size: 32px;
-    color: white;
+    color: #755B60;
+    margin-bottom: 0px;
+}
+
+section .image_message .subtitle {
+    margin-top: 0px;
+    color: #755B60;
+    font-weight: bold;
 }
 
 .form .blockChilds {
@@ -941,8 +957,7 @@ iframe {
         min-height: calc(100vh - 156px);
     }
     header {
-        padding-top: 15px;
-        height: 80px;
+        height: 100px;
         display: flex;
         align-items: center;
         padding-bottom: 0px;
@@ -1121,7 +1136,7 @@ iframe {
 }
 
 .rslides_tabs {
-    background: rgb(239, 127, 26);
+    background: black;
     font-size: 18px;
     list-style: none;
     margin: 0 auto 50px;
