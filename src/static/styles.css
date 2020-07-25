@@ -14,6 +14,28 @@ h6,
     box-sizing: border-box;
 }
 
+.layout_crema{
+    background-color:#F8FFEF;
+    display:grid;
+    grid-template-columns: 50% 50%;
+}
+
+.quote_left{
+    color: #755B60;
+    font-family: 'Vollkorn', serif;
+    padding:20px;
+}
+.quote_left__title{
+    font-weight: bold;
+    font-size: 30px;
+}
+.quote_left__sub{
+    font-size:18px;
+    font-weight:bold;
+}
+
+
+
 html,
 body {
     margin: 0;
@@ -235,7 +257,6 @@ form>button:active,
 }
 
 .groupHeader {
-    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
