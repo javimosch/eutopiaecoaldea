@@ -63,5 +63,6 @@ typings/
 .next
 
 docs/**
+!docs/.gitkeep
 !docs/CNAME
 !docs.style.css

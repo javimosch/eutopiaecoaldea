@@ -1,12 +1,12 @@
 <div class="blockChilds form developmentPage adminNav admin protected" style="display: none;">
-
+<!--
     <div>
         <button class="btn" v-cloak v-if="true" @click="(loaders.deploy||isCooldown('deploy'))||deploy()" :disabled="loaders.deploy||isCooldown('deploy')" v-html="loaders.deploy?'Publicando...':'Publicar cambios'"></button>
         <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
             Cambios publicados recientemente, espera un momento...
         </p>
     </div>
-    <!--
+    
     
     <div>
         <button class="btn" v-cloak v-if="true" @click="loaders.wipMode||(isCooldown('wipMode'))||deployWipMode()" :disabled="loaders.wipMode||isCooldown('wipMode')" v-html="loaders.wipMode?'Procesando...':'Actualizar sitio con mensaje indicando que estamos trabajando en la pagina'"></button>

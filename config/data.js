@@ -1,7 +1,6 @@
 {
     "context": {
-        "wipMode": false,
-        "defaultCurrentPage": "page_ecoaldea",
+        "defaultCurrentPage": "page_ecoaldea", 
         "PUBLIC_URL": "https://eutopiaecoaldea.com",
         "API_URL": "https://utopiaecoaldea.herokuapp.com",
         "PREVIEW_URL": "https://utopiaecoaldea.herokuapp.com",
@@ -176,6 +175,13 @@
             }
         ],
         "changelog": [
+            {
+                "date":"25-07-2020",
+                "list":[
+                    "Reparacion panel administracion",
+                    "Migracion de servidor"
+                ]
+            },
             {
                 "date": "08-07-2019",
                 "list": [

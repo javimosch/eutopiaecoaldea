@@ -25,41 +25,6 @@ module.exports = function configure(app) {
 	require('./partials')(app);
 	require('./styles')(app);
 
-	app.post('/api/git/path', (req, res) => {
-		var gitPath = server.git.getPath();
-		console.log('API', req.url, {
-			body: req.body
-		})
-		if (!req.body.path) return res.status(400).send();
-		try {
-
-			server.git.pushPath(req.body.path, {
-				files: req.body.files
-			});
-			res.json({
-				result: true
-			});
-		} catch (err) {
-			console.error('API', req.url, err.stack);
-			res.json({
-				result: false
-			});
-		}
-
-	});
-
-	app.get('/api/deployment/publish', async (req, res) => {
-		try {
-			await server.git.deploy();
-			res.json({
-				result:true
-			});
-		} catch (err) {
-			console.error(err.stack);
-			return res.status(500).send();
-		}
-	});
-
 	app.get('/api/config', (req, res) => {
 		res.json({
 			config: reload('../config')

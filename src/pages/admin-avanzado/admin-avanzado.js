@@ -10,7 +10,7 @@ module.exports = function() {
 					props: ['enabled', "type"],
 					template: `<div  class="parameters-component">
 						<codemirror :enabled="enabled" v-model="data"></codemirror>
-						<button class="btn" @click="saveParameters" v-html="progress?'Guardando...':'Guardar'"></button>
+						<button class="btn" @click="saveParameters" :disabled="progress">Guardar</button>
 					</div>`,
 					data() {
 						return {
@@ -38,13 +38,10 @@ module.exports = function() {
 								locales: 'config/locales.js'
 							})[this.type || 'data']
 							$.ajax({
-								url: `${SERVER.API_URL}/api/git/path`,
+								url: `${SERVER.API_URL}/api/advanced/${this.type}/save`,
 								data: JSON.stringify({
-									files: [{
-										contents: this.data,
-										path: path
-									}],
-									path: path
+									path,
+									contents: this.data
 								}),
 								contentType: "application/json; charset=utf-8",
 								type: 'POST',
@@ -54,7 +51,13 @@ module.exports = function() {
 								},
 								success: (data) => {
 									this.progress = false;
-									console.log('SAVED')
+									new Noty({
+										timeout: 2500,
+										layout: 'bottomCenter',
+										text: "Informacion actualizada.",
+										type: 'info',
+										killer: true
+									}).show();
 								}
 							});
 						}
