@@ -1,24 +1,28 @@
 <header>
-    <a class="brand" href="/{{#emptyIf currentLanguageCode '["es"]'}}{{/emptyIf}}">
+    <a class="brand landing_brand" href="/{{#emptyIf currentLanguageCode '[" es "]'}}{{/emptyIf}}">
 
-    <img src="/uploads/images/euto-logo-trans.png" style="max-width: 200px;"/>
+        <img src="/uploads/images/euto-logo-trans.png" style="max-width: 200px;" />
 
-    <!--
+        <!--
     {{lang.META_TITLE}}
     <img src="/img/logo.webp"/>
     -->
-	</a>
+    </a>
     <nav class="headerNav">
-        {{#if (eq wipMode true)}}
+        {{#if (eq wipMode true)}} {{else}} {{> partial_nav}} {{/if}}
 
-        {{else}}    
-            {{> partial_nav}}
-        {{/if}}
-        
     </nav>
 </header>
 <section>
-    <div class="image-title centered header-image">
-        <h2>{{lang.HEADER_MESSAGE}}</h2>            
+    <div class="header_layout">
+        <div class=" centered header_image">
+
+        </div>
+        <div class="image_message">
+            <h2>TE DAMOS LA BIENVENIDA A EUTOPIA</h2>
+
+            <p class="subtitle">Ecoaldea Permacultural en Lambayeque</p>
+            <!-- <h2>{{lang.HEADER_MESSAGE}}</h2>            -->
+        </div>
     </div>
 </section>

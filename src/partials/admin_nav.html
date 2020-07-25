@@ -1,10 +1,5 @@
 <div class="blockChilds form developmentPage adminNav admin protected" style="display: none;">
-    <a class="backBtn" href="/" target="_blank">Abrir pagina en una nueva pestaña.</a>
-    <div>
-        <p class="italic fnt-12" style="margin-top:5px">
-            <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
-        </p>
-    </div>
+
     <div>
         <button class="btn" v-cloak v-if="true" @click="(loaders.deploy||isCooldown('deploy'))||deploy()" :disabled="loaders.deploy||isCooldown('deploy')" v-html="loaders.deploy?'Publicando...':'Publicar cambios'"></button>
         <p class="italic fnt-12" style="margin-top:5px" v-show="isCooldown('deploy')">
@@ -23,53 +18,56 @@
 -->
     <div class="sidebarMenu">
 
-    <a href="/admin/programacion">
-            <i class="fas fa-calendar-alt"></i>
-            Programacion
-        </a>
-    <a href="/admin/voluntarios">
-            <i class="fas fa-people-carry"></i>
-            Voluntarios
-        </a>
-    <a href="/admin/formulario-de-contacto">
-            <i class="fas fa-phone-volume"></i>
-            Contactos
-        </a>
-    <a href="/admin/images">
-            <i class="fas fa-images"></i>
-            Imagenes 
-        </a>
-    <a href="/admin/files">
-            <i class="fas fa-file"></i>
-            Archivos
-        </a>
-    <a href="/admin/pages">
-            <i class="fas fa-book"></i>
-            Paginas
-        </a>
-    <a href="/admin/partials">
-            <i class="fas fa-boxes"></i>
-            Vistas parciales
+        <a href="/admin/dashboard">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
         </a>
 
-<a href="/admin/styles">
-            <i class="fas fa-cookie-bite"></i>
-            Estilos CSS
+        <a href="/" target="_blank">
+            <i class="fas fa-eye"></i> Abrir sitio
         </a>
 
-    <a href="/admin/changelog">
-            <i class="fas fa-clipboard-list"></i>
-            Historial de cambios
+        <a href="/admin/programacion">
+            <i class="fas fa-calendar-alt"></i> Programacion
         </a>
-    <a href="/admin/faq">
-            <i class="fas fa-book"></i>
-            Documentacion
+        <a href="/admin/voluntarios">
+            <i class="fas fa-people-carry"></i> Voluntarios
         </a>
-    <a href="/admin/avanzado">
-        <i class="fas fa-cogs"></i>
-        Configuracion avanzada</a>
-    <a @click="logout()" class="logout">
+        <a href="/admin/formulario-de-contacto">
+            <i class="fas fa-phone-volume"></i> Contactos
+        </a>
+        <a href="/admin/images">
+            <i class="fas fa-images"></i> Imagenes
+        </a>
+        <a href="/admin/files">
+            <i class="fas fa-file"></i> Archivos
+        </a>
+        <a href="/admin/pages">
+            <i class="fas fa-book"></i> Paginas
+        </a>
+        <a href="/admin/partials">
+            <i class="fas fa-boxes"></i> Vistas parciales
+        </a>
+
+        <a href="/admin/styles">
+            <i class="fas fa-cookie-bite"></i> Estilos CSS
+        </a>
+
+        <a href="/admin/changelog">
+            <i class="fas fa-clipboard-list"></i> Historial de cambios
+        </a>
+        <a href="/admin/faq">
+            <i class="fas fa-book"></i> Documentacion
+        </a>
+        <a href="/admin/avanzado">
+            <i class="fas fa-cogs"></i> Configuracion avanzada</a>
+        <a @click="logout()" class="logout">
 
         Desconectarse</a>
-        </div>
+
+
+        <p class="italic " style="margin:10px">
+            <span>Pagina actualizada el <span v-html="deployedAt"></span></span>
+        </p>
+
+    </div>
 </div>

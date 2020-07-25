@@ -15,17 +15,22 @@ module.exports = function() {
 						}, {});
 					},
 					created() {
-						fetch(`${SERVER.API_URL}/api/formularioContacto/fetch`).then(r => r.json().then(response => {
-							this.items = response.result.map(v => {
-								v._expand = false
-								return v;
-							});
-						}));
+						this.update()
 					},
 					methods:{
+						update(){
+							fetch(`${SERVER.API_URL}/api/formularioContacto/fetch`).then(r => r.json().then(response => {
+								this.items = response.result.map(v => {
+									v._expand = false
+									return v;
+								});
+							}));
+						},
 						async remove(item){
 							await apiPost('/api/contacts/remove', item);
-							location.reload()
+							setTimeout(()=>{
+								this.update()
+							},1000)
 						}
 					}
 				});
