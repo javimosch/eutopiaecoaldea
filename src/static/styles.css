@@ -1,6 +1,11 @@
 
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 
+.select_item__selected{
+    background-color:#272222;
+    color:white;
+}
+
 h1,
 h2,
 h3,
@@ -923,6 +928,9 @@ iframe {
         border: 0px;
         border-bottom: 1px solid lightgray;
         margin-bottom: 5px;
+    }
+    .select{   
+        padding:0px; 
     }
     .sectionMainImage {
         min-height: 350px;

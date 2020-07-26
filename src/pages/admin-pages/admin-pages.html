@@ -5,8 +5,11 @@
             <label class="important">Paginas</label>
 
             <button v-show="pageItem" class="btn" @click="savePage" v-html="isSaving?'Guardando...':'Guardar'"></button>
-            <ul>
-                <li v-for="item in pages" v-html="item.label" :value="item" @click="onPageSelected(item)"></li>
+            <ul class="select">
+                <li
+                v-for="item in pages" 
+                :class="selectedClass(item)"
+                v-html="item.label" :value="item" @click="onPageSelected(item)"></li>
             </ul>
 
             <button  v-show="pageItem" class="btn" @click="savePage" v-html="isSaving?'Guardando...':'Guardar'"></button>

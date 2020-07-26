@@ -50,7 +50,7 @@ module.exports = function() {
 					data() {
 						return {
 							pages: [],
-							pageItem:null,
+							pageItem:{},
 							isSaving:false
 						}
 					},
@@ -59,10 +59,12 @@ module.exports = function() {
 							this.pages = r.result;
 						});
 					},
-					mounted() {},
 					methods: {
+						selectedClass(page){
+							return `${page.label == this.pageItem.label?'select_item__selected':''}`
+						},
 						onPageSelected(page) {
-							this.pageItem = page;
+							this.pageItem = Object.assign(this.pageItem, page)
 							
 							this.$refs.pageEditor.setEditorValues(this.pageItem)
 						},
