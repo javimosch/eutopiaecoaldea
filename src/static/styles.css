@@ -145,12 +145,16 @@ form>label {
 }
 
 .eventItem {
-    display: inline-block;
     width: -webkit-fill-available;
-    padding: 20px;
-    background-color: ghostwhite;
+    padding: 5px 15px;
+    background-color: #ffffff;
     margin-bottom: 5px;
-    box-shadow: 1px 5px 20px #483d8b61;
+    border-left: 1px solid grey;
+}
+
+.grid8020{
+    display: grid;
+    grid-template-columns: 80% 20%;
 }
 
 .eventoFecha {
@@ -159,11 +163,12 @@ form>label {
     font-weight: 100;
 }
 
-.eventItem .eventoTitle {
+.eventoTitle {
     margin-bottom: 10px;
-    width: 100%;
+    width: -webkit-fill-available;
     font-size: 25px;
     color: #f18e35;
+    margin-right: 20px;
 }
 
 .parameters-component {
@@ -181,14 +186,15 @@ form>button[disabled],
 }
 
 .btn {
-    margin-top: 10px;
-    border: 0px;
-    background-color: #ef7f1ae0;
-    padding: 10px 20px;
-    font-size: 14px;
-    color: white;
+    border: 1px solid #483c3c;
+    background-color: white;
+    padding: 5px 15px;
+    font-size: 16px;
+    color: #483c3c;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: bolder;
+    font-family: monospace;
 }
 
 .centeredVideo {
@@ -198,7 +204,8 @@ form>button[disabled],
 
 form>button:hover,
 .btn:hover {
-    background-color: #00933f;
+    color: #483c3c;
+    border: 1px solid #ef7f1a;
 }
 
 form>button:hover,
@@ -292,6 +299,17 @@ form>button:active,
     color: black;
 }
 
+
+.programation_item {
+    width: -webkit-fill-available;
+    padding: 5px 15px;
+    background-color: #ffffff;
+    border-left: 1px solid grey;
+}
+
+.programation_title{
+    margin: 5px 0px;
+}
 .programacionForm {
     max-width: 320px;
     padding: 20px;
@@ -302,8 +320,6 @@ form>button:active,
 }
 
 .programationItem {
-    padding: 5px;
-    /* background-color: peachpuff; */
     color: black;
     font-size: 14px;
     margin-bottom: 0px;
