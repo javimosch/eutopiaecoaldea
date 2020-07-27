@@ -21,6 +21,22 @@ module.exports = function () {
 						apiGet('/api/styles').then(r => {
 							this.item = r.result;
 						});
+						let self = this
+						this.onSaveKey = function (e) {
+							if ((e.which == '115' || e.which == '83') && (e.ctrlKey || e.metaKey) && !(e.altKey)) {
+								e.preventDefault();
+								if(Object.keys(self.item).length>1){
+									self.save()
+								}
+								return false;
+							}
+							return true;
+						}
+						$(document).on('keydown',this.onSaveKey);
+
+					},
+					destroyed(){
+						$(document).off('keydown',this.onSaveKey);
 					},
 					mounted() { },
 					methods: {
@@ -42,7 +58,7 @@ module.exports = function () {
 									new Noty({
 										timeout: 2500,
 										layout: 'bottomCenter',
-										text: "Los cambios se aplicaran la proxima vez que publique el sitio.",
+										text: "Cambios guardados!",
 										type: 'info',
 										killer: true
 									}).show();

@@ -1,4 +1,4 @@
-module.exports = function() {
+module.exports = function () {
 	return {
 		name: 'pages',
 		path: 'admin',
@@ -7,7 +7,7 @@ module.exports = function() {
 			init: function init() {
 
 				Vue.component('page-editor', {
-					props: ['enabled','value'],
+					props: ['enabled', 'value'],
 					template: `<div  class="page-editor-component" v-show="!!value">
 						<label class="important">Pagina <span v-html="value && value.label"></span></label>
 						<codemirror @input="change" mode="html" ref="htmlEditor" :enabled="enabled" v-model="htmlData"></codemirror>
@@ -19,7 +19,7 @@ module.exports = function() {
 						return {
 							jsData: '',
 							htmlData: '',
-							
+
 						}
 					},
 					methods: {
@@ -31,41 +31,57 @@ module.exports = function() {
 							this.$refs.jsEditor.setValue(this.jsData);
 							this.$refs.htmlEditor.setValue(this.htmlData);
 						},
-						change(v){
-							if(this.value && v){
-								this.$emit('input',{
-								...this.value,
-								jsData:this.jsData,
-								htmlData:this.htmlData
+						change(v) {
+							if (this.value && v) {
+								this.$emit('input', {
+									...this.value,
+									jsData: this.jsData,
+									htmlData: this.htmlData
 								})
 							}
 						}
 					}
 				});
 
-				window.vues=window.vues||{};
-				window.vues['main']= new Vue({
+				window.vues = window.vues || {};
+				window.vues['main'] = new Vue({
 					el: '.appScope',
 					name: 'adminPages',
 					data() {
 						return {
 							pages: [],
-							pageItem:{},
-							isSaving:false
+							pageItem: {},
+							isSaving: false
 						}
 					},
 					created() {
 						apiGet('/api/pages').then(r => {
 							this.pages = r.result;
 						});
+						let self = this
+						this.onSaveKey = function (e) {
+							if ((e.which == '115' || e.which == '83') && (e.ctrlKey || e.metaKey) && !(e.altKey)) {
+								e.preventDefault();
+								if(Object.keys(self.pageItem).length>0){
+									self.savePage()
+								}
+								return false;
+							}
+							return true;
+						}
+						$(document).on('keydown',this.onSaveKey);
+
+					},
+					destroyed(){
+						$(document).off('keydown',this.onSaveKey);
 					},
 					methods: {
-						selectedClass(page){
-							return `${page.label == this.pageItem.label?'select_item__selected':''}`
+						selectedClass(page) {
+							return `${page.label == this.pageItem.label ? 'select_item__selected' : ''}`
 						},
 						onPageSelected(page) {
 							this.pageItem = Object.assign(this.pageItem, page)
-							
+
 							this.$refs.pageEditor.setEditorValues(this.pageItem)
 						},
 						savePage() {

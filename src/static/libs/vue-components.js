@@ -105,7 +105,7 @@ Vue.component('html-editor', {
 Vue.component('codemirror', {
   props: ['value', 'enabled', 'mode'],
   template: `<div  class="codemirror-component">
-						<div ref="editor" style="width: -webkit-fill-available;min-height: calc(100vh);"></div>
+						<div ref="editor" style="width: -webkit-fill-available;min-height: calc(60vh);"></div>
 					</div>`,
   data() {
     return {
