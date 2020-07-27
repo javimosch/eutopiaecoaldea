@@ -1,11 +1,10 @@
-<section class="admin protected container appScope">
+<section class="admin protected container appScope" style="display:none;" v-show="true">
     <h1>Programacion</h1>
-    
-    <button @click="saving || save()" :disabled="saving" class="btn" v-html="saving?'Guardando...':'Guardar'"></button>
+
     <button @click="showForm=true" v-show="!showForm" class="btn">Nuevo evento</button>
     <button v-if="false" @click="sort" v-show="true" class="btn">Ordenar por fecha</button>
 
-    <div class="form programacionForm" v-show="showForm">
+    <div class="form programacionForm" v-show="showForm"> 
         <label class="important">Nuevo evento</label>
         <label>Fecha desde*</label>
         <input placeholder="DD-MM-YYYY" v-model="form.fechaDesde" />
@@ -18,56 +17,60 @@
     <ul class="list">
         <li class="programationItem" v-for="evento in programacion" v-show="showProgramacion(evento)">
             <div class="programation_item form">
-                
+
                 <div class="grid8020">
                     <h2 class="programation_title" v-html="evento.title"></h2>
-                    <button class="btn" @click="evento.showInfo=!evento.showInfo" v-show="!evento.showInfo">
+                    <button class="btn" @click="showDetails(evento)" v-show="!evento.showInfo">
                         <i class="fas fa-edit"></i>
                     </button>
-                <button class="btn" @click="evento.showInfo=!evento.showInfo" v-show="evento.showInfo">-</button>
+                    <button class="btn" @click="evento.showInfo=!evento.showInfo" v-show="evento.showInfo">-</button>
                 </div>
-                
+
                 <div class="bigDesktopSplitTwo" v-show="evento.showInfo">
                     <input class="eventoTitle semless bold" v-model="evento.title"></input>
                     <div class="adminProgramacionItemImage">
-                        <img class="img-fluid" :src="evento.image||'https://via.placeholder.com/150x150'"/>
+                        <img class="img-fluid" :src="evento.image||'https://via.placeholder.com/150x150'" />
                     </div>
                     <div>
-                            
-                            <div>
-                                <html-editor v-model="evento.message"></html-editor>
-                            </div>
-                            <div class="blockChilds">
-                                <label>Mostrar en el sitio web? (si no chequeas esto, el evento permanecera oculto)</label>
-                                <input type="checkbox" v-model="evento.show" />
-                            </div>
-                            <div class="blockChilds">
-                                <label>Imagen</label>
-                                <input v-model="evento.image" />
-                            </div>
 
-                            <label>Fecha desde</label>
-                <input class="eventoFecha semless " v-model="evento.fechaDesde"></input>
-                <label>Fecha hasta</label>
-                <input class="eventoFecha semless " v-model="evento.fechaHasta"></input>
+                        <div>
+                            <html-editor v-model="evento.message"></html-editor>
+                        </div>
+                        <div class="blockChilds">
+                            <label>Mostrar en el sitio web? (si no chequeas esto, el evento permanecera oculto)</label>
+                            <input type="checkbox" v-model="evento.show" />
+                        </div>
+                        <div class="blockChilds">
+                            <label>Imagen</label>
+                            <input v-model="evento.image" />
+                        </div>
 
-                            <div class="blockChilds">
-                                <label>Hora desde</label>
-                                <input v-model="evento.timeFrom" placeholder="HH:mm" />
-                            </div>
-                            <div class="blockChilds">
-                                <label>Hora hasta</label>
-                                <input v-model="evento.timeTo" placeholder="HH:mm" />
-                            </div>
-                            <div>
-                                <button @click="remove(evento.id)" class="btn danger"><i class="fas fa-trash-alt"></i></button>
-                            </div>
+                        <label>Fecha desde</label>
+                        <input class="eventoFecha semless " v-model="evento.fechaDesde"></input>
+                        <label>Fecha hasta</label>
+                        <input class="eventoFecha semless " v-model="evento.fechaHasta"></input>
+
+                        <div class="blockChilds">
+                            <label>Hora desde</label>
+                            <input v-model="evento.timeFrom" placeholder="HH:mm" />
+                        </div>
+                        <div class="blockChilds">
+                            <label>Hora hasta</label>
+                            <input v-model="evento.timeTo" placeholder="HH:mm" />
+                        </div>
+                        <div>
+                            <button @click="remove(evento.id)" class="btn danger"><i
+                                    class="fas fa-trash-alt"></i></button>
+                        </div>
                     </div>
+                    <br/>
+                    <button @click="saving || save(evento)" :disabled="saving" class="btn"
+                        v-html="saving?'Guardando...':'Guardar'"></button>
                 </div>
             </div>
         </li>
     </ul>
 </section>
 <script type="text/javascript">
-window.programacion = JSON.parse(`{{#stringify programacion}}{{/stringify}}`);
+    window.programacion = JSON.parse(`{{#stringify programacion}}{{/stringify}}`);
 </script>

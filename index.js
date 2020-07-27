@@ -324,6 +324,7 @@ function runLocalServer() {
         var cors = require('cors');
         var appServer = require('http').Server(app);
 
+        /*
         if (argv.w || argv.watch) {
             var io = require('socket.io')(appServer);
             io.on('connection', function (socket) {
@@ -334,7 +335,7 @@ function runLocalServer() {
             });
             process.io = io;
             console.log('socket.io waiting')
-        }
+        }*/
 
         app.use(cors());
         var bodyParser = require('body-parser')

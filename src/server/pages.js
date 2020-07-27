@@ -10,6 +10,7 @@ function injectHtml(html, name) {
 	var result = {
 		html
 	};
+	/*
 	if (process.env.NODE_ENV !== 'production') {
 		const cheerio = require('cheerio')
 		const $ = cheerio.load(html)
@@ -26,7 +27,7 @@ function injectHtml(html, name) {
 		`);
 		}
 		result.html = $.html()
-	}
+	}*/
 	return result;
 }
 

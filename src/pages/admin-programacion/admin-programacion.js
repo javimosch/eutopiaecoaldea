@@ -8,7 +8,7 @@ module.exports = function() {
 			pageScripts: ['https://cdn.quilljs.com/1.3.6/quill.js'],
 			init: function init() {
 
-
+				
 				new Vue({
 					el: '.appScope',
 					name: 'adminProgramacion',
@@ -24,14 +24,20 @@ module.exports = function() {
 						}
 					},
 					created() {
-						fetch(`${SERVER.API_URL}/api/programacion/fetch`).then(r => r.json().then(response => {
+						//fetch(`${SERVER.API_URL}/api/programacion/fetch`).then(r => r.json().then(response => {
 							//this.programacion = this.normalize(response.result);
-						}));
+						//}));
 					},
 					mounted() {
 						this.sort();
 					},
 					methods: {
+						showDetails(item){
+							this.programacion.forEach(item=>{
+								item.showInfo=false
+							})
+							item.showInfo=true
+						},
 						sort(){
 							this.programacion = this.programacion.sort(function(a,b){
 								return moment(a.fechaDesde,'DD-MM-YYYY').isBefore(moment(b.fechaDesde,'DD-MM-YYYY'),'day') ? 1 : -1;
@@ -42,7 +48,7 @@ module.exports = function() {
 							if(!this.form.fechaDesde || !this.form.title){
 								return;
 							}
-							this.programacion.push({
+							let event = {
 								fechaDesde: this.form.fechaDesde,
 								fechaHasta: this.form.fechaHasta || '',
 								id: window.generateId(),
@@ -51,12 +57,13 @@ module.exports = function() {
 								message: '',
 								time: '',
 								show: false
-							});
+							}
+							this.programacion.push(newEvent);
 							this.form.fechaDesde = this.form.fechaHasta = '';
 							this.form.title = '';
 							this.showForm = false;
 							this.sort();
-							this.save()
+							this.save(event)
 						},
 						showProgramacion(pr) {
 							return this.programacion.length>0
@@ -86,19 +93,22 @@ module.exports = function() {
 					});
 					if (indexToRemove!==null) {
 						var removed = this.programacion.splice(indexToRemove, 1);
-						this.save()
+						this.save({
+							id,
+							isRemove:true
+						})
 					}
 
 				}
 
-				function save() {
+				function save(item) {
 					this.saving = true;
-					var dataToSave = this.programacion.map(pr=>{
-						var r = {};
-						Object.assign(r,pr);
-						delete r.showInfo;
-						return r;
-					})
+					var dataToSave = 
+						{
+							...Object.assign({},item),
+							showInfo:undefined
+						}
+					
 					apiPost('/api/programacion/save', dataToSave).then(res => {
 						this.saving = false
 						if (!res.result) {
