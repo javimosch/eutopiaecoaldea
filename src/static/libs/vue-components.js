@@ -51,8 +51,7 @@ Vue.component('html-editor', {
 </div>`,
   data: function() {
     return {
-      quill: null,
-      firstLoad: false
+      quill: null
     }
   },
   mounted: function() {
@@ -61,16 +60,13 @@ Vue.component('html-editor', {
   props: ['value'],
   watch: {
     "value": function() {
-      if (!this.firstLoad) {
         this.setHtml();
-      }
     }
   },
   methods: {
     setHtml() {
       if (!!this.quill && this.value!=undefined) {
         this.quill.setHtml(this.value);
-        this.firstLoad = true;
       }
     },
     init() {
@@ -89,10 +85,10 @@ Vue.component('html-editor', {
         }
       });
       this.quill.on('text-change', (delta, oldDelta, source) => {
-        if (!this.firstLoad) {
+        let html = this.quill.getHtml();
+        if (html == this.value) {
           return false;
         }
-        let html = this.quill.getHtml();
         this.$emit('input', html);
         this.$emit('change', html);
       });
