@@ -36,7 +36,8 @@ module.exports = function() {
 							this.programacion.forEach(item=>{
 								item.showInfo=false
 							})
-							item.showInfo=true
+							Vue.set(item,'showInfo',true)
+							//item.showInfo=true
 						},
 						sort(){
 							this.programacion = this.programacion.sort(function(a,b){
@@ -48,7 +49,7 @@ module.exports = function() {
 							if(!this.form.fechaDesde || !this.form.title){
 								return;
 							}
-							let event = {
+							let newEvent = {
 								fechaDesde: this.form.fechaDesde,
 								fechaHasta: this.form.fechaHasta || '',
 								id: window.generateId(),
@@ -56,14 +57,15 @@ module.exports = function() {
 								image: '',
 								message: '',
 								time: '',
-								show: false
+								show: false,
+								showInfo:false
 							}
 							this.programacion.push(newEvent);
 							this.form.fechaDesde = this.form.fechaHasta = '';
 							this.form.title = '';
 							this.showForm = false;
 							this.sort();
-							this.save(event)
+							this.save(newEvent)
 						},
 						showProgramacion(pr) {
 							return this.programacion.length>0

@@ -166,8 +166,8 @@
         ],
         "changelog": [
             {
-                "date":"27-07-2020",
-                "list":[
+                "date": "27-07-2020",
+                "list": [
                     "Nuevo design (colores)",
                     "Agregada propuesta 2020 en la seccion Descubrir"
                 ]
