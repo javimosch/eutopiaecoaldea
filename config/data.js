@@ -136,6 +136,16 @@
                 "message": "<p>Construiremos muro de contención en piedra,muros posteriores de escenario y nivelaremos piso</p>",
                 "time": "",
                 "show": true
+            },
+            {
+                "fechaDesde": "01-08-2020",
+                "fechaHasta": "01-08-2020",
+                "id": "_mayd2ionw",
+                "title": "PACHAMAMA RAYMI - MUSICA NEOANCESTRAL",
+                "image": "",
+                "message": "",
+                "time": "",
+                "show": false
             }
         ],
         "voluntarios": [
