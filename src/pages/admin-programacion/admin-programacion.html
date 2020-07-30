@@ -4,7 +4,7 @@
     <button @click="showForm=true" v-show="!showForm" class="btn">Nuevo evento</button>
     <button v-if="false" @click="sort" v-show="true" class="btn">Ordenar por fecha</button>
 
-    <div class="form programacionForm" v-show="showForm"> 
+    <div class="form programacionForm" v-show="showForm">
         <label class="important">Nuevo evento</label>
         <label>Fecha desde*</label>
         <input placeholder="DD-MM-YYYY" v-model="form.fechaDesde" />
@@ -28,9 +28,9 @@
 
                 <div class="bigDesktopSplitTwo" v-show="evento.showInfo">
                     <input class="eventoTitle semless bold" v-model="evento.title"></input>
-                    <div class="adminProgramacionItemImage">
-                        <img class="img-fluid" :src="evento.image||'https://via.placeholder.com/150x150'" />
-                    </div>
+
+                    <img class="img-fluid admin_programation__item_image" :src="evento.image||'https://via.placeholder.com/150x150'" />
+
                     <div>
 
                         <div>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="blockChilds">
                             <label>Mostrar en el sitio web? (si no chequeas esto, el evento permanecera oculto)</label>
-                            <input type="checkbox" v-model="evento.show" />
+                            <input class="admin_programation__item_show" type="checkbox" v-model="evento.show" />
                         </div>
                         <div class="blockChilds">
                             <label>Imagen</label>
@@ -64,8 +64,7 @@
                         </div>
                     </div>
                     <br/>
-                    <button @click="saving || save(evento)" :disabled="saving" class="btn"
-                        v-html="saving?'Guardando...':'Guardar'"></button>
+                    <button @click="saving || save(evento)" :disabled="saving" class="btn" v-html="saving?'Guardando...':'Guardar'"></button>
                 </div>
             </div>
         </li>
