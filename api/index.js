@@ -25,38 +25,38 @@ module.exports = function configure(app) {
 	require('./partials')(app);
 	require('./styles')(app);
 
-	app.get('/api/config', (req, res) => {
+	app.get('/api/config', async(req, res) => {
+		let config = reload('../config')
+		await config.init()
 		res.json({
-			config: reload('../config')
+			config
 		})
 	})
-	app.get('/api/version', (req, res) => {
-		var packageJson = JSON.parse(sander.readFileSync(filePath('package.json')).toString('utf-8'));
+	app.get('/api/version', async (req, res) => {
+		var packageJson = JSON.parse((await sander.readFile(filePath('package.json'))).toString('utf-8'));
 		res.json({
 			version: packageJson.version
 		});
 	});
-	app.get('/api/login/validate', (req, res) => {
-		var code = reload('../config').login.code
-		logger.debug("validate",{
-			expected:code,
-			received:req.query.code
-		})
+	app.get('/api/login/validate', async(req, res) => {
+		let config = reload('../config')
+		await config.init()
+		var code = config.login.code
 		return res.json({
 			result: code == req.query.code
 		});
 	})
 
 
-	app.get('/api/config/fetch', (req, res) => {
+	app.get('/api/config/fetch', async(req, res) => {
 		res.json({
-			result: sander.readFileSync(path.join(process.cwd(),'config/data.js')).toString('utf-8')
+			result: (await sander.readFile(path.join(process.cwd(),'config/data.js'))).toString('utf-8')
 		})
 	})
-	app.get('/api/locales/fetch', (req, res) => {
+	app.get('/api/locales/fetch', async (req, res) => {
 
 		res.json({
-			result: sander.readFileSync(path.join(process.cwd(),'config/locales.js')).toString('utf-8')
+			result: (await sander.readFile(path.join(process.cwd(),'config/locales.js'))).toString('utf-8')
 		})
 	})
 

@@ -1,7 +1,6 @@
 const moment = require('moment-timezone');
 const argv = require('yargs').argv;
 const server = require('./src/server');
-var exec = server.fs.execSync;
 const execa = require('execa');
 const sander = require('sander');
 const path = require('path');
@@ -9,6 +8,8 @@ const path = require('path');
 init().catch(console.error)
 
 async function init() {
+
+    await require('./config').init();
 
     console.log("YARGS",{
         argv
@@ -293,7 +294,7 @@ async function compileSiteOnce(options = {}) {
     //Partials and Pages
     const config = require('./config');
     server.partials.compile(options, config);
-    server.pages.compile(options, config);
+    await server.pages.compile(options, config);
 
     //Index (Home page)
     const Handlebars = require('handlebars');
@@ -307,7 +308,7 @@ async function compileSiteOnce(options = {}) {
 
     var source = (await sander.readFile(srcFile('index.html'))).toString('utf-8');
     var template = Handlebars.compile(source);
-    var context = config.getContext(options.language);
+    var context = await config.getContext(options.language);
     context.currentLanguage = context.lang[options.language];
     context.currentPage = context.defaultCurrentPage;
     context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;

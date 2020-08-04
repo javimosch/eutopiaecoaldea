@@ -16,11 +16,14 @@ var self = module.exports = {
 		NODE_ENV: process.env.NODE_ENV,
 		API_URL: process.env.API_URL
 	},
-	getContext: function(language) {
+	async init(){
+		await mergeDataFile();
+	},
+	getContext: async function(language) {
 		//console.log('getConfig',{language})
 		language = language || self.defaultLanguage;
 
-		mergeDataFile();
+		await mergeDataFile();
 
 		function collectLanguage(language) {
 			var lang = {};
@@ -55,10 +58,10 @@ var self = module.exports = {
 	}
 };
 
-mergeDataFile();
 
-function mergeDataFile() {
-	var data = require('sander').readFileSync(__dirname + '/data.js').toString('utf-8');
+
+async function mergeDataFile() {
+	var data = (await require('sander').readFile(__dirname + '/data.js')).toString('utf-8');
 	var savedData = {}
 	try {
 		savedData = dJSON.parse(data);

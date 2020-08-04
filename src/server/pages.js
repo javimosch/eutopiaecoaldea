@@ -4,7 +4,6 @@ const Handlebars = require('handlebars');
 const dJSON = require('dirty-json');
 const reload = require('require-reload')(require);
 const livereload = require('./livereload');
-const config = require('../../config')
 
 function injectHtml(html, name) {
 	var result = {
@@ -33,35 +32,39 @@ function injectHtml(html, name) {
 
 module.exports = {
 	injectHtml,
-	compile: (options, config) => {
+	compile: async (options, config) => {
+		
 		var srcPath = path.join(process.cwd(), 'src');
+		
 		var srcFile = name => path.join(srcPath, name);
 
 		var outputFolder = options.outputFolder || config.defaultOutputFolder;
+		
 		var basePath = path.join(process.cwd(), outputFolder);
-		var srcPath = path.join(process.cwd(), 'src');
-
+		
 		var writeFns = [];
 
-		var pages = sander.readdirSync(srcFile('pages'));
-		pages.forEach(name => {
+		var pages = await sander.readdir(srcFile('pages'));
 
+		let promises = pages.map(name => {
+
+			return (async()=>{
 			var source = '';
 			var pageSourcePath = srcFile(`pages/${name}/${name}.html`);
 			try {
-				source = sander.readFileSync(pageSourcePath).toString('utf-8');
+				source = (await sander.readFile(pageSourcePath)).toString('utf-8');
 			} catch (err) {
 				return console.error('pages: source file missing at', pageSourcePath)
 			}
 
 			//Context for handlebars
-			var context = config.getContext(options.language);
+			var context = await config.getContext(options.language);
 
 			var pageConfig = '';
 			var pageConfigPath = srcFile(`pages/${name}/${name}.js`);
 			//Parse config
 			try {
-				pageConfig = sander.readFileSync(pageConfigPath).toString('utf-8');
+				pageConfig = (await sander.readFile(pageConfigPath)).toString('utf-8');
 				if (pageConfig.indexOf('module.exports') !== -1) {
 					pageConfig = reload(pageConfigPath)(options, config, context);
 				} else {
@@ -92,9 +95,9 @@ module.exports = {
 			Handlebars.registerPartial(pageName, source);
 			//console.log(`pages: ${pageName} registered (${options.language} ${pageConfig.name.toLowerCase()})`)
 
-			writeFns.push(function () {
+			writeFns.push(async function () {
 				//Write file
-				source = sander.readFileSync(srcFile('index.html')).toString('utf-8');
+				source = (await sander.readFile(srcFile('index.html'))).toString('utf-8');
 				var template = Handlebars.compile(source);
 				context.currentLanguage = context.lang[options.language];
 				context.currentPage = pageName;
@@ -104,10 +107,14 @@ module.exports = {
 				let result = injectHtml(html, pageConfig.name);
 				let combinedContext = Object.assign({}, context, pageConfig.context || {});
 				livereload.addPage(context.currentPage, result, context.currentLanguage, combinedContext);
-				sander.writeFileSync(writePath, result.html);
+				await sander.writeFile(writePath, result.html);
 			})
+
+			})();
+
 		});
 
-		writeFns.forEach(fn => fn());
+		await Promise.all(promises)
+		await Promise.all(writeFns.map(fn=>fn()))
 	}
 };
