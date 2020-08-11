@@ -14,7 +14,7 @@
                 "image": "/uploads/images/festicamp.png",
                 "message": "<p>FESTICAMP es un festival que busca acercar a las familias</p><p>chiclayanas (o lambayecanas) a marcas e iniciativas eco</p><p>amigables y tradicionales de la región. Durante los días del</p><p>festival daremos a conocer las prácticas que aplicamos en la</p><p>producción de nuestros cultivos, productos, artículos y</p><p>servicios y en nuestro día a día en general para llevar un estilo</p><p>de vida más sustentable.</p><p>Contaremos con espacios para la feria, talleres, música en vivo,</p><p>malabares, juegos y zona de campamento.</p>",
                 "time": "",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "20-06-2019",
@@ -44,7 +44,7 @@
                     "/uploads/images/brigadistas_20062019_18.jpg"
                 ],
                 "time": "",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "21-04-2019",
@@ -60,7 +60,7 @@
                     "/uploads/images/programa-creer-1.jpeg"
                 ],
                 "time": "",
-                "show": true,
+                "draft": false,
                 "timeFrom": "09:30",
                 "timeTo": "16:00"
             },
@@ -72,7 +72,7 @@
                 "image": "",
                 "message": "",
                 "time": "",
-                "show": false
+                "draft": false
             },
             {
                 "fechaDesde": "09-03-2019",
@@ -82,7 +82,7 @@
                 "image": "/uploads/images/spring-season-sale-2.png",
                 "message": "<p><br></p>",
                 "time": "",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "09-02-2019",
@@ -92,7 +92,7 @@
                 "image": "/uploads/images/spring-season-sale-1.png",
                 "message": "",
                 "time": "",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "01-02-2019",
@@ -102,7 +102,7 @@
                 "image": "",
                 "message": "",
                 "time": "",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "15-01-2019",
@@ -113,7 +113,7 @@
                 "message": "<p>Continuaremos con la construcción del muro de contención y el llenado de la plataforma del escenario.</p><p>Escríbenos y únete a la minga!</p>",
                 "timeFrom": "08:00",
                 "timeTo": "16:00",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "14-01-2019",
@@ -126,7 +126,7 @@
                     "/uploads/images/evento-pachawasi-1.jpg"
                 ],
                 "time": "",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "21-12-2018",
@@ -135,7 +135,7 @@
                 "image": "/uploads/images/albergue-construccion.jpeg",
                 "message": "<p>Construiremos muro de contención en piedra,muros posteriores de escenario y nivelaremos piso</p>",
                 "time": "",
-                "show": true
+                "draft": false
             },
             {
                 "fechaDesde": "01-08-2020",
@@ -145,7 +145,7 @@
                 "image": "/uploads/images/raymi.jpg",
                 "message": "<p>Bienvenid@s Eutopic@s tendremos el día 1 de Agosto una veneración a la Pachamama, habrá ofrenda y música neo-ancestral y a la cuál están tod@s invitad@s para ser parte de uno. La transmisión será por facebook live y Youtube. Bienvenid@s</p><p><br></p><p>Nos pueden apoyar por Interbank a este número de cuenta:&nbsp;</p><p>8983186561750</p><p>La banda invitada será :</p><p>Nazca the return</p><p>@nazca016</p><p>La tradición de venerar a la Pachamama data desde la época prehispánica, el pueblo inca la consideraba la divinidad protectora del Imperio Incaico, dedicada a alimentar y preservar el bienestar del hombre. Esta celebración es un acto de reciprocidad y alabanza a la naturaleza, según las culturas andinas, para continuar manteniendo alianzas con el hombre.</p><p>1 de agosto, ese día los campesinos no trabajan con la tierra para dejarla descansar, empezando el ritual de pago. Esto consiste en brindarle alimentos trabajados y producidos por la Pachamama, también hoja de coca, semillas de huairuro, chicha de jora y otras bebidas. Las provisiones deben estar cocidas, en una señal de respeto a la tierra, luego se cava y en el hueco se ponen todos los suministros como dando de comer a la Madre tierra.</p><p><br></p><p><br></p><p><br></p>",
                 "time": "",
-                "show": true
+                "draft": false
             }
         ],
         "voluntarios": [

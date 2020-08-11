@@ -2,9 +2,9 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 
 .select_item__selected{
-    background-color:#272222;
-    color:white;
+    color: black!important;
 }
+/*FOO*/
 
 h1,
 h2,
@@ -48,6 +48,39 @@ h6,
     list-style:none;
 }
 
+/*toggle component*/
+.toggle{
+    cursor: pointer;
+    width:50px;
+    display:grid;
+    grid-template-columns: 50% 50%;
+}
+.toggle div{
+    width:25px;
+    height:25px;
+    background-color:#e8d9d9;
+}
+.toggle .on{
+    background-color: rgb(138, 101, 173);
+}
+.toggle .off{
+    background-color: rgb(197, 182, 182);
+}
+
+/*input type without am-pm*/
+.without_ampm::-webkit-datetime-edit-ampm-field {
+    display: none;
+  }
+  .without_ampm[type=time]::-webkit-clear-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance:none;
+    appearance: none;
+    margin: -10px; 
+  }
+
+
 .home_list{
     line-height:35px;
     padding: 0px;
@@ -75,6 +108,9 @@ h6,
     font-size:14px;
 }
 
+.mt-1{
+    margin-top:10px!important;
+}
 .mt-0{
     margin-top:0px!important;
 }
@@ -123,6 +159,18 @@ body {
     margin: 0px;
 }
 
+.select{   
+    padding:0px; 
+}
+.select li{
+    padding: 5px 0px;
+    font-variant: petite-caps;
+    font-weight: bold;
+    color: dimgrey;
+    font-family: monospace;
+    font-size: 14px;
+}
+
 .jardin_bg{
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 80%), url(/img/new-design/jardin_1.jpg);
     background-position: center;
@@ -131,12 +179,7 @@ body {
     min-height: 200px;
 }
 
-.header_image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 80%), url(/img/portada.jpg);
-    background-position: center;
-    background-color: transparent;
-    background-position: left;
-}
+
 
 header {
     background: rgba(248, 255, 239, 1);
@@ -195,6 +238,14 @@ form>textarea {
     display: block;
     /* border-radius: 5px; */
     /* border: 1px solid lightskyblue; */
+}
+
+.form label{
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
 
 form>textarea {
@@ -450,6 +501,15 @@ form>button:active,
 
 .sidebarMenu {
     margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media only screen and (min-width: 992px) {
+    .sidebarMenu {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
 
 .sidebarMenu a {
@@ -570,8 +630,30 @@ article {
 
 .header_layout {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr;
 }
+@media only screen and (min-width: 992px) {
+    .header_layout {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+
+.header_image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 80%), url(/img/portada.jpg);
+    background-position: center;
+    background-color: transparent;
+    background-size: cover;
+    height:150px;
+}
+@media only screen and (min-width: 992px) {
+    .header_image {
+        height:initial;
+        background-position: left;
+        background-size: initial;
+    }
+}
+
 
 section .image_message {
     margin: 0px;
@@ -583,7 +665,13 @@ section .image_message {
     align-items: center;
     flex-direction: column;
     background-color: rgba(248, 255, 239, .9);
-    margin-left: -90px;
+    
+}
+@media only screen and (min-width: 992px) {
+    section .image_message {
+        margin-left: -90px;
+        padding-left:20px;
+    }
 }
 
 a>i {
@@ -606,10 +694,6 @@ section .image_message .subtitle {
 
 .form .blockChilds {
     margin-bottom: 5px;
-}
-
-.blockChilds>* {
-    display: block;
 }
 
 article h1,
@@ -905,12 +989,11 @@ iframe {
     .sidebarMenu {}
     .sidebarMenu a {}
     .adminLayout {
-        display: flex;
-        justify-content: center;
-        min-height: calc(100vh);
+        display: grid;
+        grid-template-columns: 200px 1fr;
     }
     .adminSidebar {
-        min-width: 200px;
+        
         /*
         box-shadow: 5px 0px 5px #ef7e1938;
         background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.90)), url(https://images.unsplash.com/photo-1547950515-8c1f47eee34b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80);
@@ -920,9 +1003,7 @@ iframe {
         */
     }
     .adminMainContent {
-        min-width: calc(75%);
-        padding: 0px 30px 0px 30px;
-        margin-right: 10px;
+       
     }
     .iiLogoWrapper {
         margin-left: 15px;
@@ -1027,9 +1108,7 @@ iframe {
         border-bottom: 1px solid lightgray;
         margin-bottom: 5px;
     }
-    .select{   
-        padding:0px; 
-    }
+    
     .sectionMainImage {
         min-height: 350px;
         background-size: cover;

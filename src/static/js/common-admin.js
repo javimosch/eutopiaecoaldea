@@ -90,9 +90,11 @@ function apiPost(uri, data) {
 					}
 				},
 				created() {
+					/*
 					fetch(`/manifest.json`).then(r => r.json().then(response => {
 						this.deployedAt = moment(response.created_at, 'x').format('DD-MM-YY HH:mm');
 					}));
+					*/
 				},
 				mounted() {
 

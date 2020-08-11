@@ -4,6 +4,9 @@ const Handlebars = require('handlebars');
 const dJSON = require('dirty-json');
 const reload = require('require-reload')(require);
 const livereload = require('./livereload');
+const { match } = require('assert');
+
+const pages = []
 
 function injectHtml(html, name) {
 	var result = {
@@ -32,6 +35,61 @@ function injectHtml(html, name) {
 
 module.exports = {
 	injectHtml,
+	getPage(url, fallbackPage = ""){
+		let matches = []
+		//console.log('getPage', url, pages.length)
+		for(var x = 0; x < pages.length; x++){
+			//console.log('search page', url, pages[x].name)
+			let fullName = pages[x].name
+			if(pages[x].path){
+				fullName = pages[x].path + '/' + fullName
+			}
+			if(url.indexOf(`${fullName}`)!==-1){
+				//console.log('Page found', pages[x].name)
+
+				matches.push({
+					...pages[x],
+					fullName
+				})
+			}else{
+				//console.log('skip page', pages[x].path||'',pages[x].name)
+			}
+		}
+		if(matches.length>0){
+			let bestMatch = matches.reduce((carry,item)=>{
+				if(!carry){
+					return item
+				}
+				if(carry.fullName.length<item.fullName.length){
+					return item
+				}else{
+					return carry
+				}
+			}, null)
+			//console.log('MATCHES',url, matches.map(m=>m.fullName), bestMatch.name)
+			return bestMatch
+		}
+
+		if(fallbackPage){
+			return pages.find(p=>p.partialName = fallbackPage)
+		}
+
+		return null
+	},
+	async getPageAsHtml(url, options = {}){
+		let config = options.config
+		options.language = options.language||config.defaultLanguage
+		let page = this.getPage(url, options.fallbackPage)
+		var context = await config.getContext(options.language);
+		const source = (await sander.readFile(path.join(process.cwd(), 'src','index.html'))).toString('utf-8');
+		const template = Handlebars.compile(source);
+		context.currentLanguage = context.lang[options.language];
+		context.currentPage =  page.partialName;
+		context.langPath = options.language != config.defaultLanguage ? `${options.language}/` : ``;
+		var html = template(Object.assign({}, context, page.context || {}));
+		let result = injectHtml(html, page.name);
+		return result.html
+	},
 	compile: async (options, config) => {
 		
 		var srcPath = path.join(process.cwd(), 'src');
@@ -44,9 +102,9 @@ module.exports = {
 		
 		var writeFns = [];
 
-		var pages = await sander.readdir(srcFile('pages'));
+		var pagesNames = await sander.readdir(srcFile('pages'));
 
-		let promises = pages.map(name => {
+		let promises = pagesNames.map(name => {
 
 			return (async()=>{
 			var source = '';
@@ -56,6 +114,8 @@ module.exports = {
 			} catch (err) {
 				return console.error('pages: source file missing at', pageSourcePath)
 			}
+
+			options.language = options.language || config.defaultLanguage
 
 			//Context for handlebars
 			var context = await config.getContext(options.language);
@@ -76,24 +136,29 @@ module.exports = {
 				});
 			}
 
-			var normalizeName = (name, isPageFile = false) => {
-				if (!isPageFile) {
-					name = name.split('-').join('_')
-					name = name.split(' ').join('_')
-				} else {
-					name = name.split(' ').join('-')
-					name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-				}
-				return name.toLowerCase();
-			}
-
+		
 			//Register partial
 			var pageName = 'page_' + normalizeName(name);
 
+			pageConfig.partialName = pageName + '_' + options.language
 			pageConfig.name = normalizeName(pageConfig.name, true)
 
-			Handlebars.registerPartial(pageName, source);
-			//console.log(`pages: ${pageName} registered (${options.language} ${pageConfig.name.toLowerCase()})`)
+			Handlebars.registerPartial(pageConfig.partialName, source);
+			
+			//console.log(`Page Partial ${pageConfig.partialName} Path ${pageConfig.path}/${pageConfig.name}`)
+
+			let index = pages.findIndex(p=>`${p.path||''}/${p.name}`==`${pageConfig.path||''}/${pageConfig.name}`)
+			if(index>=0){
+				pages[index] = {
+					...pageConfig,
+					source
+				}
+			}else{
+				pages.push({
+					...pageConfig,
+					source
+				})
+			}
 
 			writeFns.push(async function () {
 				//Write file
@@ -115,6 +180,21 @@ module.exports = {
 		});
 
 		await Promise.all(promises)
-		await Promise.all(writeFns.map(fn=>fn()))
+
+		if(options.generate){
+			console.log('Generating pages')
+			await Promise.all(writeFns.map(fn=>fn()))
+		}
 	}
 };
+
+function normalizeName(name, isPageFile = false){
+	if (!isPageFile) {
+		name = name.split('-').join('_')
+		name = name.split(' ').join('_')
+	} else {
+		name = name.split(' ').join('-')
+		name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+	}
+	return name.toLowerCase();
+}

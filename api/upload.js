@@ -34,11 +34,13 @@ module.exports = app => {
 			stdout:process.stdout
 		});
 		
+		/*
 		const outputFolder = require('path').join(process.cwd(), 'docs');
 		await execa.command(`cd ${outputFolder} && cp ${targetPath} .`,{
 			shell:true,
 			stdout:process.stdout
 		});
+		*/
 
 		res.json({
 			file: req.file

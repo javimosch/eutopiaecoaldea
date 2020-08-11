@@ -8,11 +8,13 @@ module.exports = app => {
 	app.post('/api/styles/save', async (req, res) => {
 		await sander.writeFile(path.join(req.body.htmlPath), req.body.htmlData)
 
+		/*
 		const outputFolder = require('path').join(process.cwd(), 'docs');
 		await execa.command(`cd ${outputFolder} && cp -R ../src/static/styles.css .`,{
 			shell:true,
 			stdout:process.stdout
 		});
+		*/
 
 		res.json({
 			result: true

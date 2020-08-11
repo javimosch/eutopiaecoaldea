@@ -4,14 +4,15 @@ const server = require('./src/server');
 const execa = require('execa');
 const sander = require('sander');
 const path = require('path');
+const config = require('./config')
 
 init().catch(console.error)
 
 async function init() {
 
-    await require('./config').init();
+    await config.init();
 
-    console.log("YARGS",{
+    console.log("YARGS", {
         argv
     })
 
@@ -33,7 +34,7 @@ async function init() {
     }
 
     if (argv.w || argv.watch) {
-       
+
         if (!(argv.s || argv.server)) {
             console.log('Only watching for changes this time...');
             await build();
@@ -55,20 +56,20 @@ async function init() {
     }
 }
 
-async function buildDispatch(){
-    if(server._buildTimeout){
+async function buildDispatch() {
+    if (server._buildTimeout) {
         clearTimeout(server._buildTimeout)
     }
-    server._buildTimeout = setTimeout(()=> {
+    server._buildTimeout = setTimeout(() => {
         server._buildTimeout = null;
-        console.log(`${moment().tz('Europe/Paris').format('DD-MM-YYY HH:mm:ss')}`,'Build dispatch')
+        console.log(`${moment().tz('Europe/Paris').format('DD-MM-YYY HH:mm:ss')}`, 'Build dispatch')
         buildFast()
     }, 500)
 }
 
-async function buildFast(){
+async function buildFast() {
     return build({
-        removeAssets:false
+        removeAssets: false
     })
 }
 
@@ -77,22 +78,27 @@ async function build(options = {}) {
 
     var outputFiles = await sander.readdir(outputFolder);
 
-    if(options.removeAssets!==false){
-        await Promise.all(outputFiles.filter(n => !['CNAME', 'styles.css', 'js', 'libs', 'img', 'uploads'].includes(n)).map(n => {
-            return sander.rimraf(path.join(outputFolder, n), '/docs/');
+    if (options.removeAssets !== false) {
+        console.log('Cleaning dist folder')
+        await Promise.all(outputFiles.filter(n => !['CNAME', '.gitkeep'].includes(n)).map(n => {
+            //console.log('rimraf',outputFolder,n)
+            return sander.rimraf(path.join(outputFolder, n));
         }));
     }
 
-    console.log('Build: Copying static assets')
-    
 
-    await execa.command(`cd ${outputFolder} && cp -R ../src/static/* .`,{
-        shell:true,
-        stdout:process.stdout
+    return console.log("Generate disabled")
+
+    /*
+        console.log('Build: Copying static assets')
+    await execa.command(`cd ${outputFolder} && cp -R ../src/static/* .`, {
+        shell: true,
+        stdout: process.stdout
     });
+    */
 
     //Helpers
-    loadHandlebarHelpers()
+    server.hbs.loadHandlebarHelpers()
     console.log('Build: Compiling styles')
     //Styles
     if (process.env.NODE_ENV === 'production') {
@@ -155,151 +161,20 @@ function compileStyles() {
     return css.length + ' characters written.'
 }
 
-function loadHandlebarHelpers() {
-    const Handlebars = require('handlebars');
 
-    var H = require('just-handlebars-helpers');
-    H.registerHelpers(Handlebars);
-
-
-
-    Handlebars.registerHelper('bold', function (options) {
-        return new Handlebars.SafeString(
-            '<div class="mybold">' +
-            options.fn(this) +
-            '</div>');
-    });
-    Handlebars.registerHelper('capitalize', function (options) {
-        var result = options.fn(this);
-        result = result.charAt(0).toUpperCase() + result.substring(1);
-        return new Handlebars.SafeString(result);
-    });
-
-    Handlebars.registerHelper('date', function (dateString, inputFormat, outputFormat, options) {
-        //var inputFormat = "DD-MM-YYYY HH:mm"
-        var moment = require('moment-timezone');
-        moment.locale('es');
-        output = moment(dateString, inputFormat).format(outputFormat);
-        return output.charAt(0).toUpperCase() + output.substring(1);
-    });
-
-    function filtrarProgramaciones(eventos, options) {
-        if (!eventos) {
-            console.error('filtrarProgramaciones: no events provided', options.data.root.currentPage)
-            return [];
-        }
-        if (options.data.root.programacionOcultarEventosPasados === true) {
-            eventos = eventos.filter(evt => {
-                return moment(evt.fecha, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
-            });
-        }
-        eventos = eventos && eventos.filter(evt => evt.show === undefined ? true : evt.show) || [];
-        return eventos;
-    }
-    Handlebars.registerHelper('hasProgramations', function (obj, options) {
-        return filtrarProgramaciones(obj, options).length > 0;
-    })
-    Handlebars.registerHelper('filtrarProgramacion', function (obj, options) {
-        return filtrarProgramaciones(obj, options);
-    })
-    Handlebars.registerHelper('filtrarEventosProgramacion', function (eventos, options) {
-        if (!eventos) {
-            console.error('filtrarProgramaciones: no events provided', options.data.root.currentPage)
-            return [];
-        }
-        eventos = eventos.filter(evt => evt.show === undefined ? true : evt.show);
-        if (options.data.root.programacionOcultarEventosPasados === true) {
-            eventos = eventos.filter(evt => {
-                return moment(evt.fechaDesde, 'DD-MM-YYYY').isSameOrAfter(moment(), 'day');
-            })
-        }
-        eventos = eventos.sort(function (a, b) {
-            return moment(a.fechaDesde, 'DD-MM-YYYY').isBefore(moment(b.fechaDesde, 'DD-MM-YYYY'), 'day') ? 1 : -1;
-        });
-        /*
-        console.log('filter',{
-            eventos: eventos.map(e=>e.title)
-        })*/
-
-        return eventos;
-    })
-
-    Handlebars.registerHelper('filterArrByKey', function (obj, key, options) {
-        return obj.filter(evt => evt[key] === undefined ? true : evt[key]);
-    })
-    Handlebars.registerHelper('emptyIf', function (str, emptyIf, options) {
-        if ((eval(emptyIf)).includes(str)) {
-            return '';
-        } else {
-            return str;
-        }
-    });
-    Handlebars.registerHelper('pagePath', function (langPath, name, options) {
-        name = name.split(' ').join('-')
-        name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-        name = name.toLowerCase();
-        return `/${langPath}${name}`;
-    });
-
-    Handlebars.registerHelper('stringify', function (obj, options) {
-        function escape(key, val) {
-            if (typeof (val) != "string") return val;
-            return val
-                .replace(/[\\]/g, '\\\\')
-                .replace(/[\/]/g, '\\/')
-                .replace(/[\b]/g, '\\b')
-                .replace(/[\f]/g, '\\f')
-                .replace(/[\n]/g, '\\n')
-                .replace(/[\r]/g, '\\r')
-                .replace(/[\t]/g, '\\t')
-                .replace(/[\"]/g, '\\"')
-                .replace(/\\'/g, "\\'");
-        }
-        return JSON.stringify(obj || {}, escape);
-    });
-
-    Handlebars.registerHelper('typeIs', function (obj, value, options) {
-        if (typeof obj == value) {
-            return true;
-        } else {
-            return false;
-        }
-    });
-
-    Handlebars.registerHelper('toString', function (result, options) {
-        result = result.toString('utf-8');
-        return new Handlebars.SafeString(result);
-    });
-    Handlebars.registerHelper('ifNotEmpty', function (conditional, options) {
-        if (!!conditional) {
-            return options.fn(this);
-        } else {
-            return options.inverse(this);
-        }
-    });
-    /*
-    Handlebars.registerHelper('if', function(conditional, options) {
-      if(conditional) {
-        return options.fn(this);
-      } else {
-        return options.inverse(this);
-      }
-    });
-    */
-}
 
 
 async function compileSiteOnce(options = {}) {
 
     //Partials and Pages
     const config = require('./config');
-    server.partials.compile(options, config);
+    server.partials.compile(config);
     await server.pages.compile(options, config);
 
     //Index (Home page)
     const Handlebars = require('handlebars');
 
-    
+
     var outputFolder = options.outputFolder || config.defaultOutputFolder;
     var basePath = path.join(process.cwd(), outputFolder);
     var srcPath = path.join(process.cwd(), 'src');
@@ -320,9 +195,14 @@ async function compileSiteOnce(options = {}) {
 
 function runLocalServer() {
     return new Promise((resolve, reject) => {
+        
         const express = require('express');
         const app = express();
+
+        server.ssr(app, server, config)
+
         var cors = require('cors');
+        
         var appServer = require('http').Server(app);
 
         /*
@@ -349,26 +229,24 @@ function runLocalServer() {
         // parse application/json
         app.use(bodyParser.json())
 
-        const port = process.env.PORT || 3000;
+        
 
-        if (argv.a || argv.api) {
-            app.get('/', function (req, res) {
-                return res.send('API OK');
-            });
-            createApiRoutes(app);
-        } else {
-            const outputFolder = require('path').join(process.cwd(), 'docs');
-            app.use('/', express.static(outputFolder));
-            createApiRoutes(app);
-        }
+        createApiRoutes(app);
 
+        const outputFolder = require('path').join(process.cwd(), 'docs');
+        app.use('/', express.static(outputFolder));
+        
+
+
+        /*
         if (process.env.NODE_ENV !== 'production') {
             app.get('/livereload.js', (req, res) => {
                 server.livereload.addActivePage(req.query.page, req.query.language);
                 res.send(server.livereload.getClientScript(port));
             })
-        }
+        }*/
 
+        const port = process.env.PORT || 3000;
         appServer.listen(port, () => {
             console.log(`Server: Listening on ${port}!`);
             resolve();

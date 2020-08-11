@@ -8,9 +8,11 @@ var self = module.exports = {
 	defaultOutputFolder: 'docs',
 	NODE_ENV: process.env.NODE_ENV,
 	defaultLanguage: 'es',
+	languages: ['es','en','fr','pr','de'],
 	argv,
 	watchMode: argv.w || argv.watch,
 	context: {
+		langPath:'es/',
 		defaultCurrentPage: 'page_ecoaldea',
 		currentPage: 'page_ecoaldea',
 		NODE_ENV: process.env.NODE_ENV,
@@ -19,7 +21,7 @@ var self = module.exports = {
 	async init(){
 		await mergeDataFile();
 	},
-	getContext: async function(language) {
+	getContext: async function(language = "es") {
 		//console.log('getConfig',{language})
 		language = language || self.defaultLanguage;
 

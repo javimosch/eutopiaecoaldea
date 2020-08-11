@@ -150,3 +150,22 @@ Vue.component('codemirror', {
     }
   }
 });
+
+Vue.component('toggle',{
+  props:{
+    value:{
+      type:Boolean
+    }
+  },
+  template:`
+    <div class="toggle" @click="toggle">
+      <div :class="!value?'off':''"></div>
+      <div :class="value?'on':''"></div>
+    </div>
+  `,
+  methods:{
+    toggle(){
+      this.$emit('input', !this.value)
+    }
+  }
+})

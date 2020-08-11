@@ -18,11 +18,13 @@
 </head>
 <body>
 	<div class="app">
+		
 		{{#if (neq type 'admin')}}
 		{{> partial_header}}
 		{{else}}
 		
 		{{/if}}
+
 		{{#if (neq type 'admin')}}
 		{{#if (eq wipMode true)}}
 		<div class="mainContent">
@@ -80,6 +82,10 @@
 	{{else}}
 	<script type="text/javascript" src="/libs/vue.js"></script>
 	{{/if}}
+
+	<script src="https://unpkg.com/vuejs-datepicker"></script>
+	<script src="https://unpkg.com/vuejs-datepicker/dist/locale/translations/es.js"></script>
+
 	<script type="text/javascript" src='/libs/vue-components.js'></script>
 	
 	<script type="text/javascript" src="/libs/moment.js"></script>
