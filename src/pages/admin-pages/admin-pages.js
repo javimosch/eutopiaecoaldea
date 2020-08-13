@@ -82,8 +82,9 @@ module.exports = function () {
 					methods: {
 						async removePage() {
 							if (window.confirm('Seguro? (Los datos se perderan)')) {
-								let name = this.pageItem.htmlData.substring(this.pageItem.htmlData.lastIndexOf('/') + 1).split('.html').join('')
+								let name = this.pageItem.htmlPath.substring(this.pageItem.htmlPath.lastIndexOf('/') + 1).split('.html').join('')
 								await apiGet(`/api/pages/remove?name=${name}`)
+								this.pageItem = {}
 								this.refresh()
 							}
 						},
