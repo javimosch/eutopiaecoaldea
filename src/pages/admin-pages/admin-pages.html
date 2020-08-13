@@ -1,10 +1,14 @@
 <section class="admin protected container form appScope">
 
     <div class="layout">
-        <div>
+        
+        
+        <div
+        v-show="!hasPageSelected"
+        >
             <label class="important">Paginas</label>
 
-            <button v-show="pageItem" class="btn" @click="savePage" v-html="isSaving?'Guardando...':'Guardar'"></button>
+            
             <ul class="select">
                 <li
                 v-for="item in pages" 
@@ -12,9 +16,28 @@
                 v-html="item.label" :value="item" @click="onPageSelected(item)"></li>
             </ul>
 
-            <button  v-show="pageItem" class="btn" @click="savePage" v-html="isSaving?'Guardando...':'Guardar'"></button>
+            <label class="important">Crear pagina</label>
+
+            <input placeholder="name" v-model="newPageName"/>
+            <button @click="addPage">Crear</button>
+
         </div>
-        <page-editor ref="pageEditor" v-model="pageItem"></page-editor>
+        
+        
+        <div class="editor_content" v-show="hasPageSelected">
+            <button  class="btn" @click="goBack">Volver sin guardar</button>
+            <page-editor
+            
+            ref="pageEditor" v-model="pageItem"></page-editor>
+        </div>
+        
+ 
+        <div class="toolbar" v-show="hasPageSelected">
+            <button class="btn" @click="savePage" v-html="isSaving?'Guardando...':'Guardar'"></button>
+            <button @click="removePage">Borrar</button>
+        </div>
+        
+
     </div>
 
 </section>
@@ -22,11 +45,25 @@
 <style scoped>
     .layout {
         display: grid;
-        grid-template-columns: 20% 80%;
+        grid-template-columns: 80% 20%;
     }
     li{
         list-style: none;
         color:blue;
         cursor:pointer;
     }
+    .page-editor-component{
+        overflow: auto;
+        max-height: calc(100vh);
+    }
+
+    .CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+}
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
 </style>

@@ -198,6 +198,7 @@ function runLocalServer() {
         
         const express = require('express');
         const app = express();
+        app.config = config
 
         server.ssr(app, server, config)
 

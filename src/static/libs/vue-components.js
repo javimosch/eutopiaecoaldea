@@ -133,6 +133,11 @@ Vue.component('codemirror', {
       var editor = ace.edit(this.$refs.editor);
       editor.setTheme("ace/theme/chrome");
       editor.session.setMode(`ace/mode/${this.mode||'javascript'}`);
+
+      editor.setOptions({
+        maxLines: Infinity
+    });
+    
       this.editor = editor;
       this.editor.on('change', () => {
         var value = this.editor.getValue();

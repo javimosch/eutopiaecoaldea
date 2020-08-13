@@ -49,33 +49,56 @@ module.exports = function () {
 					name: 'adminPages',
 					data() {
 						return {
+							newPageName: "",
 							pages: [],
 							pageItem: {},
 							isSaving: false
 						}
 					},
 					created() {
-						apiGet('/api/pages').then(r => {
-							this.pages = r.result;
-						});
+						this.refresh()
 						let self = this
 						this.onSaveKey = function (e) {
 							if ((e.which == '115' || e.which == '83') && (e.ctrlKey || e.metaKey) && !(e.altKey)) {
 								e.preventDefault();
-								if(Object.keys(self.pageItem).length>0){
+								if (Object.keys(self.pageItem).length > 0) {
 									self.savePage()
 								}
 								return false;
 							}
 							return true;
 						}
-						$(document).on('keydown',this.onSaveKey);
+						$(document).on('keydown', this.onSaveKey);
 
 					},
-					destroyed(){
-						$(document).off('keydown',this.onSaveKey);
+					destroyed() {
+						$(document).off('keydown', this.onSaveKey);
+					},
+					computed: {
+						hasPageSelected() {
+							return Object.keys(this.pageItem).length > 0
+						}
 					},
 					methods: {
+						async removePage() {
+							if (window.confirm('Seguro? (Los datos se perderan)')) {
+								let name = this.pageItem.htmlData.substring(this.pageItem.htmlData.lastIndexOf('/') + 1).split('.html').join('')
+								await apiGet(`/api/pages/remove?name=${name}`)
+								this.refresh()
+							}
+						},
+						refresh() {
+							apiGet('/api/pages').then(r => {
+								this.pages = r.result;
+							});
+						},
+						async addPage() {
+							await apiGet(`/api/pages/add?name=${this.newPageName}`)
+							this.refresh()
+						},
+						goBack() {
+							this.pageItem = {}
+						},
 						selectedClass(page) {
 							return `${page.label == this.pageItem.label ? 'select_item__selected' : ''}`
 						},
