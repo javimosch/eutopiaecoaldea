@@ -21,7 +21,7 @@
         "execa": "^4.0.3",
         "express": "^4.16.4",
         "gmail-send": "^1.2.14",
-        "handlebars": "^4.3.0",
+        "handlebars": "^4.7.7",
         "jquery": "^3.5.0",
         "just-handlebars-helpers": "^1.0.14",
         "moment-timezone": "^0.5.23",
