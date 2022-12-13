@@ -19,7 +19,7 @@
         "dirty-json": "^0.7.0",
         "dotenv": "^6.2.0",
         "execa": "^4.0.3",
-        "express": "^4.16.4",
+        "express": "^4.17.3",
         "gmail-send": "^1.2.14",
         "handlebars": "^4.3.0",
         "jquery": "^3.5.0",
